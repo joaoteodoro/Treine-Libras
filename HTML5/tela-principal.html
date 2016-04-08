@@ -1,0 +1,383 @@
+<html>
+
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Treine Libras - Login</title>
+	<meta name="description" content="" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	</head>
+	
+	<style>
+		.div-titulo{
+			height: 100px;
+			margin: 50px;
+		}
+		
+		.titulo{
+			font-weight: bold;
+			line-height: 100px;
+		}
+		
+		h1{
+			font-size: 45px;
+		}
+		
+		.btn-geral{
+			background-color: black;
+			color: white;
+			font-weight: bold;
+		}
+		
+		.btn-geral:hover{
+			background-color: gray;
+			color: black;
+		}
+		
+		.btn-cadastrar{
+			height: 50px;
+			width: 150px;
+			font-size: 20px;
+		}
+		
+		.barra-menu{
+			height: 60px;
+			background-color: black;
+			width: 100%;
+		}
+		
+		.item-menu{
+			color: white;
+			line-height: 60px;
+			font-weight: bold;
+			font-size: 20px;
+		}
+		
+		.item-menu a{
+			text-decoration: none;
+			color: white;
+		}
+		
+		.menu{
+			width: 80%;
+		}
+		
+		.navbar-libras{
+			background-color: black;
+			border: none;
+		}
+		
+		.navbar-libras{
+			background-color: black;
+			border: none;
+		}
+		
+		.navbar-libras a{
+			color: white !important;
+			font-weight: bold;
+			height: 100%;
+		}
+		
+		.navbar-libras .navbar-nav>.active>a,
+		.navbar-libras .navbar-nav>li>a:hover{
+			background-color: white;
+			color: black !important;
+		}
+		
+		@media (min-width: 768px){
+			.navbar{
+				border-radius:4px;
+				width: 73%;
+			}
+			
+			.estrela-nota-sinal img{
+				max-height: 100%;
+				max-width: 25%;
+				width: 14%;
+			}	
+		}
+		
+		@media (min-width: 1000px){
+			.navbar{
+				border-radius:4px;
+				width: 58%;
+			}
+		}
+		
+		@media (min-width: 1250px){
+			.navbar{
+				border-radius:4px;
+				width: 45%;
+			}
+		}
+		
+		.box-pag-home{
+			background-color: black;
+			width: 95%;
+			padding: 10px;
+			overflow: hidden;
+		}
+		
+		.box-sinal-libras{
+			height: 150px; 
+			background-color: white;
+			padding: 10px;
+			border-style: solid;
+			border-color: black;
+		}
+		
+		.box-img-sinal-libras{
+			max-height: 100%;
+			border-style: solid;
+			padding: 0px;
+		}
+		
+		.img-sinal-libras{
+			max-height: 100%;
+			height: 100%;
+		}
+
+		.sinal-dificuldade{
+			height: 20px;
+			background-color: black;
+			color: white;
+			margin: 2px 20px;
+		}
+		
+		.box-sinal-descricao{
+			padding: 0px;
+		}
+		
+		.box-sinal-descricao h4{
+			font-size: 15px;
+		}
+		
+		.box-sinal-descricao p{
+			font-size: 12px;
+		}
+		
+		.estrela-nota-sinal{
+			max-width: 100%;
+			padding-top: 10px;
+		}
+		
+		.estrela-nota-sinal img{
+			max-height: 100%;
+			max-width: 16%;
+		}
+		
+		body{
+			font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+		}
+		
+		.alinhamento-esquerdo{
+			margin-left: 28.500;
+		}
+		
+	</style>
+
+	<body style="background-color:gray">
+		<div class="barra-menu">
+			<nav class="navbar navbar-default navbar-libras menu center-block">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						  <span class="sr-only">Toggle navigation</span>
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">Treine Libras</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+						  <li class="active"><a href="#">HOME</a></li>
+						  <li><a href="#">EXERCÍCIOS</a></li>
+						  <li><a href="#">GLOSÁRIO</a></li>
+						  <li><a href="#">AVALIAR</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="container" style="background-color: white;">
+			<br/>
+			<br/>
+			<div class="alinhamento-esquerdo">
+				<h2><b>Seja bem vindo(a), João.</b></h2>
+				<br/>
+				<br/>
+				<h3><b>Melhores avaliações!</b></h3>
+				<h4>Avalie estes sinais representados por outros usuários.</h4>
+			</div>
+			<div class="center-block box-pag-home">
+				<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras">
+					<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
+						<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+					</div>
+					<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
+						<h4><b>Nome do sinal</b></h4>
+						<p>CATEGORIA X</p>
+						<div class="sinal-dificuldade">
+							FÁCIL
+						</div>
+						<div class="estrela-nota-sinal">
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras">
+					<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
+						<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+					</div>
+					<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
+						<h4><b>Nome do sinal</b></h4>
+						<p>CATEGORIA X</p>
+						<div class="sinal-dificuldade">
+							FÁCIL
+						</div>
+						<div class="estrela-nota-sinal">
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras">
+					<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
+						<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+					</div>
+					<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
+						<h4><b>Nome do sinal</b></h4>
+						<p>CATEGORIA X</p>
+						<div class="sinal-dificuldade">
+							FÁCIL
+						</div>
+						<div class="estrela-nota-sinal">
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras">
+					<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
+						<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+					</div>
+					<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
+						<h4><b>Nome do sinal</b></h4>
+						<p>CATEGORIA X</p>
+						<div class="sinal-dificuldade">
+							FÁCIL
+						</div>
+						<div class="estrela-nota-sinal">
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+			<div class="alinhamento-esquerdo">
+				<br/>
+				<br/>
+				<h3><b>Piores avaliações!</b></h3>
+				<h4>Execute novamente estes sinais para que possam ser melhores avaliados.</h4>
+			</div>
+			<div class="center-block box-pag-home">
+				<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras">
+					<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
+						<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+					</div>
+					<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
+						<h4><b>Nome do sinal</b></h4>
+						<p>CATEGORIA X</p>
+						<div class="sinal-dificuldade">
+							FÁCIL
+						</div>
+						<div class="estrela-nota-sinal">
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras">
+					<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
+						<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+					</div>
+					<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
+						<h4><b>Nome do sinal</b></h4>
+						<p>CATEGORIA X</p>
+						<div class="sinal-dificuldade">
+							FÁCIL
+						</div>
+						<div class="estrela-nota-sinal">
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras">
+					<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
+						<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+					</div>
+					<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
+						<h4><b>Nome do sinal</b></h4>
+						<p>CATEGORIA X</p>
+						<div class="sinal-dificuldade">
+							FÁCIL
+						</div>
+						<div class="estrela-nota-sinal">
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras">
+					<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
+						<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+					</div>
+					<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
+						<h4><b>Nome do sinal</b></h4>
+						<p>CATEGORIA X</p>
+						<div class="sinal-dificuldade">
+							FÁCIL
+						</div>
+						<div class="estrela-nota-sinal">
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+							<img class="" src="img/estrela-cheia-amarela.png"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
