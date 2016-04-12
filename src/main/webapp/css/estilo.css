@@ -1,0 +1,298 @@
+.div-titulo{
+	height: 100px;
+	margin: 50px;
+}
+
+.titulo{
+	font-weight: bold;
+	line-height: 100px;
+}
+
+h1{
+	font-size: 45px;
+}
+
+.btn-geral{
+	background-color: black;
+	color: white;
+	font-weight: bold;
+}
+
+.btn-geral:hover{
+	background-color: gray;
+	color: black;
+}
+
+.btn-cadastrar{
+	height: 50px;
+	width: 150px;
+	font-size: 20px;
+}
+
+.barra-menu{
+	height: 60px;
+	background-color: black;
+	width: 100%;
+}
+
+.item-menu{
+	color: white;
+	line-height: 60px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.item-menu a{
+	text-decoration: none;
+	color: white;
+}
+
+.menu{
+	width: 80%;
+}
+
+.navbar-libras{
+	background-color: black;
+	border: none;
+}
+
+.navbar-libras{
+	background-color: black;
+	border: none;
+}
+
+.navbar-libras a{
+	color: white !important;
+	font-weight: bold;
+	height: 100%;
+}
+
+.navbar-libras .navbar-nav>.active>a,
+.navbar-libras .navbar-nav>li>a:hover{
+	background-color: white;
+	color: black !important;
+}
+
+.linha-box-avaliacao{
+	height: 20%;
+	border-top: solid black;
+	font-size: 13px;
+	line-height: 45px;
+}
+
+@media (min-width: 768px){
+	.navbar{
+		border-radius:4px;
+		width: 73%;
+	}
+	
+	.estrela-nota-sinal img{
+		max-height: 100%;
+		max-width: 25%;
+		width: 14%;
+	}
+
+	.linha-box-avaliacao{
+		height: 20%;
+		border-top: solid black;
+		font-size: 18px;
+		line-height: 45px;
+	}
+}
+
+@media (min-width: 1000px){
+	.navbar{
+		border-radius:4px;
+		width: 58%;
+	}
+}
+
+@media (min-width: 1250px){
+	.navbar{
+		border-radius:4px;
+		width: 45%;
+	}
+}
+
+.box-pag-home{
+	background-color: black;
+	width: 95%;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.box-sinal-libras{
+	height: 150px; 
+	background-color: white;
+	padding: 10px;
+	border-style: solid;
+	border-color: black;
+}
+
+.box-img-sinal-libras{
+	max-height: 100%;
+	border-style: solid;
+	padding: 0px;
+}
+
+.img-sinal-libras{
+	max-height: 100%;
+	height: 100%;
+}
+
+.sinal-dificuldade{
+	height: 20px;
+	background-color: black;
+	color: white;
+	margin: 2px 20px;
+}
+
+.box-sinal-descricao{
+	padding: 0px;
+}
+
+.box-sinal-descricao h4{
+	font-size: 15px;
+}
+
+.box-sinal-descricao p{
+	font-size: 12px;
+}
+
+.estrela-nota-sinal{
+	max-width: 100%;
+	padding-top: 10px;
+}
+
+.estrela-nota-sinal img{
+	max-height: 100%;
+	max-width: 16%;
+}
+
+body{
+	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+
+.alinhamento-esquerdo{
+	margin-left: 28.500;
+}
+
+
+.video{
+	height: 300px;
+	border: solid;
+	margin-bottom: 20px;
+	
+}
+
+.video-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.box-comum-avaliacao-sinal{
+	border: solid;
+	height: 300px;
+	margin: 5%;
+	padding: 0px;
+}
+
+.cabecalho-box-comum-avaliacao{
+	background-color: black;
+	color: white;
+	height: 50px
+}
+
+.cabecalho-box-comum-avaliacao h4{
+	margin: 0px;
+	line-height: 50px;
+}
+
+
+.catacteristicas-sinal{
+	height: 250px;
+}
+
+.icone-caracteristica{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.linha-caracteristica{
+	padding-left: 2.5%;
+}
+
+.estrela-avaliacao{
+	width: 25px;
+}
+
+.comentario{
+	border: none;
+}
+
+.comentario{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.comentario button{
+	margin: 10px;
+	width: 120px;
+	height: 50px;
+	background-color: black;
+	color: white;
+}
+
+.box-page-geral{
+	width: 95%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.bg-black{
+	background-color: black;
+}
+
+.color-white{
+	color: white;
+}
+
+@media (min-width: 500px){
+	.video-size-execucao{
+		width: 500px;
+	}
+}
+
+.box-execucao-sinal{
+	height: 300px;
+    margin: 5%;
+    padding: 0px;
+	font-size: 18px;
+    font-weight: bold;
+}
+
+.box-execucao-sinal button{
+	width: 120px;
+	height: 50px;
+	background-color: black;
+	color: white;
+}
+
+.box-sinal-libras-simples{
+	height: 120px; 
+	background-color: white;
+	padding: 10px;
+	border-style: solid;
+	border-color: black;
+}
