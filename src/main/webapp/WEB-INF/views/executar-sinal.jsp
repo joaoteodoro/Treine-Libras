@@ -3,16 +3,17 @@
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Treine Libras - Exercícios</title>
+	<title>Treine Libras - ExercÃ­cios</title>
 	<meta name="description" content="" />
-	<link href="css/jquery-ui.min.css" rel="stylesheet" />
-	<link href="css/jquery-ui.structure.min.css" rel="stylesheet" />
-	<link href="css/jquery-ui.theme.min.css" rel="stylesheet" />
-	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/estilo.css" rel="stylesheet" />
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<link href="../../resources/css/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../../resources/css/jquery-ui.structure.min.css" rel="stylesheet" />
+	<link href="../../resources/css/jquery-ui.theme.min.css" rel="stylesheet" />
+	<link href="../../resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../resources/css/estilo.css" rel="stylesheet" />
+	<script src="../../resources/js/jquery.min.js"></script>
+	<script src="../../resources/js/jquery-ui.min.js"></script>
+	<script src="../../resources/js/bootstrap.min.js"></script>
+	<script src="../../resources/js/main.js"></script>
 	</head>
 	
 	<body style="background-color:gray">
@@ -30,10 +31,10 @@
 					</div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
-						  <li><a href="tela-principal.html">HOME</a></li>
-						  <li class="active"><a href="exercicios.html">EXERCÍCIOS</a></li>
-						  <li><a href="glosario.html">GLOSÁRIO</a></li>
-						  <li><a href="avaliar.html">AVALIAR</a></li>
+						  <li><a href="tela-principal.jsp">HOME</a></li>
+						  <li class="active"><a href="exercicios.jsp">EXERCÃCIOS</a></li>
+						  <li><a href="glosario.jsp">GLOSÃRIO</a></li>
+						  <li><a href="avaliar.jsp">AVALIAR</a></li>
 						</ul>
 					</div>
 				</div>
@@ -50,7 +51,13 @@
 			<div class="row">
 				<div class="center-block video-size-execucao">
 					<div class="video-container video">
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/9KmbwhTbXwE" frameborder="0" allowfullscreen></iframe>
+						<video id="gum" autoplay="" muted="" src="blob:http%3A//localhost/609470af-b833-448b-9b7f-2a72dbeab7ed"></video>
+						<video id="recorded" autoplay="" loop="" controls="" src="blob:http%3A//localhost/e6a72d19-04af-4335-b74d-7989001f3bf2"></video>
+					</div>
+					<div>
+					  <button id="record">Start Recording</button>
+					  <button id="play">Play</button>
+					  <button id="download">Download</button>
 					</div>
 				</div>
 				<br/>
@@ -62,19 +69,19 @@
 						</div>
 						<div class="catacteristicas-sinal">
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Configuração de Mão:</b> mão aberta
+								<b>ConfiguraÃ§Ã£o de MÃ£o:</b> mÃ£o aberta
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Ponto de articulação:</b> na testa
+								<b>Ponto de articulaÃ§Ã£o:</b> na testa
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Movimento:</b> não tem
+								<b>Movimento:</b> nÃ£o tem
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Orientação:</b> para frente
+								<b>OrientaÃ§Ã£o:</b> para frente
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Expressão facial:</b> alegre
+								<b>ExpressÃ£o facial:</b> alegre
 							</div>
 						</div>
 					</div>
@@ -84,7 +91,7 @@
 						<button class="center-block bg-black color-white">Enviar</button>
 						<br/>
 						<p class="text-center">
-							<a href="sinal-interprete.html"><u>Veja este sinal sendo executado por um intérprete.</u></a>
+							<a href="sinal-interprete.html"><u>Veja este sinal sendo executado por um intÃ©rprete.</u></a>
 						</p>
 					</div>
 					
@@ -92,4 +99,5 @@
 			</div>
 		</div>
 	</body>
+	<object id="5a08bb68-f9fa-9794-39ea-3bab1b95a09c" width="0" height="0" type="application/gas-events-cef"></object>
 </html>

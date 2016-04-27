@@ -5,14 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Treine Libras - Avaliar</title>
 	<meta name="description" content="" />
-	<link href="css/jquery-ui.min.css" rel="stylesheet" />
-	<link href="css/jquery-ui.structure.min.css" rel="stylesheet" />
-	<link href="css/jquery-ui.theme.min.css" rel="stylesheet" />
-	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/estilo.css" rel="stylesheet" />
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<link href="../../resources/css/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../../resources/css/jquery-ui.structure.min.css" rel="stylesheet" />
+	<link href="../../resources/css/jquery-ui.theme.min.css" rel="stylesheet" />
+	<link href="../../resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../resources/css/estilo.css" rel="stylesheet" />
+	<script src="../../resources/js/jquery.min.js"></script>
+	<script src="../../resources/js/jquery-ui.min.js"></script>
+	<script src="../../resources/js/bootstrap.min.js"></script>
 	</head>
 	
 	<body style="background-color:gray">
@@ -30,10 +30,10 @@
 					</div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
-						  <li><a href="tela-principal.html">HOME</a></li>
-						  <li><a href="exercicios.html">EXERCÍCIOS</a></li>
-						  <li><a href="glosario.html">GLOSÁRIO</a></li>
-						  <li  class="active"><a href="avaliar.html">AVALIAR</a></li>
+						  <li><a href="tela-principal.jsp">HOME</a></li>
+						  <li><a href="exercicios.jsp">EXERCÍCIOS</a></li>
+						  <li><a href="glosario.jsp">GLOSÁRIO</a></li>
+						  <li  class="active"><a href="avaliar.jsp">AVALIAR</a></li>
 						</ul>
 					</div>
 				</div>
@@ -50,12 +50,12 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="video-container video col-md-offset-1 col-md-10">
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/9KmbwhTbXwE" frameborder="0" allowfullscreen></iframe>
+						<video id="recorded" controls="" src="../../resources/videos/video.webm"></video>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="video-container video col-md-offset-1 col-md-10">
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/9KmbwhTbXwE" frameborder="0" allowfullscreen></iframe>
+						<video id="recorded" controls="" src="../../resources/videos/video.webm"></video>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -93,11 +93,11 @@
 									CF
 								</div>
 								<div class="col-md-offset-2 col-md-7 col-sm-offset-2 col-sm-7 col-xs-offset-1 col-xs-8 avaliacao-caracteristica">
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
 								</div>
 								
 							</div>
@@ -106,11 +106,11 @@
 									PA
 								</div>
 								<div class="col-md-offset-2 col-md-7 col-sm-offset-2 col-sm-7 col-xs-offset-1 col-xs-8 avaliacao-caracteristica">
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
 								</div>
 								
 							</div>
@@ -119,11 +119,11 @@
 									M
 								</div>
 								<div class="col-md-offset-2 col-md-7 col-sm-offset-2 col-sm-7 col-xs-offset-1 col-xs-8 avaliacao-caracteristica">
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
 								</div>
 								
 							</div>
@@ -132,11 +132,11 @@
 									O
 								</div>
 								<div class="col-md-offset-2 col-md-7 col-sm-offset-2 col-sm-7 col-xs-offset-1 col-xs-8 avaliacao-caracteristica">
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
 								</div>
 								
 							</div>
@@ -145,11 +145,11 @@
 									EF
 								</div>
 								<div class="col-md-offset-2 col-md-7 col-sm-offset-2 col-sm-7 col-xs-offset-1 col-xs-8 avaliacao-caracteristica">
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
+									<img class="estrela-avaliacao" src="../../resources/img/estrela-vazia.png"/>
 								</div>
 							</div>
 						</div>

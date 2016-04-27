@@ -179,16 +179,22 @@ body{
 
 
 .video{
-	height: 300px;
-	border: solid;
+/* 	height: 300px; */
+/* 	border: solid; */
 	margin-bottom: 20px;
 	
 }
 
 .video-container {
 	position: relative;
-	padding-bottom: 56.25%;
-	padding-top: 30px; height: 0; overflow: hidden;
+/* 	padding-bottom: 56.25%; */
+	padding-top: 30px; 
+/* 	height: 0;  */
+	overflow: hidden;
+}
+
+video{
+	width: 100%;
 }
  
 .video-container iframe,
