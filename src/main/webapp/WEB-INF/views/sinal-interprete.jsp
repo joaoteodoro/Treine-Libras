@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 
 	<head>
@@ -5,52 +6,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Treine Libras - Glosário</title>
 	<meta name="description" content="" />
-	<link href="css/jquery-ui.min.css" rel="stylesheet" />
-	<link href="css/jquery-ui.structure.min.css" rel="stylesheet" />
-	<link href="css/jquery-ui.theme.min.css" rel="stylesheet" />
-	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/estilo.css" rel="stylesheet" />
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<c:import url="imports.jsp" />
 	</head>
 	
 	<body style="background-color:gray">
-		<div class="barra-menu">
-			<nav class="navbar navbar-default navbar-libras menu center-block">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						  <span class="sr-only">Toggle navigation</span>
-						  <span class="icon-bar"></span>
-						  <span class="icon-bar"></span>
-						  <span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#">Treine Libras</a>
-					</div>
-					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav">
-						  <li><a href="tela-principal.html">HOME</a></li>
-						  <li><a href="exercicios.html">EXERCÍCIOS</a></li>
-						  <li class="active"><a href="glosario.html">GLOSÁRIO</a></li>
-						  <li><a href="avaliar.html">AVALIAR</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
+		<c:import url="menu.jsp">
+			<c:param name="paginaAtual" value="glosario"/>
+		</c:import>
 		<div class="container" style="background-color: white;">
 			<br/>
 			<br/>
 			<div class="alinhamento-esquerdo">
-				<h2><b>Nome do Sinal</b></h2>
+				<h2><b>${sinal.nome}</b></h2>
 				<br/>
 				<br/>
 			</div>
 			<div class="row">
 				<div class="center-block video-size-execucao">
 					<div class="video-container video">
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/9KmbwhTbXwE" frameborder="0" allowfullscreen></iframe>
+						<video id="recorded" controls="" src="${pageContext.request.contextPath}/resources/videos/${sinal.video}"></video>
 					</div>
 				</div>
 				<br/>
@@ -62,19 +36,19 @@
 						</div>
 						<div class="catacteristicas-sinal">
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Configuração de Mão:</b> mão aberta
+								<b>Configuração de Mão:</b> ${sinal.configuracoesDeMao[0].nome}
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Ponto de articulação:</b> na testa
+								<b>Ponto de articulação:</b> ${sinal.pontoDeArticulacao.nome}
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Movimento:</b> não tem
+								<b>Movimento:</b> ${sinal.movimentos[0].nome}
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Orientação:</b> para frente
+								<b>Orientação:</b> ${sinal.orientacao}
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Expressão facial:</b> alegre
+								<b>Expressão facial:</b> ${sinal.expressaoFacial.nome}
 							</div>
 						</div>
 					</div>

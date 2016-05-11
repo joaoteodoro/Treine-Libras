@@ -10,7 +10,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<!-- entidade mapeada -->
-		<class>br.com.caelum.modelo.Tarefa</class>
+ 		<class>br.com.treinelibras.modelo.Usuario</class>
 
 		<properties>
 			<!-- propriedades do hibernate -->

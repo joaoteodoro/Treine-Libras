@@ -1,44 +1,17 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Treine Libras - Avaliar</title>
 	<meta name="description" content="" />
-	<link href="../../resources/css/jquery-ui.min.css" rel="stylesheet" />
-	<link href="../../resources/css/jquery-ui.structure.min.css" rel="stylesheet" />
-	<link href="../../resources/css/jquery-ui.theme.min.css" rel="stylesheet" />
-	<link href="../../resources/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="../../resources/css/estilo.css" rel="stylesheet" />
-	<script src="../../resources/js/jquery.min.js"></script>
-	<script src="../../resources/js/jquery-ui.min.js"></script>
-	<script src="../../resources/js/bootstrap.min.js"></script>
+	<c:import url="imports.jsp" />
 	</head>
 	
 	<body style="background-color:gray">
-		<div class="barra-menu">
-			<nav class="navbar navbar-default navbar-libras menu center-block">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						  <span class="sr-only">Toggle navigation</span>
-						  <span class="icon-bar"></span>
-						  <span class="icon-bar"></span>
-						  <span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#">Treine Libras</a>
-					</div>
-					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav">
-						  <li><a href="tela-principal.jsp">HOME</a></li>
-						  <li><a href="exercicios.jsp">EXERCÍCIOS</a></li>
-						  <li><a href="glosario.jsp">GLOSÁRIO</a></li>
-						  <li  class="active"><a href="avaliar.jsp">AVALIAR</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</div>
+		<c:import url="menu.jsp">
+			<c:param name="paginaAtual" value="avaliar"/>
+		</c:import>
 		<div class="container" style="background-color: white;">
 			<br/>
 			<br/>

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 
 	<head>
@@ -5,14 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Treine Libras - Avaliar</title>
 	<meta name="description" content="" />
-	<link href="css/jquery-ui.min.css" rel="stylesheet" />
-	<link href="css/jquery-ui.structure.min.css" rel="stylesheet" />
-	<link href="css/jquery-ui.theme.min.css" rel="stylesheet" />
-	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/estilo.css" rel="stylesheet" />
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<c:import url="imports.jsp" />
 	</head>
 
 	<body style="background-color:gray">
