@@ -36,13 +36,19 @@
 						</div>
 						<div class="catacteristicas-sinal">
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Configuração de Mão:</b> ${sinal.configuracoesDeMao[0].nome}
+								<b>Configuração de Mão:</b> 
+								<c:forEach items="${sinal.configuracoesDeMao}" var="configuracaoDeMao">
+									${configuracaoDeMao.nome}
+								</c:forEach>
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
 								<b>Ponto de articulação:</b> ${sinal.pontoDeArticulacao.nome}
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Movimento:</b> ${sinal.movimentos[0].nome}
+								<b>Movimento:</b> 
+								<c:forEach items="${sinal.movimentos}" var="movimento">
+									${movimento.nome}
+								</c:forEach>
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
 								<b>Orientação:</b> ${sinal.orientacao}

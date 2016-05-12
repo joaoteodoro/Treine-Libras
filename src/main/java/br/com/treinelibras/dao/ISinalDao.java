@@ -6,11 +6,15 @@ import br.com.treinelibras.modelo.Sinal;
 import br.com.treinelibras.modelo.Usuario;
 
 public interface ISinalDao {
-	Sinal buscaPorId(Long id);
+	public Sinal buscaPorId(Long id);
 	
-	List<Sinal> lista();
+	public List<Sinal> lista();
 	
-	List<Sinal> listaSinaisMelhoresAvaliacoes(Usuario u);
+	public List<String> listaCategorias();
 	
-	List<Sinal> listaSinaisPioresAvaliacoes(Usuario u);
+	public List<Sinal> listaSinalPorCategoria(String categoria);
+	
+	public List<Sinal> listaSinaisMelhoresAvaliacoes(Usuario u);
+	
+	public List<Sinal> listaSinaisPioresAvaliacoes(Usuario u);
 }
