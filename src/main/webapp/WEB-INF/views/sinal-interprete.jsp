@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,9 +8,9 @@
 	<c:import url="imports.jsp" />
 	</head>
 	
-	<body style="background-color:gray">
+	<body>
 		<c:import url="menu.jsp">
-			<c:param name="paginaAtual" value="glosario"/>
+			<c:param name="paginaAtual" value="glossario"/>
 		</c:import>
 		<div class="container" style="background-color: white;">
 			<br/>
@@ -64,7 +63,7 @@
 						<br/>
 						<br/>
 						<p class="text-center">
-							<a href="executar-sinal.html"><u>Executar este sinal</u></a>
+							<a href="executarSinal?id=${sinal.idSinal}"><u>Executar este sinal</u></a>
 						</p>
 					</div>
 					

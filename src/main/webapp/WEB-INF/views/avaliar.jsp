@@ -3,7 +3,7 @@
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Treine Libras - Exercícios</title>
+	<title>Treine Libras - Avaliar</title>
 	<meta name="description" content="" />
 	<c:import url="imports.jsp" />
 	<script>
@@ -16,7 +16,7 @@
 	
 	</head>
 	
-	<body style="background-color:gray">
+	<body>
 		<c:import url="menu.jsp">
 			<c:param name="paginaAtual" value="avaliar"/>
 		</c:import>
@@ -28,452 +28,56 @@
 				<br/>
 				<br/>
 			</div>
+			<script>
+				var listaIdSinais = new Array();
+			</script>
 			<div class="row">
 				<div class="center-block box-page-geral">
 					<div id="accordion">
-						<h3>Categoria A</h3>
-						<div>
-							<div class="center-block">
-								<a href="lista-gravacoes-sinal.html"> 
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
+						
+						<c:forEach items="${categorias}" var="categoria">
+							<h3>${categoria.key}</h3>
+							<div>
+								<div class="center-block">
+									<c:forEach items="${categoria.value}" var="sinal">
+										<a href="listarUsuariosPorGravacao?idSinal=${sinal.idSinal}">
+											<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
+												<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
+													<img class="img-sinal-libras img-responsive center-block" src="${pageContext.request.contextPath}/resources/img/${sinal.foto}"/>
+												</div>
+												<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
+													<h4>${sinal.nome}</h4>
+													<div class="sinal-dificuldade">
+														${sinal.dificuldade}
+													</div>
+													<div class="estrela-nota-sinal"  id="estrelas-nota-${sinal.idSinal}">
+													</div>
+													<script>
+														listaIdSinais.push('${sinal.idSinal}');
+													</script>
+												</div>
 											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
+										</a>
+									</c:forEach>
+								</div>
 							</div>
-						</div>
-						<h3>Categoria B</h3>
-						<div>
-							<div class="center-block">
-								<a href="lista-gravacoes-sinal.html"> 
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-						<h3>Categoria C</h3>
-						<div>
-							<div class="center-block">
-								<a href="lista-gravacoes-sinal.html"> 
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="../../resources/img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-												<img class="" src="../../resources/img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-						<h3>Categoria D</h3>
-						<div>
-							<div class="center-block">
-								<a href="lista-gravacoes-sinal.html"> 
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a href="lista-gravacoes-sinal.html">
-									<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
-										<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">
-											<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
-										</div>
-										<div class="col-sm-8 col-xs-8 text-center box-sinal-descricao">
-											<h4><b>Nome do sinal</b></h4>
-											<div class="sinal-dificuldade">
-												FÁCIL
-											</div>
-											<div class="estrela-nota-sinal">
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-												<img class="" src="img/estrela-cheia-amarela.png"/>
-											</div>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script>
+			$( document ).ready(function() {
+				for (i = 0; i < listaIdSinais.length; i++) {
+					carregarEstrelas(listaIdSinais[i]);
+				}
+			});
+		
+			function carregarEstrelas(id){
+				$.post("calculaNota",{'id' : id}, function(resposta){
+					$("#estrelas-nota-"+id).html(resposta);
+				});
+			};
+		</script>
 	</body>
 </html>

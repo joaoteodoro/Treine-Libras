@@ -17,13 +17,16 @@ public class LoginController {
 	IUsuarioDao dao;
 	
 	@RequestMapping("loginForm")
-	public String loginForm(){
+	public String loginForm(HttpSession session){
+		if(session.getAttribute("usuarioLogado")!=null){
+			return "redirect:index";
+		}
 		return "login";
 	}
 	
 	@RequestMapping("index")
 	public String index(){
-		return "index";
+		return "redirect:avaliacoes";
 	}
 	
 	@Transactional
@@ -31,8 +34,10 @@ public class LoginController {
 	public String efetuaLogin(Usuario usuario, HttpSession session) throws ClassNotFoundException{
 		System.out.println("Teste Validacao Usuario: "+usuario.getUsuario()+ " "+usuario.getSenha());
 		if(dao.existeUsuario(usuario)){
+			usuario = dao.buscarPorUsuario(usuario.getUsuario());
+			System.out.println("Usuario no momento de logar: "+usuario.getUsuario());
 			session.setAttribute("usuarioLogado", usuario);
-			return "index";
+			return "redirect:avaliacoes";
 		}
 		return "redirect:loginForm";
 	}

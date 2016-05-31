@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import br.com.treinelibras.modelo.Usuario;
+
 public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
@@ -16,6 +18,9 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 		} 
 
 		if (request.getSession().getAttribute("usuarioLogado") != null) {
+//			System.out.println("### usuario logado != null");
+//			Usuario usuario = (Usuario)request.getSession().getAttribute("usuarioLogado");
+//			System.out.println("### nome usuario: "+usuario.getUsuario());
 			return true;
 		}
 

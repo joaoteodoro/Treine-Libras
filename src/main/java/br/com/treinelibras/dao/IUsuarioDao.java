@@ -16,4 +16,6 @@ public interface IUsuarioDao {
 	void remove(Usuario u);
 	
 	boolean existeUsuario(Usuario u);
+	
+	public Usuario buscarPorUsuario(String usuario);
 }

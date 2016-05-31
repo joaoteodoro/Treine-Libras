@@ -48,5 +48,11 @@ public class UsuarioDao implements IUsuarioDao {
 		}
 		return true;
 	}
+	
+	public Usuario buscarPorUsuario(String usuario) {
+		Query query = manager.createQuery("select u from Usuario u where u.usuario = :paramUsuario");
+		query.setParameter("paramUsuario", usuario);
+		return (Usuario)query.getSingleResult();
+	}
 
 }

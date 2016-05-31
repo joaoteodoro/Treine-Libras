@@ -24,28 +24,28 @@
 					
 					<c:choose>
 						<c:when test="${param.paginaAtual == 'exercicios'}">
-							<li class="active"><a href="exercicios.html">EXERCÍCIOS</a></li>
+							<li class="active"><a href="listaSinaisExercicios">EXERCÍCIOS</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="exercicios.html">EXERCÍCIOS</a></li>
+							<li><a href="listaSinaisExercicios">EXERCÍCIOS</a></li>
 						</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${param.paginaAtual == 'glosario'}">
-							<li class="active"><a href="listaSinais">GLOSÁRIO</a></li>
+						<c:when test="${param.paginaAtual == 'glossario'}">
+							<li class="active"><a href="listaSinais">GLOSSÁRIO</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="listaSinais">GLOSÁRIO</a></li>
+							<li><a href="listaSinais">GLOSSÁRIO</a></li>
 						</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
 						<c:when test="${param.paginaAtual == 'avaliar'}">
-							<li class="active"><li><a href="avaliar.html">AVALIAR</a></li>
+							<li class="active"><a href="listaSinaisAvaliar">AVALIAR</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="avaliar.html">AVALIAR</a></li>
+							<li><a href="listaSinaisAvaliar">AVALIAR</a></li>
 						</c:otherwise>
 					</c:choose>
 					

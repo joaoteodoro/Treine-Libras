@@ -8,7 +8,7 @@
 	<c:import url="imports.jsp" />
 	</head>
 	
-	<body style="background-color:gray">
+	<body>
 		<div class="container" style="background-color: white; height: 100%;">
 		
 			<div class="text-center div-titulo">

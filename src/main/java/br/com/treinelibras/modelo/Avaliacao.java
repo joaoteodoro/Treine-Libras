@@ -112,5 +112,16 @@ public class Avaliacao {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "\n idAvaliacao: "+this.idAvaliacao +
+				"\n notaConfiguracaoMao: "+this.notaConfiguracaoMao +
+				"\n notaPontoArticulacao: "+this.notaPontoArticulacao +
+				"\n notaMovimento: "+this.notaMovimento +
+				"\n notaOrientacao"+this.notaOrientacao +
+				"\n notaExpressaoFacial"+this.notaExpressaoFacial + 
+				"\n data: "+this.data +
+				"\n notaMedia: "+this.notaMedia;
+	}
 }

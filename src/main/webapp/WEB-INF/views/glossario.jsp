@@ -16,9 +16,9 @@
 	
 	</head>
 	
-	<body style="background-color:gray">
+	<body>
 		<c:import url="menu.jsp">
-			<c:param name="paginaAtual" value="glosario"/>
+			<c:param name="paginaAtual" value="glossario"/>
 		</c:import>
 		<div class="container" style="background-color: white;">
 			<br/>
@@ -28,9 +28,13 @@
 				<br/>
 				<br/>
 			</div>
+			<script>
+				var listaIdSinais = new Array();
+			</script>
 			<div class="row">
 				<div class="center-block box-page-geral">
 					<div id="accordion">
+						
 						<c:forEach items="${categorias}" var="categoria">
 							<h3>${categoria.key}</h3>
 							<div>
@@ -46,17 +50,11 @@
 													<div class="sinal-dificuldade">
 														${sinal.dificuldade}
 													</div>
-													
-													<c:import url="nota-sinal.jsp">
-														<c:param name="sinal" value="${sinal}"/>
-													</c:import>
-													<div class="estrela-nota-sinal">
-														<img class="" src="${pageContext.request.contextPath}/resources/img/estrela-cheia-amarela.png"/>
-														<img class="" src="${pageContext.request.contextPath}/resources/img/estrela-cheia-amarela.png"/>
-														<img class="" src="${pageContext.request.contextPath}/resources/img/estrela-cheia-amarela.png"/>
-														<img class="" src="${pageContext.request.contextPath}/resources/img/estrela-cheia-amarela.png"/>
-														<img class="" src="${pageContext.request.contextPath}/resources/img/estrela-cheia-amarela.png"/>
+													<div class="estrela-nota-sinal"  id="estrelas-nota-${sinal.idSinal}">
 													</div>
+													<script>
+														listaIdSinais.push('${sinal.idSinal}');
+													</script>
 												</div>
 											</div>
 										</a>
@@ -68,5 +66,18 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			$( document ).ready(function() {
+				for (i = 0; i < listaIdSinais.length; i++) {
+					carregarEstrelas(listaIdSinais[i]);
+				}
+			});
+		
+			function carregarEstrelas(id){
+				$.post("calculaNota",{'id' : id}, function(resposta){
+					$("#estrelas-nota-"+id).html(resposta);
+				});
+			};
+		</script>
 	</body>
 </html>

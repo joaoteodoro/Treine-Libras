@@ -9,7 +9,7 @@
 	<c:import url="imports.jsp" />
 	</head>
 
-	<body style="background-color:gray">
+	<body>
 		<c:import url="menu.jsp">
 			<c:param name="paginaAtual" value="avaliar"/>
 		</c:import>
@@ -17,11 +17,15 @@
 			<br/>
 			<br/>
 			<div class="alinhamento-esquerdo">
-				<h2><b>Gravações do sinal "nome do sinal"</b></h2>
+				<h2><b>Gravações do sinal ${sinal.nome}</b></h2>
 				<br/>
 				<br/>
 				<p>Selecione uma dessas gravações para avaliar!</p>
 			</div>
+			<script>
+				var listaIdSinais = new Array();
+				var listaIdUsuarios = new Array();
+			</script>
 			<div class="row">
 				<div class="center-block box-page-geral">
 					<table class="table table-striped"> 
@@ -31,41 +35,40 @@
 								<th>Avaliação atual</th> 
 							</tr> 
 						</thead> 
-						<tbody> 
-							<tr> 
-								<td><a href="avaliar-sinal.html">joaoteodoro</a></td> 
-								<td>
-									<img class="estrela-avaliacao" src="img/estrela-cheia-amarela.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-cheia-amarela.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-cheia-amarela.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-cheia-amarela.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-								</td> 
-							</tr>
-							<tr> 
-								<td><a href="avaliar-sinal.html">laerciolima</a></td> 
-								<td>
-									<img class="estrela-avaliacao" src="img/estrela-cheia-amarela.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-cheia-amarela.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-cheia-amarela.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-								</td> 
-							</tr>
-							<tr> 
-								<td><a href="avaliar-sinal.html">victorsobreira</a></td> 
-								<td>
-									<img class="estrela-avaliacao" src="img/estrela-cheia-amarela.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-cheia-amarela.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-									<img class="estrela-avaliacao" src="img/estrela-vazia.png"/>
-								</td> 
-							</tr>
+						<tbody>
+							<c:forEach items="${gravacoes}" var="gravacao">
+								<tr>
+									<td><a href="mostraGravacao?idSinal=${sinal.idSinal}&idUsuario=${gravacao.usuario.idUsuario}">${gravacao.usuario.nome}</a></td>
+									<td>
+										<div id="estrelas-nota-${sinal.idSinal}">
+										</div>
+										<script>
+											listaIdSinais.push('${sinal.idSinal}');
+											listaIdUsuarios.push('${gravacao.usuario.idUsuario}');
+										</script>
+									</td>
+								</tr>	
+							</c:forEach>
 						</tbody> 
 					</table>
 				</div>
 			</div>
 		</div>
+		<script>
+			$( document ).ready(function() {
+				for (i = 0; i < listaIdSinais.length; i++) {
+					carregarEstrelas(listaIdSinais[i],listaIdUsuarios[i]);
+				}
+			});
+		
+			function carregarEstrelas(idSinal, idUsuario){
+				console.log("idSinal: "+idSinal);
+				console.log("idUsuario: "+idUsuario);
+				
+				$.post("calculaNotaUsuarios",{'idSinal' : idSinal, 'idUsuario' : idUsuario}, function(resposta){
+					$("#estrelas-nota-"+idSinal).html(resposta);
+				});
+			};
+		</script>
 	</body>
 </html>

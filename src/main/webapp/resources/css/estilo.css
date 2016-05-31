@@ -170,6 +170,7 @@ h1{
 }
 
 body{
+	background-color: #EEE !important;
 	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 }
 
@@ -301,4 +302,8 @@ video{
 	padding: 10px;
 	border-style: solid;
 	border-color: black;
+}
+
+.botoes-gravacao{
+	margin: 10px;
 }
