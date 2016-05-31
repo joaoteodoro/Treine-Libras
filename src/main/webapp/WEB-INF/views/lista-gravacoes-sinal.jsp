@@ -25,6 +25,7 @@
 			<script>
 				var listaIdSinais = new Array();
 				var listaIdUsuarios = new Array();
+				var listaIdGravacoes = new Array();
 			</script>
 			<div class="row">
 				<div class="center-block box-page-geral">
@@ -47,6 +48,14 @@
 											listaIdUsuarios.push('${gravacao.usuario.idUsuario}');
 										</script>
 									</td>
+									<td>
+										<!-- Usuario logado ja avaliou esta gravacao -->
+										<div id="ja-avaliou-${gravacao.idGravacao}">
+										</div>
+										<script>
+											listaIdGravacoes.push('${gravacao.idGravacao}');
+										</script>
+									</td>
 								</tr>	
 							</c:forEach>
 						</tbody> 
@@ -59,12 +68,19 @@
 				for (i = 0; i < listaIdSinais.length; i++) {
 					carregarEstrelas(listaIdSinais[i],listaIdUsuarios[i]);
 				}
-			});
-		
-			function carregarEstrelas(idSinal, idUsuario){
-				console.log("idSinal: "+idSinal);
-				console.log("idUsuario: "+idUsuario);
 				
+				for(i = 0;i < listaIdGravacoes; i++){
+					verificaAvaliacao(listaIdGravacoes[i]);
+				}
+			});
+			
+			function verificaAvaliacao(idGravacao){
+				$.post("verificaAvaliacao",{'idGravacao' : idGravacao}, function(resposta){
+					$("#ja-avaliou-"+idGravacao).html(resposta);
+				})
+			}
+		
+			function carregarEstrelas(idSinal, idUsuario){				
 				$.post("calculaNotaUsuarios",{'idSinal' : idSinal, 'idUsuario' : idUsuario}, function(resposta){
 					$("#estrelas-nota-"+idSinal).html(resposta);
 				});

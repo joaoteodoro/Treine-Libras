@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import javax.persistence.Query;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -47,6 +47,18 @@ public class GravacaoController {
 	
 	@Autowired
 	IAvaliacaoDao avaliacaoDao;
+	
+	@RequestMapping("verificaAvaliacao")
+	@ResponseBody
+	public String verificaAvaliacao(Long idGravacao, HttpSession session){
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		Avaliacao a = avaliacaoDao.existeAvaliacaoGravada(usuario.getIdUsuario(), idGravacao);
+		if(a != null){
+			return "Você já avaliou esta gravação";
+		}else{
+			return "";
+		}
+	}
 	
 	@RequestMapping("mostraGravacao")
 	public String mostraGravacao(Long idSinal, Long idUsuario, Model model){

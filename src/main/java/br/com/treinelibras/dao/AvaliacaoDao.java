@@ -56,5 +56,4 @@ public class AvaliacaoDao implements IAvaliacaoDao{
 		query.setParameter("paramGravacao", idGravacao);
 		query.executeUpdate();
 	}
-	
 }
