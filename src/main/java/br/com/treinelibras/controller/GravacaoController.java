@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -51,8 +52,12 @@ public class GravacaoController {
 	@RequestMapping("verificaAvaliacao")
 	@ResponseBody
 	public String verificaAvaliacao(Long idGravacao, HttpSession session){
+		System.out.println("**********************************Entrou verificaAvaliacao()");
 		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		System.out.println("**********************************Usuario ID: "+usuario.getIdUsuario());
+		System.out.println("**********************************ID Gravacao: "+idGravacao);
 		Avaliacao a = avaliacaoDao.existeAvaliacaoGravada(usuario.getIdUsuario(), idGravacao);
+		System.out.println("**********************************Avaliacao : "+a.toString());
 		if(a != null){
 			return "Voc๊ jแ avaliou esta grava็ใo";
 		}else{
@@ -67,17 +72,18 @@ public class GravacaoController {
 		model.addAttribute("sinal",sinal);
 		model.addAttribute("gravacao",gravacao);
 		
-		return "avaliar-sinal"; 
+		return "avaliar-sinal";
 	}
 	
 	
 	@RequestMapping("listarUsuariosPorGravacao")
 	public String listarUsuariosPorGravacao(Long idSinal, Model model, HttpServletRequest request){
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
-		List<Gravacao> gravacoes = dao.gravacoesPorSinalSemUsuarioLogado(idSinal, usuario.getIdUsuario());
+		List<Gravacao> gravacoes = dao.gravacoesPorSinalSemUsuarioLogado(idSinal, usuario.getIdUsuario());		
+		Sinal sinal = sinalDao.buscaPorId(idSinal);
 		
 		model.addAttribute("gravacoes", gravacoes);
-		model.addAttribute("sinal",gravacoes.get(0).getSinal());
+		model.addAttribute("sinal",sinal);
 		return "lista-gravacoes-sinal";
 	}
 	
@@ -94,8 +100,62 @@ public class GravacaoController {
 	@RequestMapping("gravarSinal")
 	public String gravarSinal(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
+		Sinal sinal = (Sinal) request.getSession().getAttribute("sinalContexto");
+		System.out.println("*************************************idSInal: "+sinal.getIdSinal());
+		
+		String idSinalFormatado = StringUtils.lpad(String.valueOf(sinal.getIdSinal()), "0", 4);
+		Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
+		String idUsuarioFormatado = StringUtils.lpad(usuarioLogado.getIdUsuario().toString(), "0", 4);
+		String ano = String.valueOf(Calendar.YEAR);
+		String mes = StringUtils.lpad(String.valueOf(Calendar.MONTH),"0", 2);
+		String dia = StringUtils.lpad(String.valueOf(Calendar.DAY_OF_MONTH),"0", 2);
+		String nomeArquivo = ano+mes+dia+idSinalFormatado+idUsuarioFormatado+".webm";
+		
+		
 		try {
-			List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+			
+			String caminho = servletContext.getRealPath("/resources/videos") + "/";
+			
+			File diretorio = new File(caminho);
+			
+			if (!diretorio.exists()) {
+				diretorio.mkdir();
+			}
+			
+			File file = new File(diretorio, nomeArquivo);
+			FileOutputStream output = new FileOutputStream(file);
+			
+			InputStream is = request.getInputStream();
+			byte[] buffer = new byte[2048];
+			int nLidos;
+
+			while ((nLidos = is.read(buffer)) >= 0) {
+				output.write(buffer, 0, nLidos);
+			}
+			output.flush();
+			output.close();
+			
+			Gravacao gravacao = dao.gravacaoPorUsuarioSinal(usuarioLogado.getIdUsuario(), sinal.getIdSinal());
+			
+			if(gravacao != null){
+				gravacao.setVideo(nomeArquivo);
+			}else{
+				gravacao = new Gravacao();
+				gravacao.setUsuario(usuarioLogado);
+				gravacao.setSinal(sinal);
+				gravacao.setVideo(nomeArquivo);
+				//dao.adiciona(gravacao);
+			}
+			dao.adiciona(gravacao);
+			System.out.println("จจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจAntes de chamar o dao que apaga as gravacoes!");
+			avaliacaoDao.apagaAvaliacoes(gravacao.getIdGravacao());
+			
+			
+			
+			
+			
+			
+			/*List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
 			for (FileItem item : items) {
 				if (item.isFormField()) {
@@ -130,15 +190,15 @@ public class GravacaoController {
 					System.out.println("จจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจAntes de chamar o dao que apaga as gravacoes!");
 					avaliacaoDao.apagaAvaliacoes(gravacao.getIdGravacao());
 				}
-			}
-		} catch (FileUploadException e) {
+			}*/
+		} catch (Exception e) {
 			throw new ServletException("Parsing file upload failed.", e);
 		}
 		
 		return "redirect:listaSinaisExercicios";
 	}
 
-	private void inserirImagemDiretorio(FileItem item) throws IOException {
+	/*private void inserirImagemDiretorio(FileItem item) throws IOException {
 		String caminho = servletContext.getRealPath("/resources/videos") + "/";
 		//String caminho = "D:\\videosTreineLibras\\";
 
@@ -166,5 +226,5 @@ public class GravacaoController {
 		}
 		output.flush();
 		output.close();
-	}
+	}*/
 }

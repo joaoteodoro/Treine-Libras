@@ -41,7 +41,7 @@
 								<tr>
 									<td><a href="mostraGravacao?idSinal=${sinal.idSinal}&idUsuario=${gravacao.usuario.idUsuario}">${gravacao.usuario.nome}</a></td>
 									<td>
-										<div id="estrelas-nota-${sinal.idSinal}">
+										<div id="estrelas-nota-${gravacao.usuario.idUsuario}">
 										</div>
 										<script>
 											listaIdSinais.push('${sinal.idSinal}');
@@ -68,21 +68,24 @@
 				for (i = 0; i < listaIdSinais.length; i++) {
 					carregarEstrelas(listaIdSinais[i],listaIdUsuarios[i]);
 				}
+				console.log("Tamnho vetor listaIdGravacoes: "+listaIdGravacoes.length)
 				
-				for(i = 0;i < listaIdGravacoes; i++){
+				for(i = 0;i < listaIdGravacoes.length; i++){
 					verificaAvaliacao(listaIdGravacoes[i]);
 				}
 			});
 			
 			function verificaAvaliacao(idGravacao){
+				console.log("idGravacao: "+idGravacao);
 				$.post("verificaAvaliacao",{'idGravacao' : idGravacao}, function(resposta){
 					$("#ja-avaliou-"+idGravacao).html(resposta);
 				})
 			}
 		
-			function carregarEstrelas(idSinal, idUsuario){				
+			function carregarEstrelas(idSinal, idUsuario){
+				console.log("idUsuario: "+idUsuario);
 				$.post("calculaNotaUsuarios",{'idSinal' : idSinal, 'idUsuario' : idUsuario}, function(resposta){
-					$("#estrelas-nota-"+idSinal).html(resposta);
+					$("#estrelas-nota-"+idUsuario).html(resposta);
 				});
 			};
 		</script>

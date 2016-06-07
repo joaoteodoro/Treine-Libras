@@ -42,11 +42,17 @@ public class UsuarioDao implements IUsuarioDao {
 		query.setParameter("paramLogin", usuario.getUsuario());
 		query.setParameter("paramSenha", usuario.getSenha());
 		
+		if(query.getResultList().isEmpty()){
+			return false;
+		}else{
+			return true;
+		}
+		/*
 		Usuario u = (Usuario)query.getSingleResult();
 		if(u == null){
 			return false;
 		}
-		return true;
+		return true;*/
 	}
 	
 	public Usuario buscarPorUsuario(String usuario) {

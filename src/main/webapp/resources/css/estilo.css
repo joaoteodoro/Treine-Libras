@@ -5,7 +5,7 @@
 
 .titulo{
 	font-weight: bold;
-	line-height: 100px;
+	line-height: 50px;
 }
 
 h1{
@@ -188,9 +188,9 @@ body{
 
 .video-container {
 	position: relative;
-/* 	padding-bottom: 56.25%; */
+	padding-bottom: 56.25%;
 	padding-top: 30px; 
-/* 	height: 0;  */
+	height: 0; 
 	overflow: hidden;
 }
 
@@ -306,4 +306,14 @@ video{
 
 .botoes-gravacao{
 	margin: 10px;
+}
+
+#loginErro{
+	color: red;
+}
+
+@media (min-width: 992px){
+	.video-usuario{
+		height: 380px;
+	}
 }

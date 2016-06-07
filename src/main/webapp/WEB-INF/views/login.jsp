@@ -14,7 +14,7 @@
 			<div class="text-center div-titulo">
 				<h1 class="titulo">Treine Libras</h1>
 			</div>
-			<form class="form-horizontal" action="efetuaLogin" method="post">
+			<form class="form-horizontal" id="efetuaLogin" action="efetuaLogin" method="post">
 				<div class="form-group">
 					<label for="usuario" class="col-sm-5 control-label" >Usuário </label>
 					<div class="col-sm-3">
@@ -28,16 +28,34 @@
 						<input type="password" maxlength="15" class="form-control" id="senha" name="senha" placeholder="Senha" required>
 					</div>
 				</div>
-				
 				<div class="col-sm-offset-7 col-sm-1">
-					<button type="submit" class="btn  btn-geral">Acessar</button>
+					<button id="botaoAcessar" class="btn  btn-geral">Acessar</button>
 				</div>
-				<br/><br/><br/><br/>
 			</form>
+			
+			<br/><br/>
+			<div id="loginErro" class="col-sm-offset-5 col-sm-4">
+			</div>
+			<br/><br/>
 			<div class="center-block">
-				<button onclick='window.location.href="cadastro-usuario.html"' type="submit" class="btn  btn-geral btn-cadastrar center-block ">Cadastre-se</button>
+				<button onclick='window.location.href="novoUsuario"' type="submit" class="btn  btn-geral btn-cadastrar center-block ">Cadastre-se</button>
 			</div>
 		</div>
+		<script type="text/javascript">
+			$("#botaoAcessar").click(function(){
+				var usuario = $("#usuario").val();
+				var senha = $("#senha").val();
+				$.post("validaLogin",{'usuario' : usuario, 'senha' : senha}, function(resposta){
+					console.log("resposta: "+resposta);
+					if(resposta != ''){
+						console.log("entrou if");
+						$("#loginErro").html(resposta);
+					}else{
+						console.log("entrou else");
+						$("#efetuaLogin").submit();
+					}
+				});
+			})
+		</script>
 	</body>
-
 </html>

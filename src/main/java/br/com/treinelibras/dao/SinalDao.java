@@ -59,9 +59,7 @@ public class SinalDao implements ISinalDao {
 		query.setParameter("paramUsuario", idUsuario);
 		System.out.println("depois dos parametros: ");
 		Object o = query.getSingleResult();
-		System.out.println("retorno: "+o.toString());
 		Float media = Float.parseFloat(o.toString());
-		System.out.println("media: "+media);
 		return media;
 	}
 

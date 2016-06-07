@@ -19,22 +19,22 @@
 			</div>
 			<div class="row">
 				<div class="center-block box-page-geral">
-					<form>
+					<form action="adicionaUsuario" method="post">
 						<div class="form-group">
 							<label for="nome">Nome:</label>
-							<input type="text" required class="form-control" id="nome" placeholder="Nome">
+							<input type="text" required class="form-control" id="nome" name="nome" placeholder="Nome">
 						</div>
 						<div class="form-group">
 							<label for="email">Email:</label>
-							<input type="email" required class="form-control" id="email" placeholder="Email">
+							<input type="email" required class="form-control" id="email" name="email" placeholder="Email">
 						</div>
 						<div class="form-group">
 							<label for="usuario">Usuário:</label>
-							<input type="text" required class="form-control" id="usuario" placeholder="Usuario">
+							<input type="text" required class="form-control" id="usuario" name="usuario" placeholder="Usuario">
 						</div>
 						<div class="form-group">
 							<label for="senha">Senha:</label>
-							<input type="password" required class="form-control" id="senha" placeholder="Senha">
+							<input type="password" required class="form-control" id="senha" name="senha" placeholder="Senha">
 						</div>
 						<div class="form-group">
 							<label for="confirmarSenha">Confirmar Senha:</label>

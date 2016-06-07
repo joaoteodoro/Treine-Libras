@@ -3,7 +3,7 @@
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Treine Libras - Glosário</title>
+	<title>Treine Libras - Exercicios</title>
 	<meta name="description" content="" />
 	<c:import url="imports.jsp" />
 	</head>
@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="col-md-6">
-						<video id="gum" autoplay="" muted="" src="blob:http%3A//localhost/609470af-b833-448b-9b7f-2a72dbeab7ed"></video>
+						<video id="gum" autoplay="" muted="" src="blob:"></video>
 						<div class="botoes-gravacao">
 						  <button id="record" class="bg-black color-white">Iniciar Gravacao</button>
 						  <button id="play" class="bg-black color-white">Play</button>
@@ -71,7 +71,7 @@
 				<div class="col-md-6">
 					<div class="box-execucao-sinal">
 						<p class="text-center">
-							<a href="mostraSinal?id=${sinal.idSinal}"><u>Veja este sinal sendo executado por um intérprete.</u></a>
+							<a href="mostraSinal?id=${sinal.idSinal}"><u>Veja este sinal sendo executado por um interprete.</u></a>
 						</p>
 					</div>
 				</div>
@@ -82,14 +82,14 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        			<h4 class="modal-title" id="myModalLabel">Gravação de Sinal</h4>
+	        			<h4 class="modal-title" id="myModalLabel">Gravacaoo de Sinal</h4>
 		      		</div>
 		      		<div class="modal-body">
-		       			Confirma o envio da gravação?
+		       			Confirma o envio da gravacao?
 		      		</div>
 		      		<div class="modal-footer">
-		        		<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-		        		<button type="button" class="btn btn-primary" onclick="enviarVideo(${sinal.idSinal})">Enviar gravação</button>
+		        		<button type="button" class="btn btn-default" data-dismiss="modal">Nao</button>
+		        		<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="enviarVideo(${sinal.idSinal})">Sim</button>
 		      		</div>
 	    		</div>
 	  		</div>
@@ -97,6 +97,9 @@
 		
 	<script>
 	$(document).ready(function(){
+		$.post("gravaSinalSessao",{'idSinal' : '${sinal.idSinal}'}, function(resposta){
+		});
+		
 		var xhr=new XMLHttpRequest();
 		xhr.onload=function(e) {
 		   if(this.readyState === 4 && e.target.responseText != "") {
@@ -118,7 +121,31 @@
 	function enviarVideo(idSinal){
 		var video = new Blob(recordedBlobs, {type: 'video/webm'});
 		
-		var now = new Date();
+	    var progressBar = document.getElementById("progressBar");
+	    var xhr = new XMLHttpRequest();
+
+	    xhr.upload.onprogress = function(e) {
+	        var percentComplete = (e.loaded / e.total) * 100;
+	        progressBar.value = percentComplete;
+	    };
+
+	    xhr.onload = function() {
+	        if (xhr.status == 200) {
+	            alert("Gravação enviada com sucesso!");
+	        } else {
+	            alert("Ocorreu um erro ao enviar a gravação!");
+	        }
+	    };
+	    xhr.onerror = function() {
+	        alert("Ocorreu um erro ao enviar a gravação!");
+	    };
+	    
+	    //progressBar.value = 0;
+	    xhr.open("POST", "gravarSinal", true);
+	    xhr.setRequestHeader("Content-Type", video.type);
+	    xhr.send(video);
+		
+		/*var now = new Date();
 		var idSinalFormatado = lpad(idSinal, 4);
 		var nomeArquivo = now.getFullYear()+lpad(now.getMonth()+1,2)+lpad(now.getDate(), 2)+idSinalFormatado;
 		
@@ -132,7 +159,8 @@
 		var fd=new FormData();
 		fd.append(nomeArquivo, video);
 		xhr.open("POST","gravarSinal",true);
-		xhr.send(fd);
+		req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(fd);*/
 	}
 
 	var mediaSource = new MediaSource();

@@ -27,7 +27,7 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="video-container video col-md-offset-1 col-md-10">
+					<div class="video-usuario video-container video col-md-offset-1 col-md-10">
 						<video id="recorded" controls="" src="${pageContext.request.contextPath}/resources/videos/${gravacao.video}"></video>
 					</div>
 				</div>
@@ -136,7 +136,7 @@
 				</div>
 				<div class="col-md-12">
 					<div class="comentario box-comum-avaliacao-sinal">
-						<p>Comentário:</p>
+						<!-- <p>Comentário:</p> -->
 						<form id="adicionaAvaliacao" action="adicionaAvaliacao" method="post">
 							<!-- <textarea class="form-control" rows="5" id="comentario"></textarea> -->
 							<input type="hidden" id="notaConfiguracaoMao" name="notaConfiguracaoMao"/>

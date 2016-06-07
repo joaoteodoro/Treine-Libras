@@ -19,12 +19,12 @@ public class UsuarioController {
 	
 	@RequestMapping("novoUsuario")
 	public String form(){
-		return "usuario/formulario";
+		return "cadastro-usuario";
 	}
 	
 	@RequestMapping("adicionaUsuario")
 	public String adiciona(@Valid Usuario usuario){
 		dao.adiciona(usuario);
-		return "usuario/formulario";
+		return "login";
 	}
 }

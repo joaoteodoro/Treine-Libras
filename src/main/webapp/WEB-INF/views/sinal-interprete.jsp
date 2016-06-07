@@ -23,7 +23,9 @@
 			<div class="row">
 				<div class="center-block video-size-execucao">
 					<div class="video-container video">
-						<video id="recorded" controls="" src="${pageContext.request.contextPath}/resources/videos/${sinal.video}"></video>
+						<video id="recorded" controls>
+							<source src="${pageContext.request.contextPath}/resources/videos/${sinal.video}" type="video/webm;codecs=&quot;vp8, vorbis&quot;">
+						</video>
 					</div>
 				</div>
 				<br/>

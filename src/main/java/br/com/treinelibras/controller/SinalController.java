@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.treinelibras.dao.ISinalDao;
 import br.com.treinelibras.modelo.Sinal;
@@ -113,5 +114,14 @@ public class SinalController {
 		float nota = dao.notaSinalPorUsuario(idUsuario, idSinal);
 		model.addAttribute("nota", nota);
 		return "nota-sinal";
+	}
+	
+	
+	@RequestMapping("gravaSinalSessao")
+	@ResponseBody
+	public String gravaSinalSessao(Long idSinal, Model model, HttpSession session){
+		Sinal sinal = dao.buscaPorId(idSinal);
+		session.setAttribute("sinalContexto", sinal);
+		return "";
 	}
 }
