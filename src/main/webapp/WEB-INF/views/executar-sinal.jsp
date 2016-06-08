@@ -94,6 +94,7 @@
 	    		</div>
 	  		</div>
 		</div>
+		<c:import url="rodape.jsp" />
 		
 	<script>
 	$(document).ready(function(){

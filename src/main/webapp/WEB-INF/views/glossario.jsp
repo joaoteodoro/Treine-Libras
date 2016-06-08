@@ -66,6 +66,7 @@
 				</div>
 			</div>
 		</div>
+		<c:import url="rodape.jsp" />
 		<script>
 			$( document ).ready(function() {
 				for (i = 0; i < listaIdSinais.length; i++) {

@@ -317,3 +317,15 @@ video{
 		height: 380px;
 	}
 }
+
+.rodape{
+	background-color: black;
+    color: white;
+    font-weight: bold;
+	line-height: 50px;
+}
+
+.rodape a{
+	color: yellow;
+	float: right;
+}

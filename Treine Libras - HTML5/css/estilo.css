@@ -296,3 +296,26 @@ body{
 	border-style: solid;
 	border-color: black;
 }
+
+/*INICIO ALTERAÇÃO 07/06/2016  - INCLUSÃO DE RODAPÉ*/
+
+.rodape{
+	background-color: black;
+    color: white;
+    font-weight: bold;
+	line-height: 50px;
+}
+
+.rodape a{
+	color: yellow;
+	float: right;
+}
+
+/*FIM ALTERAÇÃO 07/06/2016  - INCLUSÃO DE RODAPÉ*/
+
+/*INICIAL ALTERAÇÃO 08/06/2016 - TELA PARA CADASTRO DE SINAL*/
+.table img:hover{
+	box-shadow: 1px 1px 10px #337ab7;
+}
+
+/*INICIAL ALTERAÇÃO 08/06/2016 - TELA PARA CADASTRO DE SINAL*/

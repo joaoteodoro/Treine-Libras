@@ -72,5 +72,6 @@
 				</div>
 			</div>
 		</div>
+		<c:import url="rodape.jsp" />
 	</body>
 </html>

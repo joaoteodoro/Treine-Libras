@@ -59,6 +59,7 @@
 					</a>
 				</c:forEach>
 			</div>
+			<br/><br/>
 			
 			
 			<div class="alinhamento-esquerdo">
@@ -99,7 +100,9 @@
 					</a>
 				</c:forEach>
 			</div>
+			<br/><br/><br/><br/><br/>
 		</div>
+		<c:import url="rodape.jsp" />
 		<script>
 			$( document ).ready(function() {
 				for (i = 0; i < listaIdSinaisMelhores.length; i++) {

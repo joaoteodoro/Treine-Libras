@@ -41,6 +41,7 @@
 				<button onclick='window.location.href="novoUsuario"' type="submit" class="btn  btn-geral btn-cadastrar center-block ">Cadastre-se</button>
 			</div>
 		</div>
+		<c:import url="rodape.jsp" />
 		<script type="text/javascript">
 			$("#botaoAcessar").click(function(){
 				var usuario = $("#usuario").val();

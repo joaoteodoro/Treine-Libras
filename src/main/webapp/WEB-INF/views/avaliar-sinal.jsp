@@ -171,6 +171,7 @@
 	    		</div>
 	  		</div>
 		</div>
+		<c:import url="rodape.jsp" />
 		<script>
 			$(".es").click(function(){
 				var idClicada = this.id;
