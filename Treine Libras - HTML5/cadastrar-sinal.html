@@ -49,7 +49,7 @@
 			</div>
 			<div class="row">
 				<div class="center-block box-page-geral">
-					<form>
+					<form id="form" action="javascript:alert( 'success!' );">
 						<div class="form-group">
 							<label for="nome">Nome:</label>
 							<input type="text" required class="form-control" id="nome" placeholder="Nome">
@@ -162,21 +162,51 @@
 						
 						<div class="form-group">
 							<label for="pontoArticulacao">Ponto de Articulação:</label>
-							<input type="text" required class="form-control" id="pontoArticulacao" placeholder="Ponto de Articulação">
+							<select class="form-control" id="pontoArticulacao">
+								<option value="Neutro">Neutro</option>
+								<option value="Na testa">Na testa</option>
+								<option value="Na boca">Na boca</option>
+								<option value="Na orelha">Na orelha</option>
+								<option value="Outro">Outro</option>
+							</select>
+							<div style="display: none" id="outroPontoArticulacao">
+								<br/>
+								<input type="text" class="form-control" id="pontoArticulacao2" placeholder="Novo Ponto de Articulação">
+							</div>
 						</div>
 						
 						<div class="form-group">
 							<label for="movimento">Movimento:</label>
-							<input type="text" required class="form-control" id="movimento" placeholder="Movimento">
+							<select class="form-control" id="movimento">
+								<option value="Direcional no espaço">Direcional no espaço</option>
+								<option value="Outro">Outro</option>
+							</select>
+							<div style="display: none" id="outroMovimento">
+								<br/>
+								<input type="text" class="form-control" id="movimento2" placeholder="Novo Movimento">
+							</div>
+							
 						</div>
 						
 						<div class="form-group">
 							<label for="orientacao">Orientação:</label>
-							<input type="text" required class="form-control" id="orientcacao" placeholder="Orientação">
-							
+							<select class="form-control" id="orientacao">
+								<option value="Para cima">Para cima</option>
+								<option value="Para baixo">Para baixo</option>
+								<option value="Para dentro">Para dentro</option>
+								<option value="Para fora">Para fora</option>
+								<option value="Para o lado esquerdo">Para o lado esquerdo</option>
+								<option value="Para o lado direito">Para o lado direito</option>
+							</select>
+						</div>
 						<div class="form-group">
 							<label for="expressaoFacial">Expressão Facial:</label>
-							<input type="text" required class="form-control" id="expressaoFacial" placeholder="Expressão Facial">
+							<select class="form-control" id="expressaoFacial">
+								<option value="Afirmativa">Afirmativa</option>
+								<option value="Interrogativa">Interrogativa</option>
+								<option value="Exclamativa">Exclamativa</option>
+								<option value="Negativa">Negativa</option>
+							</select>
 						</div>
 						
 						<div class="form-group">
@@ -209,12 +239,32 @@
 			</div>
 		</div>
 		<script>
-			$(".img-responsive").click(function(oEvent){
+			$(".img-responsive").click(function(){
 				var idConfiguracaoMao = this.id.substring(15,17);
 				$("#configuracaoMao").val(idConfiguracaoMao);
-				oEvent.keyCode=9;
-				//alert(idConfiguracaoMao);
-			})
+			});
+			
+			$("#movimento").change(function(){
+				var valor = $(this).val();
+				if(valor == 'Outro'){
+					$("#outroMovimento").show();
+					$("#movimento2").attr("required","");
+				}else{
+					$("#outroMovimento").hide();
+					$("#movimento2").removeAttr("required");
+				}
+			});
+			
+			$("#pontoArticulacao").change(function(){
+				var valor = $(this).val();
+				if(valor == 'Outro'){
+					$("#outroPontoArticulacao").show();
+					$("#pontoArticulacao2").attr("required","");
+				}else{
+					$("#outroPontoArticulacao").hide();
+					$("#pontoArticulacao2").removeAttr("required");
+				}
+			});
 		</script>
 	</body>
 </html>

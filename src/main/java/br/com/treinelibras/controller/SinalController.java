@@ -15,7 +15,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.treinelibras.dao.IConfiguracaoDeMaoDao;
+import br.com.treinelibras.dao.IExpressaoFacialDao;
+import br.com.treinelibras.dao.IMovimentoDao;
+import br.com.treinelibras.dao.IPontoDeArticulacaoDao;
 import br.com.treinelibras.dao.ISinalDao;
+import br.com.treinelibras.modelo.ConfiguracaoDeMao;
+import br.com.treinelibras.modelo.ExpressaoFacial;
+import br.com.treinelibras.modelo.Movimento;
+import br.com.treinelibras.modelo.PontoDeArticulacao;
 import br.com.treinelibras.modelo.Sinal;
 import br.com.treinelibras.modelo.Usuario;
 
@@ -25,6 +33,18 @@ public class SinalController {
 	
 	@Autowired
 	ISinalDao dao;
+	
+	@Autowired
+	IConfiguracaoDeMaoDao configuracaoDeMaoDao;
+	
+	@Autowired
+	IPontoDeArticulacaoDao pontoDeArticulacaoDao;
+	
+	@Autowired
+	IMovimentoDao movimentoDao;
+	
+	@Autowired
+	IExpressaoFacialDao expressaoFacialDao;
 	
 	@RequestMapping("listaSinais")
 	public String lista(Model model){
@@ -123,5 +143,22 @@ public class SinalController {
 		Sinal sinal = dao.buscaPorId(idSinal);
 		session.setAttribute("sinalContexto", sinal);
 		return "";
+	}
+	
+	@RequestMapping("cadastrarSinalAntes")
+	public String cadastrarSinalAntes(Model model){
+		List<ConfiguracaoDeMao> condifuracoesDeMao = configuracaoDeMaoDao.lista();
+		model.addAttribute("condifuracoesDeMao",condifuracoesDeMao);
+		
+		List<PontoDeArticulacao> pontosDeArticulacao = pontoDeArticulacaoDao.lista();
+		model.addAttribute("pontosDeArticulacao",pontosDeArticulacao);
+		
+		List<Movimento> movimentos = movimentoDao.lista();
+		model.addAttribute("movimentos",movimentos);
+		
+		List<ExpressaoFacial> expressoesFaciais = expressaoFacialDao.lista();
+		model.addAttribute("expressoesFaciais",expressoesFaciais);
+		
+		return "cadastrar-sinal";
 	}
 }
