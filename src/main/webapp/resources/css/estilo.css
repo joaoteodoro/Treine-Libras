@@ -329,3 +329,11 @@ video{
 	color: yellow;
 	float: right;
 }
+
+.modal img{
+	width: 90px;
+}
+
+.table img:hover{
+	box-shadow: 1px 1px 10px #337ab7;
+}

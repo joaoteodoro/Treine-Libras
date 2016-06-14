@@ -32,8 +32,8 @@ public class Sinal {
 	@OneToMany(mappedBy="sinal")
 	private List<Gravacao> gravacoes;
 	
-	@ManyToOne
-	private PontoDeArticulacao pontoDeArticulacao;
+	@ManyToMany(mappedBy="sinais",fetch = FetchType.EAGER)
+	private List<PontoDeArticulacao> pontosDeArticulacao;
 	
 	@ManyToOne
 	private ExpressaoFacial expressaoFacial;
@@ -133,13 +133,28 @@ public class Sinal {
 	public void setOrientacao(String orientacao) {
 		this.orientacao = orientacao;
 	}
-
-	public PontoDeArticulacao getPontoDeArticulacao() {
-		return pontoDeArticulacao;
+	
+	public List<PontoDeArticulacao> getPontosDeArticulacao() {
+		return pontosDeArticulacao;
 	}
 
-	public void setPontoDeArticulacao(PontoDeArticulacao pontoDeArticulacao) {
-		this.pontoDeArticulacao = pontoDeArticulacao;
+	public void setPontosDeArticulacao(List<PontoDeArticulacao> pontosDeArticulacao) {
+		this.pontosDeArticulacao = pontosDeArticulacao;
+	}
+
+	@Override
+	public String toString() {
+		return "\n idSinal: "+this.idSinal +
+				"\n nome: "+this.nome +
+				"\n foto: "+this.foto +
+				"\n categoria: "+this.categoria +
+				"\n dificuldade"+this.dificuldade +
+				"\n video"+this.video + 
+				"\n orientacao: "+this.orientacao /*+
+				"\n pontoDeArticulacao: "+this.pontoDeArticulacao.getNome() +
+				"\n expressaoFacial: "+this.expressaoFacial.getNome() +
+				"\n configuracoesDeMao size: "+this.configuracoesDeMao.size() +
+				"\n movimentos size: "+this.movimentos.size()*/;
 	}
 
 }

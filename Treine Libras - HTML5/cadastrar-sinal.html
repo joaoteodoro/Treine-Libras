@@ -55,10 +55,16 @@
 							<input type="text" required class="form-control" id="nome" placeholder="Nome">
 						</div>
 						<div class="form-group">
-							<label for="configuracaoMao">Configuração de Mão:</label>
-							<input type="text" required class="form-control" id="configuracaoMao" placeholder="Configuração de Mão"
-								data-target=".bs-example-modal-lg" data-toggle="modal" onkeyup="click()">
+							<label id="labelConfiguracaoDeMao" for="configuracaoDeMao">Configuração de Mão:</label>
+							<input type="text" required class="form-control" id="configuracaoDeMao" placeholder="Configuração de Mão"
+								data-target=".bs-example-modal-lg" data-toggle="modal" onkeyup="click()" onclick="configMaoClicada(this)">
+							<a id="configuracaoDeMaoMais" href="#" title="Adicionar outra configuração de mão">+</a>
+							<input style="display: none" type="text" class="form-control" id="configuracaoDeMao2" 
+							placeholder="Configuração de mão 2" data-target=".bs-example-modal-lg" data-toggle="modal" onkeyup="click()" 
+							onclick="configMaoClicada(this)">
+							<a style="display: none" id="configuracaoDeMaoMenos" href="#" title="Remover outra configuração de mão">-</a>
 						</div>
+						
 
 						<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 							<div class="modal-dialog modal-lg">
@@ -161,31 +167,35 @@
 						</div>
 						
 						<div class="form-group">
-							<label for="pontoArticulacao">Ponto de Articulação:</label>
-							<select class="form-control" id="pontoArticulacao">
+							<label id="labelPontoDeArticulacao" for="pontoDeArticulacao">Ponto de Articulação:</label>
+							<select class="form-control" id="pontoDeArticulacao">
 								<option value="Neutro">Neutro</option>
 								<option value="Na testa">Na testa</option>
 								<option value="Na boca">Na boca</option>
 								<option value="Na orelha">Na orelha</option>
-								<option value="Outro">Outro</option>
 							</select>
-							<div style="display: none" id="outroPontoArticulacao">
-								<br/>
-								<input type="text" class="form-control" id="pontoArticulacao2" placeholder="Novo Ponto de Articulação">
-							</div>
+							<a id="pontoDeArticulacaoMais" href="#" title="Adicionar outro ponto de articulação">+</a>
+							<select style="display: none" class="form-control" id="pontoDeArticulacao2">
+								<option value="Neutro">Neutro</option>
+								<option value="Na testa">Na testa</option>
+								<option value="Na boca">Na boca</option>
+								<option value="Na orelha">Na orelha</option>
+							</select>
+							<a style="display: none" id="pontoDeArticulacaoMenos" href="#" title="Remover outro ponto de articulação">-</a>
 						</div>
 						
 						<div class="form-group">
-							<label for="movimento">Movimento:</label>
+							<label id="labelMovimento" for="movimento">Movimento:</label>
 							<select class="form-control" id="movimento">
 								<option value="Direcional no espaço">Direcional no espaço</option>
-								<option value="Outro">Outro</option>
+								<option value="Unidirecional">Unidirecional</option>
 							</select>
-							<div style="display: none" id="outroMovimento">
-								<br/>
-								<input type="text" class="form-control" id="movimento2" placeholder="Novo Movimento">
-							</div>
-							
+							<a id="movimentoMais" href="#" title="Adicionar outro movimento">+</a>
+							<select style="display: none" class="form-control" id="movimento2">
+								<option value="Direcional no espaço">Direcional no espaço</option>
+								<option value="Unidirecional">Unidirecional</option>
+							</select>
+							<a style="display: none" id="movimentoMenos" href="#" title="Remover outro movimento">-</a>
 						</div>
 						
 						<div class="form-group">
@@ -239,32 +249,68 @@
 			</div>
 		</div>
 		<script>
+		
+			var varConfigMaoClicada;
+			
+			function configMaoClicada(paramClicada){
+				varConfigMaoClicada = paramClicada;
+			};
+			
 			$(".img-responsive").click(function(){
 				var idConfiguracaoMao = this.id.substring(15,17);
-				$("#configuracaoMao").val(idConfiguracaoMao);
+				console.log(idConfiguracaoMao);
+				$("#"+varConfigMaoClicada.id).val(idConfiguracaoMao);
+			});
+		
+			$("#configuracaoDeMaoMais").click(function(){
+				$("#labelConfiguracaoDeMao").text("Configurações de mão");
+				$("#configuracaoDeMao").attr("placeholder","Configuração de mão 1");
+				$("#configuracaoDeMao2").show();
+				$("#configuracaoDeMaoMais").hide();
+				$("#configuracaoDeMaoMenos").show();
+				$("#configuracaoDeMao2").attr("required","");
 			});
 			
-			$("#movimento").change(function(){
-				var valor = $(this).val();
-				if(valor == 'Outro'){
-					$("#outroMovimento").show();
-					$("#movimento2").attr("required","");
-				}else{
-					$("#outroMovimento").hide();
-					$("#movimento2").removeAttr("required");
-				}
+			$("#configuracaoDeMaoMenos").click(function(){
+				$("#labelConfiguracaoDeMao").text("Configuração de mão");
+				$("#configuracaoDeMao").attr("placeholder","Configuração de mão");
+				$("#configuracaoDeMao2").hide();
+				$("#configuracaoDeMaoMais").show();
+				$("#configuracaoDeMaoMenos").hide();
+				$("#configuracaoDeMao2").val('');
+				$("#configuracaoDeMao2").removeAttr("required");
 			});
 			
-			$("#pontoArticulacao").change(function(){
-				var valor = $(this).val();
-				if(valor == 'Outro'){
-					$("#outroPontoArticulacao").show();
-					$("#pontoArticulacao2").attr("required","");
-				}else{
-					$("#outroPontoArticulacao").hide();
-					$("#pontoArticulacao2").removeAttr("required");
-				}
+			
+			
+			$("#pontoDeArticulacaoMais").click(function(){
+				$("#labelPontoDeArticulacao").text("Pontos de articulação");
+				$("#pontoDeArticulacao2").show();
+				$("#pontoDeArticulacaoMais").hide();
+				$("#pontoDeArticulacaoMenos").show();
 			});
+			
+			$("#pontoDeArticulacaoMenos").click(function(){
+				$("#labelPontoDeArticulacao").text("Ponto de articulação");
+				$("#pontoDeArticulacao2").hide();
+				$("#pontoDeArticulacaoMais").show();
+				$("#pontoDeArticulacaoMenos").hide();
+			});
+			
+			$("#movimentoMais").click(function(){
+				$("#labelMovimento").text("Movimentos");
+				$("#movimento2").show();
+				$("#movimentoMais").hide();
+				$("#movimentoMenos").show();
+			});
+			
+			$("#movimentoMenos").click(function(){
+				$("#labelMovimento").text("Movimento");
+				$("#movimento2").hide();
+				$("#movimentoMais").show();
+				$("#movimentoMenos").hide();
+			});
+			
 		</script>
 	</body>
 </html>

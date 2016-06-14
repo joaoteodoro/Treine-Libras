@@ -1,7 +1,7 @@
 <footer class="footer rodape">
 	<div class="container">
 		<p>Desenvolvimento: João Teodoro - UFU - SI
-		<a data-toggle="modal" data-target="#modalSairSistema">SAIR DO SISTEMA</a></p>
+		<a data-toggle="modal" data-target="#modalSairSistema" href="">SAIR DO SISTEMA</a></p>
 	</div>
 </footer>
 <div class="modal fade" id="modalSairSistema" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

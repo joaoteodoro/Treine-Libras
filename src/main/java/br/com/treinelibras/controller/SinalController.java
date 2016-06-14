@@ -3,11 +3,13 @@ package br.com.treinelibras.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,10 +24,12 @@ import br.com.treinelibras.dao.IPontoDeArticulacaoDao;
 import br.com.treinelibras.dao.ISinalDao;
 import br.com.treinelibras.modelo.ConfiguracaoDeMao;
 import br.com.treinelibras.modelo.ExpressaoFacial;
+import br.com.treinelibras.modelo.Gravacao;
 import br.com.treinelibras.modelo.Movimento;
 import br.com.treinelibras.modelo.PontoDeArticulacao;
 import br.com.treinelibras.modelo.Sinal;
 import br.com.treinelibras.modelo.Usuario;
+import br.com.treinelibras.util.StringUtils;
 
 @Transactional
 @Controller
@@ -160,5 +164,60 @@ public class SinalController {
 		model.addAttribute("expressoesFaciais",expressoesFaciais);
 		
 		return "cadastrar-sinal";
+	}
+	
+	@RequestMapping("cadastrarSinal")
+	public String cadastrarSinal(Model model, HttpServletRequest request){
+		System.out.println("--------------------------------------------------------");
+		
+		Sinal sinal = new Sinal();
+		sinal.setNome(request.getParameter("nome"));
+		sinal.setCategoria(request.getParameter("categoria"));
+		sinal.setDificuldade("dificuldade");
+		sinal.setOrientacao(request.getParameter("orientacao"));
+		
+		//Configurações de mão
+		List<ConfiguracaoDeMao> configuracoesDeMao = new ArrayList<>();
+		ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(request.getParameter("configuracaoDeMao"));
+		configuracoesDeMao.add(configuracaoDeMao);
+		if(request.getParameter("configuracaoDeMao2") != null && request.getParameter("configuracaoDeMao2") != ""){
+			ConfiguracaoDeMao configuracaoDeMao2 = configuracaoDeMaoDao.buscaPorId(request.getParameter("configuracaoDeMao2"));
+			configuracoesDeMao.add(configuracaoDeMao2);
+		}
+		
+		//Pontos de articulação
+		List<PontoDeArticulacao> pontosDeArticulacao = new ArrayList<>();
+		PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(request.getParameter("pontoDeArticulacao"));
+		pontosDeArticulacao.add(pontoDeArticulacao);
+		if(request.getParameter("pontoDeArticulacao2") != null && request.getParameter("pontoDeArticulacao2") != ""){
+			PontoDeArticulacao pontoDeArticulacao2 = pontoDeArticulacaoDao.buscaPorId(request.getParameter("pontoDeArticulacao2"));
+			pontosDeArticulacao.add(pontoDeArticulacao2);
+		}
+		
+		//Movimentos
+		List<Movimento> movimentos = new ArrayList<>();
+		Movimento movimento = movimentoDao.buscaPorId(request.getParameter("movimento"));
+		movimentos.add(movimento);
+		if(request.getParameter("movimento2") != null && request.getParameter("movimento2") != ""){
+			Movimento movimento2 = movimentoDao.buscaPorId(request.getParameter("movimento2"));
+			movimentos.add(movimento2);
+		}
+		
+		List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+
+		for (FileItem item : items) {
+			if (!item.isFormField()) {
+				if(item.getFieldName().equals("foto")){
+					//salvarFoto
+					sinal.setFoto(item.getName());
+				}else{
+					//salvarVideo
+					sinal.setVideo(item.getName());
+				}
+			}
+		}
+		
+		return "redirect:index";
+		
 	}
 }
