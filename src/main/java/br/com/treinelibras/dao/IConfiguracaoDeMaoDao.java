@@ -6,4 +6,6 @@ import br.com.treinelibras.modelo.ConfiguracaoDeMao;
 
 public interface IConfiguracaoDeMaoDao {
 	public List<ConfiguracaoDeMao> lista();
+	
+	public ConfiguracaoDeMao buscaPorId(Long id);
 }

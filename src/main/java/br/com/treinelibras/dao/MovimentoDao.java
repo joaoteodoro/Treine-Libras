@@ -19,5 +19,10 @@ public class MovimentoDao implements IMovimentoDao {
 	public List<Movimento> lista() {
 		return manager.createQuery("select m from Movimento m").getResultList();
 	}
+	
+	@Override
+	public Movimento buscaPorId(Long idMovimento) {
+		return manager.find(Movimento.class, idMovimento);
+	}
 
 }

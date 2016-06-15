@@ -26,6 +26,7 @@ public class AvaliacaoController {
 	
 	@RequestMapping("adicionaAvaliacao")
 	public String adicionaAvaliacao(Avaliacao avaliacao, Model model, HttpServletRequest request){
+		System.out.println("Teste: "+request.getParameter("teste"));
 		Long idGravacao = Long.parseLong(request.getParameter("idGravacao"));
 		System.out.println("iDGravacao (request): "+idGravacao);
 		Gravacao gravacao = gravacaoDao.buscaPorId(idGravacao);

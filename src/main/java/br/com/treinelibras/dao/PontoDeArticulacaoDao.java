@@ -19,5 +19,10 @@ public class PontoDeArticulacaoDao implements IPontoDeArticulacaoDao {
 	public List<PontoDeArticulacao> lista() {
 		return manager.createQuery("select p from PontoDeArticulacao p").getResultList();
 	}
+	
+	@Override
+	public PontoDeArticulacao buscaPorId(Long idPontoDeArticulacao) {
+		return manager.find(PontoDeArticulacao.class, idPontoDeArticulacao);
+	}
 
 }

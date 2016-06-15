@@ -19,5 +19,10 @@ public class ConfiguracaoDeMaoDao implements IConfiguracaoDeMaoDao {
 	public List<ConfiguracaoDeMao> lista() {
 		return manager.createQuery("select c from ConfiguracaoDeMao c").getResultList();
 	}
+	
+	@Override
+	public ConfiguracaoDeMao buscaPorId(Long id) {
+		return manager.find(ConfiguracaoDeMao.class, id);
+	}
 
 }

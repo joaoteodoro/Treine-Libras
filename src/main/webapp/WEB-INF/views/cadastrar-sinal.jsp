@@ -22,6 +22,24 @@
 			</div>
 			<div class="row">
 				<div class="center-block box-page-geral">
+					<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<table class="table"> 
+									<tbody>
+										<tr>
+										<c:forEach items="${condifuracoesDeMao}" var="configuracaoDeMao" varStatus="status">
+											<c:if test="${status.count mod 6 == 0}">
+												</tr>
+												<tr>
+											</c:if>
+											<td><img id="img-config-mao-${configuracaoDeMao.idConfiguracaoDeMao}" data-dismiss="modal" class="img-responsive" src="${pageContext.request.contextPath}/resources/img/${configuracaoDeMao.imagem}"></td>
+										</c:forEach>
+									</tbody> 
+								</table>
+							</div>
+						</div>
+					</div>
 					<form id="formCadastrarSinal" method="post" action="cadastrarSinal" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="nome">Nome:</label>
@@ -39,24 +57,7 @@
 							<a style="display: none" id="configuracaoDeMaoMenos" href="#" title="Remover outra configuração de mão">-</a>
 						</div>						
 
-						<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-							<div class="modal-dialog modal-lg">
-								<div class="modal-content">
-									<table class="table"> 
-										<tbody>
-											<tr>
-											<c:forEach items="${condifuracoesDeMao}" var="configuracaoDeMao" varStatus="status">
-												<c:if test="${status.count mod 6 == 0}">
-													</tr>
-													<tr>
-												</c:if>
-												<td><img id="img-config-mao-${configuracaoDeMao.idConfiguracaoDeMao}" data-dismiss="modal" class="img-responsive" src="${pageContext.request.contextPath}/resources/img/${configuracaoDeMao.imagem}"></td>
-											</c:forEach>
-										</tbody> 
-									</table>
-								</div>
-							</div>
-						</div>
+						
 						
 						<div class="form-group">
 							<label id="labelPontoDeArticulacao" for="pontoDeArticulacao">Ponto de Articulação:</label>
