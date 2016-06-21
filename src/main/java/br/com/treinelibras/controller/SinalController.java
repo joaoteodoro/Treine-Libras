@@ -161,14 +161,14 @@ public class SinalController {
 		List<ConfiguracaoDeMao> condifuracoesDeMao = configuracaoDeMaoDao.lista();
 		model.addAttribute("condifuracoesDeMao", condifuracoesDeMao);
 
-		/*List<PontoDeArticulacao> pontosDeArticulacao = pontoDeArticulacaoDao.lista();
+		List<PontoDeArticulacao> pontosDeArticulacao = pontoDeArticulacaoDao.lista();
 		model.addAttribute("pontosDeArticulacao", pontosDeArticulacao);
 
 		List<Movimento> movimentos = movimentoDao.lista();
 		model.addAttribute("movimentos", movimentos);
 
 		List<ExpressaoFacial> expressoesFaciais = expressaoFacialDao.lista();
-		model.addAttribute("expressoesFaciais", expressoesFaciais);*/
+		model.addAttribute("expressoesFaciais", expressoesFaciais);
 
 		return "cadastrar-sinal";
 	}
