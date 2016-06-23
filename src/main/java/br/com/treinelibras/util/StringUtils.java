@@ -14,4 +14,17 @@ public class StringUtils {
         }  
         return valueToPad;  
     }
+    
+    public static boolean isNumeric(String str)  
+    {  
+      try  
+      {  
+        int d = Integer.parseInt(str);  
+      }  
+      catch(NumberFormatException nfe)  
+      {  
+        return false;  
+      }  
+      return true;  
+    }
 }

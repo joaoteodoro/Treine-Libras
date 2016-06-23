@@ -44,8 +44,6 @@ public class Sinal {
 	@ManyToMany(mappedBy="sinais",fetch = FetchType.EAGER)
 	private List<Movimento> movimentos;
 	
-	
-	
 	public List<Gravacao> getGravacoes() {
 		return gravacoes;
 	}

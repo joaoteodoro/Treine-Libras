@@ -20,4 +20,9 @@ public class ExpressaoFacialDao implements IExpressaoFacialDao {
 		return manager.createQuery("select e from ExpressaoFacial e").getResultList();
 	}
 
+	@Override
+	public ExpressaoFacial buscaPorId(Long idExpressaoFacial) {
+		return manager.find(ExpressaoFacial.class, idExpressaoFacial);
+	}
+	
 }

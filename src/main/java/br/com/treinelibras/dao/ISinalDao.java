@@ -20,4 +20,6 @@ public interface ISinalDao {
 	public float notaSinalPorUsuario(Long idUsuario, Long idSinal);
 	
 	public List<Sinal> listaSinaisPioresAvaliacoes(Usuario u);
+	
+	public void adiciona(Sinal sinal);
 }

@@ -111,5 +111,9 @@ public class SinalDao implements ISinalDao {
 		
 		return sinais;
 	}
+	
+	public void adiciona(Sinal sinal){
+		manager.persist(sinal);
+	}
 
 }
