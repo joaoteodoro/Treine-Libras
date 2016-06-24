@@ -181,7 +181,7 @@ public class SinalController {
 	@RequestMapping("cadastrarSinal")
 	@Transactional
 	public String cadastrarSinal(Model model, HttpServletRequest request){
-		Sinal sinal = new Sinal();
+		/*Sinal sinal = new Sinal();
 		sinal.setNome("Livro");
 		sinal.setCategoria("Objetos");
 		sinal.setFoto("livro.png");
@@ -196,6 +196,7 @@ public class SinalController {
 		
 		//List<PontoDeArticulacao> pontosDeArticulacao = new ArrayList<PontoDeArticulacao>();
 		PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(1L);
+		
 		sinal.setPontosDeArticulacao(Arrays.asList(pontoDeArticulacao));
 		//sinal.setPontosDeArticulacao(pontosDeArticulacao);
 		
@@ -209,9 +210,9 @@ public class SinalController {
 		ExpressaoFacial expressaoFacial = expressaoFacialDao.buscaPorId(1L);
 		sinal.setExpressaoFacial(expressaoFacial);
 		
-		dao.adiciona(sinal);
+		dao.adiciona(sinal);*/
 		
-		/*
+		
 		boolean isMultiPart = FileUpload.isMultipartContent(request);
 
 		Sinal sinal = new Sinal();
@@ -246,19 +247,19 @@ public class SinalController {
 							System.out.println("nomeArquivo: "+nomeArquivo);
 							item.setFieldName(nomeArquivo);
 							this.inserirImagemDiretorio(item,"img");
-							sinal.setFoto(item.getName());
+							sinal.setFoto(item.getFieldName());
 						} else {
 							// salvarVideo
 							item.setFieldName(nomeArquivo);
 							this.inserirImagemDiretorio(item,"videos");
-							sinal.setVideo(item.getName());
+							sinal.setVideo(item.getFieldName());
 						}
 					}else{
 						if("nome".equals(item.getFieldName())){
 							sinal.setNome(item.getString());
 						}else if("categoria".equals(item.getFieldName())){
 							sinal.setCategoria(item.getString());
-						}else if("oritentacao".equals(item.getFieldName())){
+						}else if("orientacao".equals(item.getFieldName())){
 							sinal.setOrientacao(item.getString());
 						}else if("dificuldade".equals(item.getFieldName())){
 							sinal.setDificuldade(item.getString());
@@ -305,7 +306,7 @@ public class SinalController {
 			catch (Exception ex) {
 				ex.printStackTrace();
 			}
-		}*/
+		}
 		/*
 
 

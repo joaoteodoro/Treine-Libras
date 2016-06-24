@@ -51,7 +51,10 @@
 								</c:forEach>
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Ponto de articulacaoo:</b> ${sinal.pontoDeArticulacao.nome}
+								<b>Ponto de articulacaoo:</b>
+								<c:forEach items="${sinal.pontosDeArticulacao}" var="pontoDeParticulacao">
+									${pontoDeParticulacao.nome}
+								</c:forEach>
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
 								<b>Movimento:</b> 

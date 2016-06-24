@@ -22,7 +22,7 @@ public class Movimento {
 	private String nome;
 	private String imagem;
 	
-	@ManyToMany
+	/*@ManyToMany
 	private List<Sinal> sinais;
 	
 	public List<Sinal> getSinais() {
@@ -30,7 +30,7 @@ public class Movimento {
 	}
 	public void setSinais(List<Sinal> sinais) {
 		this.sinais = sinais;
-	}
+	}*/
 	public Long getIdMovimento() {
 		return idMovimento;
 	}

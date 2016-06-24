@@ -2,12 +2,15 @@ package br.com.treinelibras.modelo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -32,16 +35,25 @@ public class Sinal {
 	@OneToMany(mappedBy="sinal")
 	private List<Gravacao> gravacoes;
 	
-	@ManyToMany(mappedBy="sinais",fetch = FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinTable(name="pontodearticulacao_sinal",
+		joinColumns= @JoinColumn(name="sinais_idSinal"),
+		inverseJoinColumns = @JoinColumn(name="pontosDeArticulacao_idPontoDeArticulacao"))
 	private List<PontoDeArticulacao> pontosDeArticulacao;
 	
 	@ManyToOne
 	private ExpressaoFacial expressaoFacial;
 
-	@ManyToMany(mappedBy="sinais",fetch = FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinTable(name="configuracaodemao_sinal",
+			joinColumns= @JoinColumn(name="sinais_idSinal"),
+			inverseJoinColumns = @JoinColumn(name="configuracoesDeMao_idConfiguracaoDeMao"))
 	private List<ConfiguracaoDeMao> configuracoesDeMao;
 	
-	@ManyToMany(mappedBy="sinais",fetch = FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinTable(name="movimento_sinal",
+		joinColumns= @JoinColumn(name="sinais_idSinal"),
+		inverseJoinColumns = @JoinColumn(name="movimentos_idMovimento"))
 	private List<Movimento> movimentos;
 	
 	public List<Gravacao> getGravacoes() {

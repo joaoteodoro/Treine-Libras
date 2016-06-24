@@ -22,7 +22,7 @@ public class ConfiguracaoDeMao {
 	private String nome;
 	private String imagem;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	/*@ManyToMany(fetch = FetchType.EAGER)
 	private List<Sinal> sinais;
 	
 	public List<Sinal> getSinais() {
@@ -30,7 +30,7 @@ public class ConfiguracaoDeMao {
 	}
 	public void setSinais(List<Sinal> sinais) {
 		this.sinais = sinais;
-	}
+	}*/
 	public Long getIdConfiguracaoDeMao() {
 		return idConfiguracaoDeMao;
 	}
