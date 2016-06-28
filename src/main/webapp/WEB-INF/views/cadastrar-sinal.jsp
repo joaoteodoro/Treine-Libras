@@ -142,7 +142,54 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  		<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        			<h4 class="modal-title" id="myModalLabel">Cadastrar Sinal</h4>
+		      		</div>
+		      		<div class="modal-body">
+		       			Confirma o cadastro deste sinal?
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+		        		<button type="button" class="btn btn-primary" onclick="gravarSinal()">Sim</button>
+		      		</div>
+	    		</div>
+	  		</div>
+		</div>
+		
+		<div class="modal fade" id="modalResposta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  		<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        			<h4 class="modal-title" id="myModalLabel">Cadastro de Sinal</h4>
+		      		</div>
+		      		<div class="modal-body" id="textoResposta">
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+		      		</div>
+	    		</div>
+	  		</div>
+		</div>
 		<script>
+		
+			function gravarSinal(){
+				$("#formCadastrarSinal").submit();
+			}
+		
+			$("#formCadastrarSinal").submit(function(){
+				if($('#myModal').css("display") == "block"){
+					return true;
+				}
+				$('#myModal').modal('show'); 
+				return false;
+			});
+		
 			var varConfigMaoClicada;
 			
 			function configMaoClicada(paramClicada){
