@@ -177,6 +177,13 @@ public class SinalController {
 
 		return "cadastrar-sinal";
 	}
+	
+	@RequestMapping("listarSinais")
+	public String listarSinais(Model model){
+		List<Sinal> sinais = dao.lista();
+		model.addAttribute("sinais",sinais);
+		return "lista-sinais";
+	}
 
 	@RequestMapping("cadastrarSinal")
 	@Transactional
@@ -307,40 +314,7 @@ public class SinalController {
 				ex.printStackTrace();
 			}
 		}
-		/*
-
-
-		List<FileItem> items;
-		try {
-			items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-			
-			for (FileItem item : items) {
-				System.out.println("item: "+item.getName());
-				if (!item.isFormField()) {
-					String nomeArquivo = sinal.getNome() + "." + item.getName().substring(item.getName().length()-4, item.getName().length()-1);
-					if (item.getFieldName().equals("foto")) {
-						// salvarFoto
-						//String nomeArquivo = sinal.getNome() + item.getName().substring(item.getName().length()-3, item.getName().length()-1);
-						System.out.println("nomeArquivo: "+nomeArquivo);
-						item.setFieldName(nomeArquivo);
-						this.inserirImagemDiretorio(item,"imagens");
-						sinal.setFoto(item.getName());
-					} else {
-						// salvarVideo
-						item.setFieldName(nomeArquivo);
-						this.inserirImagemDiretorio(item,"videos");
-						sinal.setVideo(item.getName());
-					}
-				}
-			}
-		} catch (FileUploadException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-
-		
-
-		return "redirect:index";
+		return "redirect:listarSinais";
 
 	}
 
