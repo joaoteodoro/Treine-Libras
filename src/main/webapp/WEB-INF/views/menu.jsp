@@ -49,9 +49,19 @@
 						</c:otherwise>
 					</c:choose>
 					
+					
+					
+					
 					<c:choose>
 						<c:when test="${usuarioLogado.perfil == 'admin'}">
-							<li><a href="cadastrarSinalAntes">SINAIS</a></li>
+							<c:choose>
+								<c:when test="${param.paginaAtual == 'sinais'}">
+									<li class="active"><a href="listarSinais">SINAIS</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="listarSinais">SINAIS</a></li>
+								</c:otherwise>
+							</c:choose>
 						</c:when>
 					</c:choose>
 					
