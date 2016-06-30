@@ -176,6 +176,7 @@
 	    		</div>
 	  		</div>
 		</div>
+		<c:import url="rodape.jsp" />
 		<script>
 		
 			function gravarSinal(){

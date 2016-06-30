@@ -22,4 +22,6 @@ public interface ISinalDao {
 	public List<Sinal> listaSinaisPioresAvaliacoes(Usuario u);
 	
 	public void adiciona(Sinal sinal);
+	
+	public void remove(Long idSinal);
 }

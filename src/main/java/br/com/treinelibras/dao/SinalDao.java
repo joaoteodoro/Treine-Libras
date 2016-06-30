@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.stereotype.Repository;
 
@@ -114,6 +115,15 @@ public class SinalDao implements ISinalDao {
 	
 	public void adiciona(Sinal sinal){
 		manager.persist(sinal);
+	}
+	
+	@Override
+	public void remove(Long idSinal) {
+		System.out.println("SinalDao.remove.idSinal: "+idSinal);
+		Sinal sinal = manager.find(Sinal.class, idSinal);
+		System.out.println("SinalDao.sinal.nome: "+sinal.getNome());
+		manager.remove(sinal);
+		System.out.println("Removeu!");
 	}
 
 }
