@@ -184,6 +184,15 @@ public class SinalController {
 		model.addAttribute("sinais",sinais);
 		return "lista-sinais";
 	}
+	
+	@RequestMapping("removerSinal")
+	@Transactional
+	public String removerSinal(Long idSinal, Model model){
+		System.out.println("Entrou removerSinal idSinal="+idSinal);
+		dao.remove(idSinal);
+		System.out.println("Depois de remover");
+		return "redirect:listarSinais";
+	}
 
 	@RequestMapping("cadastrarSinal")
 	@Transactional
@@ -354,4 +363,6 @@ public class SinalController {
 		}
 		
 	}
+	
+	
 }

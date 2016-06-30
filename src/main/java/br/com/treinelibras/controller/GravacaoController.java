@@ -114,6 +114,8 @@ public class GravacaoController {
 		
 		try {
 			
+			System.out.println("*************************************Entrou no try gravarSinal");
+			
 			String caminho = servletContext.getRealPath("/resources/videos") + "/";
 			
 			File diretorio = new File(caminho);

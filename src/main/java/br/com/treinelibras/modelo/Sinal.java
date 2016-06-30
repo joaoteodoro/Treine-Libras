@@ -32,7 +32,7 @@ public class Sinal {
 	private String video;
 	private String orientacao;
 
-	@OneToMany(mappedBy="sinal")
+	@OneToMany(mappedBy="sinal", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Gravacao> gravacoes;
 	
 	@ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
