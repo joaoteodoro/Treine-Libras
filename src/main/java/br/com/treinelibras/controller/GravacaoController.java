@@ -104,11 +104,17 @@ public class GravacaoController {
 		System.out.println("*************************************idSInal: "+sinal.getIdSinal());
 		
 		String idSinalFormatado = StringUtils.lpad(String.valueOf(sinal.getIdSinal()), "0", 4);
+		System.out.println("*************************************SinalFormatado: "+idSinalFormatado);
 		Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
 		String idUsuarioFormatado = StringUtils.lpad(usuarioLogado.getIdUsuario().toString(), "0", 4);
-		String ano = String.valueOf(Calendar.YEAR);
-		String mes = StringUtils.lpad(String.valueOf(Calendar.MONTH),"0", 2);
-		String dia = StringUtils.lpad(String.valueOf(Calendar.DAY_OF_MONTH),"0", 2);
+		System.out.println("*************************************idUsuarioFormatado: "+idUsuarioFormatado);
+		Calendar calendar = Calendar.getInstance();
+		String ano = String.valueOf(calendar.YEAR);
+		System.out.println("*************************************ano: "+ano);
+		String mes = StringUtils.lpad(String.valueOf(calendar.MONTH),"0", 2);
+		System.out.println("*************************************mes: "+mes);
+		String dia = StringUtils.lpad(String.valueOf(calendar.DAY_OF_MONTH),"0", 2);
+		System.out.println("*************************************dia: "+dia);
 		String nomeArquivo = ano+mes+dia+idSinalFormatado+idUsuarioFormatado+".webm";
 		
 		
@@ -140,25 +146,29 @@ public class GravacaoController {
 			Gravacao gravacao = dao.gravacaoPorUsuarioSinal(usuarioLogado.getIdUsuario(), sinal.getIdSinal());
 			
 			if(gravacao != null){
+				System.out.println("*************************************gravacao != null");
 				gravacao.setVideo(nomeArquivo);
 			}else{
+				System.out.println("*************************************gravacao = null");
 				gravacao = new Gravacao();
 				gravacao.setUsuario(usuarioLogado);
 				gravacao.setSinal(sinal);
 				gravacao.setVideo(nomeArquivo);
 				//dao.adiciona(gravacao);
 			}
+			System.out.println("*************************************antes add gravacao");
 			dao.adiciona(gravacao);
+			System.out.println("*************************************depois add gravacao");
 			System.out.println("จจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจAntes de chamar o dao que apaga as gravacoes!");
 			avaliacaoDao.apagaAvaliacoes(gravacao.getIdGravacao());
-			
+			System.out.println("จจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจจDepois de chamar o dao que apaga as gravacoes!");
 			
 			
 			
 			
 			
 			/*List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-
+	
 			for (FileItem item : items) {
 				if (item.isFormField()) {
 					System.out.println("if: "+item.getFieldName());

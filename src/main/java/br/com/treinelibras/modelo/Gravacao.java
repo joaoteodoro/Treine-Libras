@@ -28,7 +28,7 @@ public class Gravacao {
 	@ManyToOne
 	private Usuario usuario;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	private Sinal sinal;
 	
 	@OneToMany(mappedBy="gravacao")
