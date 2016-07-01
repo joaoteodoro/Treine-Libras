@@ -18,6 +18,10 @@ public class GravacaoDao implements IGravacaoDao {
 	EntityManager manager;
 	
 	public void adiciona(Gravacao gravacao){
+		System.out.println("Gravacao:");
+		System.out.println("Nome sinal: "+gravacao.getSinal().getNome());
+		System.out.println("Video: "+gravacao.getVideo());
+		System.out.println("Nome usuario: "+gravacao.getUsuario().getNome());
 		manager.persist(gravacao);
 	}
 

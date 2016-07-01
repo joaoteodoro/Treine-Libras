@@ -44,13 +44,13 @@ public class Sinal {
 	@ManyToOne
 	private ExpressaoFacial expressaoFacial;
 
-	@ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="configuracaodemao_sinal",
 			joinColumns= @JoinColumn(name="sinais_idSinal"),
 			inverseJoinColumns = @JoinColumn(name="configuracoesDeMao_idConfiguracaoDeMao"))
 	private List<ConfiguracaoDeMao> configuracoesDeMao;
 	
-	@ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="movimento_sinal",
 		joinColumns= @JoinColumn(name="sinais_idSinal"),
 		inverseJoinColumns = @JoinColumn(name="movimentos_idMovimento"))
