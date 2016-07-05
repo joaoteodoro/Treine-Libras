@@ -125,5 +125,17 @@ public class SinalDao implements ISinalDao {
 		manager.remove(sinal);
 		System.out.println("Removeu!");
 	}
-
+	
+	@Override
+	public Sinal buscaPorNome(String nomeSinal) {
+		Query query = manager.createQuery("select s from Sinal s where s.nome = :paramNome");
+		query.setParameter("paramNome", nomeSinal);
+		
+		return (Sinal)query.getSingleResult();
+	}
+	
+	@Override
+	public void altera(Sinal sinal) {
+		manager.merge(sinal);
+	}
 }
