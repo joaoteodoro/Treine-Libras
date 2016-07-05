@@ -35,7 +35,7 @@ public class Sinal {
 	@OneToMany(mappedBy="sinal", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Gravacao> gravacoes;
 	
-	@ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="pontodearticulacao_sinal",
 		joinColumns= @JoinColumn(name="sinais_idSinal"),
 		inverseJoinColumns = @JoinColumn(name="pontosDeArticulacao_idPontoDeArticulacao"))

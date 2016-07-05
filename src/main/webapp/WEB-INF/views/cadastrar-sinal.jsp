@@ -10,7 +10,7 @@
 	
 	<body style="background-color:gray">
 		<c:import url="menu.jsp">
-			<c:param name="paginaAtual" value="avaliar"/>
+			<c:param name="paginaAtual" value="sinais"/>
 		</c:import>
 		<div class="container" style="background-color: white;">
 			<br/>

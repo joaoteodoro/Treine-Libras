@@ -24,4 +24,8 @@ public interface ISinalDao {
 	public void adiciona(Sinal sinal);
 	
 	public void remove(Long idSinal);
+	
+	public Sinal buscaPorNome(String nomeSinal);
+	
+	public void altera(Sinal sinal);
 }

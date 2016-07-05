@@ -197,37 +197,6 @@ public class SinalController {
 	@RequestMapping("cadastrarSinal")
 	@Transactional
 	public String cadastrarSinal(Model model, HttpServletRequest request){
-		/*Sinal sinal = new Sinal();
-		sinal.setNome("Livro");
-		sinal.setCategoria("Objetos");
-		sinal.setFoto("livro.png");
-		sinal.setVideo("livro.mp4");
-		sinal.setDificuldade("facil");
-		
-		//List<ConfiguracaoDeMao> configuracoesDeMao = new ArrayList<ConfiguracaoDeMao>();
-		ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(56L);
-		sinal.setConfiguracoesDeMao(Arrays.asList(configuracaoDeMao));
-		//configuracoesDeMao.add(configuracaoDeMao);
-		//sinal.setConfiguracoesDeMao(configuracoesDeMao);
-		
-		//List<PontoDeArticulacao> pontosDeArticulacao = new ArrayList<PontoDeArticulacao>();
-		PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(1L);
-		
-		sinal.setPontosDeArticulacao(Arrays.asList(pontoDeArticulacao));
-		//sinal.setPontosDeArticulacao(pontosDeArticulacao);
-		
-		//List<Movimento> movimentos = new ArrayList<Movimento>();
-		Movimento movimento = movimentoDao.buscaPorId(1L);
-		sinal.setMovimentos(Arrays.asList(movimento));
-		//movimentos.add(movimento);
-		
-		sinal.setOrientacao("para cima");
-		
-		ExpressaoFacial expressaoFacial = expressaoFacialDao.buscaPorId(1L);
-		sinal.setExpressaoFacial(expressaoFacial);
-		
-		dao.adiciona(sinal);*/
-		
 		
 		boolean isMultiPart = FileUpload.isMultipartContent(request);
 
@@ -281,28 +250,28 @@ public class SinalController {
 							sinal.setDificuldade(item.getString());
 						}else if("configuracaoDeMao".equals(item.getFieldName())){
 							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
-							configuracoesDeMao.add(configuracaoDeMao);
+							configuracoesDeMao.add(0,configuracaoDeMao);
 							System.out.println("Configuracao de mao nome: "+configuracaoDeMao.getNome());
 						}else if("configuracaoDeMao2".equals(item.getFieldName()) &&
 								item.getString() != null && item.getString() != "" && StringUtils.isNumeric(item.getString())){
 							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
-							configuracoesDeMao.add(configuracaoDeMao);
+							configuracoesDeMao.add(1,configuracaoDeMao);
 						}else if("ponoDeArticulacao".equals(item.getFieldName())){
 							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
-							pontosDeArticulacao.add(pontoDeArticulacao);
+							pontosDeArticulacao.add(0,pontoDeArticulacao);
 							System.out.println("Ponto de articulacao nome: "+pontoDeArticulacao.getNome());
 						}else if("pontoDeArticulacao2".equals(item.getFieldName()) &&
 								item.getString() != null && item.getString() != "" && StringUtils.isNumeric(item.getString())){
 							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
-							pontosDeArticulacao.add(pontoDeArticulacao);
+							pontosDeArticulacao.add(1,pontoDeArticulacao);
 						}else if("movimento".equals(item.getFieldName())){
 							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
-							movimentos.add(movimento);
+							movimentos.add(0,movimento);
 							System.out.println("Movimento nome "+movimento.getNome());
 						}else if("movimento2".equals(item.getFieldName()) &&
 								item.getString() != null && item.getString() != "" && StringUtils.isNumeric(item.getString())){
 							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
-							movimentos.add(movimento);
+							movimentos.add(1,movimento);
 						}else if("expressao".equals(item.getFieldName())){
 							ExpressaoFacial expressaoFacial = expressaoFacialDao.buscaPorId(Long.parseLong(item.getString()));
 							sinal.setExpressaoFacial(expressaoFacial);
@@ -325,6 +294,127 @@ public class SinalController {
 		}
 		return "redirect:listarSinais";
 
+	}
+	
+	@RequestMapping("alterarSinal")
+	@Transactional
+	public String alterarSinal(Model model, HttpServletRequest request){
+		boolean isMultiPart = FileUpload.isMultipartContent(request);
+
+		Sinal sinal = null;
+		
+		if (isMultiPart) {
+			System.out.println("Entrou");
+			FileItemFactory factory = new DiskFileItemFactory();
+			ServletFileUpload upload = new ServletFileUpload(factory);
+			String formulario = "";
+			
+			List<ConfiguracaoDeMao> configuracoesDeMao = new ArrayList<>();
+			List<PontoDeArticulacao> pontosDeArticulacao = new ArrayList<>();
+			List<Movimento> movimentos = new ArrayList<>();
+			
+			try {
+				List items = upload.parseRequest(request);
+				Iterator iter = items.iterator();
+				
+				while (iter.hasNext()) {
+					FileItem item = (FileItem) iter.next();
+					
+					if (item.getFieldName().equals("tipoForm")) {
+						formulario = item.getString();
+						System.out.println("Formulario: "+formulario);
+					}
+					
+					if (!item.isFormField()) {
+						String nomeArquivo = sinal.getNome() + "." + item.getName().substring(item.getName().length()-3, item.getName().length());
+						if (item.getFieldName().equals("foto") && item != null) {
+							// salvarFoto
+							//String nomeArquivo = sinal.getNome() + item.getName().substring(item.getName().length()-3, item.getName().length()-1);
+							System.out.println("nomeArquivo: "+nomeArquivo);
+							item.setFieldName(nomeArquivo);
+							this.inserirImagemDiretorio(item,"img");
+							sinal.setFoto(item.getFieldName());
+						} else if (item.getFieldName().equals("video") && item != null){
+							// salvarVideo
+							item.setFieldName(nomeArquivo);
+							this.inserirImagemDiretorio(item,"videos");
+							sinal.setVideo(item.getFieldName());
+						}
+					}else{
+						if("nome".equals(item.getFieldName())){
+							sinal = dao.buscaPorNome(item.getString());
+							sinal.setNome(item.getString());
+						}else if("categoria".equals(item.getFieldName()) && !item.getString().equals(sinal.getCategoria())){
+							sinal.setCategoria(item.getString());
+						}else if("orientacao".equals(item.getFieldName()) && !item.getString().equals(sinal.getOrientacao())){
+							sinal.setOrientacao(item.getString());
+						}else if("dificuldade".equals(item.getFieldName()) && !item.getString().equals(sinal.getDificuldade())){
+							sinal.setDificuldade(item.getString());
+						}else if("configuracaoDeMao".equals(item.getFieldName())){
+							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
+							if(!configuracoesDeMao.get(0).equals(configuracaoDeMao)){
+								configuracoesDeMao.set(0, configuracaoDeMao);
+							}
+							System.out.println("Configuracao de mao nome: "+configuracaoDeMao.getNome());
+						}else if("configuracaoDeMao2".equals(item.getFieldName()) &&
+								item.getString() != null && item.getString() != "" && StringUtils.isNumeric(item.getString())){
+							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
+							if(configuracoesDeMao.get(1) != null && !configuracoesDeMao.get(1).equals(configuracaoDeMao)){
+								configuracoesDeMao.set(1, configuracaoDeMao);
+							}else if(configuracoesDeMao.get(1) == null){
+								configuracoesDeMao.add(1, configuracaoDeMao);
+							}
+						}else if("ponoDeArticulacao".equals(item.getFieldName())){
+							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
+							if(!pontosDeArticulacao.get(0).equals(configuracoesDeMao)){
+								pontosDeArticulacao.set(0, pontoDeArticulacao);
+							}
+							System.out.println("Ponto de articulacao nome: "+pontoDeArticulacao.getNome());
+						}else if("pontoDeArticulacao2".equals(item.getFieldName()) &&
+								item.getString() != null && item.getString() != "" && StringUtils.isNumeric(item.getString())){
+							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
+							if(pontosDeArticulacao.get(1) != null && pontosDeArticulacao.get(1).equals(pontoDeArticulacao)){
+								pontosDeArticulacao.set(1, pontoDeArticulacao);
+							}else if(pontosDeArticulacao.get(1) == null){
+								pontosDeArticulacao.set(1, pontoDeArticulacao);
+							}
+						}else if("movimento".equals(item.getFieldName())){
+							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
+							if(!movimentos.get(0).equals(movimento)){
+								movimentos.set(0, movimento);
+							}
+							System.out.println("Movimento nome "+movimento.getNome());
+						}else if("movimento2".equals(item.getFieldName()) &&
+								item.getString() != null && item.getString() != "" && StringUtils.isNumeric(item.getString())){
+							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
+							if(movimentos.get(1) != null && movimentos.get(1).equals(movimento)){
+								movimentos.set(1, movimento);
+							}else if(movimentos.get(1) == null){
+								movimentos.set(1, movimento);
+							}
+						}else if("expressao".equals(item.getFieldName())){
+							ExpressaoFacial expressaoFacial = expressaoFacialDao.buscaPorId(Long.parseLong(item.getString()));
+							if(!expressaoFacial.equals(sinal.getExpressaoFacial())){
+								sinal.setExpressaoFacial(expressaoFacial);
+							}
+							System.out.println("Expressao Facial nome: "+expressaoFacial.getNome());
+						}
+						System.out.println("isFormField: "+item.getString());
+					}
+				}
+				sinal.setConfiguracoesDeMao(configuracoesDeMao);
+				sinal.setPontosDeArticulacao(pontosDeArticulacao);
+				sinal.setMovimentos(movimentos);
+				dao.altera(sinal);
+			}
+			catch (FileUploadException ex) {
+				ex.printStackTrace();
+			}
+			catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		return "redirect:listarSinais";
 	}
 
 	private void inserirImagemDiretorio(FileItem item, String pasta){
