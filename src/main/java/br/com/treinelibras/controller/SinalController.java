@@ -351,11 +351,6 @@ public class SinalController {
 						formulario = item.getString();
 						System.out.println("Formulario: "+formulario);
 					}
-					System.out.println("Imprimindo valores de atributos do item quando é um file: ");
-					System.out.println("item.isFormField(): "+item.isFormField());
-					System.out.println("item.getFieldName(): "+item.getFieldName());
-					System.out.println("item.getName(): "+item.getName());
-					System.out.println("item.getString(): "+item.getString());
 					
 					if (!item.isFormField() && item != null && !"".equals(item.getName())) {
 						String nomeArquivo = sinal.getNome() + "." + item.getName().substring(item.getName().length()-3, item.getName().length());
