@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -59,21 +60,22 @@
 
 						<c:forEach items="${sinal.configuracoesDeMao}"
 							var="configuracaoDeMao" varStatus="status">
-							<c:if test="${status.count == 0}">
+							<c:if test="${status.index == 0}">
 								<input type="text" required class="form-control"
 									id="configuracaoDeMao" name="configuracaoDeMao"
 									placeholder="Configuração de Mão"
-									value="${sinal.configuracoesDeMao}"
+									value="${configuracaoDeMao.idConfiguracaoDeMao}"
 									data-target=".bs-example-modal-lg" data-toggle="modal"
 									onkeyup="click()" onclick="configMaoClicada(this)">
 								<a id="configuracaoDeMaoMais" href="#"
 									title="Adicionar outra configuração de mão">+</a>
 							</c:if>
 
-							<c:if test="${status.count == 1}">
+							<c:if test="${status.index == 1}">
 								<input style="display: none" type="text" class="form-control"
 									id="configuracaoDeMao2" name="configuracaoDeMao2"
 									placeholder="Configuração de mão 2"
+									value="${configuracaoDeMao.idConfiguracaoDeMao}"
 									data-target=".bs-example-modal-lg" data-toggle="modal"
 									onkeyup="click()" onclick="configMaoClicada(this)">
 								<a style="display: none" id="configuracaoDeMaoMenos" href="#"
@@ -87,25 +89,29 @@
 							de Articulação:</label>
 						<c:forEach items="${sinal.pontosDeArticulacao}"
 							var="pontoDeArticulacao" varStatus="status">
-							<c:if test="${status.count == 0}">
+							<c:if test="${status.index == 0}">
 								<select class="form-control" id="pontoDeArticulacao"
 									name="pontoDeArticulacao">
 									<option value=""></option>
 									<c:forEach items="${pontosDeArticulacao}"
-										var="pontoDeArticulacao">
-										<option value="${pontoDeArticulacao.idPontoDeArticulacao}">${pontoDeArticulacao.nome}</option>
+										var="pontoDeArticulacaoBanco">
+										<option
+											value="${pontoDeArticulacaoBanco.idPontoDeArticulacao}"
+											${pontoDeArticulacaoBanco.idPontoDeArticulacao == pontoDeArticulacao.idPontoDeArticulacao ? 'selected' : ''}>${pontoDeArticulacaoBanco.nome}</option>
 									</c:forEach>
 								</select>
 								<a id="pontoDeArticulacaoMais" href="#"
 									title="Adicionar outro ponto de articulação">+</a>
 							</c:if>
-							<c:if test="${status.count == 1}">
+							<c:if test="${status.index == 1}">
 								<select style="display: none" class="form-control"
 									id="pontoDeArticulacao2">
 									<option value=""></option>
 									<c:forEach items="${pontosDeArticulacao}"
 										var="pontoDeArticulacao">
-										<option value="${pontoDeArticulacao.idPontoDeArticulacao}">${pontoDeArticulacao.nome}</option>
+										<option
+											<c:if test="${param.selectValue == pontoDeArticulacao.nome})"> selected </c:if>
+											value="${pontoDeArticulacao.idPontoDeArticulacao}">${pontoDeArticulacao.nome}</option>
 									</c:forEach>
 								</select>
 								<a style="display: none" id="pontoDeArticulacaoMenos" href="#"
@@ -118,21 +124,24 @@
 						<label id="labelMovimento" for="movimento">Movimento:</label>
 						<c:forEach items="${sinal.movimentos}" var="movimento"
 							varStatus="status">
-							<c:if test="${status.count == 0}">
+							<c:if test="${status.index == 0}">
 								<select class="form-control" id="movimento" name="movimento">
 									<option value=""></option>
-									<c:forEach items="${movimentos}" var="movimento">
-										<option value="${movimento.idMovimento}">${movimento.nome}</option>
+									<c:forEach items="${movimentos}" var="movimentoBanco">
+										<option value="${movimentoBanco.idMovimento}"
+											${movimentoBanco.idMovimento == movimento.idMovimento ? 'selected' : ''}>${movimentoBanco.nome}</option>
 									</c:forEach>
 								</select>
 								<a id="movimentoMais" href="#" title="Adicionar outro movimento">+</a>
 							</c:if>
-							<c:if test="${status.count == 0}">
+							<c:if test="${status.index == 0}">
 								<select style="display: none" class="form-control"
 									id="movimento2" name="movimento2">
 									<option value=""></option>
 									<c:forEach items="${movimentos}" var="movimento">
-										<option value="${movimento.idMovimento}">${movimento.nome}</option>
+										<option
+											<c:if test="${param.selectValue == movimento.nome})"> selected </c:if>
+											value="${movimento.idMovimento}">${movimento.nome}</option>
 									</c:forEach>
 								</select>
 								<a style="display: none" id="movimentoMenos" href="#"
@@ -140,12 +149,19 @@
 							</c:if>
 						</c:forEach>
 					</div>
-
+					<c:set var="orientacoes"
+						value="Para cima,Para baixo,Para dentro,Para fora,Para o lado esquerdo,Para o lado direito"
+						scope="application" />
 					<div class="form-group">
 						<label for="orientacao">Orientação:</label> <select
 							class="form-control" id="orientacao" name="orientacao">
-							<option
-								<c:if test="${sinal.orientacao == 'Para cima'})"> selected </c:if>
+							<c:forEach items="${fn:split(orientacoes, ',')}" var="orientacao">
+								<option value="${orientacao}"
+									${sinal.orientacao == orientacao ? 'selected' : ''}>${orientacao}</option>
+							</c:forEach>
+
+							<%-- <option
+								<c:if test="${sinal.orientacao == grade ? 'selected' : ''})"> selected </c:if>
 								value="Para cima">Para cima</option>
 							<option
 								<c:if test="${sinal.orientacao == 'Para baixo'})"> selected </c:if>
@@ -161,22 +177,22 @@
 								value="Para o lado esquerdo">Para o lado esquerdo</option>
 							<option
 								<c:if test="${sinal.orientacao == 'Para o lado direito'})"> selected </c:if>
-								value="Para o lado direito">Para o lado direito</option>
+								value="Para o lado direito">Para o lado direito</option> --%>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="expressao">Expressão Facial:</label> <select
 							class="form-control" id="expressao" name="expressao">
 							<c:forEach items="${expressoesFaciais}" var="expressaoFacial">
-								<option
-									<c:if test="${param.selectValue == expressaoFacial.nome})"> selected </c:if>
-									value="${expressaoFacial.idExpressaoFacial}">${expressaoFacial.nome}</option>
+								<option value="${expressaoFacial.idExpressaoFacial}"
+									${expressaoFacial.idExpressaoFacial == sinal.expressaoFacial.idExpressaoFacial ? 'selected' : ''}>
+									${expressaoFacial.nome}</option>
 							</c:forEach>
 						</select>
 					</div>
 
 					<div class="form-group">
-						<img
+						<img style="width: 20px; height: 20px;"
 							src="${pageContext.request.contextPath}/resources/img/${sinal.foto}" />
 						<label for="foto">Foto:</label> <input type="file"
 							class="form-control" name="foto" id="foto" placeholder="Foto"
@@ -184,32 +200,36 @@
 					</div>
 
 					<div class="form-group">
-						<video style="width: 20px; height: 20px;"
-							src="${pageContext.request.contextPath}/resources/videos/${sinal.video}" />
+						<video style="width: 20px; height: 20px;" id="videoGravado" controls="" 
+						src="${pageContext.request.contextPath}/resources/videos/${sinal.video}"></video>
+						<
 						<label for="video">Video:</label> <input type="file"
 							class="form-control" name="video" id="video" placeholder="Vídeo"
 							accept="video/*">
 					</div>
 
 					<div class="form-group">
-						<label for="categoria">Categoria:</label> <input type="text" value="${sinal.categoria}"
-							required class="form-control" name="categoria" id="categoria"
-							placeholder="Categoria">
+						<label for="categoria">Categoria:</label> <input type="text"
+							value="${sinal.categoria}" required class="form-control"
+							name="categoria" id="categoria" placeholder="Categoria">
 					</div>
 
+					<c:set var="dificuldades"
+						value="Fácil,Média,Difícil" scope="application" />
 					<div class="form-group">
 						<label for="dificuldade">Dificuldade:</label> <select
 							class="form-control" id="dificuldade" name="dificuldade">
-							<option <c:if test="${sinal.dificuldade == 'Fácil'})"> selected </c:if>
-								value="Fácil">Fácil</option>
-							<option <c:if test="${sinal.dificuldade == 'Média'})"> selected </c:if>
-								value="Média">Média</option>
-							<option <c:if test="${sinal.dificuldade == 'Difícil'})"> selected </c:if>
-								value="Difícil">Difícil</option>
+							
+							<c:forEach items="${fn:split(dificuldades, ',')}" var="dificuldade">
+								<option value="${dificuldade}"
+									${sinal.dificuldade == dificuldade ? 'selected' : ''}>${dificuldade}</option>
+							</c:forEach>
+							
 						</select>
 					</div>
 					<button type="submit"
-						class="bg-black color-white pull-right btn btn-default">Alterar Sinal</button>
+						class="bg-black color-white pull-right btn btn-default">Alterar
+						Sinal</button>
 				</form>
 			</div>
 		</div>

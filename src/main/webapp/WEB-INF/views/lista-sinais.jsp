@@ -42,7 +42,7 @@
 								<td>
 									<div class="gerenciar">
 										<a title="Alterar sinal"
-											href="mostraSinal?idSinal=${sinal.idSinal}"><img
+											href="alterarSinalAntes?idSinal=${sinal.idSinal}"><img
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/editar.png" /></a>
 										<a title="Remover sinal"

@@ -193,6 +193,33 @@ public class SinalController {
 		System.out.println("Depois de remover");
 		return "redirect:listarSinais";
 	}
+	
+	@RequestMapping("alterarSinalAntes")
+	@Transactional
+	public String mostraSinal(Long idSinal, Model model){
+		System.out.println("Antes condifuracoesDeMao");
+		List<ConfiguracaoDeMao> condifuracoesDeMao = configuracaoDeMaoDao.lista();
+		model.addAttribute("condifuracoesDeMao", condifuracoesDeMao);
+
+		System.out.println("Antes pontosDeArticulacao");
+		List<PontoDeArticulacao> pontosDeArticulacao = pontoDeArticulacaoDao.lista();
+		model.addAttribute("pontosDeArticulacao", pontosDeArticulacao);
+
+		System.out.println("Antes movimentos");
+		List<Movimento> movimentos = movimentoDao.lista();
+		model.addAttribute("movimentos", movimentos);
+
+		System.out.println("Antes expressoesFaciais");
+		List<ExpressaoFacial> expressoesFaciais = expressaoFacialDao.lista();
+		model.addAttribute("expressoesFaciais", expressoesFaciais);
+		
+		System.out.println("Antes Sinal");
+		Sinal sinal = dao.buscaPorId(idSinal);
+		model.addAttribute("sinal",sinal);
+		
+		System.out.println("sinal.orientacao: "+sinal.getOrientacao());
+		return "altera-sinal";
+	}
 
 	@RequestMapping("cadastrarSinal")
 	@Transactional
