@@ -200,9 +200,8 @@
 					</div>
 
 					<div class="form-group">
-						<video style="width: 20px; height: 20px;" id="videoGravado" controls="" 
+						<video id="videoGravado" controls="" 
 						src="${pageContext.request.contextPath}/resources/videos/${sinal.video}"></video>
-						<
 						<label for="video">Video:</label> <input type="file"
 							class="form-control" name="video" id="video" placeholder="Vídeo"
 							accept="video/*">
@@ -257,11 +256,11 @@
 	</div>
 	<c:import url="rodape.jsp" />
 	<script>
-		function gravarSinal() {
+		function alterarSinal() {
 			$("#formAlterarSinal").submit();
 		}
 
-		$("#formCadastrarSinal").submit(function() {
+		$("#formAlterarSinal").submit(function() {
 			if ($('#myModal').css("display") == "block") {
 				return true;
 			}

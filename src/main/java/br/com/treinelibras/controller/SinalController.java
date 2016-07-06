@@ -336,9 +336,9 @@ public class SinalController {
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			String formulario = "";
 			
-			List<ConfiguracaoDeMao> configuracoesDeMao = new ArrayList<>();
+			/*List<ConfiguracaoDeMao> configuracoesDeMao = new ArrayList<>();
 			List<PontoDeArticulacao> pontosDeArticulacao = new ArrayList<>();
-			List<Movimento> movimentos = new ArrayList<>();
+			List<Movimento> movimentos = new ArrayList<>();*/
 			
 			try {
 				List items = upload.parseRequest(request);
@@ -351,8 +351,13 @@ public class SinalController {
 						formulario = item.getString();
 						System.out.println("Formulario: "+formulario);
 					}
+					System.out.println("Imprimindo valores de atributos do item quando é um file: ");
+					System.out.println("item.isFormField(): "+item.isFormField());
+					System.out.println("item.getFieldName(): "+item.getFieldName());
+					System.out.println("item.getName(): "+item.getName());
+					System.out.println("item.getString(): "+item.getString());
 					
-					if (!item.isFormField()) {
+					if (!item.isFormField() && item != null && !"".equals(item.getName())) {
 						String nomeArquivo = sinal.getNome() + "." + item.getName().substring(item.getName().length()-3, item.getName().length());
 						if (item.getFieldName().equals("foto") && item != null) {
 							// salvarFoto
@@ -379,45 +384,45 @@ public class SinalController {
 							sinal.setDificuldade(item.getString());
 						}else if("configuracaoDeMao".equals(item.getFieldName())){
 							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
-							if(!configuracoesDeMao.get(0).equals(configuracaoDeMao)){
-								configuracoesDeMao.set(0, configuracaoDeMao);
+							if(!sinal.getConfiguracoesDeMao().get(0).equals(configuracaoDeMao)){
+								sinal.getConfiguracoesDeMao().set(0, configuracaoDeMao);
 							}
 							System.out.println("Configuracao de mao nome: "+configuracaoDeMao.getNome());
 						}else if("configuracaoDeMao2".equals(item.getFieldName()) &&
 								item.getString() != null && item.getString() != "" && StringUtils.isNumeric(item.getString())){
 							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
-							if(configuracoesDeMao.get(1) != null && !configuracoesDeMao.get(1).equals(configuracaoDeMao)){
-								configuracoesDeMao.set(1, configuracaoDeMao);
-							}else if(configuracoesDeMao.get(1) == null){
-								configuracoesDeMao.add(1, configuracaoDeMao);
+							if(sinal.getConfiguracoesDeMao().get(1) != null && !sinal.getConfiguracoesDeMao().get(1).equals(configuracaoDeMao)){
+								sinal.getConfiguracoesDeMao().set(1, configuracaoDeMao);
+							}else if(sinal.getConfiguracoesDeMao().get(1) == null){
+								sinal.getConfiguracoesDeMao().add(1, configuracaoDeMao);
 							}
 						}else if("ponoDeArticulacao".equals(item.getFieldName())){
 							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
-							if(!pontosDeArticulacao.get(0).equals(configuracoesDeMao)){
-								pontosDeArticulacao.set(0, pontoDeArticulacao);
+							if(!sinal.getPontosDeArticulacao().get(0).equals(pontoDeArticulacao)){
+								sinal.getPontosDeArticulacao().set(0, pontoDeArticulacao);
 							}
 							System.out.println("Ponto de articulacao nome: "+pontoDeArticulacao.getNome());
 						}else if("pontoDeArticulacao2".equals(item.getFieldName()) &&
 								item.getString() != null && item.getString() != "" && StringUtils.isNumeric(item.getString())){
 							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
-							if(pontosDeArticulacao.get(1) != null && pontosDeArticulacao.get(1).equals(pontoDeArticulacao)){
-								pontosDeArticulacao.set(1, pontoDeArticulacao);
-							}else if(pontosDeArticulacao.get(1) == null){
-								pontosDeArticulacao.set(1, pontoDeArticulacao);
+							if(sinal.getPontosDeArticulacao().get(1) != null && sinal.getPontosDeArticulacao().get(1).equals(pontoDeArticulacao)){
+								sinal.getPontosDeArticulacao().set(1, pontoDeArticulacao);
+							}else if(sinal.getPontosDeArticulacao().get(1) == null){
+								sinal.getPontosDeArticulacao().set(1, pontoDeArticulacao);
 							}
 						}else if("movimento".equals(item.getFieldName())){
 							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
-							if(!movimentos.get(0).equals(movimento)){
-								movimentos.set(0, movimento);
+							if(!sinal.getMovimentos().get(0).equals(movimento)){
+								sinal.getMovimentos().set(0, movimento);
 							}
 							System.out.println("Movimento nome "+movimento.getNome());
 						}else if("movimento2".equals(item.getFieldName()) &&
 								item.getString() != null && item.getString() != "" && StringUtils.isNumeric(item.getString())){
 							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
-							if(movimentos.get(1) != null && movimentos.get(1).equals(movimento)){
-								movimentos.set(1, movimento);
-							}else if(movimentos.get(1) == null){
-								movimentos.set(1, movimento);
+							if(sinal.getMovimentos().get(1) != null && sinal.getMovimentos().get(1).equals(movimento)){
+								sinal.getMovimentos().set(1, movimento);
+							}else if(sinal.getMovimentos().get(1) == null){
+								sinal.getMovimentos().set(1, movimento);
 							}
 						}else if("expressao".equals(item.getFieldName())){
 							ExpressaoFacial expressaoFacial = expressaoFacialDao.buscaPorId(Long.parseLong(item.getString()));
@@ -429,9 +434,6 @@ public class SinalController {
 						System.out.println("isFormField: "+item.getString());
 					}
 				}
-				sinal.setConfiguracoesDeMao(configuracoesDeMao);
-				sinal.setPontosDeArticulacao(pontosDeArticulacao);
-				sinal.setMovimentos(movimentos);
 				dao.altera(sinal);
 			}
 			catch (FileUploadException ex) {
