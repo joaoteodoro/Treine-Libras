@@ -356,7 +356,6 @@ public class SinalController {
 						String nomeArquivo = sinal.getNome() + "." + item.getName().substring(item.getName().length()-3, item.getName().length());
 						if (item.getFieldName().equals("foto") && item != null) {
 							// salvarFoto
-							//String nomeArquivo = sinal.getNome() + item.getName().substring(item.getName().length()-3, item.getName().length()-1);
 							System.out.println("nomeArquivo: "+nomeArquivo);
 							item.setFieldName(nomeArquivo);
 							this.inserirImagemDiretorio(item,"img");
