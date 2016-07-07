@@ -283,8 +283,9 @@ public class SinalController {
 								item.getString() != null && item.getString() != "" && StringUtils.isNumeric(item.getString())){
 							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
 							configuracoesDeMao.add(1,configuracaoDeMao);
-						}else if("ponoDeArticulacao".equals(item.getFieldName())){
+						}else if("pontoDeArticulacao".equals(item.getFieldName())){
 							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
+							System.out.println("Ponto de articulação: "+pontoDeArticulacao.getNome());
 							pontosDeArticulacao.add(0,pontoDeArticulacao);
 							System.out.println("Ponto de articulacao nome: "+pontoDeArticulacao.getNome());
 						}else if("pontoDeArticulacao2".equals(item.getFieldName()) &&
@@ -367,8 +368,10 @@ public class SinalController {
 							sinal.setVideo(item.getFieldName());
 						}
 					}else{
-						if("nome".equals(item.getFieldName())){
-							sinal = dao.buscaPorNome(item.getString());
+						if("idSinal".equals(item.getFieldName())){
+							sinal = dao.buscaPorId(Long.parseLong(item.getString()));
+						}else if("nome".equals(item.getFieldName())){
+							System.out.println("Nome: "+item.getString());
 							sinal.setNome(item.getString());
 						}else if("categoria".equals(item.getFieldName()) && !item.getString().equals(sinal.getCategoria())){
 							sinal.setCategoria(item.getString());
@@ -390,7 +393,7 @@ public class SinalController {
 							}else if(sinal.getConfiguracoesDeMao().get(1) == null){
 								sinal.getConfiguracoesDeMao().add(1, configuracaoDeMao);
 							}
-						}else if("ponoDeArticulacao".equals(item.getFieldName())){
+						}else if("pontoDeArticulacao".equals(item.getFieldName())){
 							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
 							if(!sinal.getPontosDeArticulacao().get(0).equals(pontoDeArticulacao)){
 								sinal.getPontosDeArticulacao().set(0, pontoDeArticulacao);

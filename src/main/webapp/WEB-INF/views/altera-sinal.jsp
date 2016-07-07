@@ -48,6 +48,7 @@
 				</div>
 				<form id="formAlterarSinal" method="post" action="alterarSinal"
 					enctype="multipart/form-data">
+					<input type="hidden" value="${sinal.idSinal}" id="idSinal" name="idSinal">
 					<div class="form-group">
 						<label for="nome">Nome:</label> <input type="text"
 							value="${sinal.nome}" required class="form-control" id="nome"
@@ -103,6 +104,36 @@
 								<a id="pontoDeArticulacaoMais" href="#"
 									title="Adicionar outro ponto de articulação">+</a>
 							</c:if>
+							
+							<c:choose>
+								<c:when test="${status.index == 1}">
+									<select class="form-control" id="pontoDeArticulacao2"
+									name="pontoDeArticulacao2">
+										<option value=""></option>
+										<c:forEach items="${pontosDeArticulacao}"
+											var="pontoDeArticulacaoBanco">
+											<option
+												value="${pontoDeArticulacaoBanco.idPontoDeArticulacao}"
+												${pontoDeArticulacaoBanco.idPontoDeArticulacao == pontoDeArticulacao.idPontoDeArticulacao ? 'selected' : ''}>${pontoDeArticulacaoBanco.nome}</option>
+										</c:forEach>
+									</select>
+									<a style="display: none" id="pontoDeArticulacaoMenos" href="#"
+										title="Remover outro ponto de articulação">-</a>
+								</c:when>
+								<c:otherwise>
+									<select style="display: none" class="form-control"
+									id="pontoDeArticulacao2" name="pontoDeArticulacao2">
+										<option value=""></option>
+										<c:forEach items="${pontosDeArticulacao}"
+											var="pontoDeArticulacao">
+											<option value="${pontoDeArticulacao.idPontoDeArticulacao}">${pontoDeArticulacao.nome}</option>
+										</c:forEach>
+									</select>
+									<a style="display: none" id="pontoDeArticulacaoMenos" href="#"
+										title="Remover outro ponto de articulação">-</a>
+								</c:otherwise>
+							</c:choose>
+							
 							<c:if test="${status.index == 1}">
 								<select style="display: none" class="form-control"
 									id="pontoDeArticulacao2">
@@ -134,7 +165,7 @@
 								</select>
 								<a id="movimentoMais" href="#" title="Adicionar outro movimento">+</a>
 							</c:if>
-							<c:if test="${status.index == 0}">
+							<c:if test="${status.index == 1}">
 								<select style="display: none" class="form-control"
 									id="movimento2" name="movimento2">
 									<option value=""></option>
@@ -192,7 +223,7 @@
 					</div>
 
 					<div class="form-group">
-						<img style="width: 20px; height: 20px;"
+						<img class="img-responsive center-block"
 							src="${pageContext.request.contextPath}/resources/img/${sinal.foto}" />
 						<label for="foto">Foto:</label> <input type="file"
 							class="form-control" name="foto" id="foto" placeholder="Foto"
@@ -200,8 +231,12 @@
 					</div>
 
 					<div class="form-group">
-						<video id="videoGravado" controls="" 
-						src="${pageContext.request.contextPath}/resources/videos/${sinal.video}"></video>
+						<div class="center-block video-size-execucao">
+							<div class="video-container video">
+								<video id="videoGravado" controls="" 
+								src="${pageContext.request.contextPath}/resources/videos/${sinal.video}"></video>
+							</div>
+						</div>
 						<label for="video">Video:</label> <input type="file"
 							class="form-control" name="video" id="video" placeholder="Vídeo"
 							accept="video/*">
