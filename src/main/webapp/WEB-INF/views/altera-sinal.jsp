@@ -101,8 +101,6 @@
 											${pontoDeArticulacaoBanco.idPontoDeArticulacao == pontoDeArticulacao.idPontoDeArticulacao ? 'selected' : ''}>${pontoDeArticulacaoBanco.nome}</option>
 									</c:forEach>
 								</select>
-								<a id="pontoDeArticulacaoMais" href="#"
-									title="Adicionar outro ponto de articulação">+</a>
 							</c:if>
 							
 							<c:choose>
@@ -117,11 +115,9 @@
 												${pontoDeArticulacaoBanco.idPontoDeArticulacao == pontoDeArticulacao.idPontoDeArticulacao ? 'selected' : ''}>${pontoDeArticulacaoBanco.nome}</option>
 										</c:forEach>
 									</select>
-									<a style="display: none" id="pontoDeArticulacaoMenos" href="#"
-										title="Remover outro ponto de articulação">-</a>
 								</c:when>
 								<c:otherwise>
-									<select style="display: none" class="form-control"
+									<select class="form-control"
 									id="pontoDeArticulacao2" name="pontoDeArticulacao2">
 										<option value=""></option>
 										<c:forEach items="${pontosDeArticulacao}"
@@ -129,25 +125,8 @@
 											<option value="${pontoDeArticulacao.idPontoDeArticulacao}">${pontoDeArticulacao.nome}</option>
 										</c:forEach>
 									</select>
-									<a style="display: none" id="pontoDeArticulacaoMenos" href="#"
-										title="Remover outro ponto de articulação">-</a>
 								</c:otherwise>
 							</c:choose>
-							
-							<c:if test="${status.index == 1}">
-								<select style="display: none" class="form-control"
-									id="pontoDeArticulacao2">
-									<option value=""></option>
-									<c:forEach items="${pontosDeArticulacao}"
-										var="pontoDeArticulacao">
-										<option
-											<c:if test="${param.selectValue == pontoDeArticulacao.nome})"> selected </c:if>
-											value="${pontoDeArticulacao.idPontoDeArticulacao}">${pontoDeArticulacao.nome}</option>
-									</c:forEach>
-								</select>
-								<a style="display: none" id="pontoDeArticulacaoMenos" href="#"
-									title="Remover outro ponto de articulação">-</a>
-							</c:if>
 						</c:forEach>
 					</div>
 

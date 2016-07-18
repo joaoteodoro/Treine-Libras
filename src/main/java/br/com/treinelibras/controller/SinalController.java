@@ -402,10 +402,10 @@ public class SinalController {
 						}else if("pontoDeArticulacao2".equals(item.getFieldName()) &&
 								item.getString() != null && item.getString() != "" && StringUtils.isNumeric(item.getString())){
 							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
-							if(sinal.getPontosDeArticulacao().get(1) != null && sinal.getPontosDeArticulacao().get(1).equals(pontoDeArticulacao)){
+							if(sinal.getPontosDeArticulacao().size() > 1){
 								sinal.getPontosDeArticulacao().set(1, pontoDeArticulacao);
-							}else if(sinal.getPontosDeArticulacao().get(1) == null){
-								sinal.getPontosDeArticulacao().set(1, pontoDeArticulacao);
+							}else{
+								sinal.getPontosDeArticulacao().add(1, pontoDeArticulacao);
 							}
 						}else if("movimento".equals(item.getFieldName())){
 							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
