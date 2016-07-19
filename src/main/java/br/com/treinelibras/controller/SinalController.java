@@ -163,8 +163,8 @@ public class SinalController {
 
 	@RequestMapping("cadastrarSinalAntes")
 	public String cadastrarSinalAntes(Model model) {
-		List<ConfiguracaoDeMao> condifuracoesDeMao = configuracaoDeMaoDao.lista();
-		model.addAttribute("condifuracoesDeMao", condifuracoesDeMao);
+		List<ConfiguracaoDeMao> configuracoesDeMao = configuracaoDeMaoDao.lista();
+		model.addAttribute("configuracoesDeMao", configuracoesDeMao);
 
 		List<PontoDeArticulacao> pontosDeArticulacao = pontoDeArticulacaoDao.lista();
 		model.addAttribute("pontosDeArticulacao", pontosDeArticulacao);
@@ -198,8 +198,8 @@ public class SinalController {
 	@Transactional
 	public String mostraSinal(Long idSinal, Model model){
 		System.out.println("Antes condifuracoesDeMao");
-		List<ConfiguracaoDeMao> condifuracoesDeMao = configuracaoDeMaoDao.lista();
-		model.addAttribute("condifuracoesDeMao", condifuracoesDeMao);
+		List<ConfiguracaoDeMao> configuracoesDeMao = configuracaoDeMaoDao.lista();
+		model.addAttribute("configuracoesDeMao", configuracoesDeMao);
 
 		System.out.println("Antes pontosDeArticulacao");
 		List<PontoDeArticulacao> pontosDeArticulacao = pontoDeArticulacaoDao.lista();

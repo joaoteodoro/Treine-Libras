@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -26,26 +27,36 @@
 					tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
-							<table class="table">
-								<tbody>
-									<tr>
-										<c:forEach items="${condifuracoesDeMao}"
-											var="configuracaoDeMao" varStatus="status">
-											<c:if test="${status.count mod 6 == 0}">
-									</tr>
-									<tr>
-										</c:if>
-										<td><img
-											id="img-config-mao-${configuracaoDeMao.idConfiguracaoDeMao}"
-											data-dismiss="modal" class="img-responsive opcao"
-											src="${pageContext.request.contextPath}/resources/img/${configuracaoDeMao.imagem}">
-											<input type="hidden"
-											id="idConfigMao${configuracaoDeMao.idConfiguracaoDeMao}"
-											name="idConfigMao${configuracaoDeMao.idConfiguracaoDeMao}"
-											value="${configuracaoDeMao.idConfiguracaoDeMao}" /></td>
-										</c:forEach>
-								</tbody>
-							</table>
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title">Configurações de Mão</h4>
+							</div>
+							<div class="modal-body">
+								<table class="table">
+									<tbody>
+										<tr>
+											<c:forEach items="${configuracoesDeMao}"
+												var="configuracaoDeMao" varStatus="status">
+												<c:if test="${status.count mod 6 == 0}">
+										</tr>
+										<tr>
+											</c:if>
+											<td><img
+												id="img-config-mao-${configuracaoDeMao.idConfiguracaoDeMao}"
+												class="img-responsive opcao"
+												src="${pageContext.request.contextPath}/resources/img/${configuracaoDeMao.imagem}"
+												title="${configuracaoDeMao.nome}"> <input
+												type="hidden"
+												id="idConfigMao${configuracaoDeMao.idConfiguracaoDeMao}"
+												name="idConfigMao${configuracaoDeMao.idConfiguracaoDeMao}"
+												value="${configuracaoDeMao.idConfiguracaoDeMao}" /></td>
+											</c:forEach>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -56,26 +67,36 @@
 					aria-labelledby="myLargeModalLabel">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
-							<table class="table">
-								<tbody>
-									<tr>
-										<c:forEach items="${pontosDeArticulacao}"
-											var="pontoDeArticulacao" varStatus="status">
-											<c:if test="${status.count mod 6 == 0}">
-									</tr>
-									<tr>
-										</c:if>
-										<td><img
-											id="img-ponto-articulacao-${pontoDeArticulacao.idPontoDeArticulacao}"
-											data-dismiss="modal" class="img-responsive opcao"
-											src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}">
-											<input type="hidden"
-											id="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}"
-											name="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}"
-											value="${pontoDeArticulacao.idPontoDeArticulacao}" /></td>
-										</c:forEach>
-								</tbody>
-							</table>
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title">Pontos de Articulação</h4>
+							</div>
+							<div class="modal-body">
+								<table class="table">
+									<tbody>
+										<tr>
+											<c:forEach items="${pontosDeArticulacao}"
+												var="pontoDeArticulacao" varStatus="status">
+												<c:if test="${status.count mod 6 == 0}">
+										</tr>
+										<tr>
+											</c:if>
+											<td><img
+												id="img-ponto-articulacao-${pontoDeArticulacao.idPontoDeArticulacao}"
+												class="img-responsive opcao"
+												src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}"
+												title="${pontoDeArticulacao.nome}"> <input
+												type="hidden"
+												id="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}"
+												name="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}"
+												value="${pontoDeArticulacao.idPontoDeArticulacao}" /></td>
+											</c:forEach>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -84,24 +105,58 @@
 					tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
-							<table class="table">
-								<tbody>
-									<tr>
-										<c:forEach items="${movimentos}" var="movimento"
-											varStatus="status">
-											<c:if test="${status.count mod 6 == 0}">
-									</tr>
-									<tr>
-										</c:if>
-										<td><img id="img-movimento-${movimento.idMovimento}"
-											data-dismiss="modal" class="img-responsive opcao"
-											src="${pageContext.request.contextPath}/resources/img/${movimento.imagem}">
-											<input type="hidden" id="idMovimento${movimento.idMovimento}"
-											name="idMovimento${movimento.idMovimento}"
-											value="${movimento.idMovimento}" /></td>
-										</c:forEach>
-								</tbody>
-							</table>
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title">Movimentos</h4>
+							</div>
+							<div class="modal-body">
+								<table class="table">
+									<tbody>
+										<tr>
+											<c:forEach items="${movimentos}" var="movimento"
+												varStatus="status">
+												<c:if test="${status.count mod 6 == 0}">
+										</tr>
+										<tr>
+											</c:if>
+											<td><img id="img-movimento-${movimento.idMovimento}"
+												class="img-responsive opcao"
+												src="${pageContext.request.contextPath}/resources/img/${movimento.imagem}"
+												title="${movimento.nome}"> <input type="hidden"
+												id="idMovimento${movimento.idMovimento}"
+												name="idMovimento${movimento.idMovimento}"
+												value="${movimento.idMovimento}" /></td>
+											</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="modalErro" class="modal fade" tabindex="-1" role="dialog"
+					aria-labelledby="myLargeModalLabel">
+					<div class="modal-dialog">
+
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title">Parâmetro já selecionado</h4>
+							</div>
+							<div class="modal-body">
+								<p>Este parametro já está selecionado, por favor selecione
+									outro!</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">Ok</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -134,49 +189,22 @@
 					<label id="labelConfiguracaoDeMao" for="configuracaoDeMao">Configurações
 						de Mão:</label>
 					<div class="configuracoesDeMao">
-						<div id="configMao1" class="parametro">
-							<img id="imgConfigMao1" class="imgParametro"
-								src="${pageContext.request.contextPath}/resources/img/mais.png"
-								data-target="#modalConfigMao" data-toggle="modal"
-								title="Clique para adicionar uma configuração de mão" />
-							<div id="excluiConfigMao1" class="excluiParametro"
-								style="display: none"></div>
-							<input type="hidden" id="configuracaoDeMao1"
-								name="configuracaoDeMao1" />
-						</div>
-
-						<div id="configMao2" class="parametro">
-							<img id="imgConfigMao2" class="imgParametro"
-								src="${pageContext.request.contextPath}/resources/img/mais.png"
-								data-target="#modalConfigMao" data-toggle="modal"
-								title="Clique para adicionar uma configuração de mão" />
-							<div id="excluiConfigMao2" class="excluiParametro"
-								style="display: none"></div>
-							<input type="hidden" id="configuracaoDeMao2"
-								name="configuracaoDeMao2" />
-						</div>
-
-						<div id="configMao3" class="parametro">
-							<img id="imgConfigMao3" class="imgParametro"
-								src="${pageContext.request.contextPath}/resources/img/mais.png"
-								data-target="#modalConfigMao" data-toggle="modal"
-								title="Clique para adicionar uma configuração de mão" />
-							<div id="excluiConfigMao3" class="excluiParametro"
-								style="display: none"></div>
-							<input type="hidden" id="configuracaoDeMao3"
-								name="configuracaoDeMao3" />
-						</div>
-
-						<div id="configMao4" class="parametro">
-							<img id="imgConfigMao4" class="imgParametro"
-								src="${pageContext.request.contextPath}/resources/img/mais.png"
-								data-target="#modalConfigMao" data-toggle="modal"
-								title="Clique para adicionar uma configuração de mão" />
-							<div id="excluiConfigMao4" class="excluiParametro"
-								style="display: none"></div>
-							<input type="hidden" id="configuracaoDeMao4"
-								name="configuracaoDeMao4" />
-						</div>
+						<c:set var="camposConfigMao" value="1,2,3,4" scope="application" />
+						<c:forEach items="${fn:split(camposConfigMao, ',')}" var="i">
+							<div id="configMao${i}" class="parametro">
+								<img id="imgConfigMao${i}" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/mais.png"
+									data-target="#modalConfigMao" data-toggle="modal"
+									title="Clique para adicionar uma configuração de mão" />
+								<div id="excluiConfigMao${i}" class="excluiParametro"
+									style="display: none">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="configuracaoDeMao${i}"
+									name="configuracaoDeMao${i}" />
+							</div>
+						</c:forEach>
 					</div>
 
 					<%-- <div class="form-group">
@@ -202,38 +230,24 @@
 					<br /> <br /> <br /> <label id="labelPontoDeArticulacao"
 						for="pontoDeArticulacao">Pontos de Articulação:</label>
 					<div class="pontosDeArticulacao">
-						<div id="pontoArticulacao1" class="parametro">
-							<img id="imgPontoArticulacao1" class="imgParametro"
-								src="${pageContext.request.contextPath}/resources/img/mais.png"
-								data-target="#modalPontoArticulacao" data-toggle="modal"
-								title="Clique para adicionar um ponto de articulação" />
-							<div id="excluiPontoArticulacao1" class="excluiParametro"
-								style="display: none"></div>
-							<input type="hidden" id="pontoDeArticulacao1"
-								name="pontoDeArticulacao1" />
-						</div>
-
-						<div id="pontoArticulacao2" class="parametro">
-							<img id="imgPontoArticulacao2" class="imgParametro"
-								src="${pageContext.request.contextPath}/resources/img/mais.png"
-								data-target="#modalPontoArticulacao" data-toggle="modal"
-								title="Clique para adicionar um ponto de articulação" />
-							<div id="excluiPontoArticulacao2" class="excluiParametro"
-								style="display: none"></div>
-							<input type="hidden" id="pontoDeArticulacao2"
-								name="pontoDeArticulacao2" />
-						</div>
-
-						<div id="pontoArticulacao3" class="parametro">
-							<img id="imgPontoArticulacao3" class="imgParametro"
-								src="${pageContext.request.contextPath}/resources/img/mais.png"
-								data-target="#modalPontoArticulacao" data-toggle="modal"
-								title="Clique para adicionar um ponto de articulação" />
-							<div id="excluiPontoArticulacao3" class="excluiParametro"
-								style="display: none"></div>
-							<input type="hidden" id="pontoDeArticulacao3"
-								name="pontoDeArticulacao3" />
-						</div>
+						<c:set var="camposPontoArticulacao" value="1,2,3"
+							scope="application" />
+						<c:forEach items="${fn:split(camposPontoArticulacao, ',')}"
+							var="i">
+							<div id="pontoArticulacao${i}" class="parametro">
+								<img id="imgPontoArticulacao${i}" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/mais.png"
+									data-target="#modalPontoArticulacao" data-toggle="modal"
+									title="Clique para adicionar um ponto de articulação" />
+								<div id="excluiPontoArticulacao${i}" class="excluiParametro"
+									style="display: none">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="pontoDeArticulacao${i}"
+									name="pontoDeArticulacao${i}" />
+							</div>
+						</c:forEach>
 					</div>
 
 					<%-- <div class="form-group">
@@ -256,27 +270,23 @@
 
 					<br /> <br /> <br /> <label id="labelMovimento" for="movimento">Movimentos:</label>
 					<div class="movimentos">
-						<div id="mov1" class="parametro">
-							<img id="imgMovimento1" class="imgParametro"
-								src="${pageContext.request.contextPath}/resources/img/mais.png"
-								data-target="#modalMovimento" data-toggle="modal"
-								title="Clique para adicionar um movimento" />
-							<div id="excluiMovimento1" class="excluiParametro"
-								style="display: none"></div>
-							<input type="hidden" id="movimento1" name="movimento1" />
-						</div>
-
-						<div id="mov2" class="parametro">
-							<img id="imgMovimento2" class="imgParametro"
-								src="${pageContext.request.contextPath}/resources/img/mais.png"
-								data-target="#modalMovimento" data-toggle="modal"
-								title="Clique para adicionar um movimento" />
-							<div id="excluiMovimento2" class="excluiParametro"
-								style="display: none"></div>
-							<input type="hidden" id="movimento2" name="movimento2" />
-						</div>
+						<c:set var="camposMovimentos" value="1,2" scope="application" />
+						<c:forEach items="${fn:split(camposMovimentos, ',')}" var="i">
+							<div id="mov${i}" class="parametro">
+								<img id="imgMovimento${i}" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/mais.png"
+									data-target="#modalMovimento" data-toggle="modal"
+									title="Clique para adicionar um movimento" />
+								<div id="excluiMovimento${i}" class="excluiParametro"
+									style="display: none">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="movimento${i}" name="movimento${i}" />
+							</div>
+						</c:forEach>
 					</div>
-					<br/><br/><br/>
+					<br /> <br /> <br />
 
 					<div class="form-group">
 						<label for="orientacao">Orientação:</label> <select
@@ -382,6 +392,8 @@
 		var nomeExclui;
 		var idOpcaoModal;
 		var idInputModal;
+		var quantidadeParametro;
+		var idModal;
 
 		$(".imgParametro").click(
 				function() {
@@ -393,25 +405,47 @@
 					definirNomeNoTitle(nomeClicado);
 				});
 
+		function verficarExistencia(valorEscolhido) {
+			for (i = 1; i < quantidadeParametro + 1; i++) {
+				if (nIdClicada != i
+						&& $("#" + nomeInput + i).val() == valorEscolhido) {
+					return true;
+				}
+			}
+			return false;
+		}
+
 		$(".opcao")
 				.click(
 						function() {
 							var idOpcaoClicada = parseInt((this.id).substring(
-									((this.id).length) - 1,
+									((this.id).length) - 2,
 									(this.id).length + 1));
-							
-							console.log("#" + idOpcaoModal + idOpcaoClicada);
+
+							idOpcaoClicada = Math.abs(idOpcaoClicada);
+
+							//verificar se essa opcao escolhida ja foi escolhida.
+							if (verficarExistencia($(
+									"#" + idInputModal + idOpcaoClicada).val())) {
+								//alert('existe');
+								$("#modalErro").modal('show');
+								return;
+							}
 
 							$("#" + idClicada).attr(
 									"src",
 									$("#" + idOpcaoModal + idOpcaoClicada)
 											.attr("src"));
-							$("#" + idClicada).attr("title",
-									"Clique para alterar " + nomeNoTitle);
+							$("#" + idClicada).attr(
+									"title",
+									$("#" + idOpcaoModal + idOpcaoClicada)
+											.attr("title"));
 							$("#" + nomeInput + nIdClicada).val(
 									$("#" + idInputModal + idOpcaoClicada)
 											.val()); //tem que alterar isso aqui ainda
 							$("#exclui" + nomeExclui + nIdClicada).show();
+
+							$("#" + idModal).modal("hide");
 						});
 
 		$(".excluiParametro")
@@ -441,19 +475,26 @@
 				nomeExclui = 'ConfigMao';
 				idOpcaoModal = 'img-config-mao-';
 				idInputModal = 'idConfigMao';
+				quantidadeParametro = 4;
+				idModal = 'modalConfigMao';
 			} else if (parametroClicado == 'PontoArticulacao') {
 				nomeNoTitle = 'ponto de articulação';
 				nomeInput = 'pontoDeArticulacao';
 				nomeExclui = 'PontoArticulacao';
 				idOpcaoModal = 'img-ponto-articulacao-';
 				idInputModal = 'idPontoArticulacao';
+				quantidadeParametro = 3
+				idModal = 'modalPontoArticulacao';
 			} else if (parametroClicado == 'Movimento') {
 				nomeNoTitle = 'movimento';
 				nomeInput = 'movimento';
 				nomeExclui = 'Movimento';
 				idOpcaoModal = 'img-movimento-';
 				idInputModal = 'idMovimento';
+				quantidadeParametro = 2;
+				idModal = 'modalMovimento';
 			}
+			idOpcaoModal = idOpcaoModal.replace("--", "-");
 		}
 
 		function cadastrar() {
@@ -498,24 +539,6 @@
 			}
 			return false;
 		}
-
-		function gravarSinal() {
-			$("#formCadastrarSinal").submit();
-		}
-
-		$("#formCadastrarSinal").submit(function() {
-			if ($('#myModal').css("display") == "block") {
-				return true;
-			}
-			$('#myModal').modal('show');
-			return false;
-		});
-
-		var varConfigMaoClicada;
-
-		function configMaoClicada(paramClicada) {
-			varConfigMaoClicada = paramClicada;
-		};
 
 		/* $(".img-responsive").click(function() {
 			var idConfiguracaoMao = this.id.substring(15, 17);

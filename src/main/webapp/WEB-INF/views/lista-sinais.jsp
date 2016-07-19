@@ -24,7 +24,7 @@
 		<div class="row">
 			<div class="center-block box-page-geral">
 
-				<a href="cadastrarSinalAntes">Adiiconar novo sinal</a> <br /> <br />
+				<a href="cadastrarSinalAntes">Adicionar novo sinal</a> <br /> <br />
 				<table id="tabela" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
 					<thead>
