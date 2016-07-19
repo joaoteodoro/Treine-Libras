@@ -168,24 +168,6 @@
 							class="form-control" id="nome" name="nome" placeholder="Nome">
 					</div>
 
-					<!-- <div class="form-group">
-					<label id="labelConfiguracaoDeMao" for="configuracaoDeMao">Configuração
-						de Mão:</label> <input type="text" required class="form-control"
-						id="configuracaoDeMao" name="configuracaoDeMao"
-						placeholder="Configuração de Mão"
-						data-target=".bs-example-modal-lg" data-toggle="modal"
-						onkeyup="click()" onclick="configMaoClicada(this)"> <a
-						id="configuracaoDeMaoMais" href="#"
-						title="Adicionar outra configuração de mão">+</a> <input
-						style="display: none" type="text" class="form-control"
-						id="configuracaoDeMao2" name="configuracaoDeMao2"
-						placeholder="Configuração de mão 2"
-						data-target=".bs-example-modal-lg" data-toggle="modal"
-						onkeyup="click()" onclick="configMaoClicada(this)"> <a
-						style="display: none" id="configuracaoDeMaoMenos" href="#"
-						title="Remover outra configuração de mão">-</a>
-				</div> -->
-
 					<label id="labelConfiguracaoDeMao" for="configuracaoDeMao">Configurações
 						de Mão:</label>
 					<div class="configuracoesDeMao">
@@ -206,27 +188,6 @@
 							</div>
 						</c:forEach>
 					</div>
-
-					<%-- <div class="form-group">
-					<label id="labelPontoDeArticulacao" for="pontoDeArticulacao">Ponto
-						de Articulação:</label> <select class="form-control"
-						id="pontoDeArticulacao" name="pontoDeArticulacao">
-						<option value=""></option>
-						<c:forEach items="${pontosDeArticulacao}" var="pontoDeArticulacao">
-							<option value="${pontoDeArticulacao.idPontoDeArticulacao}">${pontoDeArticulacao.nome}</option>
-						</c:forEach>
-					</select> <a id="pontoDeArticulacaoMais" href="#"
-						title="Adicionar outro ponto de articulação">+</a> <select
-						style="display: none" class="form-control"
-						id="pontoDeArticulacao2">
-						<option value=""></option>
-						<c:forEach items="${pontosDeArticulacao}" var="pontoDeArticulacao">
-							<option value="${pontoDeArticulacao.idPontoDeArticulacao}">${pontoDeArticulacao.nome}</option>
-						</c:forEach>
-					</select> <a style="display: none" id="pontoDeArticulacaoMenos" href="#"
-						title="Remover outro ponto de articulação">-</a>
-				</div> --%>
-
 					<br /> <br /> <br /> <label id="labelPontoDeArticulacao"
 						for="pontoDeArticulacao">Pontos de Articulação:</label>
 					<div class="pontosDeArticulacao">
@@ -249,24 +210,6 @@
 							</div>
 						</c:forEach>
 					</div>
-
-					<%-- <div class="form-group">
-					<label id="labelMovimento" for="movimento">Movimento:</label> <select
-						class="form-control" id="movimento" name="movimento">
-						<option value=""></option>
-						<c:forEach items="${movimentos}" var="movimento">
-							<option value="${movimento.idMovimento}">${movimento.nome}</option>
-						</c:forEach>
-					</select> <a id="movimentoMais" href="#" title="Adicionar outro movimento">+</a>
-					<select style="display: none" class="form-control" id="movimento2"
-						name="movimento2">
-						<option value=""></option>
-						<c:forEach items="${movimentos}" var="movimento">
-							<option value="${movimento.idMovimento}">${movimento.nome}</option>
-						</c:forEach>
-					</select> <a style="display: none" id="movimentoMenos" href="#"
-						title="Remover outro movimento">-</a>
-				</div> --%>
 
 					<br /> <br /> <br /> <label id="labelMovimento" for="movimento">Movimentos:</label>
 					<div class="movimentos">
