@@ -207,6 +207,7 @@ public class SinalController {
 
 		System.out.println("Antes movimentos");
 		List<Movimento> movimentos = movimentoDao.lista();
+		
 		model.addAttribute("movimentos", movimentos);
 
 		System.out.println("Antes expressoesFaciais");

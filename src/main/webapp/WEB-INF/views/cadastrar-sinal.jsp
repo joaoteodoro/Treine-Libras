@@ -167,6 +167,7 @@
 						<label for="nome">Nome:</label> <input type="text" required
 							class="form-control" id="nome" name="nome" placeholder="Nome">
 					</div>
+					
 
 					<label id="labelConfiguracaoDeMao" for="configuracaoDeMao">Configurações
 						de Mão:</label>
