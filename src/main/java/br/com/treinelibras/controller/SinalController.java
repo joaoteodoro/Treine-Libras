@@ -224,10 +224,46 @@ public class SinalController {
 	@RequestMapping("cadastrarSinal")
 	@Transactional
 	public String cadastrarSinal(Model model, HttpServletRequest request){
+		Sinal sinal = new Sinal();
+		
+		int qtdConfiguracaoDeMao = Integer.parseInt(request.getParameter("qtdConfiguracaoDeMao"));
+		int qtdPontoDeArticulacao = Integer.parseInt(request.getParameter("qtdPontoDeArticulacao"));
+		int qtdMovimento = Integer.parseInt(request.getParameter("qtdMovimento"));
+		
+		sinal.setNome(request.getParameter("nome"));
+		sinal.setOrientacao(request.getParameter("orientacao"));
+		sinal.setExpressaoFacial(expressaoFacialDao.buscaPorId(Long.parseLong(request.getParameter("expressao"))));
+		sinal.setCategoria(request.getParameter("categoria"));
+		sinal.setDificuldade(request.getParameter("dificuldade"));
+		
+		List<ConfiguracaoDeMao> configuracoesDeMao = new ArrayList<ConfiguracaoDeMao>();
+		for (int i = 1; i < 5; i++) {
+			if(request.getParameter("configuracaoDeMao"+i) != null && !"".equals(request.getParameter("configuracaoDeMao"+i))){
+				ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(request.getParameter("configuracaoDeMao"+i)));
+				configuracoesDeMao.add(configuracaoDeMao);
+			}
+		}
+		sinal.setConfiguracoesDeMao(configuracoesDeMao);
+		
+		List<PontoDeArticulacao> pontosDeArticulacao = new ArrayList<PontoDeArticulacao>();
+		for (int i = 1; i < 4; i++) {
+			if(request.getParameter("pontoDeArticulacao"+i) != null && !"".equals(request.getParameter("pontoDeArticulacao"+i))){
+				PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(request.getParameter("pontoDeArticulacao"+i)));
+				pontosDeArticulacao.add(pontoDeArticulacao);
+			}
+		}
+		sinal.setPontosDeArticulacao(pontosDeArticulacao);
+		
+		List<Movimento> movimentos = new ArrayList<Movimento>();
+		for (int i = 1; i < 3; i++) {
+			if(request.getParameter("movimento"+i) != null && !"".equals(request.getParameter("movimento"+i))){
+				Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(request.getParameter("movimento"+i)));
+				movimentos.add(movimento);
+			}
+		}
+		sinal.setMovimentos(movimentos);
 		
 		boolean isMultiPart = FileUpload.isMultipartContent(request);
-
-		Sinal sinal = new Sinal();
 		
 		if (isMultiPart) {
 			System.out.println("Entrou");
@@ -235,9 +271,9 @@ public class SinalController {
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			String formulario = "";
 			
-			List<ConfiguracaoDeMao> configuracoesDeMao = new ArrayList<>();
+			/*List<ConfiguracaoDeMao> configuracoesDeMao = new ArrayList<>();
 			List<PontoDeArticulacao> pontosDeArticulacao = new ArrayList<>();
-			List<Movimento> movimentos = new ArrayList<>();
+			List<Movimento> movimentos = new ArrayList<>();*/
 			
 			try {
 				List items = upload.parseRequest(request);
@@ -267,7 +303,7 @@ public class SinalController {
 							sinal.setVideo(item.getFieldName());
 						}
 					}else{
-						if("nome".equals(item.getFieldName())){
+						/*if("nome".equals(item.getFieldName())){
 							sinal.setNome(item.getString());
 						}else if("categoria".equals(item.getFieldName())){
 							sinal.setCategoria(item.getString());
@@ -305,12 +341,12 @@ public class SinalController {
 							sinal.setExpressaoFacial(expressaoFacial);
 							System.out.println("Expressao Facial nome: "+expressaoFacial.getNome());
 						}
-						System.out.println("isFormField: "+item.getString());
+						System.out.println("isFormField: "+item.getString());*/
 					}
 				}
-				sinal.setConfiguracoesDeMao(configuracoesDeMao);
+				/*sinal.setConfiguracoesDeMao(configuracoesDeMao);
 				sinal.setPontosDeArticulacao(pontosDeArticulacao);
-				sinal.setMovimentos(movimentos);
+				sinal.setMovimentos(movimentos);*/
 				dao.adiciona(sinal);
 			}
 			catch (FileUploadException ex) {

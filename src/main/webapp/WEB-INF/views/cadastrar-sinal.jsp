@@ -187,6 +187,7 @@
 									name="configuracaoDeMao${i}" />
 							</div>
 						</c:forEach>
+						<input type="hidden" name="qtdConfiguracaoDeMao" id="qtdConfiguracaoDeMao">
 					</div>
 					<br /> <br /> <br /> <label id="labelPontoDeArticulacao"
 						for="pontoDeArticulacao">Pontos de Articulação:</label>
@@ -209,6 +210,7 @@
 									name="pontoDeArticulacao${i}" />
 							</div>
 						</c:forEach>
+						<input type="hidden" name="qtdPontoDeArticulacao" id="qtdPontoDeArticulacao">
 					</div>
 
 					<br /> <br /> <br /> <label id="labelMovimento" for="movimento">Movimentos:</label>
@@ -228,6 +230,7 @@
 								<input type="hidden" id="movimento${i}" name="movimento${i}" />
 							</div>
 						</c:forEach>
+						<input type="hidden" name="qtdMovimento" id="qtdMovimento">
 					</div>
 					<br /> <br /> <br />
 
@@ -482,61 +485,30 @@
 			}
 			return false;
 		}
+		
+		function defineQuantidadeParametro(nomeParametro,quantidadeCampos,inputQuantidade){
+			var quantidade=0;
+			for(i=1;i<quantidadeCampos+1;i++){
+				var parametro = $("#"+nomeParametro+i).val();
+				if (parametro != null && parametro != "") {
+					quantidade++;
+				}
+			}
+			$("#"+inputQuantidade).val(quantidade);
+			
+			return quantidade;
+		}
 
-		/* $(".img-responsive").click(function() {
-			var idConfiguracaoMao = this.id.substring(15, 17);
-			console.log(idConfiguracaoMao);
-			$("#" + varConfigMaoClicada.id).val(idConfiguracaoMao);
-		}); */
-
-		/* $("#configuracaoDeMaoMais").click(
-				function() {
-					$("#labelConfiguracaoDeMao").text("Configurações de mão");
-					$("#configuracaoDeMao").attr("placeholder",
-							"Configuração de mão 1");
-					$("#configuracaoDeMao2").show();
-					$("#configuracaoDeMaoMais").hide();
-					$("#configuracaoDeMaoMenos").show();
-					$("#configuracaoDeMao2").attr("required", "");
-				});
-
-		$("#configuracaoDeMaoMenos").click(function() {
-			$("#labelConfiguracaoDeMao").text("Configuração de mão");
-			$("#configuracaoDeMao").attr("placeholder", "Configuração de mão");
-			$("#configuracaoDeMao2").hide();
-			$("#configuracaoDeMaoMais").show();
-			$("#configuracaoDeMaoMenos").hide();
-			$("#configuracaoDeMao2").val('');
-			$("#configuracaoDeMao2").removeAttr("required");
+		$("#formCadastrarSinal").submit(function() {
+			if(defineQuantidadeParametro("configuracaoDeMao",4,"qtdConfiguracaoDeMao") > 0 &&
+				defineQuantidadeParametro("pontoDeArticulacao",4,"qtdPontoDeArticulacao") > 0 &&
+				defineQuantidadeParametro("movimento",4,"qtdMovimento") > 0){
+				return true;
+			}else{
+				alert("Existem campos vazios. Por favor, preencha todos os campos!");
+				return false;
+			}
 		});
-
-		$("#pontoDeArticulacaoMais").click(function() {
-			$("#labelPontoDeArticulacao").text("Pontos de articulação");
-			$("#pontoDeArticulacao2").show();
-			$("#pontoDeArticulacaoMais").hide();
-			$("#pontoDeArticulacaoMenos").show();
-		});
-
-		$("#pontoDeArticulacaoMenos").click(function() {
-			$("#labelPontoDeArticulacao").text("Ponto de articulação");
-			$("#pontoDeArticulacao2").hide();
-			$("#pontoDeArticulacaoMais").show();
-			$("#pontoDeArticulacaoMenos").hide();
-		});
-
-		$("#movimentoMais").click(function() {
-			$("#labelMovimento").text("Movimentos");
-			$("#movimento2").show();
-			$("#movimentoMais").hide();
-			$("#movimentoMenos").show();
-		});
-
-		$("#movimentoMenos").click(function() {
-			$("#labelMovimento").text("Movimento");
-			$("#movimento2").hide();
-			$("#movimentoMais").show();
-			$("#movimentoMenos").hide();
-		}); */
 	</script>
 </body>
 </html>
