@@ -60,7 +60,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- </div> -->
 
 				<div id="modalPontoArticulacao"
 					class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
@@ -147,10 +146,10 @@
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
-								<h4 class="modal-title">Parâmetro já selecionado</h4>
+								<h4 id="tituloModalErro" class="modal-title">Parâmetro já selecionado</h4>
 							</div>
 							<div class="modal-body">
-								<p>Este parametro já está selecionado, por favor selecione
+								<p id="conteudoModalErro">Este parametro já está selecionado, por favor selecione
 									outro!</p>
 							</div>
 							<div class="modal-footer">
@@ -167,7 +166,7 @@
 						<label for="nome">Nome:</label> <input type="text" required
 							class="form-control" id="nome" name="nome" placeholder="Nome">
 					</div>
-					
+
 
 					<label id="labelConfiguracaoDeMao" for="configuracaoDeMao">Configurações
 						de Mão:</label>
@@ -188,7 +187,8 @@
 									name="configuracaoDeMao${i}" />
 							</div>
 						</c:forEach>
-						<input type="hidden" name="qtdConfiguracaoDeMao" id="qtdConfiguracaoDeMao">
+						<input type="hidden" name="qtdConfiguracaoDeMao"
+							id="qtdConfiguracaoDeMao">
 					</div>
 					<br /> <br /> <br /> <label id="labelPontoDeArticulacao"
 						for="pontoDeArticulacao">Pontos de Articulação:</label>
@@ -211,7 +211,8 @@
 									name="pontoDeArticulacao${i}" />
 							</div>
 						</c:forEach>
-						<input type="hidden" name="qtdPontoDeArticulacao" id="qtdPontoDeArticulacao">
+						<input type="hidden" name="qtdPontoDeArticulacao"
+							id="qtdPontoDeArticulacao">
 					</div>
 
 					<br /> <br /> <br /> <label id="labelMovimento" for="movimento">Movimentos:</label>
@@ -375,6 +376,8 @@
 							if (verficarExistencia($(
 									"#" + idInputModal + idOpcaoClicada).val())) {
 								//alert('existe');
+								$("#tituloModalErro").text("Parâmetro já selecionado");
+								$("#conteudoModalErro").text("Este parametro já está selecionado, por favor selecione outro!");
 								$("#modalErro").modal('show');
 								return;
 							}
@@ -486,30 +489,50 @@
 			}
 			return false;
 		}
-		
-		function defineQuantidadeParametro(nomeParametro,quantidadeCampos,inputQuantidade){
-			var quantidade=0;
-			for(i=1;i<quantidadeCampos+1;i++){
-				var parametro = $("#"+nomeParametro+i).val();
+
+		function defineQuantidadeParametro(nomeParametro, quantidadeCampos,
+				inputQuantidade) {
+			var quantidade = 0;
+			for (i = 1; i < quantidadeCampos + 1; i++) {
+				var parametro = $("#" + nomeParametro + i).val();
 				if (parametro != null && parametro != "") {
 					quantidade++;
 				}
 			}
-			$("#"+inputQuantidade).val(quantidade);
-			
+			$("#" + inputQuantidade).val(quantidade);
+
 			return quantidade;
 		}
 
-		$("#formCadastrarSinal").submit(function() {
-			if(defineQuantidadeParametro("configuracaoDeMao",4,"qtdConfiguracaoDeMao") > 0 &&
-				defineQuantidadeParametro("pontoDeArticulacao",4,"qtdPontoDeArticulacao") > 0 &&
-				defineQuantidadeParametro("movimento",4,"qtdMovimento") > 0){
-				return true;
-			}else{
-				alert("Existem campos vazios. Por favor, preencha todos os campos!");
-				return false;
-			}
-		});
+		$("#formCadastrarSinal")
+				.submit(
+						function() {
+
+							if (defineQuantidadeParametro("configuracaoDeMao",
+									4, "qtdConfiguracaoDeMao") > 0
+									&& defineQuantidadeParametro(
+											"pontoDeArticulacao", 4,
+											"qtdPontoDeArticulacao") > 0
+									&& defineQuantidadeParametro("movimento",
+											4, "qtdMovimento") > 0) {
+								if ($('#myModal').css("display") == "block") {
+									return true;
+								}
+							} else {
+								$("#tituloModalErro").text("Parâmetro em branco");
+								$("#conteudoModalErro").text("Existem um ou mais campos vazios. Por favor, preencha todos os campos!");
+								$("#modalErro").modal('show');
+								//alert("Existem campos vazios. Por favor, preencha todos os campos!");
+								return false;
+							}
+							$('#myModal').modal('show');
+							return false;
+
+						});
+
+		function gravarSinal() {
+			$("#formCadastrarSinal").submit();
+		}
 	</script>
 </body>
 </html>
