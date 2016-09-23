@@ -1,5 +1,7 @@
 package br.com.treinelibras.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.treinelibras.dao.IAvaliacaoDao;
 import br.com.treinelibras.dao.IGravacaoDao;
+import br.com.treinelibras.dao.ISinalDao;
 import br.com.treinelibras.modelo.Avaliacao;
 import br.com.treinelibras.modelo.Gravacao;
 import br.com.treinelibras.modelo.Usuario;
@@ -24,6 +27,9 @@ public class AvaliacaoController {
 	@Autowired
 	IGravacaoDao gravacaoDao;
 	
+	@Autowired
+	ISinalDao sinalDao;
+	
 	@RequestMapping("adicionaAvaliacao")
 	public String adicionaAvaliacao(Avaliacao avaliacao, Model model, HttpServletRequest request){
 		System.out.println("Teste: "+request.getParameter("teste"));
@@ -35,19 +41,46 @@ public class AvaliacaoController {
 		
 		
 		Avaliacao a = dao.existeAvaliacaoGravada(usuario.getIdUsuario(), idGravacao);
+		avaliacao.setUsuario(usuario);
+		avaliacao.setNotaFinal(calcularNotaFinal(avaliacao.getNotaMedia(), usuario.getPesoAvaliacao()));
+		
 		if(a != null){
 			avaliacao.setIdAvaliacao(a.getIdAvaliacao());
 			avaliacao.setGravacao(a.getGravacao());
-			avaliacao.setUsuario(a.getUsuario());
+			//avaliacao.setUsuario(a.getUsuario());
 			dao.alteraAvaliacao(avaliacao);
 		}else{
 			avaliacao.setGravacao(gravacao);
-			avaliacao.setUsuario(usuario);
+			//avaliacao.setUsuario(usuario);
 			dao.adicionaAvaliacao(avaliacao);
 		}
 		
 		return "redirect:listaSinaisAvaliar";
 	}
 	
+	public float calcularNotaFinal(float notaMedia, float pesoAvaliacao){
+		System.out.println();
+		System.out.println();
+		System.out.println("======================================== INICIO AvaliacaoController.calcularNotaFinal()");
+		
+		float notaFinal;
+		//nota ruim
+		if(notaMedia >= 0 && notaMedia <= 1.5){
+			System.out.println("Nota Ruim");
+			notaFinal = (notaMedia - ((notaMedia * pesoAvaliacao) - notaMedia));
+		}else if(notaMedia >= 3.5 && notaMedia <=5){//nota boa
+			System.out.println("Nota boa");
+			notaFinal = notaMedia * pesoAvaliacao;
+		}else{
+			System.out.println("Nota Normal");
+			notaFinal = notaMedia;
+		}
+		
+		System.out.println("notaFinal: "+notaFinal);
+		
+		System.out.println("======================================== FIM AvaliacaoController.calculaNotaFinal()");
+		
+		return notaFinal;
+	}
 	
 }

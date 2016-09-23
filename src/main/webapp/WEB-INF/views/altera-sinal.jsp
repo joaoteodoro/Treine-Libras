@@ -170,7 +170,7 @@
 						name="idSinal">
 					<div class="form-group">
 						<label for="nome">Nome:</label> <input type="text"
-							value="${sinal.nome}" required class="form-control" id="nome"
+							value="${sinal.nome}" disabled class="form-control" id="nome"
 							name="nome" placeholder="Nome">
 					</div>
 

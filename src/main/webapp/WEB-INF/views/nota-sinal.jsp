@@ -94,7 +94,7 @@
 </c:choose>
 
 <c:choose>
-	<c:when test="${nota == 5}">
+	<c:when test="${nota > 5}">
 		<img class="estrela-avaliacao" src="${pageContext.request.contextPath}/resources/img/estrela-cheia-amarela.png"/>
 		<img class="estrela-avaliacao" src="${pageContext.request.contextPath}/resources/img/estrela-cheia-amarela.png"/>
 		<img class="estrela-avaliacao" src="${pageContext.request.contextPath}/resources/img/estrela-cheia-amarela.png"/>

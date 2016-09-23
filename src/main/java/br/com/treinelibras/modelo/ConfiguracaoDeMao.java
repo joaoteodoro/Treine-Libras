@@ -50,4 +50,14 @@ public class ConfiguracaoDeMao {
 		this.imagem = imagem;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder configuracaoDeMao = new StringBuilder();
+		configuracaoDeMao.append("\n idConfiguracaoDeMao: "+this.idConfiguracaoDeMao);
+		configuracaoDeMao.append("\n nome: "+this.nome);
+		configuracaoDeMao.append("\n imagem: "+this.imagem);
+		
+		return configuracaoDeMao.toString();
+	}
+	
 }

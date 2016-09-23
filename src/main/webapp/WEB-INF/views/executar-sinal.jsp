@@ -45,22 +45,51 @@
 						</div>
 						<div class="catacteristicas-sinal">
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Configuracao de Mao:</b> 
-								<c:forEach items="${sinal.configuracoesDeMao}" var="configuracaoDeMao">
-									${configuracaoDeMao.nome}
-								</c:forEach>
+								<b>Configuracao de Mao:</b>
+								
+								<div class="configuracoesDeMao"> 
+									<c:forEach items="${sinal.configuracoesDeMao}"
+										var="configuracaoDeMao" varStatus="status">
+										<div id="configMao${status.count}" class="parametro">
+											<img id="imgConfigMao${status.count}" class="imgParametro"
+												src="${pageContext.request.contextPath}/resources/img/${configuracaoDeMao.imagem}"
+												data-target="#modalConfigMao" data-toggle="modal"
+												title="${configuracaoDeMao.nome}" />
+										</div>
+									</c:forEach>
+								</div>
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Ponto de articulacaoo:</b>
-								<c:forEach items="${sinal.pontosDeArticulacao}" var="pontoDeParticulacao">
-									${pontoDeParticulacao.nome}
-								</c:forEach>
+								<b>Ponto de articulacao:</b>
+								
+								<div class="pontosDeArticulacao">
+									<c:forEach items="${sinal.pontosDeArticulacao}"
+										var="pontoDeArticulacao" varStatus="status">
+										<div id="pontoArticulacao${status.count}" class="parametro">
+											<img id="imgPontoArticulacao${status.count}"
+												class="imgParametro"
+												src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}"
+												data-target="#modalPontoArticulacao" data-toggle="modal"
+												title="${pontoDeArticulacao.nome}" />
+										</div>
+									</c:forEach>
+								</div>
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
 								<b>Movimento:</b> 
-								<c:forEach items="${sinal.movimentos}" var="movimento">
-									${movimento.nome}
-								</c:forEach>
+								
+								<div class="movimentos">
+									<c:forEach items="${sinal.movimentos}" var="movimento"
+										varStatus="status">
+										<div id="mov${status.count}" class="parametro">
+											<img id="imgMovimento${status.count}" class="imgParametro"
+												src="${pageContext.request.contextPath}/resources/img/${movimento.imagem}"
+												data-target="#modalMovimento" data-toggle="modal"
+												title="${movimento.nome}" />
+										</div>
+									</c:forEach>
+								</div>
+								
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
 								<b>Orientacao:</b> ${sinal.orientacao}

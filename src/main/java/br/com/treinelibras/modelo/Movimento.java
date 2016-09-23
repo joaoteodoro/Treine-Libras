@@ -49,6 +49,15 @@ public class Movimento {
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
-	
+
+	@Override
+	public String toString() {
+		StringBuilder movimento = new StringBuilder();
+		movimento.append("\n idMovimento: "+this.idMovimento);
+		movimento.append("\n nome: "+this.nome);
+		movimento.append("\n imagem: "+this.imagem);
+		
+		return movimento.toString();
+	}
 
 }

@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "Usuario")
@@ -24,12 +28,34 @@ public class Usuario {
 	private String usuario;
 	private String senha;
 	private String perfil;
+	
+	@Column(name = "primeiroAcesso", columnDefinition="boolean default true")
+	private boolean primeiroAcesso;
+	
+	private float pesoAvaliacao = 1;
+	
+	public boolean isPrimeiroAcesso() {
+		return primeiroAcesso;
+	}
+
+	public void setPrimeiroAcesso(boolean primeiroAcesso) {
+		this.primeiroAcesso = primeiroAcesso;
+	}
 
 	@OneToMany(mappedBy = "usuario")
 	private List<Avaliacao> avaliacoes;
 
 	@OneToMany(mappedBy = "usuario")
 	private List<Gravacao> gravacoes;
+	
+
+	public float getPesoAvaliacao() {
+		return pesoAvaliacao;
+	}
+
+	public void setPesoAvaliacao(float pesoAvaliacao) {
+		this.pesoAvaliacao = pesoAvaliacao;
+	}
 
 	public List<Gravacao> getGravacoes() {
 		return gravacoes;

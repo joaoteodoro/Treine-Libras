@@ -31,11 +31,21 @@ public class Sinal {
 	private String dificuldade;
 	private String video;
 	private String orientacao;
+	private boolean sinalDefinePesoInicial;
+	private Long unidade;
+
+	public boolean isSinalDefinePesoInicial() {
+		return sinalDefinePesoInicial;
+	}
+
+	public void setSinalDefinePesoInicial(boolean sinalDefinePesoInicial) {
+		this.sinalDefinePesoInicial = sinalDefinePesoInicial;
+	}
 
 	@OneToMany(mappedBy="sinal", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Gravacao> gravacoes;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="pontodearticulacao_sinal",
 		joinColumns= @JoinColumn(name="sinais_idSinal"),
 		inverseJoinColumns = @JoinColumn(name="pontosDeArticulacao_idPontoDeArticulacao"))
@@ -44,13 +54,13 @@ public class Sinal {
 	@ManyToOne
 	private ExpressaoFacial expressaoFacial;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="configuracaodemao_sinal",
 			joinColumns= @JoinColumn(name="sinais_idSinal"),
 			inverseJoinColumns = @JoinColumn(name="configuracoesDeMao_idConfiguracaoDeMao"))
 	private List<ConfiguracaoDeMao> configuracoesDeMao;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="movimento_sinal",
 		joinColumns= @JoinColumn(name="sinais_idSinal"),
 		inverseJoinColumns = @JoinColumn(name="movimentos_idMovimento"))
@@ -152,19 +162,50 @@ public class Sinal {
 		this.pontosDeArticulacao = pontosDeArticulacao;
 	}
 
+	public Long getUnidade() {
+		return unidade;
+	}
+
+	public void setUnidade(Long unidade) {
+		this.unidade = unidade;
+	}
+
 	@Override
 	public String toString() {
-		return "\n idSinal: "+this.idSinal +
-				"\n nome: "+this.nome +
-				"\n foto: "+this.foto +
-				"\n categoria: "+this.categoria +
-				"\n dificuldade"+this.dificuldade +
-				"\n video"+this.video + 
-				"\n orientacao: "+this.orientacao /*+
-				"\n pontoDeArticulacao: "+this.pontoDeArticulacao.getNome() +
-				"\n expressaoFacial: "+this.expressaoFacial.getNome() +
-				"\n configuracoesDeMao size: "+this.configuracoesDeMao.size() +
-				"\n movimentos size: "+this.movimentos.size()*/;
+		StringBuilder sinal = new StringBuilder();
+		sinal.append("\n idSinal: "+this.idSinal);
+		sinal.append("\n nome: "+this.nome);
+		sinal.append("\n foto: "+this.foto);
+		sinal.append("\n categoria: "+this.categoria);
+		sinal.append("\n dificuldade: "+this.dificuldade);
+		sinal.append("\n video: "+this.video);
+		sinal.append("\n orientacao: "+this.orientacao);
+		
+		int i=1;
+		
+		sinal.append("\n\n configuracoes de mao: ");
+		for (ConfiguracaoDeMao configuracaoDeMao : configuracoesDeMao) {
+			sinal.append("\n configuracao de mao "+i+": "+configuracaoDeMao.toString());
+			i++;
+		}
+		
+		i=0;
+		sinal.append("\n\n pontos de articulacao: ");
+		for (PontoDeArticulacao pontoDeArticulacao: pontosDeArticulacao) {
+			sinal.append("\n ponto de articulacao "+i+": "+pontoDeArticulacao.toString());
+			i++;
+		}
+		
+		i=0;
+		sinal.append("\n\n movimentos: ");
+		for (Movimento movimento: movimentos) {
+			sinal.append("\n movimento "+i+": "+movimento.toString());
+			i++;
+		}
+		
+		return sinal.toString();
+				
 	}
 
 }
+

@@ -50,5 +50,14 @@ public class PontoDeArticulacao {
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
-	
+
+	@Override
+	public String toString() {
+		StringBuilder pontoDeArticulacao = new StringBuilder();
+		pontoDeArticulacao.append("\n idPontoDeArticulacao: "+this.idPontoDeArticulacao);
+		pontoDeArticulacao.append("\n nome: "+this.nome);
+		pontoDeArticulacao.append("\n imagem: "+this.imagem);
+		
+		return pontoDeArticulacao.toString();
+	}
 }

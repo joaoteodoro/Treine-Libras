@@ -67,10 +67,18 @@ public class GravacaoController {
 	
 	@RequestMapping("mostraGravacao")
 	public String mostraGravacao(Long idSinal, Long idUsuario, Model model){
+		System.out.println();
+		System.out.println();
+		System.out.println("======================================== INICIO GravacaoController.mostraGravacao()");
+		
 		Sinal sinal = sinalDao.buscaPorId(idSinal);
 		Gravacao gravacao = dao.gravacaoPorUsuarioSinal(idUsuario, idSinal);
 		model.addAttribute("sinal",sinal);
 		model.addAttribute("gravacao",gravacao);
+		
+		System.out.println("Sinal.toString(): "+sinal.toString());
+		
+		System.out.println("======================================== FIM GravacaoController.mostraGravacao()");
 		
 		return "avaliar-sinal";
 	}

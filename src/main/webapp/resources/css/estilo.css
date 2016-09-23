@@ -1,98 +1,96 @@
-.div-titulo{
+.div-titulo {
 	height: 100px;
 	margin: 50px;
 }
 
-.titulo{
+.titulo {
 	font-weight: bold;
 	line-height: 50px;
 }
 
-h1{
+h1 {
 	font-size: 45px;
 }
 
-.btn-geral{
+.btn-geral {
 	background-color: black;
 	color: white;
 	font-weight: bold;
 }
 
-.btn-geral:hover{
+.btn-geral:hover {
 	background-color: gray;
 	color: black;
 }
 
-.btn-cadastrar{
+.btn-cadastrar {
 	height: 50px;
 	width: 150px;
 	font-size: 20px;
 }
 
-.barra-menu{
+.barra-menu {
 	height: 60px;
 	background-color: black;
 	width: 100%;
 }
 
-.item-menu{
+.item-menu {
 	color: white;
 	line-height: 60px;
 	font-weight: bold;
 	font-size: 20px;
 }
 
-.item-menu a{
+.item-menu a {
 	text-decoration: none;
 	color: white;
 }
 
-.menu{
+.menu {
 	width: 80%;
 }
 
-.navbar-libras{
+.navbar-libras {
 	background-color: black;
 	border: none;
 }
 
-.navbar-libras{
+.navbar-libras {
 	background-color: black;
 	border: none;
 }
 
-.navbar-libras a{
+.navbar-libras a {
 	color: white !important;
 	font-weight: bold;
 	height: 100%;
 }
 
-.navbar-libras .navbar-nav>.active>a,
-.navbar-libras .navbar-nav>li>a:hover{
+.navbar-libras .navbar-nav>.active>a, .navbar-libras .navbar-nav>li>a:hover
+	{
 	background-color: white;
 	color: black !important;
 }
 
-.linha-box-avaliacao{
+.linha-box-avaliacao {
 	height: 20%;
 	border-top: solid black;
 	font-size: 13px;
 	line-height: 45px;
 }
 
-@media (min-width: 768px){
-	.navbar{
-		border-radius:4px;
+@media ( min-width : 768px) {
+	.navbar {
+		border-radius: 4px;
 		width: 73%;
 	}
-	
-	.estrela-nota-sinal img{
+	.estrela-nota-sinal img {
 		max-height: 100%;
 		max-width: 25%;
 		width: 14%;
 	}
-
-	.linha-box-avaliacao{
+	.linha-box-avaliacao {
 		height: 20%;
 		border-top: solid black;
 		font-size: 18px;
@@ -100,108 +98,105 @@ h1{
 	}
 }
 
-@media (min-width: 1000px){
-	.navbar{
-		border-radius:4px;
+@media ( min-width : 1000px) {
+	.navbar {
+		border-radius: 4px;
 		width: 58%;
 	}
 }
 
-@media (min-width: 1250px){
-	.navbar{
-		border-radius:4px;
+@media ( min-width : 1250px) {
+	.navbar {
+		border-radius: 4px;
 		width: 55%;
 	}
 }
 
-.box-pag-home{
+.box-pag-home {
 	background-color: black;
 	width: 95%;
 	padding: 10px;
 	overflow: hidden;
 }
 
-.box-sinal-libras{
-	height: 150px; 
+.box-sinal-libras {
+	height: 150px;
 	background-color: white;
 	padding: 10px;
 	border-style: solid;
 	border-color: black;
 }
 
-.box-img-sinal-libras{
+.box-img-sinal-libras {
 	max-height: 100%;
 	border-style: solid;
 	padding: 0px;
 }
 
-.img-sinal-libras{
+.img-sinal-libras {
 	max-height: 100%;
 	height: 100%;
 }
 
-.sinal-dificuldade{
+.sinal-dificuldade {
 	height: 20px;
 	background-color: black;
 	color: white;
 	margin: 2px 20px;
 }
 
-.box-sinal-descricao{
+.box-sinal-descricao {
 	padding: 0px;
 }
 
-.box-sinal-descricao h4{
+.box-sinal-descricao h4 {
 	font-size: 15px;
 }
 
-.box-sinal-descricao p{
+.box-sinal-descricao p {
 	font-size: 12px;
 }
 
-.estrela-nota-sinal{
+.estrela-nota-sinal {
 	max-width: 100%;
 	padding-top: 10px;
 }
 
-.estrela-nota-sinal img{
+.estrela-nota-sinal img {
 	max-height: 100%;
 	max-width: 16%;
 }
 
-body{
+body {
 	background-color: #EEE !important;
 	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 }
 
-.alinhamento-esquerdo{
+.alinhamento-esquerdo {
 	margin-left: 28.500;
 }
 
-
-.video{
-/* 	height: 300px; */
-/* 	border: solid; */
+.video {
+	/* 	height: 300px; */
+	/* 	border: solid; */
 	margin-bottom: 20px;
-	
 }
 
 .video-container {
 	position: relative;
 	padding-bottom: 56.25%;
-	padding-top: 30px; 
-	/*height: 0;*/ 
+	padding-top: 30px;
+	/*height: 0;*/
 	height: 440px;
 	overflow: hidden;
 }
 
-video{
+video {
 	width: 100%;
 }
- 
-.video-container iframe,
-.video-container object,
-.video-container embed {
+
+.video-container iframe, .video-container object, .video-container embed
+	{
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -209,52 +204,51 @@ video{
 	height: 100%;
 }
 
-.box-comum-avaliacao-sinal{
+.box-comum-avaliacao-sinal {
 	border: solid;
 	height: 300px;
 	margin: 5%;
 	padding: 0px;
 }
 
-.cabecalho-box-comum-avaliacao{
+.cabecalho-box-comum-avaliacao {
 	background-color: black;
 	color: white;
 	height: 50px
 }
 
-.cabecalho-box-comum-avaliacao h4{
+.cabecalho-box-comum-avaliacao h4 {
 	margin: 0px;
 	line-height: 50px;
 }
 
-
-.catacteristicas-sinal{
+.catacteristicas-sinal {
 	height: 250px;
 }
 
-.icone-caracteristica{
+.icone-caracteristica {
 	font-weight: bold;
 	font-size: 20px;
 }
 
-.linha-caracteristica{
+.linha-caracteristica {
 	padding-left: 2.5%;
 }
 
-.estrela-avaliacao{
+.estrela-avaliacao {
 	width: 25px;
 }
 
-.comentario{
+.comentario {
 	border: none;
 }
 
-.comentario{
+.comentario {
 	font-size: 18px;
 	font-weight: bold;
 }
 
-.comentario button{
+.comentario button {
 	margin: 10px;
 	width: 120px;
 	height: 50px;
@@ -262,87 +256,90 @@ video{
 	color: white;
 }
 
-.box-page-geral{
+.box-page-geral {
 	width: 95%;
-    padding: 10px;
-    overflow: hidden;
+	padding: 10px;
+	overflow: hidden;
 }
 
-.bg-black{
+.bg-black {
 	background-color: black;
 }
 
-.color-white{
+.color-white {
 	color: white;
 }
 
-@media (min-width: 500px){
-	.video-size-execucao{
+@media ( min-width : 500px) {
+	.video-size-execucao {
 		width: 500px;
 	}
 }
 
-.box-execucao-sinal{
+.box-execucao-sinal {
 	height: 300px;
-    margin: 5%;
-    padding: 0px;
+	margin: 5%;
+	padding: 0px;
 	font-size: 18px;
-    font-weight: bold;
+	font-weight: bold;
 }
 
-.box-execucao-sinal button{
+.box-execucao-sinal button {
 	width: 120px;
 	height: 50px;
 	background-color: black;
 	color: white;
 }
 
-.box-sinal-libras-simples{
-	height: 120px; 
+.box-sinal-libras-simples {
+	height: 120px;
 	background-color: white;
 	padding: 10px;
 	border-style: solid;
 	border-color: black;
 }
 
-.botoes-gravacao{
+.botoes-gravacao {
 	margin: 10px;
 }
 
-#loginErro{
+#loginErro {
 	color: red;
 }
 
-@media (min-width: 992px){
-	.video-usuario{
+@media ( min-width : 992px) {
+	.video-usuario {
 		height: 380px;
 	}
 }
 
-.rodape{
+.rodape {
 	background-color: black;
-    color: white;
-    font-weight: bold;
+	color: white;
+	font-weight: bold;
 	line-height: 50px;
+	/* 	position: absolute; */
+	bottom: 0;
+	width: 100%;
 }
 
-.rodape a{
+.rodape a {
 	color: yellow;
 	float: right;
 }
 
-.modal img{
+.modal img {
 	width: 90px;
 }
 
-.table img:hover{
+.table img:hover {
 	box-shadow: 1px 1px 10px #337ab7;
 }
 
-.gerenciar img{
-    width: 30px;
-    height: 30px;
-    display: inline;
+.gerenciar img {
+	width: 30px;
+	height: 30px;
+	display: inline;
 }
 
 .parametro {
@@ -366,6 +363,81 @@ video{
 	height: 10px;
 }
 
-.table>tbody>tr>td{
+.table>tbody>tr>td {
 	border-top: none;
+}
+
+.linha-caracteristica>b {
+	float: left;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+	position: relative;
+	min-height: 100%;
+	height: 100%;
+}
+
+body {
+	/* Margin bottom by footer height */
+	height: auto;
+	min-height: 100%;
+}
+
+.footer {
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: black;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+body>.container {
+	padding: 60px 15px 0;
+}
+
+.container .text-muted {
+	margin: 20px 0;
+}
+
+.footer>.container {
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+code {
+	font-size: 80%;
+}
+
+.botaoOpcao {
+	font-size: 25px;
+	font-weight: bold;
+	margin-bottom: 15%;
+	color: white;
+	background-color: black;
+	text-align: center;
+}
+
+.box-unidade {
+	height: 80px;
+	background-color: black;
+	text-align: center;
+	color: white;
+	border-color: white;
+	border: solid;
+}
+
+.box-unidade:hover {
+	background-color: white;
+	color: black !important;
+}
+
+.box-externo-principal {
+	padding: 10px;
+	overflow: hidden;
 }

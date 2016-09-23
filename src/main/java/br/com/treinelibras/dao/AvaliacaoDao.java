@@ -1,5 +1,7 @@
 package br.com.treinelibras.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -55,5 +57,12 @@ public class AvaliacaoDao implements IAvaliacaoDao{
 		Query query = manager.createQuery("delete from Avaliacao where gravacao.idGravacao = :paramGravacao");
 		query.setParameter("paramGravacao", idGravacao);
 		query.executeUpdate();
+	}
+	
+	public int buscaQuantidadeAvaliacoesPorGravacao(Long idGravacao){
+		Query query = manager.createQuery("select count(*) from Avaliacao a where a.gravacao.idGravacao = :paramGravacao");
+		query.setParameter("paramGravacao", idGravacao);
+		
+		return query.getFirstResult();
 	}
 }

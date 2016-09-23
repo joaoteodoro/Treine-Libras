@@ -10,7 +10,7 @@
 	</head>
 
 	<body>
-		<div class="container" style="background-color: white;     height: 100%;">
+		<div class="container" style="background-color: white;">
 			<br/>
 			<br/>
 			<div class="alinhamento-esquerdo">

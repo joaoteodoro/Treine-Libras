@@ -34,7 +34,11 @@ public class LoginController {
 	
 	@RequestMapping("loginForm")
 	public String loginForm(HttpSession session){
-		if(session.getAttribute("usuarioLogado")!=null){
+		Usuario user = (Usuario)session.getAttribute("usuarioLogado");
+		if(user != null){
+			if(user.isPrimeiroAcesso()){
+				return "redirect:definirPesoInicialDeAvaliacao";
+			}
 			return "redirect:index";
 		}
 		return "login";
@@ -53,6 +57,9 @@ public class LoginController {
 			usuario = dao.buscarPorUsuario(usuario.getUsuario());
 			System.out.println("Usuario no momento de logar: "+usuario.getUsuario());
 			session.setAttribute("usuarioLogado", usuario);
+			if(usuario.isPrimeiroAcesso()){
+				return "redirect:definirPesoInicialDeAvaliacao";
+			}
 			return "redirect:avaliacoes";
 		}
 		return "redirect:loginForm";

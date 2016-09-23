@@ -28,4 +28,10 @@ public interface ISinalDao {
 	public Sinal buscaPorNome(String nomeSinal);
 	
 	public void altera(Sinal sinal);
+	
+	public List<Sinal> buscaSinalQueDefinePesoInicial();
+	
+	public List<Long> buscaUnidades();
+	
+	public List<Sinal> buscaSinaisPorUnidade(Long unidade);
 }

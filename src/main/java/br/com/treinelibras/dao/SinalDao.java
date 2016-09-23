@@ -49,7 +49,7 @@ public class SinalDao implements ISinalDao {
 		System.out.println("$$idUsuario: "+idUsuario);
 		System.out.println("$$idSinal: "+idSinal);
 		
-		Query query = manager.createQuery("select avg(a.notaMedia) "
+		Query query = manager.createQuery("select avg(a.notaFinal) "
 										+ "from Sinal s "
 											+ " join s.gravacoes g	"
 											+ " join g.usuario u "
@@ -60,7 +60,14 @@ public class SinalDao implements ISinalDao {
 		query.setParameter("paramUsuario", idUsuario);
 		System.out.println("depois dos parametros: ");
 		Object o = query.getSingleResult();
-		Float media = Float.parseFloat(o.toString());
+		
+		Float media;
+		if(o != null){
+			media = Float.parseFloat(o.toString());
+		}else{
+			media = 0f;
+		}
+		 
 		return media;
 	}
 
@@ -137,5 +144,25 @@ public class SinalDao implements ISinalDao {
 	@Override
 	public void altera(Sinal sinal) {
 		manager.merge(sinal);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Sinal> buscaSinalQueDefinePesoInicial(){
+		Query query = manager.createQuery("select s from Sinal s where s.sinalDefinePesoInicial = 1");
+		query.setMaxResults(5);
+		return query.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Long> buscaUnidades() {
+		return manager.createQuery("select distinct s.unidade from Sinal s").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Sinal> buscaSinaisPorUnidade(Long unidade){
+		Query quey = manager.createQuery("select s from Sinal s where s.unidade = :paramUnidade");
+		quey.setParameter("paramUnidade", unidade);
+		return quey.getResultList();
 	}
 }

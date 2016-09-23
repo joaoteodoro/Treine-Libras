@@ -1,5 +1,7 @@
 package br.com.treinelibras.util;
 
+import java.text.Normalizer;
+
 public class StringUtils {  
     public static String lpad(String valueToPad, String filler, int size) {  
         while (valueToPad.length() < size) {  
@@ -27,4 +29,8 @@ public class StringUtils {
       }  
       return true;  
     }
+    
+    public static String removerAcentos(String str) {
+	    return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+	}
 }

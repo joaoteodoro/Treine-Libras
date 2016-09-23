@@ -26,6 +26,8 @@ public class Avaliacao {
 	private float notaExpressaoFacial;
 	private Date data;
 	private float notaMedia;
+	
+	private float notaFinal;
 
 	@ManyToOne
 	private Gravacao gravacao;
@@ -113,6 +115,14 @@ public class Avaliacao {
 		this.usuario = usuario;
 	}
 	
+	public float getNotaFinal() {
+		return notaFinal;
+	}
+
+	public void setNotaFinal(float notaFinal) {
+		this.notaFinal = notaFinal;
+	}
+
 	@Override
 	public String toString() {
 		return "\n idAvaliacao: "+this.idAvaliacao +

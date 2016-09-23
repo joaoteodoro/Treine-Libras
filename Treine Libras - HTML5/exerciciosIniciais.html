@@ -1,0 +1,139 @@
+<html>
+
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Treine Libras - Avaliar</title>
+	<meta name="description" content="" />
+	<link href="css/jquery-ui.min.css" rel="stylesheet" />
+	<link href="css/jquery-ui.structure.min.css" rel="stylesheet" />
+	<link href="css/jquery-ui.theme.min.css" rel="stylesheet" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/estilo.css" rel="stylesheet" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	</head>
+	
+	<body style="background-color:gray">
+	<style>
+		.botaoOpcao{
+			font-size: 25;
+			font-weight: bold;
+			margin-bottom: 15%;
+			color: white;
+			background-color: black;
+			text-align: center;
+		}
+	</style>
+	<script>
+		function testar(parametro,n){
+			console.log("Clicado: "+$(parametro).children().text());
+			console.log("n: "+n);
+			console.log("Correto: "+$("#nomeCorreto"+n).val());
+			
+			var nomeCorreto = $("#nomeCorreto"+n).val();
+			var nomeClicado = $(parametro).children().text()
+			if(nomeCorreto == nomeClicado){
+				var pontuacao = parseInt($("#pontuacao").val()) + 1;
+				alert(pontuacao);
+				$("#pontuacao").val(pontuacao);
+			}else{
+				alert("Errrrrrou");
+			}
+			$("#avaliacao"+n).hide();
+			var nAux = parseInt(n)+1;
+			$("#avaliacao"+nAux).show();
+		}
+	</script>
+		<div class="container" style="background-color: white;">
+			<br/>
+			<br/>
+			<input type="hidden" id="pontuacao" name="pontuacao" value="0"/>
+			<div id="avaliacao1" style="display: block">
+				<div class="alinhamento-esquerdo">
+					<h2><b>Que sinal é este?</b></h2>
+					<br/>
+					<br/>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="video-container video col-md-offset-1 col-md-10">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/9KmbwhTbXwE" frameborder="0" allowfullscreen></iframe>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="video-container video col-md-offset-1 col-md-10">
+							<div onclick="testar(this,'1')" class="col-md-12 botaoOpcao center-block">
+								<p>abobora</p>
+							</div>
+							<div onclick="testar(this,'1')" class="col-md-12 botaoOpcao center-block">
+								<p>tenis</p>
+							</div>
+							<div onclick="testar(this,'1')" class="col-md-12 botaoOpcao center-block">
+								<p>vassoura</p>
+							</div>
+						</div>
+						<input type="hidden" id="nomeCorreto1" name="nomeCorreto1" value="tenis"/>
+					</div>
+				</div>
+			</div>
+			<div id="avaliacao2" style="display: none">
+				<div class="alinhamento-esquerdo">
+					<h2><b>Que sinal é este?</b></h2>
+					<br/>
+					<br/>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="video-container video col-md-offset-1 col-md-10">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/9KmbwhTbXwE" frameborder="0" allowfullscreen></iframe>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="video-container video col-md-offset-1 col-md-10">
+							<div onclick="testar(this,'2')" class="col-md-12 botaoOpcao center-block">
+								<p>arroz</p>
+							</div>
+							<div onclick="testar(this,'2')" class="col-md-12 botaoOpcao center-block">
+								<p>pano</p>
+							</div>
+							<div onclick="testar(this,'2')" class="col-md-12 botaoOpcao center-block">
+								<p>bola</p>
+							</div>
+						</div>
+						<input type="hidden" id="nomeCorreto2" name="nomeCorreto2" value="bola"/>
+					</div>
+				</div>
+			</div>
+			<div id="avaliacao3" style="display: none">
+				<div class="alinhamento-esquerdo">
+					<h2><b>Que sinal é este?</b></h2>
+					<br/>
+					<br/>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="video-container video col-md-offset-1 col-md-10">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/9KmbwhTbXwE" frameborder="0" allowfullscreen></iframe>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="video-container video col-md-offset-1 col-md-10">
+							<div onclick="testar(this,'3')" class="col-md-12 botaoOpcao center-block">
+								<p>rodo</p>
+							</div>
+							<div onclick="testar(this,'3')" class="col-md-12 botaoOpcao center-block">
+								<p>livro</p>
+							</div>
+							<div onclick="testar(this,'3')" class="col-md-12 botaoOpcao center-block">
+								<p>frigideira</p>
+							</div>
+						</div>
+						<input type="hidden" id="nomeCorreto3" name="nomeCorreto3" value="rodo"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -10,4 +10,6 @@ public interface IAvaliacaoDao {
 	public void alteraAvaliacao(Avaliacao avaliacao);
 	
 	public void apagaAvaliacoes(Long idGravacao);
+	
+	public int buscaQuantidadeAvaliacoesPorGravacao(Long idGravacao);
 }
