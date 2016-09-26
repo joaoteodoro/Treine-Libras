@@ -49,17 +49,14 @@
 						</c:otherwise>
 					</c:choose>
 					
-					
-					
-					
 					<c:choose>
 						<c:when test="${usuarioLogado.perfil == 'admin'}">
 							<c:choose>
 								<c:when test="${param.paginaAtual == 'sinais'}">
-									<li class="active"><a href="listarSinais">SINAIS</a></li>
+									<li class="active"><a href="listarUnidades">SINAIS</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="listarSinais">SINAIS</a></li>
+									<li><a href="listarUnidades">SINAIS</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:when>

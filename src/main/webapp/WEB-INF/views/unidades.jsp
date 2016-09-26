@@ -11,7 +11,7 @@
 	
 	<body>
 		<c:import url="menu.jsp">
-			<c:param name="paginaAtual" value="index"/>
+			<c:param name="paginaAtual" value="sinais"/>
 		</c:import>
 		<div class="container" style="background-color: white;">
 			<br/>
