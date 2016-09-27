@@ -263,6 +263,27 @@ public class SinalController {
 
 		return "cadastrar-sinal";
 	}
+	
+	@RequestMapping("cadastrarSinalUnidadeAntes")
+	public String cadastrarSinalUnidadeAntes(Model model, Long unidade) {
+		List<ConfiguracaoDeMao> configuracoesDeMao = configuracaoDeMaoDao.lista();
+		model.addAttribute("configuracoesDeMao", configuracoesDeMao);
+
+		List<PontoDeArticulacao> pontosDeArticulacao = pontoDeArticulacaoDao.lista();
+		model.addAttribute("pontosDeArticulacao", pontosDeArticulacao);
+
+		List<Movimento> movimentos = movimentoDao.lista();
+		model.addAttribute("movimentos", movimentos);
+
+		List<ExpressaoFacial> expressoesFaciais = expressaoFacialDao.lista();
+		model.addAttribute("expressoesFaciais", expressoesFaciais);
+		
+		model.addAttribute("unidade",unidade);
+
+		return "cadastrar-sinal";
+	}
+	
+	
 
 	@RequestMapping("cadastrarSinal")
 	@Transactional

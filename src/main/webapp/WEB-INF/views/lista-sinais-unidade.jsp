@@ -24,11 +24,17 @@
 		<div class="row">
 			<div class="center-block box-page-geral">
 
-				<a href="cadastrarSinalUnidadeAntes?unidade=${unidade}">Adicionar novo sinal nesta unidade</a> <br /> <br />
+				<a href="cadastrarSinalUnidadeAntes?unidade=${unidade}">Adicionar
+					novo sinal nesta unidade</a> <br /> <br /> <a
+					href="cadastrarSinalAntes">Adicionar novo sinal em outra
+					unidade</a> <br /> <br />
 				<table id="tabela" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
 					<thead>
 						<tr>
+							<th
+								title="Caso selecionado, este sinal fará parte do teste inicial do usuário! (Selecione apenas 5 sinais)">
+								Sinal Teste?</th>
 							<th>Sinal</th>
 							<th>Categoria</th>
 							<th>Gerenciar</th>
@@ -37,6 +43,17 @@
 					<tbody>
 						<c:forEach items="${sinaisUnidade}" var="sinal">
 							<tr>
+								<td><c:choose>
+										<c:when test="${sinal.sinalDefinePesoInicial}">
+											<input onclick="contaSelecionados();" id="definePesoInicial${sinal.idSinal}"
+												name="definePesoInicial${sinal.idSinal}" type="checkbox"
+												checked="checked" />
+										</c:when>
+										<c:otherwise>
+											<input onclick="contaSelecionados();" id="definePesoInicial${sinal.idSinal}"
+												name="definePesoInicial${sinal.idSinal}" type="checkbox" checked="" />
+										</c:otherwise>
+									</c:choose></td>
 								<td>${sinal.nome}</td>
 								<td>${sinal.categoria}</td>
 								<td>
@@ -46,7 +63,8 @@
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/editar.png" /></a>
 										<a title="Remover sinal"
-											onclick="setidSinalGerenciando(${sinal.idSinal})" data-toggle="modal" data-target="#modalExcluir"><img
+											onclick="setidSinalGerenciando(${sinal.idSinal})"
+											data-toggle="modal" data-target="#modalExcluir"><img
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/lixeira.png" /></a>
 									</div>
@@ -85,6 +103,29 @@
 		src="${pageContext.request.contextPath}/resources/js/dataTables.bootstrap.min.js"></script>
 	<script>
 		var idSinalGerenciando;
+		
+		$( "input[type=checkbox]" ).on( "click", contaSelecionados );
+		
+		function contaSelecionados(){
+			var n = $( "input:checked" ).length;
+			if(n == 2){
+				alert("selecionou mais do que pode");
+				return false;
+			}
+			
+// 			var quantidadeSelecionada = 0;
+			
+// 			$("input[id^=definePesoInicial]").each( function () {
+				
+// 				var id = this.id;
+// 				var clicked = $("#"+id).attr("checked");
+				
+// 				console.log("clicked "+id+": "+clicked);
+// 				if(clicked){
+// 					quantidadeSelecionada++;
+// 				}
+// 			});
+		}
 		
 		function setidSinalGerenciando(idSinal){
 			idSinalGerenciando = idSinal;
