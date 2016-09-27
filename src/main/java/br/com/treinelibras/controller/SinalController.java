@@ -315,7 +315,9 @@ public class SinalController {
 					} else {
 						if ("nome".equals(item.getFieldName())) {
 							sinal.setNome(item.getString());
-						} else if ("categoria".equals(item.getFieldName())) {
+						} else if("unidade".equals(item.getFieldName())){
+							sinal.setUnidade(Long.parseLong(item.getString()));
+						}else if ("categoria".equals(item.getFieldName())) {
 							sinal.setCategoria(item.getString());
 						} else if ("orientacao".equals(item.getFieldName())) {
 							sinal.setOrientacao(item.getString());
@@ -456,7 +458,9 @@ public class SinalController {
 						} else if ("nome".equals(item.getFieldName())) {
 							System.out.println("Nome: " + item.getString());
 							sinal.setNome(item.getString());
-						} else if ("categoria".equals(item.getFieldName())
+						} else if("unidade".equals(item.getFieldName())){
+							sinal.setUnidade(Long.parseLong(item.getString()));
+						}else if ("categoria".equals(item.getFieldName())
 								&& !item.getString().equals(sinal.getCategoria())) {
 							sinal.setCategoria(item.getString());
 						} else if ("orientacao".equals(item.getFieldName())

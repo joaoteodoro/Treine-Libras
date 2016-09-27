@@ -173,6 +173,10 @@
 							value="${sinal.nome}" disabled class="form-control" id="nome"
 							name="nome" placeholder="Nome">
 					</div>
+					<div class="form-group">
+						<label for="unidade">Unidade:</label> <input type="text" required value="${sinal.unidade}"
+							pattern="[0-9]+$" class="form-control" id="unidade" name="unidade" placeholder="unidade">
+					</div>
 
 					<label id="labelConfiguracaoDeMao" for="configuracaoDeMao">Configurações
 						de Mão:</label>
