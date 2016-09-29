@@ -1,3 +1,4 @@
+<link rel="icon" href="${pageContext.request.contextPath}/resources/img/configMao1.png" type="image/ico" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery-ui.theme.min.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />

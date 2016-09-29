@@ -35,11 +35,11 @@
 				<div class="center-block box-page-geral">
 					<div id="accordion">
 						
-						<c:forEach items="${categorias}" var="categoria">
-							<h3>${categoria.key}</h3>
+						<c:forEach items="${unidades}" var="unidade">
+							<h3>Unidade ${unidade.key}</h3>
 							<div>
 								<div class="center-block">
-									<c:forEach items="${categoria.value}" var="sinal">
+									<c:forEach items="${unidade.value}" var="sinal">
 										<a href="mostraSinal?id=${sinal.idSinal}">
 											<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
 												<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">

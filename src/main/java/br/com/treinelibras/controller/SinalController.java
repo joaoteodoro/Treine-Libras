@@ -62,7 +62,7 @@ public class SinalController {
 
 	@Autowired
 	IExpressaoFacialDao expressaoFacialDao;
-	
+
 	@Autowired
 	IUsuarioDao usuarioDao;
 
@@ -81,11 +81,23 @@ public class SinalController {
 			List<Sinal> sinais = dao.listaSinalPorCategoria(categoria);
 			sinaisPorCategoria.put(categoria, sinais);
 		}
-		
-		System.out.println("Quantidade de categorias: "+sinaisPorCategoria.size());
-		
+
+		System.out.println("Quantidade de categorias: " + sinaisPorCategoria.size());
+
 		model.addAttribute("categorias", sinaisPorCategoria);
-		
+
+		// listagem de sinais por unidades
+
+		HashMap<Long, List<Sinal>> sinaisPorUnidade = new HashMap<Long, List<Sinal>>();
+		List<Long> unidades = dao.buscaUnidades();
+
+		for (Long unidade : unidades) {
+			List<Sinal> sinais = dao.buscaSinaisPorUnidade(unidade);
+			sinaisPorUnidade.put(unidade, sinais);
+		}
+
+		model.addAttribute("unidades", sinaisPorUnidade);
+
 		System.out.println("======================================== FIM SinalController.lista()");
 		return "glossario";
 	}
@@ -95,7 +107,7 @@ public class SinalController {
 		System.out.println();
 		System.out.println();
 		System.out.println("======================================== INICIO SinalController.listaSinaisExercicios()");
-		
+
 		HashMap<String, List<Sinal>> sinaisPorCategoria = new HashMap<String, List<Sinal>>();
 
 		List<String> categorias = dao.listaCategorias();
@@ -104,11 +116,23 @@ public class SinalController {
 			List<Sinal> sinais = dao.listaSinalPorCategoria(categoria);
 			sinaisPorCategoria.put(categoria, sinais);
 		}
-		
-		System.out.println("Quantidade de categorias: "+sinaisPorCategoria.size());
+
+		System.out.println("Quantidade de categorias: " + sinaisPorCategoria.size());
 
 		model.addAttribute("categorias", sinaisPorCategoria);
-		
+
+		// listagem de sinais por unidades
+
+		HashMap<Long, List<Sinal>> sinaisPorUnidade = new HashMap<Long, List<Sinal>>();
+		List<Long> unidades = dao.buscaUnidades();
+
+		for (Long unidade : unidades) {
+			List<Sinal> sinais = dao.buscaSinaisPorUnidade(unidade);
+			sinaisPorUnidade.put(unidade, sinais);
+		}
+
+		model.addAttribute("unidades", sinaisPorUnidade);
+
 		System.out.println("======================================== FIM SinalController.listaSinaisExercicios()");
 		return "exercicios";
 	}
@@ -127,10 +151,22 @@ public class SinalController {
 			sinaisPorCategoria.put(categoria, sinais);
 		}
 
-		System.out.println("Quantidade de categorias: "+sinaisPorCategoria.size());
-		
+		System.out.println("Quantidade de categorias: " + sinaisPorCategoria.size());
+
 		model.addAttribute("categorias", sinaisPorCategoria);
-		
+
+		// listagem de sinais por unidades
+
+		HashMap<Long, List<Sinal>> sinaisPorUnidade = new HashMap<Long, List<Sinal>>();
+		List<Long> unidades = dao.buscaUnidades();
+
+		for (Long unidade : unidades) {
+			List<Sinal> sinais = dao.buscaSinaisPorUnidade(unidade);
+			sinaisPorUnidade.put(unidade, sinais);
+		}
+
+		model.addAttribute("unidades", sinaisPorUnidade);
+
 		System.out.println("======================================== FIM SinalController.listaSinaisAvaliar()");
 		return "avaliar";
 	}
@@ -140,10 +176,10 @@ public class SinalController {
 		System.out.println();
 		System.out.println();
 		System.out.println("======================================== INICIO SinalController.mostra()");
-		
+
 		Sinal sinal = dao.buscaPorId(id);
 		model.addAttribute("sinal", sinal);
-		
+
 		System.out.println("sinal.toString: " + sinal.toString());
 		System.out.println("======================================== FIM SinalController.mostra()");
 		return "sinal-interprete";
@@ -155,13 +191,13 @@ public class SinalController {
 		System.out.println();
 		System.out.println();
 		System.out.println("======================================== INICIO SinalController.calculaNota()");
-		
+
 		Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
 		System.out.println("usuario: " + usuarioLogado.getUsuario() + " / " + usuarioLogado.getIdUsuario());
 		float nota = dao.notaSinalPorUsuario(usuarioLogado.getIdUsuario(), id);
 		System.out.println("nota: " + nota);
 		model.addAttribute("nota", nota);
-		
+
 		System.out.println("======================================== FIM SinalController.calculaNota()");
 		return "nota-sinal";
 	}
@@ -178,7 +214,7 @@ public class SinalController {
 		System.out.println("sinal.toString: " + sinal.toString());
 
 		System.out.println("======================================== FIM SinalController.executarSinal()");
-		
+
 		return "executar-sinal";
 	}
 
@@ -187,7 +223,7 @@ public class SinalController {
 		System.out.println();
 		System.out.println();
 		System.out.println("======================================== INICIO SinalController.avaliacoes()");
-		
+
 		System.out.println("%%%  SinalController > avaliacoes ");
 		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 		List<Sinal> melhoresAvaliacoes = dao.listaSinaisMelhoresAvaliacoes(usuario);
@@ -205,11 +241,10 @@ public class SinalController {
 		System.out.println();
 		System.out.println();
 		System.out.println("======================================== INICIO SinalController.calculaNotaUsuarios()");
-		
-		
+
 		float nota = dao.notaSinalPorUsuario(idUsuario, idSinal);
 		model.addAttribute("nota", nota);
-		
+
 		System.out.println("======================================== FIM SinalController.calculaNotaUsuarios()");
 		return "nota-sinal";
 	}
@@ -225,16 +260,16 @@ public class SinalController {
 	@RequestMapping("listarSinais")
 	public String listarSinais(Model model) {
 		logger.info("exibindo tabela com os sinais cadastrados");
-		
+
 		List<Sinal> sinais = dao.lista();
 		model.addAttribute("sinais", sinais);
 		return "lista-sinais";
 	}
-	
+
 	@RequestMapping("listarUnidades")
-	public String listarUnidades(Model model){
+	public String listarUnidades(Model model) {
 		List<Long> unidades = dao.buscaUnidades();
-		model.addAttribute("unidades",unidades);
+		model.addAttribute("unidades", unidades);
 		return "unidades";
 	}
 
@@ -245,6 +280,24 @@ public class SinalController {
 		dao.remove(idSinal);
 		System.out.println("Depois de remover");
 		return "redirect:listarSinais";
+	}
+
+	@RequestMapping("alteraSinaisTeste")
+	public String alteraSinaisTeste(String sinaisTeste) {
+		String[] sinaisValor = sinaisTeste.split(",");
+		for (String sinal : sinaisValor) {
+			String[] sinalValor = sinal.split(":");
+			Long idSinal = Long.parseLong(sinalValor[0]);
+			boolean sinalTeste = false;
+			if ("1".equals(sinalValor[1])) {
+				sinalTeste = true;
+			}
+			System.out.println("idSinal: " + idSinal + " / " + "sinalTeste: " + sinalTeste);
+			Sinal sinalAtualizar = dao.buscaPorId(idSinal);
+			sinalAtualizar.setSinalDefinePesoInicial(sinalTeste);
+			dao.altera(sinalAtualizar);
+		}
+		return "";
 	}
 
 	@RequestMapping("cadastrarSinalAntes")
@@ -263,7 +316,7 @@ public class SinalController {
 
 		return "cadastrar-sinal";
 	}
-	
+
 	@RequestMapping("cadastrarSinalUnidadeAntes")
 	public String cadastrarSinalUnidadeAntes(Model model, Long unidade) {
 		List<ConfiguracaoDeMao> configuracoesDeMao = configuracaoDeMaoDao.lista();
@@ -277,13 +330,11 @@ public class SinalController {
 
 		List<ExpressaoFacial> expressoesFaciais = expressaoFacialDao.lista();
 		model.addAttribute("expressoesFaciais", expressoesFaciais);
-		
-		model.addAttribute("unidade",unidade);
+
+		model.addAttribute("unidade", unidade);
 
 		return "cadastrar-sinal";
 	}
-	
-	
 
 	@RequestMapping("cadastrarSinal")
 	@Transactional
@@ -336,9 +387,9 @@ public class SinalController {
 					} else {
 						if ("nome".equals(item.getFieldName())) {
 							sinal.setNome(item.getString());
-						} else if("unidade".equals(item.getFieldName())){
+						} else if ("unidade".equals(item.getFieldName())) {
 							sinal.setUnidade(Long.parseLong(item.getString()));
-						}else if ("categoria".equals(item.getFieldName())) {
+						} else if ("categoria".equals(item.getFieldName())) {
 							sinal.setCategoria(item.getString());
 						} else if ("orientacao".equals(item.getFieldName())) {
 							sinal.setOrientacao(item.getString());
@@ -382,7 +433,8 @@ public class SinalController {
 			}
 		}
 		System.out.println("======================================== FIM cadastrarSinal()");
-		return "redirect:listarSinais";
+		// return "redirect:listarSinais";
+		return listaSinaisPorUnidade(model, sinal.getUnidade());
 
 	}
 
@@ -479,9 +531,9 @@ public class SinalController {
 						} else if ("nome".equals(item.getFieldName())) {
 							System.out.println("Nome: " + item.getString());
 							sinal.setNome(item.getString());
-						} else if("unidade".equals(item.getFieldName())){
+						} else if ("unidade".equals(item.getFieldName())) {
 							sinal.setUnidade(Long.parseLong(item.getString()));
-						}else if ("categoria".equals(item.getFieldName())
+						} else if ("categoria".equals(item.getFieldName())
 								&& !item.getString().equals(sinal.getCategoria())) {
 							sinal.setCategoria(item.getString());
 						} else if ("orientacao".equals(item.getFieldName())
@@ -567,12 +619,12 @@ public class SinalController {
 		}
 
 	}
-	
+
 	@RequestMapping("listaSinaisPorUnidade")
-	public String listaSinaisPorUnidade(Model model, Long unidade){
+	public String listaSinaisPorUnidade(Model model, Long unidade) {
 		List<Sinal> sinaisUnidade = dao.buscaSinaisPorUnidade(unidade);
-		model.addAttribute("sinaisUnidade",sinaisUnidade);
-		model.addAttribute("unidade",unidade);
+		model.addAttribute("sinaisUnidade", sinaisUnidade);
+		model.addAttribute("unidade", unidade);
 		return "lista-sinais-unidade";
 	}
 

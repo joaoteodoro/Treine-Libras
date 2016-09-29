@@ -28,6 +28,10 @@
 					novo sinal nesta unidade</a> <br /> <br /> <a
 					href="cadastrarSinalAntes">Adicionar novo sinal em outra
 					unidade</a> <br /> <br />
+					
+					<div id="atencao" class="atencao" style="display:none">
+						<p>Atenção, selecione cinco sinais como sinais de testes! </p>
+					</div>
 				<table id="tabela" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
 					<thead>
@@ -45,13 +49,13 @@
 							<tr>
 								<td><c:choose>
 										<c:when test="${sinal.sinalDefinePesoInicial}">
-											<input onclick="contaSelecionados();" id="definePesoInicial${sinal.idSinal}"
+											<input id="definePesoInicial${sinal.idSinal}"
 												name="definePesoInicial${sinal.idSinal}" type="checkbox"
 												checked="checked" />
 										</c:when>
 										<c:otherwise>
-											<input onclick="contaSelecionados();" id="definePesoInicial${sinal.idSinal}"
-												name="definePesoInicial${sinal.idSinal}" type="checkbox" checked="" />
+											<input id="definePesoInicial${sinal.idSinal}"
+												name="definePesoInicial${sinal.idSinal}" type="checkbox" />
 										</c:otherwise>
 									</c:choose></td>
 								<td>${sinal.nome}</td>
@@ -73,11 +77,12 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<input type="hidden" id="sinaisTestes" name="sinaisTestes"/>
 			</div>
 		</div>
 	</div>
 
-	<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog"
+	<div class="modal fade" id="modalSinaisTeste" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -88,11 +93,9 @@
 					</button>
 					<h4 class="modal-title" id="myModalLabel">Exclusão</h4>
 				</div>
-				<div class="modal-body">Deseja realmente excluir este sinal?</div>
+				<div class="modal-body">Você pode selecionar apenas 5 sinais por unidade.</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-					<button type="button" class="btn btn-primary"
-						onclick="excluirSinal()">Sim</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
 				</div>
 			</div>
 		</div>
@@ -102,33 +105,63 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/js/dataTables.bootstrap.min.js"></script>
 	<script>
+	$( document ).ready(function() {
+		var n = $( "input:checked" ).length
+		if(n < 5){
+			$("#atencao").show();
+		}else{
+			$("#atencao").hide();
+		}
+	});
+	
+	
 		var idSinalGerenciando;
 		
 		$( "input[type=checkbox]" ).on( "click", contaSelecionados );
 		
 		function contaSelecionados(){
+			
+			//verifica a quantidade selecionada
 			var n = $( "input:checked" ).length;
-			if(n == 2){
-				alert("selecionou mais do que pode");
+			if(n > 5){
+				$("#modalSinaisTeste").show();
 				return false;
+			}else{
+				if(n < 5){
+					$("#atencao").show();
+				}else{
+					$("#atencao").hide();
+				}
+				$("#sinaisTestes").val("");
+				
+				$("input[id^=definePesoInicial]").each( function () {
+					var sinaisTestes = $("#sinaisTestes").val();
+					
+					var id = this.id;
+					var checked = $("#"+id).prop("checked");
+					
+					if(checked == '1'){
+						$("#sinaisTestes").val(sinaisTestes + id.replace(/[^0-9]/g,'') + ":1" + ",");
+					}else{
+						$("#sinaisTestes").val(sinaisTestes + id.replace(/[^0-9]/g,'') + ":0" + ",");
+					}
+				});
+				$("#sinaisTestes").val($("#sinaisTestes").val().substr(0,($("#sinaisTestes").val().length - 1)))
+				console.log($("#sinaisTestes").val());
+				alteraSinaisTeste();
 			}
-			
-// 			var quantidadeSelecionada = 0;
-			
-// 			$("input[id^=definePesoInicial]").each( function () {
-				
-// 				var id = this.id;
-// 				var clicked = $("#"+id).attr("checked");
-				
-// 				console.log("clicked "+id+": "+clicked);
-// 				if(clicked){
-// 					quantidadeSelecionada++;
-// 				}
-// 			});
 		}
 		
 		function setidSinalGerenciando(idSinal){
 			idSinalGerenciando = idSinal;
+		}
+		
+		function alteraSinaisTeste(){
+			var sinaisTestes = $("#sinaisTestes").val();
+			$.post("alteraSinaisTeste",{'sinaisTeste' : sinaisTestes}, function(resposta){
+				location.reload();
+			});
+			
 		}
 		
 		function excluirSinal(){

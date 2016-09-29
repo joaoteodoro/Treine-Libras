@@ -441,3 +441,12 @@ code {
 	padding: 10px;
 	overflow: hidden;
 }
+
+.atencao{
+	background-color: #bb0602;
+}
+
+.atencao p{
+	color: white;
+    font-weight: bold;
+}
