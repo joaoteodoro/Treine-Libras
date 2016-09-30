@@ -36,10 +36,10 @@
 					<div id="accordion">
 						
 						<c:forEach items="${unidades}" var="unidade">
-							<h3>Unidade ${unidade.key}</h3>
+							<h3>Unidade ${unidade.numero}</h3>
 							<div>
 								<div class="center-block">
-									<c:forEach items="${unidade.value}" var="sinal">
+									<c:forEach items="${unidade.sinais}" var="sinal">
 										<a href="listarUsuariosPorGravacao?idSinal=${sinal.idSinal}">
 											<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-sinal-libras-simples">
 												<div class="img-responsive box-img-sinal-libras col-sm-4 col-xs-4">

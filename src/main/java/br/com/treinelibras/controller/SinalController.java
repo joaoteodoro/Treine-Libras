@@ -32,12 +32,14 @@ import br.com.treinelibras.dao.IExpressaoFacialDao;
 import br.com.treinelibras.dao.IMovimentoDao;
 import br.com.treinelibras.dao.IPontoDeArticulacaoDao;
 import br.com.treinelibras.dao.ISinalDao;
+import br.com.treinelibras.dao.IUnidadeDao;
 import br.com.treinelibras.dao.IUsuarioDao;
 import br.com.treinelibras.modelo.ConfiguracaoDeMao;
 import br.com.treinelibras.modelo.ExpressaoFacial;
 import br.com.treinelibras.modelo.Movimento;
 import br.com.treinelibras.modelo.PontoDeArticulacao;
 import br.com.treinelibras.modelo.Sinal;
+import br.com.treinelibras.modelo.Unidade;
 import br.com.treinelibras.modelo.Usuario;
 import br.com.treinelibras.util.StringUtils;
 
@@ -65,6 +67,9 @@ public class SinalController {
 
 	@Autowired
 	IUsuarioDao usuarioDao;
+	
+	@Autowired
+	IUnidadeDao unidadeDao;
 
 	private static final Logger logger = Logger.getLogger(SinalController.class);
 
@@ -387,8 +392,6 @@ public class SinalController {
 					} else {
 						if ("nome".equals(item.getFieldName())) {
 							sinal.setNome(item.getString());
-						} else if ("unidade".equals(item.getFieldName())) {
-							sinal.setUnidade(Long.parseLong(item.getString()));
 						} else if ("categoria".equals(item.getFieldName())) {
 							sinal.setCategoria(item.getString());
 						} else if ("orientacao".equals(item.getFieldName())) {
@@ -414,6 +417,10 @@ public class SinalController {
 									.buscaPorId(Long.parseLong(item.getString()));
 							sinal.setExpressaoFacial(expressaoFacial);
 							System.out.println("Expressao Facial nome: " + expressaoFacial.getNome());
+						}else if("unidade".equals(item.getFieldName())){
+							Unidade unidade = unidadeDao.buscaPorId(Long.parseLong(item.getString()));
+							sinal.setUnidade(unidade);;
+							System.out.println("Unidade nome: " + unidade.getNome());
 						}
 						System.out.println("Parametro de entrada (nome,valor): " + item.getFieldName() + "   /   "
 								+ item.getString());
@@ -433,8 +440,8 @@ public class SinalController {
 			}
 		}
 		System.out.println("======================================== FIM cadastrarSinal()");
-		// return "redirect:listarSinais";
-		return listaSinaisPorUnidade(model, sinal.getUnidade());
+		return "redirect:listarSinais";
+		//return listaSinaisPorUnidade(model, sinal.getUnidade());
 
 	}
 
@@ -531,8 +538,6 @@ public class SinalController {
 						} else if ("nome".equals(item.getFieldName())) {
 							System.out.println("Nome: " + item.getString());
 							sinal.setNome(item.getString());
-						} else if ("unidade".equals(item.getFieldName())) {
-							sinal.setUnidade(Long.parseLong(item.getString()));
 						} else if ("categoria".equals(item.getFieldName())
 								&& !item.getString().equals(sinal.getCategoria())) {
 							sinal.setCategoria(item.getString());
@@ -564,6 +569,11 @@ public class SinalController {
 									.buscaPorId(Long.parseLong(item.getString()));
 							if (!expressaoFacial.equals(sinal.getExpressaoFacial())) {
 								sinal.setExpressaoFacial(expressaoFacial);
+							}
+						}else if("unidade".equals(item.getFieldName())){
+							Unidade unidade = unidadeDao.buscaPorId(Long.parseLong(item.getString()));
+							if(!unidade.equals(sinal.getUnidade())){
+								sinal.setUnidade(unidade);
 							}
 						}
 						System.out.println("Parametro de entrada -> " + item.getFieldName() + ": " + item.getString());

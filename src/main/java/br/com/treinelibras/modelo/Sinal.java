@@ -32,7 +32,9 @@ public class Sinal {
 	private String video;
 	private String orientacao;
 	private boolean sinalDefinePesoInicial;
-	private Long unidade;
+	
+	@ManyToOne
+	private Unidade unidade;
 
 	public boolean isSinalDefinePesoInicial() {
 		return sinalDefinePesoInicial;
@@ -162,11 +164,11 @@ public class Sinal {
 		this.pontosDeArticulacao = pontosDeArticulacao;
 	}
 
-	public Long getUnidade() {
+	public Unidade getUnidade() {
 		return unidade;
 	}
 
-	public void setUnidade(Long unidade) {
+	public void setUnidade(Unidade unidade) {
 		this.unidade = unidade;
 	}
 

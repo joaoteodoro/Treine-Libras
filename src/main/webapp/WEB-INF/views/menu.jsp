@@ -24,28 +24,28 @@
 					
 					<c:choose>
 						<c:when test="${param.paginaAtual == 'exercicios'}">
-							<li class="active"><a href="listaSinaisExercicios">EXERCÍCIOS</a></li>
+							<li class="active"><a href="exercicios">EXERCÍCIOS</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="listaSinaisExercicios">EXERCÍCIOS</a></li>
+							<li><a href="exercicios">EXERCÍCIOS</a></li>
 						</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
 						<c:when test="${param.paginaAtual == 'glossario'}">
-							<li class="active"><a href="listaSinais">GLOSSÁRIO</a></li>
+							<li class="active"><a href="glossario">GLOSSÁRIO</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="listaSinais">GLOSSÁRIO</a></li>
+							<li><a href="glossario">GLOSSÁRIO</a></li>
 						</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
 						<c:when test="${param.paginaAtual == 'avaliar'}">
-							<li class="active"><a href="listaSinaisAvaliar">AVALIAR</a></li>
+							<li class="active"><a href="avaliar">AVALIAR</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="listaSinaisAvaliar">AVALIAR</a></li>
+							<li><a href="avaliar">AVALIAR</a></li>
 						</c:otherwise>
 					</c:choose>
 					
@@ -53,10 +53,10 @@
 						<c:when test="${usuarioLogado.perfil == 'admin'}">
 							<c:choose>
 								<c:when test="${param.paginaAtual == 'sinais'}">
-									<li class="active"><a href="listarUnidades">SINAIS</a></li>
+									<li class="active"><a href="unidades">SINAIS</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="listarUnidades">SINAIS</a></li>
+									<li><a href="unidades">SINAIS</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
