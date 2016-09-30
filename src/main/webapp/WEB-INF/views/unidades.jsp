@@ -51,7 +51,7 @@
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/lixeira.png" /></a>
 										<a title="Ver sinais desta unidade"
-											onclick="listarSinaisPorUnidade?id=(${unidade.id})"><img
+											href="listarSinaisPorUnidade?id=${unidade.id}"><img
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/mais.png" /></a>
 									</div>
@@ -110,8 +110,8 @@
 		function setidUnidadeGerenciando(idSinal){
 			idUnidadeGerenciando = idSinal;
 		}
-		
-		function excluirSinal(){
+			
+		function excluirUnidade(){
 			console.log("idUnidadeGerenciando: "+idUnidadeGerenciando);
 			$.post("removerUnidade",{'id' : idUnidadeGerenciando}, function(resposta){
 				//window.location.replace("listarSinais");

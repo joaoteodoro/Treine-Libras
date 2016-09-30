@@ -318,12 +318,15 @@ public class SinalController {
 
 		List<ExpressaoFacial> expressoesFaciais = expressaoFacialDao.lista();
 		model.addAttribute("expressoesFaciais", expressoesFaciais);
+		
+		List<Unidade> unidades = unidadeDao.lista();
+		model.addAttribute("unidades",unidades);
 
 		return "cadastrar-sinal";
 	}
 
 	@RequestMapping("cadastrarSinalUnidadeAntes")
-	public String cadastrarSinalUnidadeAntes(Model model, Long unidade) {
+	public String cadastrarSinalUnidadeAntes(Model model, Long idUnidade) {
 		List<ConfiguracaoDeMao> configuracoesDeMao = configuracaoDeMaoDao.lista();
 		model.addAttribute("configuracoesDeMao", configuracoesDeMao);
 
@@ -336,7 +339,11 @@ public class SinalController {
 		List<ExpressaoFacial> expressoesFaciais = expressaoFacialDao.lista();
 		model.addAttribute("expressoesFaciais", expressoesFaciais);
 
-		model.addAttribute("unidade", unidade);
+		Unidade unidade = unidadeDao.buscaPorId(idUnidade);
+		model.addAttribute("unidadePrevia", unidade.getNumero());
+		
+		List<Unidade> unidades = unidadeDao.lista();
+		model.addAttribute("unidades",unidades);
 
 		return "cadastrar-sinal";
 	}
@@ -440,8 +447,9 @@ public class SinalController {
 			}
 		}
 		System.out.println("======================================== FIM cadastrarSinal()");
-		return "redirect:listarSinais";
+		//return "redirect:listarSinais";
 		//return listaSinaisPorUnidade(model, sinal.getUnidade());
+		return "redirect:listarSinaisPorUnidade?id="+sinal.getUnidade().getId();
 
 	}
 
@@ -467,6 +475,9 @@ public class SinalController {
 
 		Sinal sinal = dao.buscaPorId(idSinal);
 		model.addAttribute("sinal", sinal);
+		
+		List<Unidade> unidades = unidadeDao.lista();
+		model.addAttribute("unidades",unidades);
 
 		System.out.println("Tamanho lista configMao sinal: " + sinal.getConfiguracoesDeMao().size());
 		System.out.println("Tamanho lista pontoArticulacao sinal: " + sinal.getPontosDeArticulacao().size());
@@ -590,7 +601,8 @@ public class SinalController {
 			}
 		}
 		System.out.println("======================================== FIM alterarSinal()");
-		return "redirect:listarSinais";
+		//return "redirect:listarSinais";
+		return "redirect:listarSinaisPorUnidade?id="+sinal.getUnidade().getId();
 	}
 
 	private void inserirImagemDiretorio(FileItem item, String pasta) {
@@ -629,13 +641,4 @@ public class SinalController {
 		}
 
 	}
-
-	@RequestMapping("listaSinaisPorUnidade")
-	public String listaSinaisPorUnidade(Model model, Long unidade) {
-		List<Sinal> sinaisUnidade = dao.buscaSinaisPorUnidade(unidade);
-		model.addAttribute("sinaisUnidade", sinaisUnidade);
-		model.addAttribute("unidade", unidade);
-		return "lista-sinais-unidade";
-	}
-
 }

@@ -17,14 +17,14 @@
 		<div class="alinhamento-esquerdo">
 			<br /> <br />
 			<h2>
-				<b>Sinais cadastrados na unidade ${unidade}</b>
+				<b>Sinais cadastrados na unidade ${unidade.numero}</b>
 			</h2>
 			<br /> <br />
 		</div>
 		<div class="row">
 			<div class="center-block box-page-geral">
 
-				<a href="cadastrarSinalUnidadeAntes?unidade=${unidade}">Adicionar
+				<a href="cadastrarSinalUnidadeAntes?idUnidade=${unidade.id}">Adicionar
 					novo sinal nesta unidade</a> <br /> <br /> <a
 					href="cadastrarSinalAntes">Adicionar novo sinal em outra
 					unidade</a> <br /> <br />
@@ -45,7 +45,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${sinaisUnidade}" var="sinal">
+						<c:forEach items="${unidade.sinais}" var="sinal">
 							<tr>
 								<td><c:choose>
 										<c:when test="${sinal.sinalDefinePesoInicial}">
@@ -96,6 +96,27 @@
 				<div class="modal-body">Você pode selecionar apenas 5 sinais por unidade.</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Exclusão</h4>
+				</div>
+				<div class="modal-body">Deseja realmente excluir este sinal?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+					<button type="button" class="btn btn-primary"
+						onclick="excluirSinal()">Sim</button>
 				</div>
 			</div>
 		</div>

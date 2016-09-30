@@ -173,9 +173,15 @@
 							value="${sinal.nome}" disabled class="form-control" id="nome"
 							name="nome" placeholder="Nome">
 					</div>
-					<div class="form-group">
-						<label for="unidade">Unidade:</label> <input type="text" required value="${sinal.unidade}"
-							pattern="[0-9]+$" class="form-control" id="unidade" name="unidade" placeholder="unidade">
+					<<div class="form-group">
+						<label for="unidade">Unidade:</label> <select class="form-control"
+							id="unidade" name="unidade">
+							<c:forEach items="${unidades}" var="unidade">
+								<option ${unidade.id == sinal.unidade.id ? 'selected' : ''}
+									value="${unidade.id}">${unidade.numero}-
+									${unidade.nome}</option>
+							</c:forEach>
+						</select>
 					</div>
 
 					<label id="labelConfiguracaoDeMao" for="configuracaoDeMao">Configurações

@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>	
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -25,7 +25,7 @@
 			<div class="center-block box-page-geral">
 
 				<form id="formCadastrarUnidade" method="post"
-					action="cadastrarUnidade" enctype="multipart/form-data">
+					action="cadastrarUnidade">
 					<div class="form-group">
 						<label for="nome">Nome:</label> <input type="text" required
 							class="form-control" id="nome" name="nome" placeholder="Nome">
@@ -107,75 +107,7 @@
 	</div>
 	<c:import url="rodape.jsp" />
 	<script>
-		var idClicada;
-		var nIdClicada;
-		var nomeClicado;
-		var nomeNoTitle;
-		var nomeInput;
-		var nomeExclui;
-		var idOpcaoModal;
-		var idInputModal;
-		var quantidadeParametro;
-		var idModal;
-
-		function cadastrar() {
-			alert(validar());
-		}
-
-		//validar se existe pelo menos uma opção selecionada
-		function validar() {
-			if (validarCamposVazios("configuracaoDeMao", 4)
-					&& verificarRepeticao("configuracaoDeMao", 4)
-					&& validarCamposVazios("pontoDeArticulacao", 3)
-					&& verificarRepeticao("pontoDeArticulacao", 3)
-					&& validarCamposVazios("movimento", 2)
-					&& verificarRepeticao("movimento", 2)) {
-				return true;
-			}
-			return false;
-		}
-
-		//false se tiver repetição
-		function verificarRepeticao(parametro, tamanhoVetor) {
-			for (i = 1; i < tamanhoVetor + 1; i++) {
-				var parametroI = $("#" + parametro + i).val();
-				for (j = 1; j < tamanhoVetor + 1; j++) {
-					var parametroJ = $("#" + parametro + j).val();
-					if (i != j && parametroI == parametroJ && parametroI != ""
-							&& parametroJ != "") {
-						return false;
-					}
-				}
-			}
-			return true;
-		}
-
-		//false se estiver vazio
-		function validarCamposVazios(parametro, tamanhoVetor) {
-			for (i = 1; i < tamanhoVetor + 1; i++) {
-				var parametroI = $("#" + parametro + i).val();
-				if (parametroI != null && parametroI != "") {
-					return true;
-				}
-			}
-			return false;
-		}
-
-		function defineQuantidadeParametro(nomeParametro, quantidadeCampos,
-				inputQuantidade) {
-			var quantidade = 0;
-			for (i = 1; i < quantidadeCampos + 1; i++) {
-				var parametro = $("#" + nomeParametro + i).val();
-				if (parametro != null && parametro != "") {
-					quantidade++;
-				}
-			}
-			$("#" + inputQuantidade).val(quantidade);
-
-			return quantidade;
-		}
-
-		$("#formCadastrarUnidade")
+ 		$("#formCadastrarUnidade")
 				.submit(
 						function() {
 
@@ -193,7 +125,7 @@
 								$("#modalErro").modal('show');
 								return false;
 							}
-							$('#myModal').show();
+							$('#myModal').modal('show');
 							return false;
 						});
 

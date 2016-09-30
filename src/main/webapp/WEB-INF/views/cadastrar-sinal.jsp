@@ -146,11 +146,12 @@
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
-								<h4 id="tituloModalErro" class="modal-title">Parâmetro já selecionado</h4>
+								<h4 id="tituloModalErro" class="modal-title">Parâmetro já
+									selecionado</h4>
 							</div>
 							<div class="modal-body">
-								<p id="conteudoModalErro">Este parametro já está selecionado, por favor selecione
-									outro!</p>
+								<p id="conteudoModalErro">Este parametro já está
+									selecionado, por favor selecione outro!</p>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary"
@@ -166,10 +167,22 @@
 						<label for="nome">Nome:</label> <input type="text" required
 							class="form-control" id="nome" name="nome" placeholder="Nome">
 					</div>
+
 					<div class="form-group">
-						<label for="unidade">Unidade:</label> <input type="text" required pattern="[0-9]+$"
-							value="${unidade}" class="form-control" id="unidade" name="unidade" placeholder="unidade">
+						<label for="unidade">Unidade:</label> <select class="form-control"
+							id="unidade" name="unidade">
+							<c:forEach items="${unidades}" var="unidade">
+								<option ${unidade.numero == unidadePrevia ? 'selected' : ''}
+									value="${unidade.id}">${unidade.numero}-
+									${unidade.nome}</option>
+							</c:forEach>
+						</select>
 					</div>
+
+					<!-- 					<div class="form-group"> -->
+					<!-- 						<label for="unidade">Unidade:</label> <input type="text" required pattern="[0-9]+$" -->
+					<%-- 							value="${unidade}" class="form-control" id="unidade" name="unidade" placeholder="unidade"> --%>
+					<!-- 					</div> -->
 					<label id="labelConfiguracaoDeMao" for="configuracaoDeMao">Configurações
 						de Mão:</label>
 					<div class="configuracoesDeMao">
@@ -378,8 +391,11 @@
 							if (verficarExistencia($(
 									"#" + idInputModal + idOpcaoClicada).val())) {
 								//alert('existe');
-								$("#tituloModalErro").text("Parâmetro já selecionado");
-								$("#conteudoModalErro").text("Este parametro já está selecionado, por favor selecione outro!");
+								$("#tituloModalErro").text(
+										"Parâmetro já selecionado");
+								$("#conteudoModalErro")
+										.text(
+												"Este parametro já está selecionado, por favor selecione outro!");
 								$("#modalErro").modal('show');
 								return;
 							}
@@ -521,8 +537,11 @@
 									return true;
 								}
 							} else {
-								$("#tituloModalErro").text("Parâmetro em branco");
-								$("#conteudoModalErro").text("Existem um ou mais campos vazios. Por favor, preencha todos os campos!");
+								$("#tituloModalErro").text(
+										"Parâmetro em branco");
+								$("#conteudoModalErro")
+										.text(
+												"Existem um ou mais campos vazios. Por favor, preencha todos os campos!");
 								$("#modalErro").modal('show');
 								//alert("Existem campos vazios. Por favor, preencha todos os campos!");
 								return false;
