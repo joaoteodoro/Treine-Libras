@@ -29,6 +29,7 @@
 					cellspacing="0" width="100%">
 					<thead>
 						<tr>
+							<th>Unidade atual</th>
 							<th>Unidade</th>
 							<th>Nome</th>
 							<th>Gerenciar</th>
@@ -37,15 +38,26 @@
 					<tbody>
 						<c:forEach items="${unidades}" var="unidade">
 							<tr>
+								<td><c:choose>
+										<c:when test="${unidade.unidadeAtual}">
+											<input id="defineUnidadeAtual${unidade.id}"
+												name="defineUnidadeAtual${unidade.id}" type="checkbox"
+												checked="checked" />
+										</c:when>
+										<c:otherwise>
+											<input id="defineUnidadeAtual${unidade.id}"
+												name="defineUnidadeAtual${unidade.id}" type="checkbox" />
+										</c:otherwise>
+									</c:choose></td>
 								<td>${unidade.numero}</td>
 								<td>${unidade.nome}</td>
 								<td>
 									<div class="gerenciar">
-										<a title="Alterar sinal"
+										<a title="Alterar unidade"
 											href="alterarUnidadeAntes?id=${unidade.id}"><img
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/editar.png" /></a>
-										<a title="Remover sinal"
+										<a title="Remover unidade"
 											onclick="setidUnidadeGerenciando(${unidade.id})"
 											data-toggle="modal" data-target="#modalExcluir"><img
 											class="img-responsive"
@@ -85,30 +97,45 @@
 				</div>
 			</div>
 		</div>
-
-		<%-- <div class="center-block box-externo-principal">
-				<c:forEach items="${unidades}" var="unidade">
-					<a href="listaSinaisPorUnidade?unidade=${unidade.id}"> 
-						<div class="col-sm-offset-0 col-sm-6 col-md-3 col-xs-offset-1 col-xs-10 box-unidade">
-							<div>
-								<h2 class="center-block"><b>Unidade ${unidade.nome}</b></h2>
-							</div>
-						</div>
-					</a>
-				</c:forEach>
-			</div>
 				
-			<br/><br/><br/><br/><br/> --%>
+			<br/><br/><br/><br/><br/>
 	</div>
 	<c:import url="rodape.jsp" />
 	<script
 		src="${pageContext.request.contextPath}/resources/js/dataTables.bootstrap.min.js">
 	</script>
 	<script>
+		var idSinalGerenciando;
+		
+		
+		$( "input[id^=defineUnidadeAtual]" ).click(function() {
+			var id = this.id;
+			var numeroId = id.replace(/[^0-9]/g,'');
+			removerOutraMarcacao(numeroId);
+		});
+		
+		function removerOutraMarcacao(idSelecionado){
+			$("input[id^=defineUnidadeAtual]").each( function () {
+				var id = this.id;
+				var numeroId = id.replace(/[^0-9]/g,'');
+				
+				if(numeroId != idSelecionado){
+					$("#"+id).prop("checked",false);
+				}
+			});
+			alterarUnidadeAtual(idSelecionado);
+		}
+		
+		function alterarUnidadeAtual(idSelecionado){
+			$.post("alterarUnidadeAtual",{'idUnidade' : idSelecionado}, function(resposta){
+				location.reload();
+			});
+		}
+	
 		var idUnidadeGerenciando;
 		
-		function setidUnidadeGerenciando(idSinal){
-			idUnidadeGerenciando = idSinal;
+		function setidUnidadeGerenciando(idUnidade){
+			idUnidadeGerenciando = idUnidade;
 		}
 			
 		function excluirUnidade(){
@@ -124,16 +151,16 @@
 						{
 							oLanguage : {
 								sEmptyTable : "Nenhum registro encontrado",
-								sInfo : "Apresentando _END_ sinais. Total de sinais cadastrados: _TOTAL_",
+								sInfo : "Apresentando _END_ unidades. Total de unidades cadastradas: _TOTAL_",
 								sInfoEmpty : "Mostrando 0 até 0 de 0 registros",
 								sInfoFiltered : "(Filtrados de _MAX_ registros)",
 								sInfoPostFix : "",
 								sInfoThousands : ".",
-								sLengthMenu : "Qtd sinais apresentados por pág: _MENU_",
+								sLengthMenu : "Qtd unidades apresentadas por pág: _MENU_",
 								sLoadingRecords : "Carregando...",
 								sProcessing : "Processando...",
 								sZeroRecords : "Nenhum registro encontrado",
-								sSearch : "Buscar sinal",
+								sSearch : "Buscar Unidade",
 								oPaginate : {
 									sNext : "Próximo",
 									sPrevious : "Anterior",

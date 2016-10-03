@@ -34,4 +34,9 @@ public class UnidadeDao implements IUnidadeDao{
 		Unidade unidade = manager.find(Unidade.class, id);
 		manager.remove(unidade);
 	}
+	
+	@Override
+	public void altera(Unidade unidade) {
+		manager.merge(unidade);
+	}
 }

@@ -31,7 +31,7 @@ public class Sinal {
 	private String dificuldade;
 	private String video;
 	private String orientacao;
-	private boolean sinalDefinePesoInicial;
+	private boolean sinalDefinePesoInicial = false;
 	
 	@ManyToOne
 	private Unidade unidade;

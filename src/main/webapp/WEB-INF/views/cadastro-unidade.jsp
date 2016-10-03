@@ -28,14 +28,15 @@
 					action="cadastrarUnidade">
 					<div class="form-group">
 						<label for="nome">Nome:</label> <input type="text" required
-							class="form-control" id="nome" name="nome" placeholder="Nome">
+							class="form-control" id="nome" name="nome" placeholder="Nome" value="${unidade.nome}">
 					</div>
-					<div class="form-group">
+						<div class="form-group">
 						<label for="numero">Numero:</label> <input type="text"
 							maxlength="2" required pattern="[0-9]+$" class="form-control"
-							id="numero" name="numero" placeholder="Número">
+							id="numero" name="numero" placeholder="Número" value="${unidade.numero}">
 					</div>
-
+					<input type="hidden" name="id" id="id" value="${unidade.id}" />
+					
 					<button type="submit"
 						class="bg-black color-white pull-right btn btn-default">Cadastrar</button>
 				</form>
@@ -105,6 +106,7 @@
 			</div>
 		</div>
 	</div>
+	<input type="hidden" name="ehAlteracao" id="ehAlteracao" value="${ehAlteracao}" />
 	<c:import url="rodape.jsp" />
 	<script>
  		$("#formCadastrarUnidade")
@@ -130,6 +132,9 @@
 						});
 
 		function gravarUnidade() {
+			if($("#ehAlteracao").val() == "sim"){
+				$("#formCadastrarUnidade").attr("action","alterarUnidade");
+			}
 			$("#formCadastrarUnidade").submit();
 		}
 	</script>

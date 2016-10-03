@@ -20,6 +20,7 @@ public class Unidade {
 	
 	private String nome;
 	private Long numero;
+	private boolean unidadeAtual = false;
 	
 	@OneToMany(mappedBy="unidade", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Sinal> sinais;
@@ -54,5 +55,13 @@ public class Unidade {
 
 	public void setSinais(List<Sinal> sinais) {
 		this.sinais = sinais;
+	}
+
+	public boolean isUnidadeAtual() {
+		return unidadeAtual;
+	}
+
+	public void setUnidadeAtual(boolean unidadeAtual) {
+		this.unidadeAtual = unidadeAtual;
 	}	
 }

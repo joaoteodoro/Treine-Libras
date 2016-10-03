@@ -60,5 +60,10 @@ public class UsuarioDao implements IUsuarioDao {
 		query.setParameter("paramUsuario", usuario);
 		return (Usuario)query.getSingleResult();
 	}
+	
+	public void restaPrimeiroAcesso(){
+		Query query = manager.createQuery("update Usuario set primeiroAcesso = 1 where perfil <> 'admin' ");
+		query.executeUpdate();
+	}
 
 }

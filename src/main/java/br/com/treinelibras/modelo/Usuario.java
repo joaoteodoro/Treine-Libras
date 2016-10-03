@@ -30,7 +30,7 @@ public class Usuario {
 	private String perfil;
 	
 	@Column(name = "primeiroAcesso", columnDefinition="boolean default true")
-	private boolean primeiroAcesso;
+	private boolean primeiroAcesso = true;
 	
 	private float pesoAvaliacao = 1;
 	

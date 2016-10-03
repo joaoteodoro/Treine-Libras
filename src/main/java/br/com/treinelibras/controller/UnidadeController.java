@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.treinelibras.dao.IUnidadeDao;
+import br.com.treinelibras.dao.IUsuarioDao;
 import br.com.treinelibras.modelo.Avaliacao;
 import br.com.treinelibras.modelo.Sinal;
 import br.com.treinelibras.modelo.Unidade;
@@ -24,6 +25,9 @@ public class UnidadeController {
 
 	@Autowired
 	IUnidadeDao unidadeDao;
+	
+	@Autowired
+	IUsuarioDao usuarioDao;
 
 	@RequestMapping("glossario")
 	public String glossario(Model model) {
@@ -49,7 +53,17 @@ public class UnidadeController {
 	public String alterarUnidadeAntes(Model model, Long id) {
 		Unidade unidade = unidadeDao.buscaPorId(id);
 		model.addAttribute("unidade", unidade);
-		return "altera-unidade";
+		model.addAttribute("ehAlteracao","sim");
+		return "cadastro-unidade";
+	}
+	
+	@RequestMapping("alterarUnidade")
+	public String alterarUnidade(@Valid Unidade unidade) {
+		Unidade unidadeReal = unidadeDao.buscaPorId(unidade.getId());
+		unidadeReal.setNome(unidade.getNome());
+		unidadeReal.setNumero(unidade.getNumero());
+		unidadeDao.altera(unidadeReal);
+		return "redirect:unidades";
 	}
 
 	@RequestMapping("cadastrarUnidadeAntes")
@@ -77,6 +91,21 @@ public class UnidadeController {
 		}
 		model.addAttribute("unidade",unidade);
 		return "lista-sinais-unidade";
+	}
+	
+	@RequestMapping("alterarUnidadeAtual")
+	public String alterarUnidadeAtual(Long idUnidade){
+		List<Unidade> unidades = unidadeDao.lista();
+		for (Unidade unidade : unidades) {
+			if(unidade.getId() == idUnidade){
+				unidade.setUnidadeAtual(true);
+			}else{
+				unidade.setUnidadeAtual(false);
+			}
+			unidadeDao.altera(unidade);
+			usuarioDao.restaPrimeiroAcesso();
+		}
+		return "redirect:unidades";
 	}
 
 	public String recuperaTodasUninades(Model model, String paginaRetorno) {

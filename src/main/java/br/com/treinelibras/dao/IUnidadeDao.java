@@ -12,4 +12,6 @@ public interface IUnidadeDao {
 	public void adiciona(Unidade unidade);
 	
 	public void remove(Long id);
+	
+	public void altera(Unidade unidade);
 }

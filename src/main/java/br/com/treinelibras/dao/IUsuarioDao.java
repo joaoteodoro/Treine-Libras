@@ -18,4 +18,6 @@ public interface IUsuarioDao {
 	boolean existeUsuario(Usuario u);
 	
 	public Usuario buscarPorUsuario(String usuario);
+	
+	public void restaPrimeiroAcesso();
 }
