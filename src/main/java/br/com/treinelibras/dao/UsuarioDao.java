@@ -62,8 +62,15 @@ public class UsuarioDao implements IUsuarioDao {
 	}
 	
 	public void restaPrimeiroAcesso(){
-		Query query = manager.createQuery("update Usuario set primeiroAcesso = 1 where perfil <> 'admin' ");
-		query.executeUpdate();
+		List<Usuario> usuarios = lista();
+		for (Usuario usuario : usuarios) {
+			if(!usuario.getPerfil().equals("admin")){
+				usuario.setPrimeiroAcesso(true);
+			}
+			altera(usuario);
+		}
+//		Query query = manager.createQuery("update Usuario set primeiroAcesso = 1 where perfil <> 'admin' ");
+//		query.executeUpdate();
 	}
 
 }

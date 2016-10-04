@@ -27,7 +27,7 @@ public class Usuario {
 	private String email;
 	private String usuario;
 	private String senha;
-	private String perfil;
+	private String perfil = "aluno";
 	
 	@Column(name = "primeiroAcesso", columnDefinition="boolean default true")
 	private boolean primeiroAcesso = true;

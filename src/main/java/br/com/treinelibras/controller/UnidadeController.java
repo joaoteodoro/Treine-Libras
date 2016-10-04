@@ -103,8 +103,8 @@ public class UnidadeController {
 				unidade.setUnidadeAtual(false);
 			}
 			unidadeDao.altera(unidade);
-			usuarioDao.restaPrimeiroAcesso();
 		}
+		usuarioDao.restaPrimeiroAcesso();
 		return "redirect:unidades";
 	}
 

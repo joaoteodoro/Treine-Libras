@@ -65,7 +65,7 @@
 										<a title="Ver sinais desta unidade"
 											href="listarSinaisPorUnidade?id=${unidade.id}"><img
 											class="img-responsive"
-											src="${pageContext.request.contextPath}/resources/img/mais.png" /></a>
+											src="${pageContext.request.contextPath}/resources/img/configMao15.png" /></a>
 									</div>
 								</td>
 							</tr>
