@@ -66,6 +66,7 @@ public class UsuarioDao implements IUsuarioDao {
 		for (Usuario usuario : usuarios) {
 			if(!usuario.getPerfil().equals("admin")){
 				usuario.setPrimeiroAcesso(true);
+				usuario.setPesoAvaliacao(1L);
 			}
 			altera(usuario);
 		}
