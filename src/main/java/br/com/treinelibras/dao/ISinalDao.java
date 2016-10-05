@@ -34,4 +34,6 @@ public interface ISinalDao {
 	public List<Long> buscaUnidades();
 	
 	public List<Sinal> buscaSinaisPorUnidade(Long unidade);
+	
+	public List<Sinal> buscaSinaisUnidadeAtual();
 }

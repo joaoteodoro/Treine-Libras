@@ -166,4 +166,11 @@ public class SinalDao implements ISinalDao {
 		quey.setParameter("paramUnidade", unidade);
 		return quey.getResultList();
 	}
+	
+
+	@SuppressWarnings("unchecked")
+	public List<Sinal> buscaSinaisUnidadeAtual(){
+		Query query = manager.createQuery("select s from Sinal s where s.unidade.unidadeAtual = 1");
+		return query.getResultList();
+	}
 }

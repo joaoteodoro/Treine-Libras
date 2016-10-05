@@ -64,7 +64,7 @@ public class ExercicioController {
 	}
 
 	public List<Sinal> recuperaNomesSinais(Sinal sinalParametro) {
-		List<Sinal> sinais = sinalDao.lista();
+		List<Sinal> sinais = sinalDao.buscaSinaisUnidadeAtual();
 		
 		List<Sinal> retorno = new ArrayList<Sinal>();
 
