@@ -145,7 +145,7 @@
 			//verifica a quantidade selecionada
 			var n = $( "input:checked" ).length;
 			if(n > 5){
-				$("#modalSinaisTeste").show();
+				$("#modalSinaisTeste").modal('show');
 				return false;
 			}else{
 				if(n < 5){

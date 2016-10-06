@@ -73,108 +73,108 @@ public class SinalController {
 
 	private static final Logger logger = Logger.getLogger(SinalController.class);
 
-	@RequestMapping("listaSinais")
-	public String lista(Model model) {
-		System.out.println();
-		System.out.println();
-		System.out.println("======================================== INICIO SinalController.lista()");
-		HashMap<String, List<Sinal>> sinaisPorCategoria = new HashMap<String, List<Sinal>>();
-
-		List<String> categorias = dao.listaCategorias();
-
-		for (String categoria : categorias) {
-			List<Sinal> sinais = dao.listaSinalPorCategoria(categoria);
-			sinaisPorCategoria.put(categoria, sinais);
-		}
-
-		System.out.println("Quantidade de categorias: " + sinaisPorCategoria.size());
-
-		model.addAttribute("categorias", sinaisPorCategoria);
-
-		// listagem de sinais por unidades
-
-		HashMap<Long, List<Sinal>> sinaisPorUnidade = new HashMap<Long, List<Sinal>>();
-		List<Long> unidades = dao.buscaUnidades();
-
-		for (Long unidade : unidades) {
-			List<Sinal> sinais = dao.buscaSinaisPorUnidade(unidade);
-			sinaisPorUnidade.put(unidade, sinais);
-		}
-
-		model.addAttribute("unidades", sinaisPorUnidade);
-
-		System.out.println("======================================== FIM SinalController.lista()");
-		return "glossario";
-	}
-
-	@RequestMapping("listaSinaisExercicios")
-	public String listaSinaisExercicios(Model model) {
-		System.out.println();
-		System.out.println();
-		System.out.println("======================================== INICIO SinalController.listaSinaisExercicios()");
-
-		HashMap<String, List<Sinal>> sinaisPorCategoria = new HashMap<String, List<Sinal>>();
-
-		List<String> categorias = dao.listaCategorias();
-
-		for (String categoria : categorias) {
-			List<Sinal> sinais = dao.listaSinalPorCategoria(categoria);
-			sinaisPorCategoria.put(categoria, sinais);
-		}
-
-		System.out.println("Quantidade de categorias: " + sinaisPorCategoria.size());
-
-		model.addAttribute("categorias", sinaisPorCategoria);
-
-		// listagem de sinais por unidades
-
-		HashMap<Long, List<Sinal>> sinaisPorUnidade = new HashMap<Long, List<Sinal>>();
-		List<Long> unidades = dao.buscaUnidades();
-
-		for (Long unidade : unidades) {
-			List<Sinal> sinais = dao.buscaSinaisPorUnidade(unidade);
-			sinaisPorUnidade.put(unidade, sinais);
-		}
-
-		model.addAttribute("unidades", sinaisPorUnidade);
-
-		System.out.println("======================================== FIM SinalController.listaSinaisExercicios()");
-		return "exercicios";
-	}
-
-	@RequestMapping("listaSinaisAvaliar")
-	public String listaSinaisAvaliar(Model model) {
-		System.out.println();
-		System.out.println();
-		System.out.println("======================================== INICIO SinalController.listaSinaisAvaliar()");
-		HashMap<String, List<Sinal>> sinaisPorCategoria = new HashMap<String, List<Sinal>>();
-
-		List<String> categorias = dao.listaCategorias();
-
-		for (String categoria : categorias) {
-			List<Sinal> sinais = dao.listaSinalPorCategoria(categoria);
-			sinaisPorCategoria.put(categoria, sinais);
-		}
-
-		System.out.println("Quantidade de categorias: " + sinaisPorCategoria.size());
-
-		model.addAttribute("categorias", sinaisPorCategoria);
-
-		// listagem de sinais por unidades
-
-		HashMap<Long, List<Sinal>> sinaisPorUnidade = new HashMap<Long, List<Sinal>>();
-		List<Long> unidades = dao.buscaUnidades();
-
-		for (Long unidade : unidades) {
-			List<Sinal> sinais = dao.buscaSinaisPorUnidade(unidade);
-			sinaisPorUnidade.put(unidade, sinais);
-		}
-
-		model.addAttribute("unidades", sinaisPorUnidade);
-
-		System.out.println("======================================== FIM SinalController.listaSinaisAvaliar()");
-		return "avaliar";
-	}
+//	@RequestMapping("listaSinais")
+//	public String lista(Model model) {
+//		System.out.println();
+//		System.out.println();
+//		System.out.println("======================================== INICIO SinalController.lista()");
+//		HashMap<String, List<Sinal>> sinaisPorCategoria = new HashMap<String, List<Sinal>>();
+//
+//		List<String> categorias = dao.listaCategorias();
+//
+//		for (String categoria : categorias) {
+//			List<Sinal> sinais = dao.listaSinalPorCategoria(categoria);
+//			sinaisPorCategoria.put(categoria, sinais);
+//		}
+//
+//		System.out.println("Quantidade de categorias: " + sinaisPorCategoria.size());
+//
+//		model.addAttribute("categorias", sinaisPorCategoria);
+//
+//		// listagem de sinais por unidades
+//
+//		HashMap<Long, List<Sinal>> sinaisPorUnidade = new HashMap<Long, List<Sinal>>();
+//		List<Long> unidades = dao.buscaUnidades();
+//
+//		for (Long unidade : unidades) {
+//			List<Sinal> sinais = dao.buscaSinaisPorUnidade(unidade);
+//			sinaisPorUnidade.put(unidade, sinais);
+//		}
+//
+//		model.addAttribute("unidades", sinaisPorUnidade);
+//
+//		System.out.println("======================================== FIM SinalController.lista()");
+//		return "glossario";
+//	}
+//
+//	@RequestMapping("listaSinaisExercicios")
+//	public String listaSinaisExercicios(Model model) {
+//		System.out.println();
+//		System.out.println();
+//		System.out.println("======================================== INICIO SinalController.listaSinaisExercicios()");
+//
+//		HashMap<String, List<Sinal>> sinaisPorCategoria = new HashMap<String, List<Sinal>>();
+//
+//		List<String> categorias = dao.listaCategorias();
+//
+//		for (String categoria : categorias) {
+//			List<Sinal> sinais = dao.listaSinalPorCategoria(categoria);
+//			sinaisPorCategoria.put(categoria, sinais);
+//		}
+//
+//		System.out.println("Quantidade de categorias: " + sinaisPorCategoria.size());
+//
+//		model.addAttribute("categorias", sinaisPorCategoria);
+//
+//		// listagem de sinais por unidades
+//
+//		HashMap<Long, List<Sinal>> sinaisPorUnidade = new HashMap<Long, List<Sinal>>();
+//		List<Long> unidades = dao.buscaUnidades();
+//
+//		for (Long unidade : unidades) {
+//			List<Sinal> sinais = dao.buscaSinaisPorUnidade(unidade);
+//			sinaisPorUnidade.put(unidade, sinais);
+//		}
+//
+//		model.addAttribute("unidades", sinaisPorUnidade);
+//
+//		System.out.println("======================================== FIM SinalController.listaSinaisExercicios()");
+//		return "exercicios";
+//	}
+//
+//	@RequestMapping("listaSinaisAvaliar")
+//	public String listaSinaisAvaliar(Model model) {
+//		System.out.println();
+//		System.out.println();
+//		System.out.println("======================================== INICIO SinalController.listaSinaisAvaliar()");
+//		HashMap<String, List<Sinal>> sinaisPorCategoria = new HashMap<String, List<Sinal>>();
+//
+//		List<String> categorias = dao.listaCategorias();
+//
+//		for (String categoria : categorias) {
+//			List<Sinal> sinais = dao.listaSinalPorCategoria(categoria);
+//			sinaisPorCategoria.put(categoria, sinais);
+//		}
+//
+//		System.out.println("Quantidade de categorias: " + sinaisPorCategoria.size());
+//
+//		model.addAttribute("categorias", sinaisPorCategoria);
+//
+//		// listagem de sinais por unidades
+//
+//		HashMap<Long, List<Sinal>> sinaisPorUnidade = new HashMap<Long, List<Sinal>>();
+//		List<Unidade> unidades = unidadeDao.lista();
+//
+//		for (Unidade unidade : unidades) {
+//			List<Sinal> sinais = dao.buscaSinaisPorUnidade(unidade);
+//			sinaisPorUnidade.put(unidade, sinais);
+//		}
+//
+//		model.addAttribute("unidades", sinaisPorUnidade);
+//
+//		System.out.println("======================================== FIM SinalController.listaSinaisAvaliar()");
+//		return "avaliar";
+//	}
 
 	@RequestMapping("mostraSinal")
 	public String mostra(Long id, Model model) throws ClassNotFoundException {
@@ -271,12 +271,12 @@ public class SinalController {
 		return "lista-sinais";
 	}
 
-	@RequestMapping("listarUnidades")
-	public String listarUnidades(Model model) {
-		List<Long> unidades = dao.buscaUnidades();
-		model.addAttribute("unidades", unidades);
-		return "unidades";
-	}
+//	@RequestMapping("listarUnidades")
+//	public String listarUnidades(Model model) {
+//		List<Long> unidades = dao.buscaUnidades();
+//		model.addAttribute("unidades", unidades);
+//		return "unidades";
+//	}
 
 	@RequestMapping("removerSinal")
 	@Transactional

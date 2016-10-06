@@ -67,7 +67,7 @@
 				var pontuacao = parseInt($("#pontuacao").val()) + 1;
 				$("#pontuacao").val(pontuacao);
 			}
-			if(n == 3){
+			if(n == 5){
 				$("#formPontuacao").submit();
 			}else{
 				$("#avaliacao" + n).hide();

@@ -173,7 +173,7 @@
 							value="${sinal.nome}" disabled class="form-control" id="nome"
 							name="nome" placeholder="Nome">
 					</div>
-					<<div class="form-group">
+					<div class="form-group">
 						<label for="unidade">Unidade:</label> <select class="form-control"
 							id="unidade" name="unidade">
 							<c:forEach items="${unidades}" var="unidade">

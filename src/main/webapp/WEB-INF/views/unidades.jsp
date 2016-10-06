@@ -32,6 +32,7 @@
 							<th>Unidade atual</th>
 							<th>Unidade</th>
 							<th>Nome</th>
+							<th>Qtd de Sinais</th>
 							<th>Gerenciar</th>
 						</tr>
 					</thead>
@@ -51,6 +52,7 @@
 									</c:choose></td>
 								<td>${unidade.numero}</td>
 								<td>${unidade.nome}</td>
+								<td>${unidade.sinais.size()}</td>
 								<td>
 									<div class="gerenciar">
 										<a title="Alterar unidade"

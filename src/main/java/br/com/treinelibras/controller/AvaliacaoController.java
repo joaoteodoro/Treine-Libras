@@ -55,7 +55,7 @@ public class AvaliacaoController {
 			dao.adicionaAvaliacao(avaliacao);
 		}
 		
-		return "redirect:listaSinaisAvaliar";
+		return "redirect:avaliar";
 	}
 	
 	public float calcularNotaFinal(float notaMedia, float pesoAvaliacao){

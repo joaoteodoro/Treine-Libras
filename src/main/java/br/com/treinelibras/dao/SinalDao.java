@@ -149,14 +149,9 @@ public class SinalDao implements ISinalDao {
 	@SuppressWarnings("unchecked")
 	public List<Sinal> buscaSinalQueDefinePesoInicial(){
 		Query query = manager.createQuery("select s from Sinal s where s.sinalDefinePesoInicial = 1 and"
-				+ "s.unidade.unidadeAtual = 1");
+				+ " s.unidade.unidadeAtual = 1");
 		query.setMaxResults(5);
 		return query.getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Long> buscaUnidades() {
-		return manager.createQuery("select distinct s.unidade from Sinal s").getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")

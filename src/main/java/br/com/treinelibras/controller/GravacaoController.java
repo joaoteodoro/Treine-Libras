@@ -215,7 +215,7 @@ public class GravacaoController {
 			throw new ServletException("Parsing file upload failed.", e);
 		}
 		
-		return "redirect:listaSinaisExercicios";
+		return "redirect:exercicios";
 	}
 
 	/*private void inserirImagemDiretorio(FileItem item) throws IOException {

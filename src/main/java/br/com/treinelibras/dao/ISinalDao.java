@@ -30,9 +30,7 @@ public interface ISinalDao {
 	public void altera(Sinal sinal);
 	
 	public List<Sinal> buscaSinalQueDefinePesoInicial();
-	
-	public List<Long> buscaUnidades();
-	
+		
 	public List<Sinal> buscaSinaisPorUnidade(Long unidade);
 	
 	public List<Sinal> buscaSinaisUnidadeAtual();
