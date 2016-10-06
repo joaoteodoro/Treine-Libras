@@ -91,7 +91,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">Exclusão</h4>
+					<h4 class="modal-title" id="myModalLabel">Atenção</h4>
 				</div>
 				<div class="modal-body">Você pode selecionar apenas 5 sinais por unidade.</div>
 				<div class="modal-footer">
