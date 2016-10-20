@@ -23,14 +23,14 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="video-container video col-md-offset-1 col-md-10">
-					<video id="recorded" controls=""
+					<video id="recorded" muted="" loop autoplay=""
 						src="${pageContext.request.contextPath}/resources/videos/${sinal.video}"></video>
 				</div>
 			</div>
 			<div class="col-md-6" style="padding-bottom: 60px;">
 				<div
 					class="video-usuario video-container video col-md-offset-1 col-md-10">
-					<video id="recorded" controls=""
+					<video muted="" loop autoplay=""
 						src="${pageContext.request.contextPath}/resources/videos/${gravacao.video}"></video>
 				</div>
 			</div>
@@ -88,7 +88,7 @@
 							</div>
 						</div>
 						<div class="linha-box-avaliacao linha-caracteristica">
-							<b>Orientação:</b> ${sinal.orientacao}
+							<b>Orientação:</b> ${sinal.orientacao.descricao}
 						</div>
 						<div class="linha-box-avaliacao linha-caracteristica">
 							<b>Expressão facial:</b> ${sinal.expressaoFacial.nome}

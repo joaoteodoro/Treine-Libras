@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.treinelibras.dao.IConfiguracaoDeMaoDao;
 import br.com.treinelibras.dao.IExpressaoFacialDao;
+import br.com.treinelibras.dao.IMaoDao;
 import br.com.treinelibras.dao.IMovimentoDao;
 import br.com.treinelibras.dao.IPontoDeArticulacaoDao;
 import br.com.treinelibras.dao.ISinalDao;
@@ -36,11 +36,14 @@ import br.com.treinelibras.dao.IUnidadeDao;
 import br.com.treinelibras.dao.IUsuarioDao;
 import br.com.treinelibras.modelo.ConfiguracaoDeMao;
 import br.com.treinelibras.modelo.ExpressaoFacial;
+import br.com.treinelibras.modelo.Mao;
 import br.com.treinelibras.modelo.Movimento;
+import br.com.treinelibras.modelo.Orientacao;
 import br.com.treinelibras.modelo.PontoDeArticulacao;
 import br.com.treinelibras.modelo.Sinal;
 import br.com.treinelibras.modelo.Unidade;
 import br.com.treinelibras.modelo.Usuario;
+import br.com.treinelibras.modelo.UtilizacaoDasMaos;
 import br.com.treinelibras.util.StringUtils;
 
 @Transactional
@@ -70,6 +73,9 @@ public class SinalController {
 	
 	@Autowired
 	IUnidadeDao unidadeDao;
+	
+	@Autowired
+	IMaoDao maoDao;
 
 	private static final Logger logger = Logger.getLogger(SinalController.class);
 
@@ -319,6 +325,10 @@ public class SinalController {
 		List<ExpressaoFacial> expressoesFaciais = expressaoFacialDao.lista();
 		model.addAttribute("expressoesFaciais", expressoesFaciais);
 		
+		model.addAttribute("orientacoes",Orientacao.values());
+		
+		model.addAttribute("utilizacoesDasMaos",UtilizacaoDasMaos.values());
+		
 		List<Unidade> unidades = unidadeDao.lista();
 		model.addAttribute("unidades",unidades);
 
@@ -338,6 +348,9 @@ public class SinalController {
 
 		List<ExpressaoFacial> expressoesFaciais = expressaoFacialDao.lista();
 		model.addAttribute("expressoesFaciais", expressoesFaciais);
+		
+		model.addAttribute("orientacoes",Orientacao.values());
+		model.addAttribute("utilizacoesDasMaos",UtilizacaoDasMaos.values());
 
 		Unidade unidade = unidadeDao.buscaPorId(idUnidade);
 		model.addAttribute("unidadePrevia", unidade.getNumero());
@@ -368,6 +381,9 @@ public class SinalController {
 			List<ConfiguracaoDeMao> configuracoesDeMao = new ArrayList<ConfiguracaoDeMao>();
 			List<PontoDeArticulacao> pontosDeArticulacao = new ArrayList<PontoDeArticulacao>();
 			List<Movimento> movimentos = new ArrayList<Movimento>();
+			
+			Mao maoPrincipal = new Mao();
+			Mao maoSecundaria = new Mao();
 
 			try {
 				List items = upload.parseRequest(request);
@@ -401,45 +417,91 @@ public class SinalController {
 							sinal.setNome(item.getString());
 						} else if ("categoria".equals(item.getFieldName())) {
 							sinal.setCategoria(item.getString());
-						} else if ("orientacao".equals(item.getFieldName())) {
-							sinal.setOrientacao(item.getString());
-						} else if ("dificuldade".equals(item.getFieldName())) {
-							sinal.setDificuldade(item.getString());
-						} else if (item.getFieldName().startsWith("configuracaoDeMao") && item.getString() != null
-								&& !"".equals(item.getString())) {
-							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao
-									.buscaPorId(Long.parseLong(item.getString()));
-							configuracoesDeMao.add(configuracaoDeMao);
-						} else if (item.getFieldName().startsWith("pontoDeArticulacao") && item.getString() != null
-								&& !"".equals(item.getString())) {
-							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao
-									.buscaPorId(Long.parseLong(item.getString()));
-							pontosDeArticulacao.add(pontoDeArticulacao);
-						} else if (item.getFieldName().startsWith("movimento") && item.getString() != null
-								&& !"".equals(item.getString())) {
+						} else if("utilizacaoDasMaos".equals(item.getFieldName())){
+							sinal.setUtilizacaoDasMaos(UtilizacaoDasMaos.valueOf(item.getString()));
+						}
+						
+						// parametros para mao principal
+						else if("configuracaoDeMao1".equals(item.getFieldName())){
+							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
+							maoPrincipal.setConfiguracaoDeMao(configuracaoDeMao);
+						}else if("pontoDeArticulacao1".equals(item.getFieldName())){
+							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
+							maoPrincipal.setPontoDeArticulacao(pontoDeArticulacao);
+						}else if("movimento1".equals(item.getFieldName())){
 							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
-							movimentos.add(movimento);
-						} else if ("expressao".equals(item.getFieldName())) {
+							maoPrincipal.setMovimento(movimento);
+						}else if("orientacao1".equals(item.getFieldName())){
+							maoPrincipal.setOrientacao(Orientacao.valueOf(item.getString()));
+						}
+						
+						//parametros para mao secundaria
+						else if("configuracaoDeMao2".equals(item.getFieldName()) && !"".equals(item.getString())){
+							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
+							maoSecundaria.setConfiguracaoDeMao(configuracaoDeMao);
+						}else if("pontoDeArticulacao2".equals(item.getFieldName()) && !"".equals(item.getString())){
+							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
+							maoSecundaria.setPontoDeArticulacao(pontoDeArticulacao);
+						}else if("movimento2".equals(item.getFieldName()) && !"".equals(item.getString())){
+							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
+							maoSecundaria.setMovimento(movimento);
+						}else if("orientacao2".equals(item.getFieldName()) && !"".equals(item.getString())){
+							maoSecundaria.setOrientacao(Orientacao.valueOf(item.getString()));
+						}
+						
+//						
+//						else if ("orientacao".equals(item.getFieldName())) {
+//							sinal.setOrientacao(Orientacao.valueOf(item.getString()));
+						 else if ("dificuldade".equals(item.getFieldName())) {
+							sinal.setDificuldade(item.getString());
+						 }
+//						} else if (item.getFieldName().startsWith("configuracaoDeMao") && item.getString() != null
+//								&& !"".equals(item.getString())) {
+//							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao
+//									.buscaPorId(Long.parseLong(item.getString()));
+//							configuracoesDeMao.add(configuracaoDeMao);
+//						} else if (item.getFieldName().startsWith("pontoDeArticulacao") && item.getString() != null
+//								&& !"".equals(item.getString())) {
+//							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao
+//									.buscaPorId(Long.parseLong(item.getString()));
+//							pontosDeArticulacao.add(pontoDeArticulacao);
+//						} else if (item.getFieldName().startsWith("movimento") && item.getString() != null
+//								&& !"".equals(item.getString())) {
+//							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
+//							movimentos.add(movimento);
+						
+						//expressao facial do sinal
+						else if ("expressao".equals(item.getFieldName())) {
 							ExpressaoFacial expressaoFacial = expressaoFacialDao
 									.buscaPorId(Long.parseLong(item.getString()));
 							sinal.setExpressaoFacial(expressaoFacial);
 							System.out.println("Expressao Facial nome: " + expressaoFacial.getNome());
 						}else if("unidade".equals(item.getFieldName())){
 							Unidade unidade = unidadeDao.buscaPorId(Long.parseLong(item.getString()));
-							sinal.setUnidade(unidade);;
+							sinal.setUnidade(unidade);
 							System.out.println("Unidade nome: " + unidade.getNome());
 						}
 						System.out.println("Parametro de entrada (nome,valor): " + item.getFieldName() + "   /   "
 								+ item.getString());
 					}
 				}
-				sinal.setConfiguracoesDeMao(configuracoesDeMao);
-				sinal.setPontosDeArticulacao(pontosDeArticulacao);
-				sinal.setMovimentos(movimentos);
+				maoDao.adiciona(maoPrincipal);
+				sinal.setMaoPrincipal(maoPrincipal);
+				if(UtilizacaoDasMaos.SOMENTE_UMA_MAO.equals(sinal.getUtilizacaoDasMaos())){
+					sinal.setMaoSecundaria(null);
+				}else if(UtilizacaoDasMaos.DUAS_MAOS_PARAMETROS_IGUAIS.equals(sinal.getUtilizacaoDasMaos())){
+					sinal.setMaoSecundaria(maoPrincipal);
+				}else{
+					maoDao.adiciona(maoSecundaria);
+					sinal.setMaoSecundaria(maoSecundaria);
+				}
+//				sinal.setConfiguracoesDeMao(configuracoesDeMao);
+//				sinal.setPontosDeArticulacao(pontosDeArticulacao);
+//				sinal.setMovimentos(movimentos);
 				dao.adiciona(sinal);
-				System.out.println("Tamanho lista configuracoes de mao: " + sinal.getConfiguracoesDeMao().size());
-				System.out.println("Tamanho lista pontos de articulacao: " + sinal.getPontosDeArticulacao().size());
-				System.out.println("Tamanho lista movimento: " + sinal.getMovimentos().size());
+//				System.out.println("Tamanho lista configuracoes de mao: " + sinal.getConfiguracoesDeMao().size());
+//				System.out.println("Tamanho lista pontos de articulacao: " + sinal.getPontosDeArticulacao().size());
+//				System.out.println("Tamanho lista movimento: " + sinal.getMovimentos().size());
 			} catch (FileUploadException ex) {
 				ex.printStackTrace();
 			} catch (Exception ex) {
@@ -472,16 +534,19 @@ public class SinalController {
 
 		List<ExpressaoFacial> expressoesFaciais = expressaoFacialDao.lista();
 		model.addAttribute("expressoesFaciais", expressoesFaciais);
-
+		
+		model.addAttribute("orientacoes",Orientacao.values());
+		model.addAttribute("utilizacoesDasMaos",UtilizacaoDasMaos.values());
+		
 		Sinal sinal = dao.buscaPorId(idSinal);
 		model.addAttribute("sinal", sinal);
 		
 		List<Unidade> unidades = unidadeDao.lista();
 		model.addAttribute("unidades",unidades);
 
-		System.out.println("Tamanho lista configMao sinal: " + sinal.getConfiguracoesDeMao().size());
-		System.out.println("Tamanho lista pontoArticulacao sinal: " + sinal.getPontosDeArticulacao().size());
-		System.out.println("Tamanho lista movimento sinal: " + sinal.getMovimentos().size());
+//		System.out.println("Tamanho lista configMao sinal: " + sinal.getConfiguracoesDeMao().size());
+//		System.out.println("Tamanho lista pontoArticulacao sinal: " + sinal.getPontosDeArticulacao().size());
+//		System.out.println("Tamanho lista movimento sinal: " + sinal.getMovimentos().size());
 
 		System.out.println("======================================== FIM alterarSinalAntes()");
 
@@ -512,6 +577,9 @@ public class SinalController {
 				List<PontoDeArticulacao> pontosDeArticulacao = new ArrayList<PontoDeArticulacao>();
 				List<Movimento> movimentos = new ArrayList<Movimento>();
 
+				Mao maoPrincipal = null;
+				Mao maoSecundaria = null;
+				
 				while (iter.hasNext()) {
 					FileItem item = (FileItem) iter.next();
 
@@ -534,48 +602,75 @@ public class SinalController {
 					} else {
 						if ("idSinal".equals(item.getFieldName())) {
 							sinal = dao.buscaPorId(Long.parseLong(item.getString()));
-							// sinal.setConfiguracoesDeMao(new
-							// ArrayList<ConfiguracaoDeMao>());
-							// System.out.println("Tamanho lista configuracoes
-							// de mao: "+sinal.getConfiguracoesDeMao().size());
-							// sinal.setPontosDeArticulacao(new
-							// ArrayList<PontoDeArticulacao>());
-							// System.out.println("Tamanho lista pontos de
-							// articulacao:
-							// "+sinal.getPontosDeArticulacao().size());
-							// sinal.setMovimentos(new ArrayList<Movimento>());
-							// System.out.println("Tamanho lista movimento:
-							// "+sinal.getMovimentos().size());
+							maoPrincipal = maoDao.buscaPorId(sinal.getMaoPrincipal().getId());
+							if(sinal.getMaoSecundaria() != null){
+								maoSecundaria = maoDao.buscaPorId(sinal.getMaoSecundaria().getId());
+							}else{
+								maoSecundaria = new Mao();
+							}
 						} else if ("nome".equals(item.getFieldName())) {
 							System.out.println("Nome: " + item.getString());
 							sinal.setNome(item.getString());
 						} else if ("categoria".equals(item.getFieldName())
 								&& !item.getString().equals(sinal.getCategoria())) {
 							sinal.setCategoria(item.getString());
-						} else if ("orientacao".equals(item.getFieldName())
-								&& !item.getString().equals(sinal.getOrientacao())) {
-							sinal.setOrientacao(item.getString());
+//						} else if ("orientacao".equals(item.getFieldName())
+//								&& !item.getString().equals(sinal.getOrientacao().toString())) {
+//							sinal.setOrientacao(Orientacao.valueOf(item.getString()));
 						} else if ("dificuldade".equals(item.getFieldName())
 								&& !item.getString().equals(sinal.getDificuldade())) {
 							sinal.setDificuldade(item.getString());
-						} else if (item.getFieldName().startsWith("configuracaoDeMao") && item.getString() != null
-								&& !"".equals(item.getString())) {
-							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao
-									.buscaPorId(Long.parseLong(item.getString()));
-							// sinal.getConfiguracoesDeMao().add(configuracaoDeMao);
-							configuracoesDeMao.add(configuracaoDeMao);
-						} else if (item.getFieldName().startsWith("pontoDeArticulacao") && item.getString() != null
-								&& !"".equals(item.getString())) {
-							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao
-									.buscaPorId(Long.parseLong(item.getString()));
-							// sinal.getPontosDeArticulacao().add(pontoDeArticulacao);
-							pontosDeArticulacao.add(pontoDeArticulacao);
-						} else if (item.getFieldName().startsWith("movimento") && item.getString() != null
-								&& !"".equals(item.getString())) {
+						} else if("utilizacaoDasMaos".equals(item.getFieldName())){
+							sinal.setUtilizacaoDasMaos(UtilizacaoDasMaos.valueOf(item.getString()));
+						}
+						
+						// parametros para mao principal
+						else if("configuracaoDeMao1".equals(item.getFieldName())){
+							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
+							maoPrincipal.setConfiguracaoDeMao(configuracaoDeMao);
+						}else if("pontoDeArticulacao1".equals(item.getFieldName())){
+							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
+							maoPrincipal.setPontoDeArticulacao(pontoDeArticulacao);
+						}else if("movimento1".equals(item.getFieldName())){
 							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
-							// sinal.getMovimentos().add(movimento);
-							movimentos.add(movimento);
-						} else if ("expressao".equals(item.getFieldName())) {
+							maoPrincipal.setMovimento(movimento);
+						}else if("orientacao1".equals(item.getFieldName())){
+							maoPrincipal.setOrientacao(Orientacao.valueOf(item.getString()));
+						}
+						
+						//parametros para mao secundaria
+						else if("configuracaoDeMao2".equals(item.getFieldName()) && !"".equals(item.getString())){
+							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
+							maoSecundaria.setConfiguracaoDeMao(configuracaoDeMao);
+						}else if("pontoDeArticulacao2".equals(item.getFieldName()) && !"".equals(item.getString())){
+							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
+							maoSecundaria.setPontoDeArticulacao(pontoDeArticulacao);
+						}else if("movimento2".equals(item.getFieldName()) && !"".equals(item.getString())){
+							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
+							maoSecundaria.setMovimento(movimento);
+						}else if("orientacao2".equals(item.getFieldName()) && !"".equals(item.getString())){
+							maoSecundaria.setOrientacao(Orientacao.valueOf(item.getString()));
+						}
+						
+//						else if (item.getFieldName().startsWith("configuracaoDeMao") && item.getString() != null
+//								&& !"".equals(item.getString())) {
+//							ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao
+//									.buscaPorId(Long.parseLong(item.getString()));
+//							// sinal.getConfiguracoesDeMao().add(configuracaoDeMao);
+//							configuracoesDeMao.add(configuracaoDeMao);
+//						} else if (item.getFieldName().startsWith("pontoDeArticulacao") && item.getString() != null
+//								&& !"".equals(item.getString())) {
+//							PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao
+//									.buscaPorId(Long.parseLong(item.getString()));
+//							// sinal.getPontosDeArticulacao().add(pontoDeArticulacao);
+//							pontosDeArticulacao.add(pontoDeArticulacao);
+//						} else if (item.getFieldName().startsWith("movimento") && item.getString() != null
+//								&& !"".equals(item.getString())) {
+//							Movimento movimento = movimentoDao.buscaPorId(Long.parseLong(item.getString()));
+//							// sinal.getMovimentos().add(movimento);
+//							movimentos.add(movimento);
+						
+						else if ("expressao".equals(item.getFieldName())) {
 							ExpressaoFacial expressaoFacial = expressaoFacialDao
 									.buscaPorId(Long.parseLong(item.getString()));
 							if (!expressaoFacial.equals(sinal.getExpressaoFacial())) {
@@ -590,9 +685,26 @@ public class SinalController {
 						System.out.println("Parametro de entrada -> " + item.getFieldName() + ": " + item.getString());
 					}
 				}
-				sinal.setConfiguracoesDeMao(configuracoesDeMao);
-				sinal.setPontosDeArticulacao(pontosDeArticulacao);
-				sinal.setMovimentos(movimentos);
+				maoDao.altera(maoPrincipal);
+				sinal.setMaoPrincipal(maoPrincipal);
+				if(UtilizacaoDasMaos.SOMENTE_UMA_MAO.equals(sinal.getUtilizacaoDasMaos())){
+					sinal.setMaoSecundaria(null);
+					if(maoSecundaria.getId() != null){
+						maoDao.remove(maoSecundaria.getId());
+					}
+				}else if(UtilizacaoDasMaos.DUAS_MAOS_PARAMETROS_IGUAIS.equals(sinal.getUtilizacaoDasMaos())){
+					sinal.setMaoSecundaria(maoPrincipal);
+				}else{
+					if(sinal.getMaoSecundaria() == null){
+						maoDao.adiciona(maoSecundaria);
+					}else{
+						maoDao.altera(maoSecundaria);
+					}
+					sinal.setMaoSecundaria(maoSecundaria);
+				}
+//				sinal.setConfiguracoesDeMao(configuracoesDeMao);
+//				sinal.setPontosDeArticulacao(pontosDeArticulacao);
+//				sinal.setMovimentos(movimentos);
 				dao.altera(sinal);
 			} catch (FileUploadException ex) {
 				ex.printStackTrace();

@@ -35,7 +35,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="video-container video col-md-offset-1 col-md-10">
-							<video id="recorded" controls="" autoplay loop
+							<video id="recorded" muted="" loop autoplay=""
 								src="${pageContext.request.contextPath}/resources/videos/${sinal.key.video}"></video>
 						</div>
 					</div>
@@ -70,9 +70,9 @@
 			if(n == 5){
 				$("#formPontuacao").submit();
 			}else{
-				$("#avaliacao" + n).hide();
+				$("#avaliacao" + n).fadeOut("slow");
 				var nAux = parseInt(n) + 1;
-				$("#avaliacao" + nAux).show();	
+				$("#avaliacao" + nAux).fadeIn("slow");	
 			}
 		}
 	</script>

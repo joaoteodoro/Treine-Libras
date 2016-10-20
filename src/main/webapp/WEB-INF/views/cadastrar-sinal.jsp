@@ -178,91 +178,153 @@
 							</c:forEach>
 						</select>
 					</div>
+					
+					<div class="form-group">
+						<label id="labelUtilizacaoDasMaos" for="utilizacaoDasMaos">Utilização das Mãos</label><br/>
+						<c:forEach items="${utilizacoesDasMaos}" var="utilizacaoDaMao" varStatus="status" >
+							<input onclick="exibeBlocoUtilizacaoDasMaos()" type="radio" name="utilizacoesDasMaos" id="utilizacaoDasMaos${status.count}" 
+								value="${utilizacaoDaMao}">${utilizacaoDaMao.descricao}
+						</c:forEach>
+						<input type="hidden" id="utilizacaoDasMaos" name="utilizacaoDasMaos" />
+					</div>
 
-					<!-- 					<div class="form-group"> -->
-					<!-- 						<label for="unidade">Unidade:</label> <input type="text" required pattern="[0-9]+$" -->
-					<%-- 							value="${unidade}" class="form-control" id="unidade" name="unidade" placeholder="unidade"> --%>
-					<!-- 					</div> -->
-					<label id="labelConfiguracaoDeMao" for="configuracaoDeMao">Configurações
-						de Mão:</label>
-					<div class="configuracoesDeMao">
-						<c:set var="camposConfigMao" value="1,2,3,4" scope="application" />
-						<c:forEach items="${fn:split(camposConfigMao, ',')}" var="i">
-							<div id="configMao${i}" class="parametro">
-								<img id="imgConfigMao${i}" class="imgParametro"
+					<div id="bloco-maoPrincipal" class="col-md-6 bloco-mao">
+						<h4>Mão Principal</h4>
+						<label id="labelConfiguracaoDeMao1" for="configuracaoDeMao1">Configuração de Mão:</label>
+						<div class="configuracoesDeMao">
+							<div id="configMao1" class="parametro">
+								<img id="imgConfigMao1" class="imgParametro"
 									src="${pageContext.request.contextPath}/resources/img/mais.png"
 									data-target="#modalConfigMao" data-toggle="modal"
 									title="Clique para adicionar uma configuração de mão" />
-								<div id="excluiConfigMao${i}" class="excluiParametro"
+								<div id="excluiConfigMao1" class="excluiParametro"
 									style="display: none">
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
-								<input type="hidden" id="configuracaoDeMao${i}"
-									name="configuracaoDeMao${i}" />
+								<input type="hidden" id="configuracaoDeMao1"
+									name="configuracaoDeMao1" />
 							</div>
-						</c:forEach>
-						<input type="hidden" name="qtdConfiguracaoDeMao"
-							id="qtdConfiguracaoDeMao">
-					</div>
-					<br /> <br /> <br /> <label id="labelPontoDeArticulacao"
-						for="pontoDeArticulacao">Pontos de Articulação:</label>
-					<div class="pontosDeArticulacao">
-						<c:set var="camposPontoArticulacao" value="1,2,3"
-							scope="application" />
-						<c:forEach items="${fn:split(camposPontoArticulacao, ',')}"
-							var="i">
-							<div id="pontoArticulacao${i}" class="parametro">
-								<img id="imgPontoArticulacao${i}" class="imgParametro"
+							<input type="hidden" name="qtdConfiguracaoDeMao"
+								id="qtdConfiguracaoDeMao">
+						</div>
+						<br /> <br /> <br /> <label id="labelPontoDeArticulacao1"
+							for="pontoDeArticulacao1">Ponto de Articulação</label>
+						<div class="pontosDeArticulacao1">
+							<div id="pontoArticulacao1" class="parametro">
+								<img id="imgPontoArticulacao1" class="imgParametro"
 									src="${pageContext.request.contextPath}/resources/img/mais.png"
 									data-target="#modalPontoArticulacao" data-toggle="modal"
 									title="Clique para adicionar um ponto de articulação" />
-								<div id="excluiPontoArticulacao${i}" class="excluiParametro"
+								<div id="excluiPontoArticulacao1" class="excluiParametro"
 									style="display: none">
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
-								<input type="hidden" id="pontoDeArticulacao${i}"
-									name="pontoDeArticulacao${i}" />
+								<input type="hidden" id="pontoDeArticulacao1"
+									name="pontoDeArticulacao1" />
 							</div>
-						</c:forEach>
-						<input type="hidden" name="qtdPontoDeArticulacao"
-							id="qtdPontoDeArticulacao">
-					</div>
-
-					<br /> <br /> <br /> <label id="labelMovimento" for="movimento">Movimentos:</label>
-					<div class="movimentos">
-						<c:set var="camposMovimentos" value="1,2" scope="application" />
-						<c:forEach items="${fn:split(camposMovimentos, ',')}" var="i">
-							<div id="mov${i}" class="parametro">
-								<img id="imgMovimento${i}" class="imgParametro"
+							<input type="hidden" name="qtdPontoDeArticulacao"
+								id="qtdPontoDeArticulacao">
+						</div>
+	
+						<br /> <br /> <br /> <label id="labelMovimento" for="movimento">Movimento:</label>
+						<div class="movimentos">
+							<div id="mov1" class="parametro">
+								<img id="imgMovimento1" class="imgParametro"
 									src="${pageContext.request.contextPath}/resources/img/mais.png"
 									data-target="#modalMovimento" data-toggle="modal"
 									title="Clique para adicionar um movimento" />
-								<div id="excluiMovimento${i}" class="excluiParametro"
+								<div id="excluiMovimento1" class="excluiParametro"
 									style="display: none">
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
-								<input type="hidden" id="movimento${i}" name="movimento${i}" />
+								<input type="hidden" id="movimento1" name="movimento1" />
 							</div>
-						</c:forEach>
-						<input type="hidden" name="qtdMovimento" id="qtdMovimento">
+							<input type="hidden" name="qtdMovimento" id="qtdMovimento">
+						</div>
+						<br /> <br /> <br />
+	
+						<div class="form-group">
+							<label for="orientacao1">Orientação:</label> <select
+								class="form-control" id="orientacao1" name="orientacao1">
+								<c:forEach items="${orientacoes}" var="orientacao">
+									<option value="${orientacao}">${orientacao.descricao}</option>
+								</c:forEach>
+							</select>
+						</div>
 					</div>
-					<br /> <br /> <br />
-
-					<div class="form-group">
-						<label for="orientacao">Orientação:</label> <select
-							class="form-control" id="orientacao" name="orientacao">
-							<option value="Para cima">Para cima</option>
-							<option value="Para baixo">Para baixo</option>
-							<option value="Para dentro">Para dentro</option>
-							<option value="Para fora">Para fora</option>
-							<option value="Para o lado esquerdo">Para o lado
-								esquerdo</option>
-							<option value="Para o lado direito">Para o lado direito</option>
-						</select>
+					
+					<div id="bloco-maoSecundaria" class="col-md-6 bloco-mao">
+						<h4>Mão Secundária</h4>
+						<label id="labelConfiguracaoDeMao2" for="configuracaoDeMao2">Configuração de Mão:</label>
+						<div class="configuracoesDeMao">
+							<div id="configMao2" class="parametro">
+								<img id="imgConfigMao2" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/mais.png"
+									data-target="#modalConfigMao" data-toggle="modal"
+									title="Clique para adicionar uma configuração de mão" />
+								<div id="excluiConfigMao2" class="excluiParametro"
+									style="display: none">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="configuracaoDeMao2" class="maoSecundaria"
+									name="configuracaoDeMao2" />
+							</div>
+<!-- 							<input type="hidden" name="qtdConfiguracaoDeMao" -->
+<!-- 								id="qtdConfiguracaoDeMao"> -->
+						</div>
+						<br /> <br /> <br /> <label id="labelPontoDeArticulacao2"
+							for="pontoDeArticulacao2">Ponto de Articulação:</label>
+						<div class="pontosDeArticulacao">
+							<div id="pontoArticulacao2" class="parametro">
+								<img id="imgPontoArticulacao2" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/mais.png"
+									data-target="#modalPontoArticulacao" data-toggle="modal"
+									title="Clique para adicionar um ponto de articulação" />
+								<div id="excluiPontoArticulacao2" class="excluiParametro"
+									style="display: none">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="pontoDeArticulacao2" class="maoSecundaria"
+									name="pontoDeArticulacao2" />
+							</div>
+<!-- 							<input type="hidden" name="qtdPontoDeArticulacao" -->
+<!-- 								id="qtdPontoDeArticulacao"> -->
+						</div>
+	
+						<br /> <br /> <br /> <label id="labelMovimento2" for="movimento2">Movimento:</label>
+						<div class="movimentos">
+							<div id="mov2" class="parametro">
+								<img id="imgMovimento2" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/mais.png"
+									data-target="#modalMovimento" data-toggle="modal"
+									title="Clique para adicionar um movimento" />
+								<div id="excluiMovimento2" class="excluiParametro"
+									style="display: none">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="movimento2" name="movimento2" class="maoSecundaria" />
+							</div>
+<!-- 							<input type="hidden" name="qtdMovimento" id="qtdMovimento"> -->
+						</div>
+						<br /> <br /> <br />
+	
+						<div class="form-group">
+							<label for="orientacao2">Orientação:</label> <select
+								class="form-control maoSecundaria" id="orientacao2" name="orientacao2">
+								<c:forEach items="${orientacoes}" var="orientacao">
+									<option value="${orientacao}">${orientacao.descricao}</option>
+								</c:forEach>
+							</select>
+						</div>	
 					</div>
+					<div class="row"></div>
+					
 					<div class="form-group">
 						<label for="expressao">Expressão Facial:</label> <select
 							class="form-control" id="expressao" name="expressao">
@@ -464,6 +526,23 @@
 			}
 			idOpcaoModal = idOpcaoModal.replace("--", "-");
 		}
+		
+		function exibeBlocoUtilizacaoDasMaos(){
+			$("input[name='utilizacoesDasMaos']").each(function() {
+				var id = this.id;
+				var checked = $("#"+id).prop('checked');
+				if(checked){
+					var value = $("#"+id).val();
+					$("#utilizacaoDasMaos").val(value);
+					if(value == 'SOMENTE_UMA_MAO' || value == 'DUAS_MAOS_PARAMETROS_IGUAIS'){
+						$("#bloco-maoSecundaria").hide();
+						$(".maoSecundaria").val("");
+					}else{
+						$("#bloco-maoSecundaria").show();
+					}
+				}
+			});
+		}
 
 		function cadastrar() {
 			alert(validar());
@@ -521,18 +600,68 @@
 
 			return quantidade;
 		}
+		
+		function selecionouQuantidadeDeMaos(){
+			var result = false;
+			$("input[name='utilizacoesDasMaos']").each(function() {
+				var id = this.id;
+				var checked = $("#"+id).prop('checked');
+				if(checked){
+					alert("ok");
+					result =  true;
+				}
+			});
+			return result;
+		}
+		
+		function validaCamposMao(listaParametros,idMao){
+			console.log("function validaCamposMao");
+			for (i = 0; i < listaParametros.length; i++) {
+				console.log("value i="+i+" -> "+$("#"+listaParametros[i]+idMao).val());
+				if($("#"+listaParametros[i]+idMao).val() == ''){
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		function validarCamposObrigatorios(){
+			console.log("entrou na function validarCamposObrigatorios");
+			//validar campo utilizacao das maos
+			var resultado = false;
+			$("input[name='utilizacoesDasMaos']").each(function() {
+				console.log("foreach de utilizacoesDasMaos id: "+this.id);
+				var id = this.id;
+				var checked = $("#"+id).prop('checked');
+				var idsParametros = ["configuracaoDeMao","pontoDeArticulacao","movimento","orientacao"];
+				if(checked){
+					var value = $("#"+id).val();
+					console.log("checked true value: "+value);
+					$("#utilizacaoDasMaos").val(value);
+					if(((value == 'SOMENTE_UMA_MAO' || value == 'DUAS_MAOS_PARAMETROS_IGUAIS')
+							&& validaCamposMao(idsParametros,'1')) ||
+							(value == 'DUAS_MAOS_PARAMETROS_DIFERENTES' && validaCamposMao(idsParametros,'1')
+							&& validaCamposMao(idsParametros,'2'))){
+						resultado = true;
+					}
+				}
+			});
+			return resultado;
+		}
 
 		$("#formCadastrarSinal")
 				.submit(
 						function() {
 
-							if (defineQuantidadeParametro("configuracaoDeMao",
+							if (/*defineQuantidadeParametro("configuracaoDeMao",
 									4, "qtdConfiguracaoDeMao") > 0
 									&& defineQuantidadeParametro(
 											"pontoDeArticulacao", 4,
 											"qtdPontoDeArticulacao") > 0
 									&& defineQuantidadeParametro("movimento",
-											4, "qtdMovimento") > 0) {
+											4, "qtdMovimento") > 0
+									&& */selecionouQuantidadeDeMaos()
+									&& validarCamposObrigatorios()) {
 								if ($('#myModal').css("display") == "block") {
 									return true;
 								}

@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="center-block video-size-execucao">
 				<div class="video-container video">
-					<video id="recorded" controls>
+					<video id="recorded" muted="" loop autoplay="">
 						<source
 							src="${pageContext.request.contextPath}/resources/videos/${sinal.video}"
 							type="video/webm;codecs=&quot;vp8, vorbis&quot;">
@@ -83,7 +83,7 @@
 							</div>
 						</div>
 						<div class="linha-box-avaliacao linha-caracteristica">
-							<b>Orientação:</b> ${sinal.orientacao}
+							<b>Orientação:</b> ${sinal.orientacao.descricao}
 						</div>
 						<div class="linha-box-avaliacao linha-caracteristica">
 							<b>Expressão facial:</b> ${sinal.expressaoFacial.nome}

@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="col-md-6">
-						<video id="gum" autoplay="" muted="" src="blob:"></video>
+						<video id="gum" muted="" loop autoplay="" src="blob:"></video>
 						<div class="botoes-gravacao">
 						  <button id="record" class="bg-black color-white">Iniciar Gravacao</button>
 						  <button id="play" class="bg-black color-white">Play</button>
@@ -31,7 +31,7 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<video id="recorded" muted="" autoplay="" loop="" controls="" src="blob:http%3A//localhost/e6a72d19-04af-4335-b74d-7989001f3bf2"></video>
+						<video id="recorded" muted="" loop autoplay="" src="blob:http%3A//localhost/e6a72d19-04af-4335-b74d-7989001f3bf2"></video>
 						<div class="botoes-gravacao">
 							<button id="enviar" class="center-block bg-black color-white" data-toggle="modal" data-target="#myModal">Enviar</button>
 						</div>
@@ -92,7 +92,7 @@
 								
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
-								<b>Orientacao:</b> ${sinal.orientacao}
+								<b>Orientacao:</b> ${sinal.orientacao.descricao}
 							</div>
 							<div class="linha-box-avaliacao linha-caracteristica">
 								<b>Expressao facial:</b> ${sinal.expressaoFacial.nome}

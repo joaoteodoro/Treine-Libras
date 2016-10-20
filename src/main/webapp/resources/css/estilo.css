@@ -450,3 +450,7 @@ code {
 	color: white;
     font-weight: bold;
 }
+
+.bloco-mao{
+	border: solid 1.2px;
+}

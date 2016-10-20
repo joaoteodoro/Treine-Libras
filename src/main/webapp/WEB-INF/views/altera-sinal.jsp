@@ -184,136 +184,152 @@
 						</select>
 					</div>
 
-					<label id="labelConfiguracaoDeMao" for="configuracaoDeMao">Configurações
-						de Mão:</label>
-					<div class="configuracoesDeMao">
-						<c:forEach items="${sinal.configuracoesDeMao}"
-							var="configuracaoDeMao" varStatus="status">
-							<div id="configMao${status.count}" class="parametro">
-								<img id="imgConfigMao${status.count}" class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/${configuracaoDeMao.imagem}"
-									data-target="#modalConfigMao" data-toggle="modal"
-									title="${configuracaoDeMao.nome}" />
-								<div id="excluiConfigMao${status.count}" class="excluiParametro">
-									<img class="img-responsive"
-										src="${pageContext.request.contextPath}/resources/img/excluir.png">
-								</div>
-								<input type="hidden" id="configuracaoDeMao${status.count}"
-									name="configuracaoDeMao${status.count}"
-									value="${configuracaoDeMao.idConfiguracaoDeMao}" />
-							</div>
-							<c:set var="ultimaConfigMao" value="${status.count + 1}"
-								scope="application" />
-						</c:forEach>
-
-						<c:forEach var="i" begin="${ultimaConfigMao}" end="4">
-							<div id="configMao${i}" class="parametro">
-								<img id="imgConfigMao${i}" class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/mais.png"
-									data-target="#modalConfigMao" data-toggle="modal"
-									title="Clique para adicionar uma configuração de mão" />
-								<div id="excluiConfigMao${i}" class="excluiParametro"
-									style="display: none">
-									<img class="img-responsive"
-										src="${pageContext.request.contextPath}/resources/img/excluir.png">
-								</div>
-								<input type="hidden" id="configuracaoDeMao${i}"
-									name="configuracaoDeMao${i}" />
-							</div>
-						</c:forEach>
-					</div>
-
-					<br /> <br /> <br /> <label id="labelPontoDeArticulacao"
-						for="pontoDeArticulacao">Pontos de Articulação:</label>
-					<div class="pontosDeArticulacao">
-						<c:forEach items="${sinal.pontosDeArticulacao}"
-							var="pontoDeArticulacao" varStatus="status">
-							<div id="pontoArticulacao${status.count}" class="parametro">
-								<img id="imgPontoArticulacao${status.count}"
-									class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}"
-									data-target="#modalPontoArticulacao" data-toggle="modal"
-									title="${pontoDeArticulacao.nome}" />
-								<div id="excluiPontoArticulacao${status.count}"
-									class="excluiParametro">
-									<img class="img-responsive"
-										src="${pageContext.request.contextPath}/resources/img/excluir.png">
-								</div>
-								<input type="hidden" id="pontoDeArticulacao${status.count}"
-									name="pontoDeArticulacao${status.count}"
-									value="${pontoDeArticulacao.idPontoDeArticulacao}" />
-							</div>
-							<c:set var="ultimoPontoArticulacao" value="${status.count + 1}"
-								scope="application" />
-						</c:forEach>
-
-						<c:forEach begin="${ultimoPontoArticulacao}" var="i" end="3">
-							<div id="pontoArticulacao${i}" class="parametro">
-								<img id="imgPontoArticulacao${i}" class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/mais.png"
-									data-target="#modalPontoArticulacao" data-toggle="modal"
-									title="Clique para adicionar um ponto de articulação" />
-								<div id="excluiPontoArticulacao${i}" class="excluiParametro"
-									style="display: none">
-									<img class="img-responsive"
-										src="${pageContext.request.contextPath}/resources/img/excluir.png">
-								</div>
-								<input type="hidden" id="pontoDeArticulacao${i}"
-									name="pontoDeArticulacao${i}" />
-							</div>
-						</c:forEach>
-					</div>
-
-					<br /> <br /> <br /> <label id="labelMovimento" for="movimento">Movimentos:</label>
-					<div class="movimentos">
-						<c:forEach items="${sinal.movimentos}" var="movimento"
-							varStatus="status">
-							<div id="mov${status.count}" class="parametro">
-								<img id="imgMovimento${status.count}" class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/${movimento.imagem}"
-									data-target="#modalMovimento" data-toggle="modal"
-									title="${movimento.nome}" />
-								<div id="excluiMovimento${status.count}" class="excluiParametro">
-									<img class="img-responsive"
-										src="${pageContext.request.contextPath}/resources/img/excluir.png">
-								</div>
-								<input type="hidden" id="movimento${status.count}"
-									name="movimento${status.count}"
-									value="${movimento.idMovimento}" />
-							</div>
-							<c:set var="ultimoMovimento" value="${status.count + 1}"
-								scope="application" />
-						</c:forEach>
-
-						<c:forEach begin="${ultimoMovimento}" end="2" var="i">
-							<div id="mov${i}" class="parametro">
-								<img id="imgMovimento${i}" class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/mais.png"
-									data-target="#modalMovimento" data-toggle="modal"
-									title="Clique para adicionar um movimento" />
-								<div id="excluiMovimento${i}" class="excluiParametro"
-									style="display: none">
-									<img class="img-responsive"
-										src="${pageContext.request.contextPath}/resources/img/excluir.png">
-								</div>
-								<input type="hidden" id="movimento${i}" name="movimento${i}" />
-							</div>
-						</c:forEach>
-					</div>
-
-					<br /> <br /> <br />
-					<c:set var="orientacoes"
-						value="Para cima,Para baixo,Para dentro,Para fora,Para o lado esquerdo,Para o lado direito"
-						scope="application" />
 					<div class="form-group">
-						<label for="orientacao">Orientação:</label> <select
-							class="form-control" id="orientacao" name="orientacao">
-							<c:forEach items="${fn:split(orientacoes, ',')}" var="orientacao">
-								<option value="${orientacao}"
-									${sinal.orientacao == orientacao ? 'selected' : ''}>${orientacao}</option>
-							</c:forEach>
-						</select>
+						<label id="labelUtilizacaoDasMaos" for="utilizacaoDasMaos">Utilização
+							das Mãos</label><br />
+						<c:forEach items="${utilizacoesDasMaos}" var="utilizacaoDaMao"
+							varStatus="status">
+							<input onclick="exibeBlocoUtilizacaoDasMaos()" type="radio"
+								name="utilizacoesDasMaos" id="utilizacaoDasMaos${status.count}"
+								${utilizacaoDaMao == sinal.utilizacaoDasMaos ? 'checked' : ''}
+								value="${utilizacaoDaMao}">
+							 	${utilizacaoDaMao.descricao}
+						</c:forEach>
+						<input type="hidden" id="utilizacaoDasMaos"
+							name="utilizacaoDasMaos" />
 					</div>
+
+
+					<div id="bloco-maoPrincipal" class="col-md-6 bloco-mao">
+						<h4>Mão Principal</h4>
+						<label id="labelConfiguracaoDeMao1" for="configuracaoDeMao1">Configuração
+							de Mão:</label>
+						<div class="configuracoesDeMao">
+							<div id="configMao1" class="parametro">
+								<img id="imgConfigMao1" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/${sinal.maoPrincipal.configuracaoDeMao.imagem}"
+									data-target="#modalConfigMao" data-toggle="modal"
+									title="${sinal.maoPrincipal.configuracaoDeMao.nome}" />
+								<div id="excluiConfigMao1" class="excluiParametro">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="configuracaoDeMao1"
+									name="configuracaoDeMao1" value="${sinal.maoPrincipal.configuracaoDeMao.idConfiguracaoDeMao }"/>
+							</div>
+							<input type="hidden" name="qtdConfiguracaoDeMao"
+								id="qtdConfiguracaoDeMao">
+						</div>
+						<br /> <br /> <br /> <label id="labelPontoDeArticulacao1"
+							for="pontoDeArticulacao1">Ponto de Articulação</label>
+						<div class="pontosDeArticulacao1">
+							<div id="pontoArticulacao1" class="parametro">
+								<img id="imgPontoArticulacao1" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/${sinal.maoPrincipal.pontoDeArticulacao.imagem}"
+									data-target="#modalPontoArticulacao" data-toggle="modal"
+									title="${sinal.maoPrincipal.pontoDeArticulacao.nome}" />
+								<div id="excluiPontoArticulacao1" class="excluiParametro">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="pontoDeArticulacao1"
+									name="pontoDeArticulacao1" value="${sinal.maoPrincipal.pontoDeArticulacao.idPontoDeArticulacao}" />
+							</div>
+							<input type="hidden" name="qtdPontoDeArticulacao"
+								id="qtdPontoDeArticulacao">
+						</div>
+						<br /> <br /> <br /> <label id="labelMovimento" for="movimento">Movimento:</label>
+						<div class="movimentos">
+							<div id="mov1" class="parametro">
+								<img id="imgMovimento1" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/${sinal.maoPrincipal.movimento.imagem}"
+									data-target="#modalMovimento" data-toggle="modal"
+									title="${sinal.maoPrincipal.movimento.nome}" />
+								<div id="excluiMovimento1" class="excluiParametro">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="movimento1" name="movimento1" value="${sinal.maoPrincipal.movimento.idMovimento}" />
+							</div>
+							<input type="hidden" name="qtdMovimento" id="qtdMovimento">
+						</div>
+						<br /> <br /> <br />
+
+						<div class="form-group">
+							<label for="orientacao1">Orientação:</label> <select
+								class="form-control" id="orientacao1" name="orientacao1">
+								<c:forEach items="${orientacoes}" var="orientacao">
+									<option value="${orientacao}"
+										${sinal.maoPrincipal.orientacao.descricao == orientacao.descricao ? 'selected' : ''}>${orientacao.descricao}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+					
+					<div id="bloco-maoSecundaria" class="col-md-6 bloco-mao">
+						<h4>Mão Secundária</h4>
+						<label id="labelConfiguracaoDeMao2" for="configuracaoDeMao2">Configuração
+							de Mão:</label>
+						<div class="configuracoesDeMao">
+							<div id="configMao2" class="parametro">
+								<img id="imgConfigMao2" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/${sinal.maoSecundaria.configuracaoDeMao.imagem}"
+									data-target="#modalConfigMao" data-toggle="modal"
+									title="${sinal.maoSecundaria.configuracaoDeMao.nome}" />
+								<div id="excluiConfigMao2" class="excluiParametro"
+									style="display: none">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="configuracaoDeMao2"
+									name="configuracaoDeMao2" value="${sinal.maoSecundaria.configuracaoDeMao.idConfiguracaoDeMao}"/>
+							</div>
+						</div>
+						<br /> <br /> <br /> <label id="labelPontoDeArticulacao2"
+							for="pontoDeArticulacao2">Ponto de Articulação</label>
+						<div class="pontosDeArticulacao2">
+							<div id="pontoArticulacao2" class="parametro">
+								<img id="imgPontoArticulacao2" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/${sinal.maoSecundaria.pontoDeArticulacao.imagem}"
+									data-target="#modalPontoArticulacao" data-toggle="modal"
+									title="${sinal.maoSecundaria.pontoDeArticulacao.nome}" />
+								<div id="excluiPontoArticulacao2" class="excluiParametro"
+									style="display: none">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="pontoDeArticulacao2"
+									name="pontoDeArticulacao2" value="${sinal.maoSecundaria.pontoDeArticulacao.idPontoDeArticulacao}" />
+							</div>
+						</div>
+						<br /> <br /> <br /> <label id="labelMovimento" for="movimento2">Movimento:</label>
+						<div class="movimentos">
+							<div id="mov2" class="parametro">
+								<img id="imgMovimento2" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/${sinal.maoSecundaria.movimento.imagem}"
+									data-target="#modalMovimento" data-toggle="modal"
+									title="${sinal.maoSecundaria.movimento.nome}" />
+								<div id="excluiMovimento2" class="excluiParametro"
+									style="display: none">
+									<img class="img-responsive"
+										src="${pageContext.request.contextPath}/resources/img/excluir.png">
+								</div>
+								<input type="hidden" id="movimento2" name="movimento2" value=""/>
+							</div>
+						</div>
+						<br /> <br /> <br />
+
+						<div class="form-group">
+							<label for="orientacao2">Orientação:</label> <select
+								class="form-control" id="orientacao2" name="orientacao2">
+								<c:forEach items="${orientacoes}" var="orientacao">
+									<option value="${orientacao}"
+										${sinal.maoSecundaria.orientacao.descricao == orientacao.descricao ? 'selected' : ''}>${orientacao.descricao}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+					<div class="row"></div>
 					<div class="form-group">
 						<label for="expressao">Expressão Facial:</label> <select
 							class="form-control" id="expressao" name="expressao">
@@ -336,7 +352,7 @@
 					<div class="form-group">
 						<div class="center-block video-size-execucao">
 							<div class="video-container video">
-								<video id="videoGravado" controls=""
+								<video id="videoGravado" muted="" loop autoplay=""
 									src="${pageContext.request.contextPath}/resources/videos/${sinal.video}"></video>
 							</div>
 						</div>
@@ -395,6 +411,23 @@
 	</div>
 	<c:import url="rodape.jsp" />
 	<script>
+		$( document ).ready(function() {
+			exibeBlocoUtilizacaoDasMaos();
+			
+			var utilizacaoDasMaos = $("#utilizacaoDasMaos").val();
+			if(utilizacaoDasMaos == 'SOMENTE_UMA_MAO' || utilizacaoDasMaos == 'DUAS_MAOS_PARAMETROS_IGUAIS'){
+				console.log("teste");
+				excluiParametro($("#excluiConfigMao2")[0]);
+				excluiParametro($("#excluiPontoArticulacao2")[0]);
+				excluiParametro($("#excluiMovimento2")[0]);
+			}else{
+				$("#excluiConfigMao2").show();
+				$("#excluiPontoArticulacao2").show();
+				$("#excluiMovimento2").show();
+			}
+				
+		});
+	
 		var idClicada;
 		var nIdClicada;
 		var nomeClicado;
@@ -467,22 +500,43 @@
 		$(".excluiParametro")
 				.click(
 						function() {
-							var idOpcaoClicada = parseInt((this.id).substring(
-									((this.id).length) - 1, (this.id).length));
-							var nomeOpcaoClicada = (this.id).substring(6,
-									((this.id).length) - 1);
+// 							var idOpcaoClicada = parseInt((this.id).substring(
+// 									((this.id).length) - 1, (this.id).length));
+// 							var nomeOpcaoClicada = (this.id).substring(6,
+// 									((this.id).length) - 1);
 
-							definirNomeNoTitle(nomeOpcaoClicada);
+// 							definirNomeNoTitle(nomeOpcaoClicada);
 
-							$("#img" + nomeOpcaoClicada + idOpcaoClicada)
-									.attr("src",
-											"${pageContext.request.contextPath}/resources/img/mais.png");
-							$("#img" + nomeOpcaoClicada + idOpcaoClicada).attr(
-									"title",
-									"Clique para adicionar " + nomeNoTitle);
-							$("#" + nomeInput + idOpcaoClicada).val("");
-							$("#exclui" + nomeExclui + idOpcaoClicada).hide();
+// 							$("#img" + nomeOpcaoClicada + idOpcaoClicada)
+// 									.attr("src",
+// 											"${pageContext.request.contextPath}/resources/img/mais.png");
+// 							$("#img" + nomeOpcaoClicada + idOpcaoClicada).attr(
+// 									"title",
+// 									"Clique para adicionar " + nomeNoTitle);
+// 							$("#" + nomeInput + idOpcaoClicada).val("");
+// 							$("#exclui" + nomeExclui + idOpcaoClicada).hide();
+							console.log(this);
+							excluiParametro(this);
 						});
+		
+		
+		function excluiParametro(elementoClicado){
+			var idOpcaoClicada = parseInt((elementoClicado.id).substring(
+					((elementoClicado.id).length) - 1, (elementoClicado.id).length));
+			var nomeOpcaoClicada = (elementoClicado.id).substring(6,
+					((elementoClicado.id).length) - 1);
+
+			definirNomeNoTitle(nomeOpcaoClicada);
+
+			$("#img" + nomeOpcaoClicada + idOpcaoClicada)
+					.attr("src",
+							"${pageContext.request.contextPath}/resources/img/mais.png");
+			$("#img" + nomeOpcaoClicada + idOpcaoClicada).attr(
+					"title",
+					"Clique para adicionar " + nomeNoTitle);
+			$("#" + nomeInput + idOpcaoClicada).val("");
+			$("#exclui" + nomeExclui + idOpcaoClicada).hide();
+		}
 
 		function definirNomeNoTitle(parametroClicado) {
 			if (parametroClicado == 'ConfigMao') {
@@ -511,6 +565,23 @@
 				idModal = 'modalMovimento';
 			}
 			idOpcaoModal = idOpcaoModal.replace("--", "-");
+		}
+		
+		function exibeBlocoUtilizacaoDasMaos(){
+			$("input[name='utilizacoesDasMaos']").each(function() {
+				var id = this.id;
+				var checked = $("#"+id).prop('checked');
+				if(checked){
+					var value = $("#"+id).val();
+					$("#utilizacaoDasMaos").val(value);
+					if(value == 'SOMENTE_UMA_MAO' || value == 'DUAS_MAOS_PARAMETROS_IGUAIS'){
+						$("#bloco-maoSecundaria").hide();
+						$(".maoSecundaria").val("");
+					}else{
+						$("#bloco-maoSecundaria").show();
+					}
+				}
+			});
 		}
 
 		function cadastrar() {
@@ -573,6 +644,18 @@
 		function alterarSinal() {
 			$("#formAlterarSinal").submit();
 		}
+		
+		function selecionouQuantidadeDeMaos(){
+			var result = false;
+			$("input[name='utilizacoesDasMaos']").each(function() {
+				var id = this.id;
+				var checked = $("#"+id).prop('checked');
+				if(checked){
+					result =  true;
+				}
+			});
+			return result;
+		}
 
 		$("#formAlterarSinal")
 				.submit(
@@ -583,7 +666,8 @@
 											"pontoDeArticulacao", 4,
 											"qtdPontoDeArticulacao") > 0
 									&& defineQuantidadeParametro("movimento",
-											4, "qtdMovimento") > 0) {
+											4, "qtdMovimento") > 0
+									&& selecionouQuantidadeDeMaos()) {
 								if ($('#myModal').css("display") == "block") {
 									return true;
 								}
