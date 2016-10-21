@@ -450,17 +450,17 @@
 							idOpcaoClicada = Math.abs(idOpcaoClicada);
 
 							//verificar se essa opcao escolhida ja foi escolhida.
-							if (verficarExistencia($(
-									"#" + idInputModal + idOpcaoClicada).val())) {
-								//alert('existe');
-								$("#tituloModalErro").text(
-										"Parâmetro já selecionado");
-								$("#conteudoModalErro")
-										.text(
-												"Este parametro já está selecionado, por favor selecione outro!");
-								$("#modalErro").modal('show');
-								return;
-							}
+// 							if (verficarExistencia($(
+// 									"#" + idInputModal + idOpcaoClicada).val())) {
+// 								//alert('existe');
+// 								$("#tituloModalErro").text(
+// 										"Parâmetro já selecionado");
+// 								$("#conteudoModalErro")
+// 										.text(
+// 												"Este parametro já está selecionado, por favor selecione outro!");
+// 								$("#modalErro").modal('show');
+// 								return;
+// 							}
 
 							$("#" + idClicada).attr(
 									"src",

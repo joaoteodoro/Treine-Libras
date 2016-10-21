@@ -469,17 +469,17 @@
 							idOpcaoClicada = Math.abs(idOpcaoClicada);
 
 							//verificar se essa opcao escolhida ja foi escolhida.
-							if (verficarExistencia($(
-									"#" + idInputModal + idOpcaoClicada).val())) {
-								//alert('existe');
-								$("#tituloModalErro").text(
-										"Parâmetro já selecionado");
-								$("#conteudoModalErro")
-										.text(
-												"Este parametro já está selecionado, por favor selecione outro!");
-								$("#modalErro").modal('show');
-								return;
-							}
+// 							if (verficarExistencia($(
+// 									"#" + idInputModal + idOpcaoClicada).val())) {
+// 								//alert('existe');
+// 								$("#tituloModalErro").text(
+// 										"Parâmetro já selecionado");
+// 								$("#conteudoModalErro")
+// 										.text(
+// 												"Este parametro já está selecionado, por favor selecione outro!");
+// 								$("#modalErro").modal('show');
+// 								return;
+// 							}
 
 							$("#" + idClicada).attr(
 									"src",
@@ -656,18 +656,54 @@
 			});
 			return result;
 		}
+		
+		function validaCamposMao(listaParametros,idMao){
+			console.log("function validaCamposMao");
+			for (i = 0; i < listaParametros.length; i++) {
+				console.log("value i="+i+" -> "+$("#"+listaParametros[i]+idMao).val());
+				if($("#"+listaParametros[i]+idMao).val() == ''){
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		function validarCamposObrigatorios(){
+			console.log("entrou na function validarCamposObrigatorios");
+			//validar campo utilizacao das maos
+			var resultado = false;
+			$("input[name='utilizacoesDasMaos']").each(function() {
+				console.log("foreach de utilizacoesDasMaos id: "+this.id);
+				var id = this.id;
+				var checked = $("#"+id).prop('checked');
+				var idsParametros = ["configuracaoDeMao","pontoDeArticulacao","movimento","orientacao"];
+				if(checked){
+					var value = $("#"+id).val();
+					console.log("checked true value: "+value);
+					$("#utilizacaoDasMaos").val(value);
+					if(((value == 'SOMENTE_UMA_MAO' || value == 'DUAS_MAOS_PARAMETROS_IGUAIS')
+							&& validaCamposMao(idsParametros,'1')) ||
+							(value == 'DUAS_MAOS_PARAMETROS_DIFERENTES' && validaCamposMao(idsParametros,'1')
+							&& validaCamposMao(idsParametros,'2'))){
+						resultado = true;
+					}
+				}
+			});
+			return resultado;
+		}
 
 		$("#formAlterarSinal")
 				.submit(
 						function() {
-							if (defineQuantidadeParametro("configuracaoDeMao",
+							if (/*defineQuantidadeParametro("configuracaoDeMao",
 									4, "qtdConfiguracaoDeMao") > 0
 									&& defineQuantidadeParametro(
 											"pontoDeArticulacao", 4,
 											"qtdPontoDeArticulacao") > 0
 									&& defineQuantidadeParametro("movimento",
 											4, "qtdMovimento") > 0
-									&& selecionouQuantidadeDeMaos()) {
+									&&*/ selecionouQuantidadeDeMaos()
+									&& validarCamposObrigatorios()) {
 								if ($('#myModal').css("display") == "block") {
 									return true;
 								}

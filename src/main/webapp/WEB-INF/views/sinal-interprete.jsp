@@ -32,64 +32,54 @@
 			</div>
 			<br /> <br />
 			<div class="col-md-6">
-				<div class="box-comum-avaliacao-sinal col-md-11">
-					<div class="cabecalho-box-comum-avaliacao text-center">
-						<h4>
-							<b>Caracteristicas deste sinal</b>
-						</h4>
-					</div>
-					<div class="catacteristicas-sinal">
-						<div class="linha-box-avaliacao linha-caracteristica">
-							<b>Configuracao de Mao:</b>
-							<div class="configuracoesDeMao">
-								<c:forEach items="${sinal.configuracoesDeMao}"
-									var="configuracaoDeMao" varStatus="status">
-									<div id="configMao${status.count}" class="parametro">
-										<img id="imgConfigMao${status.count}" class="imgParametro"
-											src="${pageContext.request.contextPath}/resources/img/${configuracaoDeMao.imagem}"
-											data-target="#modalConfigMao" data-toggle="modal"
-											title="${configuracaoDeMao.nome}" />
-									</div>
-								</c:forEach>
-							</div>
-						</div>
-						<div class="linha-box-avaliacao linha-caracteristica">
-							<b>Ponto de articulacaoo:</b>
-							<div class="pontosDeArticulacao">
-								<c:forEach items="${sinal.pontosDeArticulacao}"
-									var="pontoDeArticulacao" varStatus="status">
-									<div id="pontoArticulacao${status.count}" class="parametro">
-										<img id="imgPontoArticulacao${status.count}"
-											class="imgParametro"
-											src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}"
-											data-target="#modalPontoArticulacao" data-toggle="modal"
-											title="${pontoDeArticulacao.nome}" />
-									</div>
-								</c:forEach>
-							</div>
-						</div>
-						<div class="linha-box-avaliacao linha-caracteristica">
-							<b>Movimento:</b>
-							<div class="movimentos">
-								<c:forEach items="${sinal.movimentos}" var="movimento"
-									varStatus="status">
-									<div id="mov${status.count}" class="parametro">
-										<img id="imgMovimento${status.count}" class="imgParametro"
-											src="${pageContext.request.contextPath}/resources/img/${movimento.imagem}"
-											data-target="#modalMovimento" data-toggle="modal"
-											title="${movimento.nome}" />
-									</div>
-								</c:forEach>
-							</div>
-						</div>
-						<div class="linha-box-avaliacao linha-caracteristica">
-							<b>Orientação:</b> ${sinal.orientacao.descricao}
-						</div>
-						<div class="linha-box-avaliacao linha-caracteristica">
-							<b>Expressão facial:</b> ${sinal.expressaoFacial.nome}
-						</div>
-					</div>
-				</div>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th colspan="3"><p align="center">CARACTERÍSTICAS DESTE SINAL</p></th>
+						<tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="3" class="destaque-tabela" align="center">
+								${sinal.utilizacaoDasMaos.descricao}
+							</td>
+						</tr>
+						<tr>
+							<td>
+							</td>
+							<td class="destaque-tabela" align="center">Mão Principal</td>
+							<td class="destaque-tabela">
+								<c:if test="${sinal.maoSecundaria != null }">
+									Mão Secundária
+								</c:if>
+							</td>
+						</tr>
+						<tr title="Configuração de Mão">
+							<td class="destaque-tabela">CF</td>
+							<td>${sinal.maoPrincipal.configuracaoDeMao.nome}</td>
+							<td>${sinal.maoSecundaria.configuracaoDeMao.nome}</td>
+						</tr>
+						<tr title="Ponto de Articulação">
+							<td class="destaque-tabela">PA</td>
+							<td>${sinal.maoPrincipal.pontoDeArticulacao.nome}</td>
+							<td>${sinal.maoSecundaria.pontoDeArticulacao.nome}</td>
+						</tr>
+						<tr title="Movimento">
+							<td class="destaque-tabela">MV</td>
+							<td>${sinal.maoPrincipal.movimento.nome}</td>
+							<td>${sinal.maoSecundaria.movimento.nome}</td>
+						</tr>
+						<tr title="Orientação">
+							<td class="destaque-tabela">OR</td>
+							<td>${sinal.maoPrincipal.orientacao.descricao}</td>
+							<td>${sinal.maoSecundaria.orientacao.descricao}</td>
+						</tr>
+						<tr title="Expressão Facial">
+							<td class="destaque-tabela">EF</td>
+							<td colspan="2" align="center">${sinal.expressaoFacial.nome}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<div class="col-md-6">
 				<div class="box-execucao-sinal">

@@ -454,3 +454,7 @@ code {
 .bloco-mao{
 	border: solid 1.2px;
 }
+
+.destaque-tabela{
+	font-weight: bold;
+}
