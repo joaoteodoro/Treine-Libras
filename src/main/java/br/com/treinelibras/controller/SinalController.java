@@ -44,6 +44,7 @@ import br.com.treinelibras.modelo.Sinal;
 import br.com.treinelibras.modelo.Unidade;
 import br.com.treinelibras.modelo.Usuario;
 import br.com.treinelibras.modelo.UtilizacaoDasMaos;
+import br.com.treinelibras.util.FileUtils;
 import br.com.treinelibras.util.StringUtils;
 
 @Transactional
@@ -404,7 +405,8 @@ public class SinalController {
 							// salvarFoto
 							System.out.println("nomeArquivo: " + nomeArquivo);
 							item.setFieldName(nomeArquivo);
-							this.inserirImagemDiretorio(item, "img");
+							//this.inserirImagemDiretorio(item, "img");
+							FileUtils.inserirImagemDiretorio(item, "img");
 							sinal.setFoto(item.getFieldName());
 						} else {
 							// salvarVideo
@@ -590,7 +592,8 @@ public class SinalController {
 							// salvarFoto
 							System.out.println("Arquivo de Entrada ->" + item.getFieldName() + ": " + nomeArquivo);
 							item.setFieldName(nomeArquivo);
-							this.inserirImagemDiretorio(item, "img");
+							//this.inserirImagemDiretorio(item, "img");
+							FileUtils.inserirImagemDiretorio(item, "img");
 							sinal.setFoto(item.getFieldName());
 						} else if (item.getFieldName().equals("video") && item != null) {
 							// salvarVideo

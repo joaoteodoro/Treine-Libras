@@ -23,7 +23,7 @@
 		</div>
 		<div class="row">
 			<div class="center-block box-page-geral">
-				<a href="cadastrarConfiguracaoDeMao"><h4><b>+Adiconar nova Configuração de Mão</b></h4></a>
+				<a href="cadastrarConfiguracaoDeMaoAntes"><h4><b>+Adiconar nova Configuração de Mão</b></h4></a>
 				<table id="tabela" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
 					<thead>
@@ -31,6 +31,7 @@
 							<th>ID</th>
 							<th>Nome</th>
 							<th>Imagem</th>
+							<th>Gerenciar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -38,17 +39,16 @@
 							<tr>
 								<td>${configuracaoDeMao.idConfiguracaoDeMao}</td>
 								<td>${configuracaoDeMao.nome}</td>
-								<td><img class="img-responsive" 
+								<td><img class="img-responsive parametro" 
 									src="${pageContext.request.contextPath}/resources/img/${configuracaoDeMao.imagem}"/></td>
-								<td>${unidade.sinais.size()}</td>
 								<td>
 									<div class="gerenciar">
 										<a title="Alterar Configuração de Mão"
-											href="cadastrarConfiguracaoDeMao?id=${configuracaoDeMao.idConfiguracaoDeMao}"><img
+											href="cadastrarConfiguracaoDeMaoAntes?id=${configuracaoDeMao.idConfiguracaoDeMao}"><img
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/editar.png" /></a>
 										<a title="Remover Configuração de Mão"
-											onclick="setidUnidadeGerenciando(${configuracaoDeMao.idConfiguracaoDeMao})"
+											onclick="setidConfigMaoGerenciando(${configuracaoDeMao.idConfiguracaoDeMao})"
 											data-toggle="modal" data-target="#modalExcluir"><img
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/lixeira.png" /></a>
@@ -73,12 +73,11 @@
 						<h4 class="modal-title" id="myModalLabel">Exclusão</h4>
 					</div>
 					<div class="modal-body">Deseja realmente excluir esta
-						Unidade? Todos os sinais relacionados a esta unidade serão
-						excluídos.</div>
+						Configuração de Mão?</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
 						<button type="button" class="btn btn-primary"
-							onclick="excluirUnidade()">Sim</button>
+							onclick="excluirConfigMao()">Sim</button>
 					</div>
 				</div>
 			</div>
@@ -91,42 +90,14 @@
 		src="${pageContext.request.contextPath}/resources/js/dataTables.bootstrap.min.js">
 	</script>
 	<script>
-		var idSinalGerenciando;
-		
-		
-		$( "input[id^=defineUnidadeAtual]" ).click(function() {
-			var id = this.id;
-			var numeroId = id.replace(/[^0-9]/g,'');
-			removerOutraMarcacao(numeroId);
-		});
-		
-		function removerOutraMarcacao(idSelecionado){
-			$("input[id^=defineUnidadeAtual]").each( function () {
-				var id = this.id;
-				var numeroId = id.replace(/[^0-9]/g,'');
+		var idConfigMaoGerenciando;
 				
-				if(numeroId != idSelecionado){
-					$("#"+id).prop("checked",false);
-				}
-			});
-			alterarUnidadeAtual(idSelecionado);
-		}
-		
-		function alterarUnidadeAtual(idSelecionado){
-			$.post("alterarUnidadeAtual",{'idUnidade' : idSelecionado}, function(resposta){
-				location.reload();
-			});
-		}
-	
-		var idUnidadeGerenciando;
-		
-		function setidUnidadeGerenciando(idUnidade){
-			idUnidadeGerenciando = idUnidade;
+		function setidConfigMaoGerenciando(idUnidade){
+			idConfigMaoGerenciando = idUnidade;
 		}
 			
-		function excluirUnidade(){
-			console.log("idUnidadeGerenciando: "+idUnidadeGerenciando);
-			$.post("removerUnidade",{'id' : idUnidadeGerenciando}, function(resposta){
+		function excluirConfigMao(){
+			$.post("removerConfigMao",{'id' : idConfigMaoGerenciando}, function(resposta){
 				//window.location.replace("listarSinais");
 				location.reload();
 			});
@@ -137,16 +108,16 @@
 						{
 							oLanguage : {
 								sEmptyTable : "Nenhum registro encontrado",
-								sInfo : "Apresentando _END_ unidades. Total de unidades cadastradas: _TOTAL_",
+								sInfo : "Apresentando _END_ configurações de mão. Total de configurações de mão cadastradas: _TOTAL_",
 								sInfoEmpty : "Mostrando 0 até 0 de 0 registros",
 								sInfoFiltered : "(Filtrados de _MAX_ registros)",
 								sInfoPostFix : "",
 								sInfoThousands : ".",
-								sLengthMenu : "Qtd unidades apresentadas por pág: _MENU_",
+								sLengthMenu : "Qtd contigurações de mão apresentadas por pág: _MENU_",
 								sLoadingRecords : "Carregando...",
 								sProcessing : "Processando...",
 								sZeroRecords : "Nenhum registro encontrado",
-								sSearch : "Buscar Unidade",
+								sSearch : "Buscar Configuração de Mão",
 								oPaginate : {
 									sNext : "Próximo",
 									sPrevious : "Anterior",

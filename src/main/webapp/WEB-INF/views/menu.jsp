@@ -50,13 +50,13 @@
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${usuarioLogado.perfil == 'admin'}">
+						<c:when test="${usuarioLogado.perfil == 'professor' || usuarioLogado.perfil == 'admin'}">
 							<c:choose>
 								<c:when test="${param.paginaAtual == 'sinais'}">
-									<li class="active"><a href="unidades">SINAIS</a></li>
+									<li class="active"><a href="homeProfessor">Área do Professor</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="unidades">SINAIS</a></li>
+									<li><a href="homeProfessor">Área do Professor</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
