@@ -1,0 +1,181 @@
+<html>
+
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Treine Libras - Avaliar</title>
+	<meta name="description" content="" />
+	<link href="css/jquery-ui.min.css" rel="stylesheet" />
+	<link href="css/jquery-ui.theme.min.css" rel="stylesheet" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/estilo.css" rel="stylesheet" />
+	<link href="css/datatables.min.css" rel="stylesheet" />
+	<link href="css/dataTables.bootstrap.min.css" rel="stylesheet" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/datatables.min.js"></script>
+	</head>
+	<style>
+		.box-unidade{
+		    height: 100px;
+			background-color: black;
+			text-align: center;
+			color: white;
+			border-color: white;
+			border: solid;
+		}
+		
+		.box-unidade:hover{
+			background-color: white;
+			color: black !important;
+		}
+		
+		.box-externo-principal{
+			padding: 10px;
+			overflow: hidden;
+		}
+	</style>
+
+	<body style="background-color:gray">
+		<div class="barra-menu">
+			<nav class="navbar navbar-default navbar-libras menu center-block">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						  <span class="sr-only">Toggle navigation</span>
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">Treine Libras</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+						  <li><a href="#">HOME</a></li>
+						  <li><a href="exercicios.html">EXERCÍCIOS</a></li>
+						  <li><a href="glosario.html">GLOSÁRIO</a></li>
+						  <li class="active"><a href="avaliar.html">AVALIAR</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="container" style="background-color: white;">
+			<br/>
+			<br/>
+			<div class="alinhamento-esquerdo">
+				<br/>
+				<br/>
+				<h3><b>Área do Professor</b></h3>
+				<br/>
+				<br/>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<a href="lista-gravacoes-sinal.html"> 
+						<div class="box-unidade">
+							<div class="col-md-3">
+								<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+							</div>
+							<div class="col-md-9">
+								<h3 class="center-block"><b>Configurações de Mão</b></h3>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4">
+					<a href="lista-gravacoes-sinal.html"> 
+						<div class="box-unidade">
+							<div class="col-md-3">
+								<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+							</div>
+							<div class="col-md-9">
+								<h3 class="center-block"><b>Pontos de Articulação</b></h3>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4">
+					<a href="lista-gravacoes-sinal.html"> 
+						<div class="box-unidade">
+							<div class="col-md-3">
+								<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+							</div>
+							<div class="col-md-9">
+								<h3 class="center-block"><b>Movimentos</b></h3>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<a href="lista-gravacoes-sinal.html"> 
+						<div class="box-unidade">
+							<div class="col-md-3">
+								<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+							</div>
+							<div class="col-md-9">
+								<h3 class="center-block"><b>Expressões Faciais</b></h3>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4">
+					<a href="lista-gravacoes-sinal.html"> 
+						<div class="box-unidade">
+							<div class="col-md-3">
+								<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+							</div>
+							<div class="col-md-9">
+								<h3 class="center-block"><b>Unidades</b></h3>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-4">
+					<a href="lista-gravacoes-sinal.html"> 
+						<div class="box-unidade">
+							<div class="col-md-3">
+								<img class="img-sinal-libras img-responsive center-block" src="img/img1.jpg"/>
+							</div>
+							<div class="col-md-9">
+								<h3 class="center-block"><b>Alunos</b></h3>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<script src="js/dataTables.bootstrap.min.js"></script>
+		<script>
+		$('#tabela').dataTable({
+			oLanguage : {
+					sEmptyTable : "Nenhum registro encontrado",
+					sInfo : "Apresentando _END_ sinais. Total de sinais cadastrados: _TOTAL_",
+					sInfoEmpty : "Mostrando 0 até 0 de 0 registros",
+					sInfoFiltered : "(Filtrados de _MAX_ registros)",
+					sInfoPostFix : "",
+					sInfoThousands : ".",
+					sLengthMenu : "Qtd sinais apresentados por pág: _MENU_",
+					sLoadingRecords : "Carregando...",
+					sProcessing : "Processando...",
+					sZeroRecords : "Nenhum registro encontrado",
+					sSearch : "Buscar sinal",
+					oPaginate : {
+						sNext : "Próximo",
+						sPrevious : "Anterior",
+						sFirst : "Primeiro",
+						sLast : "Último"
+					},
+					oAria : {
+						sSortAscending : ": Ordenar colunas de forma ascendente",
+						sSortDescending : ": Ordenar colunas de forma descendente"
+					}
+				}
+		
+		});
+		</script>
+	</body>
+</html>
