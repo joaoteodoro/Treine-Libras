@@ -107,6 +107,11 @@ public class UnidadeController {
 		usuarioDao.restaPrimeiroAcesso();
 		return "redirect:unidades";
 	}
+	
+	@RequestMapping("homeProfessor")
+	public String homeProfessor(){
+		return "home-professor";
+	}
 
 	public String recuperaTodasUninades(Model model, String paginaRetorno) {
 		List<Unidade> unidades = unidadeDao.lista();

@@ -203,7 +203,7 @@ body{
 
 .box-comum-avaliacao-sinal{
 	border: solid;
-	height: 300px;
+	height: 350px;
 	margin: 5%;
 	padding: 0px;
 }
@@ -319,3 +319,7 @@ body{
 }
 
 /*INICIAL ALTERAÇÃO 08/06/2016 - TELA PARA CADASTRO DE SINAL*/
+
+.destaque-tabela{
+	font-weight: bold;
+}

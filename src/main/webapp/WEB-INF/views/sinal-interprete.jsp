@@ -32,7 +32,7 @@
 			</div>
 			<br /> <br />
 			<div class="col-md-6">
-				<table class="table table-bordered">
+				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
 							<th colspan="3"><p align="center">CARACTERÍSTICAS DESTE SINAL</p></th>

@@ -22,6 +22,7 @@ public class PontoDeArticulacao {
 	
 	private String nome;
 	private String imagem;
+	private TipoPontoDeArticulacao tipoPontoDeArticulacao;
 	
 	/*@ManyToMany
 	private List<Sinal> sinais;
@@ -51,6 +52,12 @@ public class PontoDeArticulacao {
 		this.imagem = imagem;
 	}
 
+	public TipoPontoDeArticulacao getTipoPontoDeArticulacao() {
+		return tipoPontoDeArticulacao;
+	}
+	public void setTipoPontoDeArticulacao(TipoPontoDeArticulacao tipoPontoDeArticulacao) {
+		this.tipoPontoDeArticulacao = tipoPontoDeArticulacao;
+	}
 	@Override
 	public String toString() {
 		StringBuilder pontoDeArticulacao = new StringBuilder();

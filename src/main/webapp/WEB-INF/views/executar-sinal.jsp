@@ -1,9 +1,9 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-	<head>
+<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Treine Libras - Exercicios</title>
+	<title>Treine Libras - Executar Sinal</title>
 	<meta name="description" content="" />
 	<c:import url="imports.jsp" />
 	</head>
@@ -39,7 +39,7 @@
 				</div>
 				<br/>
 				<div class="col-md-6">
-					<table class="table table-bordered">
+					<table class="table table-bordered table-hover">
 						<thead>
 							<tr>
 								<th colspan="3"><p align="center">CARACTERÍSTICAS DESTE SINAL</p></th>
