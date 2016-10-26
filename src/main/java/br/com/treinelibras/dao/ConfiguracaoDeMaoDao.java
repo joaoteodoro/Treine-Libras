@@ -46,6 +46,10 @@ public class ConfiguracaoDeMaoDao implements IConfiguracaoDeMaoDao {
 	@Override
 	public void remove(Long id) {
 		ConfiguracaoDeMao configuracaoDeMao = buscaPorId(id);
-		manager.remove(configuracaoDeMao);
+		try {
+			manager.remove(configuracaoDeMao);
+		} catch (Exception e) {
+		}
+		
 	}
 }

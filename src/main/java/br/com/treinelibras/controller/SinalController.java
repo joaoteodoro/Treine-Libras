@@ -26,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.treinelibras.dao.IArquivoDao;
 import br.com.treinelibras.dao.IConfiguracaoDeMaoDao;
 import br.com.treinelibras.dao.IExpressaoFacialDao;
 import br.com.treinelibras.dao.IMaoDao;
@@ -44,7 +45,6 @@ import br.com.treinelibras.modelo.Sinal;
 import br.com.treinelibras.modelo.Unidade;
 import br.com.treinelibras.modelo.Usuario;
 import br.com.treinelibras.modelo.UtilizacaoDasMaos;
-import br.com.treinelibras.util.FileUtils;
 import br.com.treinelibras.util.StringUtils;
 
 @Transactional
@@ -77,6 +77,9 @@ public class SinalController {
 	
 	@Autowired
 	IMaoDao maoDao;
+	
+	@Autowired
+	IArquivoDao arquivoDao;
 
 	private static final Logger logger = Logger.getLogger(SinalController.class);
 
@@ -406,7 +409,7 @@ public class SinalController {
 							System.out.println("nomeArquivo: " + nomeArquivo);
 							item.setFieldName(nomeArquivo);
 							//this.inserirImagemDiretorio(item, "img");
-							FileUtils.inserirImagemDiretorio(item, "img");
+							arquivoDao.inserirImagemDiretorio(item, "img");
 							sinal.setFoto(item.getFieldName());
 						} else {
 							// salvarVideo
@@ -593,7 +596,7 @@ public class SinalController {
 							System.out.println("Arquivo de Entrada ->" + item.getFieldName() + ": " + nomeArquivo);
 							item.setFieldName(nomeArquivo);
 							//this.inserirImagemDiretorio(item, "img");
-							FileUtils.inserirImagemDiretorio(item, "img");
+							arquivoDao.inserirImagemDiretorio(item, "img");
 							sinal.setFoto(item.getFieldName());
 						} else if (item.getFieldName().equals("video") && item != null) {
 							// salvarVideo

@@ -23,7 +23,9 @@
 		</div>
 		<div class="row">
 			<div class="center-block box-page-geral">
-				<a href="cadastrarConfiguracaoDeMaoAntes"><h4><b>+Adiconar nova Configuração de Mão</b></h4></a>
+				<div class="col-md-5">
+					<a href="cadastrarConfiguracaoDeMaoAntes"><h4><b>+Adiconar nova Configuração de Mão</b></h4></a>
+				</div>
 				<table id="tabela" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
 					<thead>
@@ -98,6 +100,8 @@
 			
 		function excluirConfigMao(){
 			$.post("removerConfigMao",{'id' : idConfigMaoGerenciando}, function(resposta){
+				console.log("resposta: "+resposta);
+				alert(resposta);
 				//window.location.replace("listarSinais");
 				location.reload();
 			});

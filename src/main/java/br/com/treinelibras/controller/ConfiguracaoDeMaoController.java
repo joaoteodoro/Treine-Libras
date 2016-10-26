@@ -100,7 +100,12 @@ public class ConfiguracaoDeMaoController {
 	
 	@RequestMapping("removerConfigMao")
 	public String removerConfigMao(Long id){
-		configuracaoDeMaoDao.remove(id);
+		try {
+			configuracaoDeMaoDao.remove(id);
+		} catch (Exception e) {
+			return "erro de integridade";
+		}
+		
 		return "redirect:configuracoesDeMao";
 	}
 	

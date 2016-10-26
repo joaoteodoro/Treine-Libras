@@ -607,7 +607,6 @@
 				var id = this.id;
 				var checked = $("#"+id).prop('checked');
 				if(checked){
-					alert("ok");
 					result =  true;
 				}
 			});
