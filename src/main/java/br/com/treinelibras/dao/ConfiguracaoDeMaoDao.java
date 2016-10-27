@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.treinelibras.modelo.ConfiguracaoDeMao;
+import br.com.treinelibras.modelo.Mao;
 
 @Repository
 public class ConfiguracaoDeMaoDao implements IConfiguracaoDeMaoDao {
@@ -46,10 +47,13 @@ public class ConfiguracaoDeMaoDao implements IConfiguracaoDeMaoDao {
 	@Override
 	public void remove(Long id) {
 		ConfiguracaoDeMao configuracaoDeMao = buscaPorId(id);
-		try {
-			manager.remove(configuracaoDeMao);
-		} catch (Exception e) {
-		}
+		manager.remove(configuracaoDeMao);
+	}
+	
+	public List<Mao> buscaMaosAssociadas(Long idConfiguracaoDeMao){
+		Query query = manager.createQuery("select m from Mao m join m.configuracaoDeMao c where c.idConfiguracaoDeMao = :idConfiguracaoDeMao");
+		query.setParameter("idConfiguracaoDeMao", idConfiguracaoDeMao);
+		return query.getResultList();
 		
 	}
 }

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="PontodeArticulacao")
@@ -23,6 +24,9 @@ public class PontoDeArticulacao {
 	private String nome;
 	private String imagem;
 	private TipoPontoDeArticulacao tipoPontoDeArticulacao;
+	
+	@Transient
+	private transient boolean podeExcluir = true;
 	
 	/*@ManyToMany
 	private List<Sinal> sinais;
@@ -57,6 +61,12 @@ public class PontoDeArticulacao {
 	}
 	public void setTipoPontoDeArticulacao(TipoPontoDeArticulacao tipoPontoDeArticulacao) {
 		this.tipoPontoDeArticulacao = tipoPontoDeArticulacao;
+	}
+	public boolean isPodeExcluir() {
+		return podeExcluir;
+	}
+	public void setPodeExcluir(boolean podeExcluir) {
+		this.podeExcluir = podeExcluir;
 	}
 	@Override
 	public String toString() {

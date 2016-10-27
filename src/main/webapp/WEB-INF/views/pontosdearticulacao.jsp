@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Treine Libras - Configurações de Mão</title>
+<title>Treine Libras - Pontos de Articulação</title>
 <meta name="description" content="" />
 <c:import url="imports.jsp" />
 </head>
@@ -17,14 +17,14 @@
 		<br /> <br />
 		<div class="alinhamento-esquerdo">
 			<h2>
-				<b>Configurações de Mão</b>
+				<b>Pontos de Aritulação</b>
 			</h2>
 			<br /> <br />
 		</div>
 		<div class="row">
 			<div class="center-block box-page-geral">
 				<div class="col-md-5">
-					<a href="cadastrarConfiguracaoDeMaoAntes"><h4><b>+Adiconar nova Configuração de Mão</b></h4></a>
+					<a href="cadastrarPontoDeArticulacaoAntes"><h4><b>+Adiconar novo Ponto de Articulação</b></h4></a>
 				</div>
 				<table id="tabela" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
@@ -37,21 +37,21 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${configuracoesDeMao}" var="configuracaoDeMao">
+						<c:forEach items="${pontosDeArticulacao}" var="pontoDeArticulacao">
 							<tr>
-								<td>${configuracaoDeMao.idConfiguracaoDeMao}</td>
-								<td>${configuracaoDeMao.nome}</td>
+								<td>${pontoDeArticulacao.idPontoDeArticulacao}</td>
+								<td>${pontoDeArticulacao.nome}</td>
 								<td><img class="img-responsive parametro" 
-									src="${pageContext.request.contextPath}/resources/img/${configuracaoDeMao.imagem}"/></td>
+									src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}"/></td>
 								<td>
 									<div class="gerenciar">
-										<a title="Alterar Configuração de Mão"
-											href="cadastrarConfiguracaoDeMaoAntes?id=${configuracaoDeMao.idConfiguracaoDeMao}"><img
+										<a title="Alterar Ponto de Articulacao"
+											href="cadastrarPontoDeArticulacaoAntes?id=${pontoDeArticulacao.idPontoDeArticulacao}"><img
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/editar.png" /></a>
-										<c:if test="${configuracaoDeMao.podeExcluir}">
-											<a title="Remover Configuração de Mão"
-											onclick="setidConfigMaoGerenciando(${configuracaoDeMao.idConfiguracaoDeMao})"
+										<c:if test="${pontoDeArticulacao.podeExcluir}">
+											<a title="Remover Ponto de Articulacao"
+											onclick="setidPontoDeArticulacaoGerenciando(${pontoDeArticulacao.idPontoDeArticulacao})"
 											data-toggle="modal" data-target="#modalExcluir"><img
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/lixeira.png" /></a>
@@ -76,12 +76,11 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Exclusão</h4>
 					</div>
-					<div class="modal-body">Deseja realmente excluir esta
-						Configuração de Mão?</div>
+					<div class="modal-body">Deseja realmente excluir este Ponto de Articulação</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
 						<button type="button" class="btn btn-primary"
-							onclick="excluirConfigMao()">Sim</button>
+							onclick="excluirPontoDeArticulacao()">Sim</button>
 					</div>
 				</div>
 			</div>
@@ -94,14 +93,14 @@
 		src="${pageContext.request.contextPath}/resources/js/dataTables.bootstrap.min.js">
 	</script>
 	<script>
-		var idConfigMaoGerenciando;
+		var idPontoDeArticulacaoGerenciando;
 				
-		function setidConfigMaoGerenciando(idUnidade){
-			idConfigMaoGerenciando = idUnidade;
+		function setidPontoDeArticulacaoGerenciando(idPontoDeArticulacao){
+			idPontoDeArticulacaoGerenciando = idPontoDeArticulacao;
 		}
 			
-		function excluirConfigMao(){
-			$.post("removerConfigMao",{'id' : idConfigMaoGerenciando}, function(resposta){
+		function excluirPontoDeArticulacao(){
+			$.post("removerPontoDeArticulacao",{'id' : idPontoDeArticulacaoGerenciando}, function(resposta){
 				//window.location.replace("listarSinais");
 				location.reload();
 			});
@@ -112,7 +111,7 @@
 						{
 							oLanguage : {
 								sEmptyTable : "Nenhum registro encontrado",
-								sInfo : "Apresentando _END_ configurações de mão. Total de configurações de mão cadastradas: _TOTAL_",
+								sInfo : "Apresentando _END_ pontos de articulação. Total de pontos de articulação cadastradas: _TOTAL_",
 								sInfoEmpty : "Mostrando 0 até 0 de 0 registros",
 								sInfoFiltered : "(Filtrados de _MAX_ registros)",
 								sInfoPostFix : "",
@@ -121,7 +120,7 @@
 								sLoadingRecords : "Carregando...",
 								sProcessing : "Processando...",
 								sZeroRecords : "Nenhum registro encontrado",
-								sSearch : "Buscar Configuração de Mão",
+								sSearch : "Buscar Pontos de Articulação",
 								oPaginate : {
 									sNext : "Próximo",
 									sPrevious : "Anterior",

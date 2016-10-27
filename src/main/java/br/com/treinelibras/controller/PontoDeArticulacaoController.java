@@ -18,49 +18,50 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.treinelibras.dao.IArquivoDao;
-import br.com.treinelibras.dao.IConfiguracaoDeMaoDao;
+import br.com.treinelibras.dao.IPontoDeArticulacaoDao;
 import br.com.treinelibras.modelo.ConfiguracaoDeMao;
+import br.com.treinelibras.modelo.PontoDeArticulacao;
 import br.com.treinelibras.util.StringUtils;
 
 @Controller
 @Transactional
-public class ConfiguracaoDeMaoController {
+public class PontoDeArticulacaoController {
 	
 	@Autowired
-	IConfiguracaoDeMaoDao configuracaoDeMaoDao;
+	IPontoDeArticulacaoDao pontoDeArticulacaoDao;
 	
 	@Autowired
 	IArquivoDao arquivoDao;
 	
-	@RequestMapping("configuracoesDeMao")
-	public String configuracoesDeMao(Model model){
-		List<ConfiguracaoDeMao> configuracoesDeMao = configuracaoDeMaoDao.lista();
-		for (ConfiguracaoDeMao configuracaoDeMao : configuracoesDeMao) {
-			List listaMaos = configuracaoDeMaoDao.buscaMaosAssociadas(configuracaoDeMao.getIdConfiguracaoDeMao()); 
+	@RequestMapping("pontosDeArticulacao")
+	public String pontosDeArticulacao(Model model){
+		List<PontoDeArticulacao> pontosDeArticulacao = pontoDeArticulacaoDao.lista();
+		for (PontoDeArticulacao pontoDeArticulacao : pontosDeArticulacao) {
+			List listaMaos = pontoDeArticulacaoDao.buscaMaosAssociadas(pontoDeArticulacao.getIdPontoDeArticulacao()); 
 			if(listaMaos != null && !listaMaos.isEmpty()){
-				configuracaoDeMao.setPodeExcluir(false);
-			};
+				pontoDeArticulacao.setPodeExcluir(false);
+			}
 		}
-		model.addAttribute("configuracoesDeMao",configuracoesDeMao);
-		return "configuracoesdemao";
+		model.addAttribute("pontosDeArticulacao",pontosDeArticulacao);
+		return "pontosdearticulacao";
 	}
 	
-	@RequestMapping("cadastrarConfiguracaoDeMaoAntes")
-	public String cadastrarConfiguracaoDeMaoAntes(Model model, Long id){
+	@RequestMapping("cadastrarPontoDeArticulacaoAntes")
+	public String cadastrarPontoDeArticulacaoAntes(Model model, Long id){
 		//alteracao
 		if(id != null){
-			ConfiguracaoDeMao configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(id);
-			model.addAttribute("configuracaoDeMao",configuracaoDeMao);
+			PontoDeArticulacao pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(id);
+			model.addAttribute("pontoDeArticulacao",pontoDeArticulacao);
 			model.addAttribute("logica",new String[] {"Alterar","a alteração"});
 		}else{
 			model.addAttribute("logica",new String[] {"Cadastrar","o cadastro"});
 		}
-		return "cadastrar-configmao";
+		return "cadastrar-pontodearticulacao";
 	}
 	
-	@RequestMapping("cadastrarConfiguracaoDeMao")
-	public String cadastrarConfiguracaoDeMao(Model model, HttpServletRequest request){
-		ConfiguracaoDeMao configuracaoDeMao = new ConfiguracaoDeMao();
+	@RequestMapping("cadastrarPontoDeArticulacao")
+	public String cadastrarPontoDeArticulacao(Model model, HttpServletRequest request){
+		PontoDeArticulacao pontoDeArticulacao = new PontoDeArticulacao();
 		boolean isMultiPart = FileUpload.isMultipartContent(request);
 		
 		if (isMultiPart) {
@@ -75,38 +76,38 @@ public class ConfiguracaoDeMaoController {
 					FileItem item = (FileItem) iter.next();
 					
 					if (!item.isFormField()) {
-						String nomeArquivo = StringUtils.removerAcentos(configuracaoDeMao.getNome()) + "-" + configuracaoDeMaoDao.buscaUltimoId() + 1;
+						String nomeArquivo = StringUtils.removerAcentos(pontoDeArticulacao.getNome()) + "-" + pontoDeArticulacaoDao.buscaUltimoId() + 1;
 						if (item.getFieldName().equals("imagem") && item.getString() != null && !"".equals(item.getString())) {
 							// salvarFoto
 							System.out.println("nomeArquivo: " + nomeArquivo);
 							item.setFieldName(nomeArquivo);
 							arquivoDao.inserirImagemDiretorio(item, "img");
-							configuracaoDeMao.setImagem(item.getFieldName());
+							pontoDeArticulacao.setImagem(item.getFieldName());
 						}
 					}else{
 						if("id".equals(item.getFieldName()) && !"".equals(item.getString())){
-							configuracaoDeMao = configuracaoDeMaoDao.buscaPorId(Long.parseLong(item.getString()));
+							pontoDeArticulacao = pontoDeArticulacaoDao.buscaPorId(Long.parseLong(item.getString()));
 						}else if ("nome".equals(item.getFieldName())) {
-							configuracaoDeMao.setNome(item.getString());
+							pontoDeArticulacao.setNome(item.getString());
 						}
 					}
 				}
-				if(configuracaoDeMao.getIdConfiguracaoDeMao() != null){
-					configuracaoDeMaoDao.altera(configuracaoDeMao);
+				if(pontoDeArticulacao.getIdPontoDeArticulacao() != null){
+					pontoDeArticulacaoDao.altera(pontoDeArticulacao);
 				}else{
-					configuracaoDeMaoDao.adiciona(configuracaoDeMao);
+					pontoDeArticulacaoDao.adiciona(pontoDeArticulacao);
 				}
 			}catch (FileUploadException ex) {
 				ex.printStackTrace();
 			}
 		}
-		return "redirect:configuracoesDeMao";
+		return "redirect:pontosDeArticulacao";
 	}
 	
-	@RequestMapping("removerConfigMao")
-	public String removerConfigMao(Long id){
-		configuracaoDeMaoDao.remove(id);
-		return "redirect:configuracoesDeMao";
+	@RequestMapping("removerPontoDeArticulacao")
+	public String removerPontoDeArticulacao(Long id){
+		pontoDeArticulacaoDao.remove(id);
+		return "redirect:pontosDeArticulacao";
 	}
-	
+
 }

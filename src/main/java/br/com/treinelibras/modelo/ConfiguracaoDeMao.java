@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="ConfiguracaoDeMao")
@@ -21,6 +22,9 @@ public class ConfiguracaoDeMao {
 	private Long idConfiguracaoDeMao;
 	private String nome;
 	private String imagem;
+	
+	@Transient
+	private transient boolean podeExcluir = true;
 	
 	/*@ManyToMany(fetch = FetchType.EAGER)
 	private List<Sinal> sinais;
@@ -50,6 +54,12 @@ public class ConfiguracaoDeMao {
 		this.imagem = imagem;
 	}
 	
+	public boolean isPodeExcluir() {
+		return podeExcluir;
+	}
+	public void setPodeExcluir(boolean podeExcluir) {
+		this.podeExcluir = podeExcluir;
+	}
 	@Override
 	public String toString() {
 		StringBuilder configuracaoDeMao = new StringBuilder();
