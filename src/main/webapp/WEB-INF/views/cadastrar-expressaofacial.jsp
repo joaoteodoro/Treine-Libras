@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Treine Libras - Cadastrar Ponto de Articulação</title>
+<title>Treine Libras - Cadastrar Expressão Facial</title>
 <meta name="description" content="" />
 <c:import url="imports.jsp" />
 </head>
@@ -17,26 +17,26 @@
 		<br /> <br />
 		<div class="alinhamento-esquerdo">
 			<h2>
-				<b>${logica[0]} Ponto de Articulação</b>
+				<b>${logica[0]} ExpressaoFacial</b>
 			</h2>
 			<br /> <br />
 		</div>
 		<div class="row">
 			<div class="center-block box-page-geral">
 
-				<form id="formCadastrarPontoDeArticulacao" method="post"
-					action="cadastrarPontoDeArticulacao" enctype="multipart/form-data">
-					<input type="hidden" name="id" id="id" value="${pontoDeArticulacao.idPontoDeArticulacao}" />
+				<form id="formCadastrarExpressaoFacial" method="post"
+					action="cadastrarExpressaoFacial" enctype="multipart/form-data">
+					<input type="hidden" name="id" id="id" value="${expressaoFacial.idExpressaoFacial}" />
 					<div class="form-group">
 						<label for="nome">Nome:</label> <input type="text" required
-							class="form-control" id="nome" name="nome" placeholder="Nome" value="${pontoDeArticulacao.nome}">
+							class="form-control" id="nome" name="nome" placeholder="Nome" value="${expressaoFacial.nome}">
 					</div>
 					<div class="form-group">
-						<c:if test="${pontoDeArticulacao != null }">
+						<c:if test="${expressaoFacial != null }">
 							Imagem atual: <img class="img-responsive center-block parametro"
-							src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}" />
+							src="${pageContext.request.contextPath}/resources/img/${expressaoFacial.imagem}" />
 						</c:if>
-						<label for="imagem">Imagem:</label> <input type="file"
+						<label for="imagem">Imagem:</label> <input type="file" ${expressaoFacial == null ? 'required' : ''}
 							class="form-control" name="imagem" id="imagem" placeholder="Imagem"
 							accept="image/*">
 					</div>
@@ -55,13 +55,13 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">${logica[0]} Ponto de Articulação</h4>
+						<h4 class="modal-title" id="myModalLabel">${logica[0]} Expressão Facial</h4>
 					</div>
-					<div class="modal-body">Confirma ${logica[1]} deste Ponto de Articulação?</div>
+					<div class="modal-body">Confirma ${logica[1]} desta Experessão Facial?</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
 						<button type="button" class="btn btn-primary"
-							onclick="gravarPontoDeArticulacao()">Sim</button>
+							onclick="gravarExpressaoFacial()">Sim</button>
 					</div>
 				</div>
 			</div>
@@ -111,7 +111,7 @@
 	</div>
 	<c:import url="rodape.jsp" />
 	<script>
- 		$("#formCadastrarPontoDeArticulacao")
+ 		$("#formCadastrarExpressaoFacial")
 				.submit(
 						function() {
 
@@ -132,11 +132,11 @@
 							return false;
 						});
 
-		function gravarPontoDeArticulacao() {
+		function gravarExpressaoFacial() {
 // 			if($("#ehAlteracao").val() == "sim"){
 // 				$("#formCadastrarUnidade").attr("action","alterarUnidade");
 // 			}
-			$("#formCadastrarPontoDeArticulacao").submit();
+			$("#formCadastrarExpressaoFacial").submit();
 		}
 	</script>
 </body>

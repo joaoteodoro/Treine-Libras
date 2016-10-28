@@ -76,13 +76,19 @@ public class PontoDeArticulacaoController {
 					FileItem item = (FileItem) iter.next();
 					
 					if (!item.isFormField()) {
-						String nomeArquivo = StringUtils.removerAcentos(pontoDeArticulacao.getNome()) + "-" + pontoDeArticulacaoDao.buscaUltimoId() + 1;
-						if (item.getFieldName().equals("imagem") && item.getString() != null && !"".equals(item.getString())) {
-							// salvarFoto
-							System.out.println("nomeArquivo: " + nomeArquivo);
-							item.setFieldName(nomeArquivo);
-							arquivoDao.inserirImagemDiretorio(item, "img");
-							pontoDeArticulacao.setImagem(item.getFieldName());
+						String nomeArquivo = StringUtils.removerAcentos(pontoDeArticulacao.getNome()) + "-" + (pontoDeArticulacaoDao.buscaUltimoId() + 1L);
+						if (item.getFieldName().equals("imagem")){
+							if(item.getString() != null && !"".equals(item.getString())) {
+								// salvarFoto
+								System.out.println("nomeArquivo: " + nomeArquivo);
+								item.setFieldName(nomeArquivo);
+								arquivoDao.inserirImagemDiretorio(item, "img");
+								pontoDeArticulacao.setImagem(item.getFieldName());
+							}else{
+								if(pontoDeArticulacao.getImagem() == null || "".equals(pontoDeArticulacao.getImagem())){
+									pontoDeArticulacao.setImagem("img1.jpg");
+								}
+							}
 						}
 					}else{
 						if("id".equals(item.getFieldName()) && !"".equals(item.getString())){

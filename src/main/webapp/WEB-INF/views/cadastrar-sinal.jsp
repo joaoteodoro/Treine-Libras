@@ -74,25 +74,47 @@
 								<h4 class="modal-title">Pontos de Articulação</h4>
 							</div>
 							<div class="modal-body">
+<!-- 								<table class="table"> -->
+<!-- 									<tbody> -->
+<!-- 										<tr> -->
+<%-- 											<c:forEach items="${pontosDeArticulacao}" --%>
+<%-- 												var="pontoDeArticulacao" varStatus="status"> --%>
+<%-- 												<c:if test="${status.count mod 6 == 0}"> --%>
+<!-- 										</tr> -->
+<!-- 										<tr> -->
+<%-- 											</c:if> --%>
+<!-- 											<td><img -->
+<%-- 												id="img-ponto-articulacao-${pontoDeArticulacao.idPontoDeArticulacao}" --%>
+<!-- 												class="img-responsive opcao" -->
+<%-- 												src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}" --%>
+<%-- 												title="${pontoDeArticulacao.nome}"> <input --%>
+<!-- 												type="hidden" -->
+<%-- 												id="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}" --%>
+<%-- 												name="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}" --%>
+<%-- 												value="${pontoDeArticulacao.idPontoDeArticulacao}" />${pontoDeArticulacao.nome}</td> --%>
+<%-- 											</c:forEach> --%>
+<!-- 									</tbody> -->
+<!-- 								</table> -->
 								<table class="table">
 									<tbody>
-										<tr>
-											<c:forEach items="${pontosDeArticulacao}"
+										<c:forEach items="${pontosDeArticulacao}"
 												var="pontoDeArticulacao" varStatus="status">
-												<c:if test="${status.count mod 6 == 0}">
-										</tr>
 										<tr>
-											</c:if>
-											<td><img
-												id="img-ponto-articulacao-${pontoDeArticulacao.idPontoDeArticulacao}"
-												class="img-responsive opcao"
-												src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}"
-												title="${pontoDeArticulacao.nome}"> <input
-												type="hidden"
-												id="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}"
-												name="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}"
-												value="${pontoDeArticulacao.idPontoDeArticulacao}" /></td>
-											</c:forEach>
+											<td>
+												<img id="img-ponto-articulacao-${pontoDeArticulacao.idPontoDeArticulacao}"
+													class="img-responsive opcao"
+													src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}"
+													title="${pontoDeArticulacao.nome}"> <input
+													type="hidden"
+													id="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}"
+													name="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}"
+													value="${pontoDeArticulacao.idPontoDeArticulacao}" />
+											</td>
+											<td>
+												<p>${pontoDeArticulacao.nome}</p>
+											</td>
+										</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -205,6 +227,7 @@
 								<input type="hidden" id="configuracaoDeMao1"
 									name="configuracaoDeMao1" />
 							</div>
+							<p id="nomeconfiguracaoDeMao1" style="margin: 8px;float: left;"></p>
 							<input type="hidden" name="qtdConfiguracaoDeMao"
 								id="qtdConfiguracaoDeMao">
 						</div>
@@ -224,6 +247,7 @@
 								<input type="hidden" id="pontoDeArticulacao1"
 									name="pontoDeArticulacao1" />
 							</div>
+							<p id="nomepontoDeArticulacao1" style="margin: 8px;float: left;"></p>
 							<input type="hidden" name="qtdPontoDeArticulacao"
 								id="qtdPontoDeArticulacao">
 						</div>
@@ -242,6 +266,7 @@
 								</div>
 								<input type="hidden" id="movimento1" name="movimento1" />
 							</div>
+							<p id="nomemovimento1" style="margin: 8px;float: left;"></p>
 							<input type="hidden" name="qtdMovimento" id="qtdMovimento">
 						</div>
 						<br /> <br /> <br />
@@ -273,6 +298,8 @@
 								<input type="hidden" id="configuracaoDeMao2" class="maoSecundaria"
 									name="configuracaoDeMao2" />
 							</div>
+							<p id="nomeconfiguracaoDeMao2" style="margin: 8px;float: left;"></p>
+							
 <!-- 							<input type="hidden" name="qtdConfiguracaoDeMao" -->
 <!-- 								id="qtdConfiguracaoDeMao"> -->
 						</div>
@@ -292,6 +319,7 @@
 								<input type="hidden" id="pontoDeArticulacao2" class="maoSecundaria"
 									name="pontoDeArticulacao2" />
 							</div>
+							<p id="nomepontoDeArticulacao2" style="margin: 8px;float: left;"></p>
 <!-- 							<input type="hidden" name="qtdPontoDeArticulacao" -->
 <!-- 								id="qtdPontoDeArticulacao"> -->
 						</div>
@@ -310,6 +338,7 @@
 								</div>
 								<input type="hidden" id="movimento2" name="movimento2" class="maoSecundaria" />
 							</div>
+							<p id="nomemovimento2" style="margin: 8px;float: left;"></p>
 <!-- 							<input type="hidden" name="qtdMovimento" id="qtdMovimento"> -->
 						</div>
 						<br /> <br /> <br />
@@ -461,7 +490,12 @@
 // 								$("#modalErro").modal('show');
 // 								return;
 // 							}
-
+							
+							console.log("nomeInput: "+nomeInput);
+							console.log("nIdClicada: "+nIdClicada)
+							$("#nome"+nomeInput+nIdClicada).text($("#" + idOpcaoModal + idOpcaoClicada)
+									.attr("title"))
+							
 							$("#" + idClicada).attr(
 									"src",
 									$("#" + idOpcaoModal + idOpcaoClicada)
@@ -488,6 +522,8 @@
 
 							definirNomeNoTitle(nomeOpcaoClicada);
 
+							$("#nome"+nomeInput+nIdClicada).text("");
+							
 							$("#img" + nomeOpcaoClicada + idOpcaoClicada)
 									.attr("src",
 											"${pageContext.request.contextPath}/resources/img/mais.png");
