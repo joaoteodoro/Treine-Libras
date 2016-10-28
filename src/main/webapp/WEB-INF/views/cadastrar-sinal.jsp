@@ -40,13 +40,13 @@
 										<tr>
 											<c:forEach items="${configuracoesDeMao}"
 												var="configuracaoDeMao" varStatus="status">
-												<c:if test="${status.count mod 6 == 0}">
+												<c:if test="${status.index mod 6 == 0}">
 										</tr>
 										<tr>
 											</c:if>
 											<td><img
 												id="img-config-mao-${configuracaoDeMao.idConfiguracaoDeMao}"
-												class="img-responsive opcao"
+												class="img-responsive opcao img-parametro-cadastro-modal"
 												src="${pageContext.request.contextPath}/resources/img/${configuracaoDeMao.imagem}"
 												title="${configuracaoDeMao.nome}"> <input
 												type="hidden"
@@ -102,7 +102,7 @@
 										<tr>
 											<td>
 												<img id="img-ponto-articulacao-${pontoDeArticulacao.idPontoDeArticulacao}"
-													class="img-responsive opcao"
+													class="img-responsive opcao img-parametro-cadastro-modal"
 													src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}"
 													title="${pontoDeArticulacao.nome}"> <input
 													type="hidden"
@@ -139,17 +139,20 @@
 										<tr>
 											<c:forEach items="${movimentos}" var="movimento"
 												varStatus="status">
-												<c:if test="${status.count mod 6 == 0}">
+												<c:if test="${status.index mod 2 == 0}">
 										</tr>
 										<tr>
 											</c:if>
 											<td><img id="img-movimento-${movimento.idMovimento}"
-												class="img-responsive opcao"
+												class="img-responsive opcao img-parametro-cadastro-modal"
 												src="${pageContext.request.contextPath}/resources/img/${movimento.imagem}"
 												title="${movimento.nome}"> <input type="hidden"
 												id="idMovimento${movimento.idMovimento}"
 												name="idMovimento${movimento.idMovimento}"
 												value="${movimento.idMovimento}" /></td>
+											<td>
+												<p>${movimento.nome}</p>
+											</td>
 											</c:forEach>
 									</tbody>
 								</table>

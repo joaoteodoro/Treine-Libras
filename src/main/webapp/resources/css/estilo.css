@@ -329,7 +329,7 @@ video {
 }
 
 .modal img {
-	width: 90px;
+	width: 60px;
 }
 
 .table img:hover {
@@ -457,4 +457,10 @@ code {
 
 .destaque-tabela{
 	font-weight: bold;
+}
+
+.img-parametro-cadastro-modal{
+	width: 60px;
+    height: 60px;
+    margin: 0;
 }
