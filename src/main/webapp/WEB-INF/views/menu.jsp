@@ -53,10 +53,10 @@
 						<c:when test="${usuarioLogado.perfil == 'professor' || usuarioLogado.perfil == 'admin'}">
 							<c:choose>
 								<c:when test="${param.paginaAtual == 'sinais'}">
-									<li class="active"><a href="homeProfessor">Área do Professor</a></li>
+									<li class="active"><a href="homeProfessor">PROFESSOR</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="homeProfessor">Área do Professor</a></li>
+									<li><a href="homeProfessor">PROFESSOR</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:when>

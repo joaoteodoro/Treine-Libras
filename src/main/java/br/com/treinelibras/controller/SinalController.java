@@ -316,7 +316,7 @@ public class SinalController {
 	}
 
 	@RequestMapping("cadastrarSinalAntes")
-	public String cadastrarSinalAntes(Model model) {
+	public String cadastrarSinalAntes(Model model, Long id) {
 		List<ConfiguracaoDeMao> configuracoesDeMao = configuracaoDeMaoDao.lista();
 		model.addAttribute("configuracoesDeMao", configuracoesDeMao);
 
@@ -335,12 +335,20 @@ public class SinalController {
 		
 		List<Unidade> unidades = unidadeDao.lista();
 		model.addAttribute("unidades",unidades);
+		
+		if(id != null){
+			Movimento movimento = movimentoDao.buscaPorId(id);
+			model.addAttribute("movimento",movimento);
+			model.addAttribute("logica",new String[] {"Alterar","a alteração"});
+		}else{
+			model.addAttribute("logica",new String[] {"Cadastrar","o cadastro"});
+		}
 
 		return "cadastrar-sinal";
 	}
 
 	@RequestMapping("cadastrarSinalUnidadeAntes")
-	public String cadastrarSinalUnidadeAntes(Model model, Long idUnidade) {
+	public String cadastrarSinalUnidadeAntes(Model model, Long idUnidade, Long id) {
 		List<ConfiguracaoDeMao> configuracoesDeMao = configuracaoDeMaoDao.lista();
 		model.addAttribute("configuracoesDeMao", configuracoesDeMao);
 
@@ -356,13 +364,23 @@ public class SinalController {
 		model.addAttribute("orientacoes",Orientacao.values());
 		model.addAttribute("utilizacoesDasMaos",UtilizacaoDasMaos.values());
 
-		Unidade unidade = unidadeDao.buscaPorId(idUnidade);
-		model.addAttribute("unidadePrevia", unidade.getNumero());
+		if(idUnidade != null){
+			Unidade unidade = unidadeDao.buscaPorId(idUnidade);
+			model.addAttribute("unidadePrevia", unidade.getNumero());
+		}
 		
 		List<Unidade> unidades = unidadeDao.lista();
 		model.addAttribute("unidades",unidades);
-
-		return "cadastrar-sinal";
+		
+		if(id != null){
+			Movimento movimento = movimentoDao.buscaPorId(id);
+			model.addAttribute("movimento",movimento);
+			model.addAttribute("logica",new String[] {"Alterar","a alteração"});
+			return "altera-sinal";
+		}else{
+			model.addAttribute("logica",new String[] {"Cadastrar","o cadastro"});
+			return "cadastrar-sinal";
+		}
 	}
 
 	@RequestMapping("cadastrarSinal")

@@ -190,25 +190,40 @@
 					enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="nome">Nome:</label> <input type="text" required
-							class="form-control" id="nome" name="nome" placeholder="Nome">
+							value="${sinal.nome}" class="form-control" id="nome" name="nome" placeholder="Nome">
 					</div>
 
 					<div class="form-group">
 						<label for="unidade">Unidade:</label> <select class="form-control"
 							id="unidade" name="unidade">
-							<c:forEach items="${unidades}" var="unidade">
-								<option ${unidade.numero == unidadePrevia ? 'selected' : ''}
-									value="${unidade.id}">${unidade.numero}-
-									${unidade.nome}</option>
-							</c:forEach>
+							<c:choose>
+								<c:when test="${logica[0] == 'Cadastrar'}">
+									<c:forEach items="${unidades}" var="unidade">
+										<option ${unidade.numero == unidadePrevia ? 'selected' : ''}
+											value="${unidade.id}">${unidade.numero}-
+											${unidade.nome}</option>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${unidades}" var="unidade">
+										<option ${unidade.id == sinal.unidade.id ? 'selected' : ''}
+											value="${unidade.id}">${unidade.numero}-
+											${unidade.nome}</option>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</select>
 					</div>
 					
 					<div class="form-group">
 						<label id="labelUtilizacaoDasMaos" for="utilizacaoDasMaos">Utilização das Mãos</label><br/>
-						<c:forEach items="${utilizacoesDasMaos}" var="utilizacaoDaMao" varStatus="status" >
-							<input onclick="exibeBlocoUtilizacaoDasMaos()" type="radio" name="utilizacoesDasMaos" id="utilizacaoDasMaos${status.count}" 
-								value="${utilizacaoDaMao}">${utilizacaoDaMao.descricao}
+						<c:forEach items="${utilizacoesDasMaos}" var="utilizacaoDaMao"
+							varStatus="status">
+							<input onclick="exibeBlocoUtilizacaoDasMaos()" type="radio"
+								name="utilizacoesDasMaos" id="utilizacaoDasMaos${status.count}"
+								${utilizacaoDaMao == sinal.utilizacaoDasMaos ? 'checked' : ''}
+								value="${utilizacaoDaMao}">
+							 	${utilizacaoDaMao.descricao}
 						</c:forEach>
 						<input type="hidden" id="utilizacaoDasMaos" name="utilizacaoDasMaos" />
 					</div>
@@ -219,9 +234,10 @@
 						<div class="configuracoesDeMao">
 							<div id="configMao1" class="parametro">
 								<img id="imgConfigMao1" class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/mais.png"
+									src="${pageContext.request.contextPath}/resources/img/
+									${sinal != null ? sinal.maoPrincipal.configuracaoDeMao.imagem : 'mais.png'}"
 									data-target="#modalConfigMao" data-toggle="modal"
-									title="Clique para adicionar uma configuração de mão" />
+									title="${sinal.maoPrincipal.configuracaoDeMao.nome}" />
 								<div id="excluiConfigMao1" class="excluiParametro"
 									style="display: none">
 									<img class="img-responsive"
@@ -239,9 +255,10 @@
 						<div class="pontosDeArticulacao1">
 							<div id="pontoArticulacao1" class="parametro">
 								<img id="imgPontoArticulacao1" class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/mais.png"
+									src="${pageContext.request.contextPath}/resources/img/
+									${sinal != null ? sinal.maoPrincipal.pontoDeArticulacao.imagem : 'mais.png'}"
 									data-target="#modalPontoArticulacao" data-toggle="modal"
-									title="Clique para adicionar um ponto de articulação" />
+									title="${sinal.maoPrincipal.pontoDeArticulacao.nome}" />
 								<div id="excluiPontoArticulacao1" class="excluiParametro"
 									style="display: none">
 									<img class="img-responsive"
@@ -258,10 +275,11 @@
 						<br /> <br /> <br /> <label id="labelMovimento" for="movimento">Movimento:</label>
 						<div class="movimentos">
 							<div id="mov1" class="parametro">
-								<img id="imgMovimento1" class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/mais.png"
+							<img id="imgMovimento1" class="imgParametro"
+									src="${pageContext.request.contextPath}/resources/img/
+									${sinal ! null ? sinal.maoPrincipal.movimento.imagem : 'mais.png'}"
 									data-target="#modalMovimento" data-toggle="modal"
-									title="Clique para adicionar um movimento" />
+									title="${sinal.maoPrincipal.movimento.nome}" />
 								<div id="excluiMovimento1" class="excluiParametro"
 									style="display: none">
 									<img class="img-responsive"
@@ -278,7 +296,8 @@
 							<label for="orientacao1">Orientação:</label> <select
 								class="form-control" id="orientacao1" name="orientacao1">
 								<c:forEach items="${orientacoes}" var="orientacao">
-									<option value="${orientacao}">${orientacao.descricao}</option>
+									<option value="${orientacao}"
+										${sinal.maoPrincipal.orientacao.descricao == orientacao.descricao ? 'selected' : ''}>${orientacao.descricao}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -290,9 +309,10 @@
 						<div class="configuracoesDeMao">
 							<div id="configMao2" class="parametro">
 								<img id="imgConfigMao2" class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/mais.png"
+									src="${pageContext.request.contextPath}/resources/img/
+									${ sinal != null sinal.maoSecundaria.configuracaoDeMao.imagem : 'mais.png'}"
 									data-target="#modalConfigMao" data-toggle="modal"
-									title="Clique para adicionar uma configuração de mão" />
+									title="${sinal.maoSecundaria.configuracaoDeMao.nome}" />
 								<div id="excluiConfigMao2" class="excluiParametro"
 									style="display: none">
 									<img class="img-responsive"
@@ -311,9 +331,10 @@
 						<div class="pontosDeArticulacao">
 							<div id="pontoArticulacao2" class="parametro">
 								<img id="imgPontoArticulacao2" class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/mais.png"
+									src="${pageContext.request.contextPath}/resources/img/
+									${sinal != null sinal.maoSecundaria.pontoDeArticulacao.imagem : 'mais.png'}"
 									data-target="#modalPontoArticulacao" data-toggle="modal"
-									title="Clique para adicionar um ponto de articulação" />
+									title="${sinal.maoSecundaria.pontoDeArticulacao.nome}" />
 								<div id="excluiPontoArticulacao2" class="excluiParametro"
 									style="display: none">
 									<img class="img-responsive"
@@ -331,9 +352,11 @@
 						<div class="movimentos">
 							<div id="mov2" class="parametro">
 								<img id="imgMovimento2" class="imgParametro"
-									src="${pageContext.request.contextPath}/resources/img/mais.png"
+									src="${pageContext.request.contextPath}/resources/img/
+									${sinal != null ? sinal.maoSecundaria.movimento.imagem : 'mais.png'}"
 									data-target="#modalMovimento" data-toggle="modal"
-									title="Clique para adicionar um movimento" />
+									title="${sinal.maoSecundaria.movimento.nome}" />
+									
 								<div id="excluiMovimento2" class="excluiParametro"
 									style="display: none">
 									<img class="img-responsive"
@@ -350,7 +373,8 @@
 							<label for="orientacao2">Orientação:</label> <select
 								class="form-control maoSecundaria" id="orientacao2" name="orientacao2">
 								<c:forEach items="${orientacoes}" var="orientacao">
-									<option value="${orientacao}">${orientacao.descricao}</option>
+									<option value="${orientacao}"
+										${sinal.maoSecundaria.orientacao.descricao == orientacao.descricao ? 'selected' : ''}>${orientacao.descricao}</option>
 								</c:forEach>
 							</select>
 						</div>	
@@ -361,18 +385,32 @@
 						<label for="expressao">Expressão Facial:</label> <select
 							class="form-control" id="expressao" name="expressao">
 							<c:forEach items="${expressoesFaciais}" var="expressaoFacial">
-								<option value="${expressaoFacial.idExpressaoFacial}">${expressaoFacial.nome}</option>
+								<option value="${expressaoFacial.idExpressaoFacial}"
+									${expressaoFacial.idExpressaoFacial == sinal.expressaoFacial.idExpressaoFacial ? 'selected' : ''}>
+									${expressaoFacial.nome}</option>
 							</c:forEach>
 						</select>
 					</div>
 
 					<div class="form-group">
+						<c:if test="${sinal != null}">
+							<img class="img-responsive center-block parametro"
+							src="${pageContext.request.contextPath}/resources/img/${sinal.foto}" />
+						</c:if>
 						<label for="foto">Foto:</label> <input type="file" required
 							class="form-control" name="foto" id="foto" placeholder="Foto"
 							accept="image/*">
 					</div>
 
 					<div class="form-group">
+						<c:if test="${sinal != null}">
+							<div class="center-block video-size-execucao">
+								<div class="video-container video">
+									<video id="videoGravado" muted="" loop autoplay=""
+										src="${pageContext.request.contextPath}/resources/videos/${sinal.video}"></video>
+								</div>
+							</div>
+						</c:if>
 						<label for="video">Video:</label> <input type="file" required
 							class="form-control" name="video" id="video" placeholder="Vídeo"
 							accept="video/*">
@@ -381,16 +419,22 @@
 
 					<div class="form-group">
 						<label for="categoria">Categoria:</label> <input type="text"
-							required class="form-control" name="categoria" id="categoria"
+							value="${sinal.categoria}" required class="form-control" name="categoria" id="categoria"
 							placeholder="Categoria">
 					</div>
 
+					<c:set var="dificuldades" value="Fácil,Média,Difícil"
+						scope="application" />
 					<div class="form-group">
 						<label for="dificuldade">Dificuldade:</label> <select
 							class="form-control" id="dificuldade" name="dificuldade">
-							<option value="Fácil">Fácil</option>
-							<option value="Média">Média</option>
-							<option value="Difícil">Difícil</option>
+
+							<c:forEach items="${fn:split(dificuldades, ',')}"
+								var="dificuldade">
+								<option value="${dificuldade}"
+									${sinal.dificuldade == dificuldade ? 'selected' : ''}>${dificuldade}</option>
+							</c:forEach>
+
 						</select>
 					</div>
 					<button type="submit"
