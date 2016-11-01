@@ -74,27 +74,6 @@
 								<h4 class="modal-title">Pontos de Articulação</h4>
 							</div>
 							<div class="modal-body">
-<!-- 								<table class="table"> -->
-<!-- 									<tbody> -->
-<!-- 										<tr> -->
-<%-- 											<c:forEach items="${pontosDeArticulacao}" --%>
-<%-- 												var="pontoDeArticulacao" varStatus="status"> --%>
-<%-- 												<c:if test="${status.count mod 6 == 0}"> --%>
-<!-- 										</tr> -->
-<!-- 										<tr> -->
-<%-- 											</c:if> --%>
-<!-- 											<td><img -->
-<%-- 												id="img-ponto-articulacao-${pontoDeArticulacao.idPontoDeArticulacao}" --%>
-<!-- 												class="img-responsive opcao" -->
-<%-- 												src="${pageContext.request.contextPath}/resources/img/${pontoDeArticulacao.imagem}" --%>
-<%-- 												title="${pontoDeArticulacao.nome}"> <input --%>
-<!-- 												type="hidden" -->
-<%-- 												id="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}" --%>
-<%-- 												name="idPontoArticulacao${pontoDeArticulacao.idPontoDeArticulacao}" --%>
-<%-- 												value="${pontoDeArticulacao.idPontoDeArticulacao}" />${pontoDeArticulacao.nome}</td> --%>
-<%-- 											</c:forEach> --%>
-<!-- 									</tbody> -->
-<!-- 								</table> -->
 								<table class="table">
 									<tbody>
 										<c:forEach items="${pontosDeArticulacao}"
@@ -235,11 +214,11 @@
 							<div id="configMao1" class="parametro">
 								<img id="imgConfigMao1" class="imgParametro"
 									src="${pageContext.request.contextPath}/resources/img/
-									${sinal != null ? sinal.maoPrincipal.configuracaoDeMao.imagem : 'mais.png'}"
+									${sinal.maoPrincipal.configuracaoDeMao != null ? sinal.maoPrincipal.configuracaoDeMao.imagem : 'mais.png'}"
 									data-target="#modalConfigMao" data-toggle="modal"
 									title="${sinal.maoPrincipal.configuracaoDeMao.nome}" />
 								<div id="excluiConfigMao1" class="excluiParametro"
-									style="display: none">
+									${sinal.maoPrincipal.configuracaoDeMao == null ? 'style="display: none"' : ''}>
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
@@ -256,11 +235,11 @@
 							<div id="pontoArticulacao1" class="parametro">
 								<img id="imgPontoArticulacao1" class="imgParametro"
 									src="${pageContext.request.contextPath}/resources/img/
-									${sinal != null ? sinal.maoPrincipal.pontoDeArticulacao.imagem : 'mais.png'}"
+									${sinal.maoPrincipal.pontoDeArticulacao != null ? sinal.maoPrincipal.pontoDeArticulacao.imagem : 'mais.png'}"
 									data-target="#modalPontoArticulacao" data-toggle="modal"
 									title="${sinal.maoPrincipal.pontoDeArticulacao.nome}" />
 								<div id="excluiPontoArticulacao1" class="excluiParametro"
-									style="display: none">
+									${sinal.maoPrincipal.pontoDeArticulacao == null ? 'style="display: none"' : ''}>
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
@@ -277,11 +256,11 @@
 							<div id="mov1" class="parametro">
 							<img id="imgMovimento1" class="imgParametro"
 									src="${pageContext.request.contextPath}/resources/img/
-									${sinal ! null ? sinal.maoPrincipal.movimento.imagem : 'mais.png'}"
+									${sinal.maoPrincipal.pontoDeArticulacao != null ? sinal.maoPrincipal.movimento.imagem : 'mais.png'}"
 									data-target="#modalMovimento" data-toggle="modal"
 									title="${sinal.maoPrincipal.movimento.nome}" />
 								<div id="excluiMovimento1" class="excluiParametro"
-									style="display: none">
+									${sinal.maoPrincipal.pontoDeArticulacao == null ? 'style="display: none"' : ''}>
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
@@ -310,11 +289,11 @@
 							<div id="configMao2" class="parametro">
 								<img id="imgConfigMao2" class="imgParametro"
 									src="${pageContext.request.contextPath}/resources/img/
-									${ sinal != null sinal.maoSecundaria.configuracaoDeMao.imagem : 'mais.png'}"
+									${sinal.maoSecundaria.configuracaoDeMao != null ? sinal.maoSecundaria.configuracaoDeMao.imagem : 'mais.png'}"
 									data-target="#modalConfigMao" data-toggle="modal"
 									title="${sinal.maoSecundaria.configuracaoDeMao.nome}" />
 								<div id="excluiConfigMao2" class="excluiParametro"
-									style="display: none">
+									${sinal.maoSecundaria.configuracaoDeMao == null ? 'style="display: none"' : ''}>
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
@@ -332,11 +311,11 @@
 							<div id="pontoArticulacao2" class="parametro">
 								<img id="imgPontoArticulacao2" class="imgParametro"
 									src="${pageContext.request.contextPath}/resources/img/
-									${sinal != null sinal.maoSecundaria.pontoDeArticulacao.imagem : 'mais.png'}"
+									${sinal.maoSecundaria.pontoDeArticulacao != null ? sinal.maoSecundaria.pontoDeArticulacao.imagem : 'mais.png'}"
 									data-target="#modalPontoArticulacao" data-toggle="modal"
 									title="${sinal.maoSecundaria.pontoDeArticulacao.nome}" />
 								<div id="excluiPontoArticulacao2" class="excluiParametro"
-									style="display: none">
+									${sinal.maoSecundaria.pontoDeArticulacao == null ? 'style="display: none"' : ''}>
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
@@ -353,12 +332,12 @@
 							<div id="mov2" class="parametro">
 								<img id="imgMovimento2" class="imgParametro"
 									src="${pageContext.request.contextPath}/resources/img/
-									${sinal != null ? sinal.maoSecundaria.movimento.imagem : 'mais.png'}"
+									${sinal.maoSecundaria.movimento != null ? sinal.maoSecundaria.movimento.imagem : 'mais.png'}"
 									data-target="#modalMovimento" data-toggle="modal"
 									title="${sinal.maoSecundaria.movimento.nome}" />
 									
 								<div id="excluiMovimento2" class="excluiParametro"
-									style="display: none">
+									${sinal.maoSecundaria.movimento == null ? 'style="display: none"' : ''}>
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>

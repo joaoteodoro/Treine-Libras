@@ -63,7 +63,7 @@
 								<td>
 									<div class="gerenciar">
 										<a title="Alterar sinal"
-											href="cadastrarSinalUnidadeAntesAntes?id=${sinal.idSinal}"><img
+											href="cadastrarSinalUnidadeAntes?id=${sinal.idSinal}"><img
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/editar.png" /></a>
 										<a title="Remover sinal"

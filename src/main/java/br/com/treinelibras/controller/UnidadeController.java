@@ -25,7 +25,7 @@ public class UnidadeController {
 
 	@Autowired
 	IUnidadeDao unidadeDao;
-	
+
 	@Autowired
 	IUsuarioDao usuarioDao;
 
@@ -53,10 +53,10 @@ public class UnidadeController {
 	public String alterarUnidadeAntes(Model model, Long id) {
 		Unidade unidade = unidadeDao.buscaPorId(id);
 		model.addAttribute("unidade", unidade);
-		model.addAttribute("ehAlteracao","sim");
+		model.addAttribute("ehAlteracao", "sim");
 		return "cadastro-unidade";
 	}
-	
+
 	@RequestMapping("alterarUnidade")
 	public String alterarUnidade(@Valid Unidade unidade) {
 		Unidade unidadeReal = unidadeDao.buscaPorId(unidade.getId());
@@ -76,30 +76,30 @@ public class UnidadeController {
 		unidadeDao.adiciona(unidade);
 		return "redirect:unidades";
 	}
-	
+
 	@RequestMapping("removerUnidade")
-	public String removerUnidade(Long id, Model model){
+	public String removerUnidade(Long id, Model model) {
 		unidadeDao.remove(id);
 		return "redirect:unidades";
 	}
-	
+
 	@RequestMapping("listarSinaisPorUnidade")
 	public String listarSinaisPorUnidade(Model model, Long id) {
 		Unidade unidade = unidadeDao.buscaPorId(id);
 		for (Sinal sinal : unidade.getSinais()) {
 			System.out.println(sinal.toString());
 		}
-		model.addAttribute("unidade",unidade);
+		model.addAttribute("unidade", unidade);
 		return "lista-sinais-unidade";
 	}
-	
+
 	@RequestMapping("alterarUnidadeAtual")
-	public String alterarUnidadeAtual(Long idUnidade){
+	public String alterarUnidadeAtual(Long idUnidade) {
 		List<Unidade> unidades = unidadeDao.lista();
 		for (Unidade unidade : unidades) {
-			if(unidade.getId() == idUnidade){
+			if (unidade.getId() == idUnidade) {
 				unidade.setUnidadeAtual(true);
-			}else{
+			} else {
 				unidade.setUnidadeAtual(false);
 			}
 			unidadeDao.altera(unidade);
@@ -107,9 +107,9 @@ public class UnidadeController {
 		usuarioDao.restaPrimeiroAcesso();
 		return "redirect:unidades";
 	}
-	
+
 	@RequestMapping("homeProfessor")
-	public String homeProfessor(){
+	public String homeProfessor() {
 		return "home-professor";
 	}
 

@@ -373,15 +373,14 @@ public class SinalController {
 		model.addAttribute("unidades",unidades);
 		
 		if(id != null){
-			Movimento movimento = movimentoDao.buscaPorId(id);
-			model.addAttribute("movimento",movimento);
+			Sinal sinal = dao.buscaPorId(id);
+			model.addAttribute("sinal",sinal);
 			model.addAttribute("logica",new String[] {"Alterar","a alteração"});
-			return "altera-sinal";
 		}else{
 			model.addAttribute("logica",new String[] {"Cadastrar","o cadastro"});
-			return "cadastrar-sinal";
 		}
-	}
+		return "cadastrar-sinal";
+	}	
 
 	@RequestMapping("cadastrarSinal")
 	@Transactional
