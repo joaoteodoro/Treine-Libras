@@ -167,6 +167,8 @@
 
 				<form id="formCadastrarSinal" method="post" action="cadastrarSinal"
 					enctype="multipart/form-data">
+					<input type="hidden" name="id" id="id" value="${sinal.idSinal}" />
+					
 					<div class="form-group">
 						<label for="nome">Nome:</label> <input type="text" required
 							value="${sinal.nome}" class="form-control" id="nome" name="nome" placeholder="Nome">
@@ -223,9 +225,11 @@
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
 								<input type="hidden" id="configuracaoDeMao1"
-									name="configuracaoDeMao1" />
+									name="configuracaoDeMao1" value="${sinal.maoPrincipal.configuracaoDeMao.idConfiguracaoDeMao }"/>
 							</div>
-							<p id="nomeconfiguracaoDeMao1" style="margin: 8px;float: left;"></p>
+							<p id="nomeconfiguracaoDeMao1" style="margin: 8px;float: left;">
+								${sinal.maoPrincipal.configuracaoDeMao != null ? sinal.maoPrincipal.configuracaoDeMao.nome : ''}
+							</p>
 							<input type="hidden" name="qtdConfiguracaoDeMao"
 								id="qtdConfiguracaoDeMao">
 						</div>
@@ -244,9 +248,11 @@
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
 								<input type="hidden" id="pontoDeArticulacao1"
-									name="pontoDeArticulacao1" />
+									name="pontoDeArticulacao1" value="${sinal.maoPrincipal.pontoDeArticulacao.idPontoDeArticulacao}" />
 							</div>
-							<p id="nomepontoDeArticulacao1" style="margin: 8px;float: left;"></p>
+							<p id="nomepontoDeArticulacao1" style="margin: 8px;float: left;">
+								${sinal.maoPrincipal.pontoDeArticulacao != null ? sinal.maoPrincipal.pontoDeArticulacao.nome : ''}
+							</p>
 							<input type="hidden" name="qtdPontoDeArticulacao"
 								id="qtdPontoDeArticulacao">
 						</div>
@@ -260,13 +266,15 @@
 									data-target="#modalMovimento" data-toggle="modal"
 									title="${sinal.maoPrincipal.movimento.nome}" />
 								<div id="excluiMovimento1" class="excluiParametro"
-									${sinal.maoPrincipal.pontoDeArticulacao == null ? 'style="display: none"' : ''}>
+									${sinal.maoPrincipal.movimento == null ? 'style="display: none"' : ''}>
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
-								<input type="hidden" id="movimento1" name="movimento1" />
+								<input type="hidden" id="movimento1" name="movimento1" value="${sinal.maoPrincipal.movimento.idMovimento}" />
 							</div>
-							<p id="nomemovimento1" style="margin: 8px;float: left;"></p>
+							<p id="nomemovimento1" style="margin: 8px;float: left;">
+								${sinal.maoPrincipal.movimento != null ? sinal.maoPrincipal.movimento.nome : ''}
+							</p>
 							<input type="hidden" name="qtdMovimento" id="qtdMovimento">
 						</div>
 						<br /> <br /> <br />
@@ -298,9 +306,11 @@
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
 								<input type="hidden" id="configuracaoDeMao2" class="maoSecundaria"
-									name="configuracaoDeMao2" />
+									name="configuracaoDeMao2" value="${sinal.maoSecundaria.configuracaoDeMao.idConfiguracaoDeMao}"/>
 							</div>
-							<p id="nomeconfiguracaoDeMao2" style="margin: 8px;float: left;"></p>
+							<p id="nomeconfiguracaoDeMao2" style="margin: 8px;float: left;">
+								${sinal.maoSecundaria.configuracaoDeMao != null ? sinal.maoSecundaria.configuracaoDeMao.nome : ''}
+							</p>
 							
 <!-- 							<input type="hidden" name="qtdConfiguracaoDeMao" -->
 <!-- 								id="qtdConfiguracaoDeMao"> -->
@@ -320,9 +330,11 @@
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
 								<input type="hidden" id="pontoDeArticulacao2" class="maoSecundaria"
-									name="pontoDeArticulacao2" />
+									name="pontoDeArticulacao2" value="${sinal.maoSecundaria.pontoDeArticulacao.idPontoDeArticulacao}" />
 							</div>
-							<p id="nomepontoDeArticulacao2" style="margin: 8px;float: left;"></p>
+							<p id="nomepontoDeArticulacao2" style="margin: 8px;float: left;">
+								${sinal.maoSecundaria.pontoDeArticulacao != null ? sinal.maoSecundaria.pontoDeArticulacao.nome : ''}
+							</p>
 <!-- 							<input type="hidden" name="qtdPontoDeArticulacao" -->
 <!-- 								id="qtdPontoDeArticulacao"> -->
 						</div>
@@ -341,9 +353,12 @@
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
-								<input type="hidden" id="movimento2" name="movimento2" class="maoSecundaria" />
+								<input type="hidden" id="movimento2" name="movimento2" class="maoSecundaria" 
+									value="${sinal.maoSecundaria.movimento.idMovimento}"/>
 							</div>
-							<p id="nomemovimento2" style="margin: 8px;float: left;"></p>
+							<p id="nomemovimento2" style="margin: 8px;float: left;">
+								${sinal.maoSecundaria.movimento != null ? sinal.maoSecundaria.movimento.nome : ''}
+							</p>
 <!-- 							<input type="hidden" name="qtdMovimento" id="qtdMovimento"> -->
 						</div>
 						<br /> <br /> <br />
@@ -376,7 +391,7 @@
 							<img class="img-responsive center-block parametro"
 							src="${pageContext.request.contextPath}/resources/img/${sinal.foto}" />
 						</c:if>
-						<label for="foto">Foto:</label> <input type="file" required
+						<label for="foto">Foto:</label> <input type="file" ${sinal == null ? 'required' : ''}
 							class="form-control" name="foto" id="foto" placeholder="Foto"
 							accept="image/*">
 					</div>
@@ -390,7 +405,7 @@
 								</div>
 							</div>
 						</c:if>
-						<label for="video">Video:</label> <input type="file" required
+						<label for="video">Video:</label> <input type="file" ${sinal == null ? 'required' : ''}
 							class="form-control" name="video" id="video" placeholder="Vídeo"
 							accept="video/*">
 

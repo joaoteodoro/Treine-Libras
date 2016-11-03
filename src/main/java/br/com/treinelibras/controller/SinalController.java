@@ -380,11 +380,11 @@ public class SinalController {
 			model.addAttribute("logica",new String[] {"Cadastrar","o cadastro"});
 		}
 		return "cadastrar-sinal";
-	}	
+	}
 
 	@RequestMapping("cadastrarSinal")
 	@Transactional
-	public String cadastrarSinal(Model model, HttpServletRequest request) {
+	public String cadastrarSinal(Model model, HttpServletRequest request, Long id) {
 		System.out.println();
 		System.out.println();
 		System.out.println("======================================== INICIO cadastrarSinal()");
@@ -435,7 +435,9 @@ public class SinalController {
 							sinal.setVideo(item.getFieldName());
 						}
 					} else {
-						if ("nome".equals(item.getFieldName())) {
+						if("id".equals(item.getFieldName())){
+							sinal = dao.buscaPorId(Long.parseLong(item.getString()));
+						}else if ("nome".equals(item.getFieldName())) {
 							sinal.setNome(item.getString());
 						} else if ("categoria".equals(item.getFieldName())) {
 							sinal.setCategoria(item.getString());
@@ -520,7 +522,11 @@ public class SinalController {
 //				sinal.setConfiguracoesDeMao(configuracoesDeMao);
 //				sinal.setPontosDeArticulacao(pontosDeArticulacao);
 //				sinal.setMovimentos(movimentos);
-				dao.adiciona(sinal);
+				if(sinal.getIdSinal() != null){
+					dao.altera(sinal);
+				}else {
+					dao.adiciona(sinal);
+				}
 //				System.out.println("Tamanho lista configuracoes de mao: " + sinal.getConfiguracoesDeMao().size());
 //				System.out.println("Tamanho lista pontos de articulacao: " + sinal.getPontosDeArticulacao().size());
 //				System.out.println("Tamanho lista movimento: " + sinal.getMovimentos().size());

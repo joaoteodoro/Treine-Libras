@@ -314,7 +314,7 @@
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
-								<input type="hidden" id="movimento2" name="movimento2" value=""/>
+								<input type="hidden" id="movimento2" name="movimento2" value="${sinal.maoSecundaria.movimento.idMovimento}"/>
 							</div>
 						</div>
 						<br /> <br /> <br />
