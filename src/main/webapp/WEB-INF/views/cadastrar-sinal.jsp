@@ -167,8 +167,7 @@
 
 				<form id="formCadastrarSinal" method="post" action="cadastrarSinal"
 					enctype="multipart/form-data">
-					<input type="hidden" name="id" id="id" value="${sinal.idSinal}" />
-					
+					<input type="hidden" name="id" id="id" value="${sinal.idSinal}"/>
 					<div class="form-group">
 						<label for="nome">Nome:</label> <input type="text" required
 							value="${sinal.nome}" class="form-control" id="nome" name="nome" placeholder="Nome">
@@ -224,11 +223,11 @@
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
-								<input type="hidden" id="configuracaoDeMao1"
-									name="configuracaoDeMao1" value="${sinal.maoPrincipal.configuracaoDeMao.idConfiguracaoDeMao }"/>
+								<input type="hidden" id="configuracaoDeMao1" value="${sinal.maoPrincipal.configuracaoDeMao.idConfiguracaoDeMao}"
+									name="configuracaoDeMao1" />
 							</div>
-							<p id="nomeconfiguracaoDeMao1" style="margin: 8px;float: left;">
-								${sinal.maoPrincipal.configuracaoDeMao != null ? sinal.maoPrincipal.configuracaoDeMao.nome : ''}
+							<p id="nomeConfigMao1" style="margin: 8px;float: left;">
+								${sinal.maoPrincipal.configuracaoDeMao.nome}
 							</p>
 							<input type="hidden" name="qtdConfiguracaoDeMao"
 								id="qtdConfiguracaoDeMao">
@@ -247,11 +246,11 @@
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
-								<input type="hidden" id="pontoDeArticulacao1"
-									name="pontoDeArticulacao1" value="${sinal.maoPrincipal.pontoDeArticulacao.idPontoDeArticulacao}" />
+								<input type="hidden" id="pontoDeArticulacao1" value="${sinal.maoPrincipal.pontoDeArticulacao.idPontoDeArticulacao}"
+									name="pontoDeArticulacao1" />
 							</div>
-							<p id="nomepontoDeArticulacao1" style="margin: 8px;float: left;">
-								${sinal.maoPrincipal.pontoDeArticulacao != null ? sinal.maoPrincipal.pontoDeArticulacao.nome : ''}
+							<p id="nomePontoArticulacao1" style="margin: 8px;float: left;">
+								${sinal.maoPrincipal.pontoDeArticulacao.nome}
 							</p>
 							<input type="hidden" name="qtdPontoDeArticulacao"
 								id="qtdPontoDeArticulacao">
@@ -266,14 +265,14 @@
 									data-target="#modalMovimento" data-toggle="modal"
 									title="${sinal.maoPrincipal.movimento.nome}" />
 								<div id="excluiMovimento1" class="excluiParametro"
-									${sinal.maoPrincipal.movimento == null ? 'style="display: none"' : ''}>
+									${sinal.maoPrincipal.pontoDeArticulacao == null ? 'style="display: none"' : ''}>
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
 								<input type="hidden" id="movimento1" name="movimento1" value="${sinal.maoPrincipal.movimento.idMovimento}" />
 							</div>
-							<p id="nomemovimento1" style="margin: 8px;float: left;">
-								${sinal.maoPrincipal.movimento != null ? sinal.maoPrincipal.movimento.nome : ''}
+							<p id="nomeMovimento1" style="margin: 8px;float: left;">
+								${sinal.maoPrincipal.movimento.nome}
 							</p>
 							<input type="hidden" name="qtdMovimento" id="qtdMovimento">
 						</div>
@@ -305,11 +304,11 @@
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
-								<input type="hidden" id="configuracaoDeMao2" class="maoSecundaria"
-									name="configuracaoDeMao2" value="${sinal.maoSecundaria.configuracaoDeMao.idConfiguracaoDeMao}"/>
+								<input type="hidden" id="configuracaoDeMao2" class="maoSecundaria" value="${sinal.maoSecundaria.configuracaoDeMao.idConfiguracaoDeMao}"
+									name="configuracaoDeMao2" />
 							</div>
-							<p id="nomeconfiguracaoDeMao2" style="margin: 8px;float: left;">
-								${sinal.maoSecundaria.configuracaoDeMao != null ? sinal.maoSecundaria.configuracaoDeMao.nome : ''}
+							<p id="nomeConfigMao2" style="margin: 8px;float: left;">
+								${sinal.maoSecundaria.configuracaoDeMao.nome}
 							</p>
 							
 <!-- 							<input type="hidden" name="qtdConfiguracaoDeMao" -->
@@ -329,11 +328,11 @@
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
-								<input type="hidden" id="pontoDeArticulacao2" class="maoSecundaria"
-									name="pontoDeArticulacao2" value="${sinal.maoSecundaria.pontoDeArticulacao.idPontoDeArticulacao}" />
+								<input type="hidden" id="pontoDeArticulacao2" class="maoSecundaria" value="${sinal.maoSecundaria.pontoDeArticulacao.idPontoDeArticulacao}"
+									name="pontoDeArticulacao2" />
 							</div>
-							<p id="nomepontoDeArticulacao2" style="margin: 8px;float: left;">
-								${sinal.maoSecundaria.pontoDeArticulacao != null ? sinal.maoSecundaria.pontoDeArticulacao.nome : ''}
+							<p id="nomePontoArticulacao2" style="margin: 8px;float: left;">
+								${sinal.maoSecundaria.pontoDeArticulacao.nome}
 							</p>
 <!-- 							<input type="hidden" name="qtdPontoDeArticulacao" -->
 <!-- 								id="qtdPontoDeArticulacao"> -->
@@ -353,11 +352,10 @@
 									<img class="img-responsive"
 										src="${pageContext.request.contextPath}/resources/img/excluir.png">
 								</div>
-								<input type="hidden" id="movimento2" name="movimento2" class="maoSecundaria" 
-									value="${sinal.maoSecundaria.movimento.idMovimento}"/>
+								<input type="hidden" id="movimento2" name="movimento2" class="maoSecundaria" value="${sinal.maoSecundaria.movimento.idMovimento}" />
 							</div>
-							<p id="nomemovimento2" style="margin: 8px;float: left;">
-								${sinal.maoSecundaria.movimento != null ? sinal.maoSecundaria.movimento.nome : ''}
+							<p id="nomeMovimento2" style="margin: 8px;float: left;">
+								${sinal.maoSecundaria.movimento.nome}
 							</p>
 <!-- 							<input type="hidden" name="qtdMovimento" id="qtdMovimento"> -->
 						</div>
@@ -532,9 +530,9 @@
 // 								return;
 // 							}
 							
-							console.log("nomeInput: "+nomeInput);
-							console.log("nIdClicada: "+nIdClicada)
-							$("#nome"+nomeInput+nIdClicada).text($("#" + idOpcaoModal + idOpcaoClicada)
+							console.log("nomeClicado: "+nomeClicado);
+							console.log("nIdClicada: "+nIdClicada);
+							$("#nome"+nomeClicado+nIdClicada).text($("#" + idOpcaoModal + idOpcaoClicada)
 									.attr("title"))
 							
 							$("#" + idClicada).attr(
@@ -563,7 +561,7 @@
 
 							definirNomeNoTitle(nomeOpcaoClicada);
 
-							$("#nome"+nomeInput+nIdClicada).text("");
+							$("#nome"+nomeOpcaoClicada+idOpcaoClicada).text("");
 							
 							$("#img" + nomeOpcaoClicada + idOpcaoClicada)
 									.attr("src",

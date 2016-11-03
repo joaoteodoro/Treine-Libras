@@ -380,7 +380,7 @@ public class SinalController {
 			model.addAttribute("logica",new String[] {"Cadastrar","o cadastro"});
 		}
 		return "cadastrar-sinal";
-	}
+	}	
 
 	@RequestMapping("cadastrarSinal")
 	@Transactional
@@ -403,8 +403,8 @@ public class SinalController {
 			List<PontoDeArticulacao> pontosDeArticulacao = new ArrayList<PontoDeArticulacao>();
 			List<Movimento> movimentos = new ArrayList<Movimento>();
 			
-			Mao maoPrincipal = new Mao();
-			Mao maoSecundaria = new Mao();
+			Mao maoPrincipal = null;
+			Mao maoSecundaria = null;
 
 			try {
 				List items = upload.parseRequest(request);
@@ -418,17 +418,17 @@ public class SinalController {
 						System.out.println("Formulario: " + formulario);
 					}
 
-					if (!item.isFormField()) {
+					if (!item.isFormField() && item != null && !"".equals(item.getName())) {
 						String nomeArquivo = StringUtils.removerAcentos(sinal.getNome()) + "."
 								+ item.getName().substring(item.getName().length() - 3, item.getName().length());
-						if (item.getFieldName().equals("foto")) {
+						if (item.getFieldName().equals("foto") && item != null) {
 							// salvarFoto
 							System.out.println("nomeArquivo: " + nomeArquivo);
 							item.setFieldName(nomeArquivo);
 							//this.inserirImagemDiretorio(item, "img");
 							arquivoDao.inserirImagemDiretorio(item, "img");
 							sinal.setFoto(item.getFieldName());
-						} else {
+						} else if (item.getFieldName().equals("video") && item != null){
 							// salvarVideo
 							item.setFieldName(nomeArquivo);
 							this.inserirImagemDiretorio(item, "videos");
@@ -437,6 +437,12 @@ public class SinalController {
 					} else {
 						if("id".equals(item.getFieldName())){
 							sinal = dao.buscaPorId(Long.parseLong(item.getString()));
+							maoPrincipal = maoDao.buscaPorId(sinal.getMaoPrincipal().getId());
+							if(sinal.getMaoSecundaria() != null){
+								maoSecundaria = maoDao.buscaPorId(sinal.getMaoSecundaria().getId());
+							}else{
+								maoSecundaria = new Mao();
+							}
 						}else if ("nome".equals(item.getFieldName())) {
 							sinal.setNome(item.getString());
 						} else if ("categoria".equals(item.getFieldName())) {
@@ -524,7 +530,7 @@ public class SinalController {
 //				sinal.setMovimentos(movimentos);
 				if(sinal.getIdSinal() != null){
 					dao.altera(sinal);
-				}else {
+				}else{
 					dao.adiciona(sinal);
 				}
 //				System.out.println("Tamanho lista configuracoes de mao: " + sinal.getConfiguracoesDeMao().size());
