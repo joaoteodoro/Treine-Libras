@@ -9,11 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-
-import org.hibernate.annotations.ColumnDefault;
-
 @Entity
 @Table(name = "Usuario")
 public class Usuario {
