@@ -403,8 +403,8 @@ public class SinalController {
 			List<PontoDeArticulacao> pontosDeArticulacao = new ArrayList<PontoDeArticulacao>();
 			List<Movimento> movimentos = new ArrayList<Movimento>();
 			
-			Mao maoPrincipal = null;
-			Mao maoSecundaria = null;
+			Mao maoPrincipal = new Mao();
+			Mao maoSecundaria = new Mao();
 
 			try {
 				List items = upload.parseRequest(request);
@@ -435,7 +435,7 @@ public class SinalController {
 							sinal.setVideo(item.getFieldName());
 						}
 					} else {
-						if("id".equals(item.getFieldName())){
+						if("id".equals(item.getFieldName()) && item.getString() != null && !"".equals(item.getString())){
 							sinal = dao.buscaPorId(Long.parseLong(item.getString()));
 							maoPrincipal = maoDao.buscaPorId(sinal.getMaoPrincipal().getId());
 							if(sinal.getMaoSecundaria() != null){

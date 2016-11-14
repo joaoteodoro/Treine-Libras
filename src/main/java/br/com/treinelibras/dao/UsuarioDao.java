@@ -76,8 +76,9 @@ public class UsuarioDao implements IUsuarioDao {
 //		query.executeUpdate();
 	}
 	
-	public List buscaAlunos(){
-		Query query = manager.createQuery("select u from Usuario u where u.perfil = 'aluno'");
+	public List buscaPorPerfil(String perfil){
+		Query query = manager.createQuery("select u from Usuario u where u.perfil = :perfil");
+		query.setParameter("perfil", perfil);
 		return (List<Usuario>)query.getResultList(); 
 	}
 

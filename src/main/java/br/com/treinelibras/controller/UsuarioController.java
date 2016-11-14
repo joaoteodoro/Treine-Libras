@@ -31,7 +31,11 @@ public class UsuarioController {
 		dao.adiciona(usuario);
 		Usuario user = (Usuario)session.getAttribute("usuarioLogado");
 		if(user != null){
-			return "redirect:alunos";
+			if("aluno".equals(usuario.getPerfil())){
+				return "redirect:alunos";
+			}else if("professor".equals(usuario.getPerfil())){
+				return "redirect:professores";
+			}
 		}
 		return "login";
 	}
@@ -43,7 +47,7 @@ public class UsuarioController {
 	
 	@RequestMapping("alunos")
 	public String alunos(Model model){
-		List<Usuario> alunos = dao.buscaAlunos();
+		List<Usuario> alunos = dao.buscaPorPerfil("aluno");
 		model.addAttribute("alunos",alunos);
 		return "alunos";
 	}
@@ -72,5 +76,17 @@ public class UsuarioController {
 	public String alterarSenhaUsuario(@Valid Usuario usuario){
 		dao.altera(usuario);
 		return "redirect:alunos";
+	}
+	
+	@RequestMapping("professores")
+	public String professores(Model model){
+		List<Usuario> professores = dao.buscaPorPerfil("professor");
+		model.addAttribute("professores",professores);
+		return "professores";
+	}
+	
+	@RequestMapping("cadastrarProfessorAntes")
+	public String cadastrarProfessorAntes(){
+		return "cadastrar-professor";
 	}
 }

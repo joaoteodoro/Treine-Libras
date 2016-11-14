@@ -44,10 +44,10 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${unidade.value}" var="sinal">
-									<c:if test="${sinais.value != '' && sinais.value != null}">
+									<c:if test="${sinal.value != '' && sinal.value != null}">
 										<tr>
 											<td>${sinal.key.nome}</td>
-											<td>${sinais.value}</td>
+											<td>${sinal.value}</td>
 										</tr>
 									</c:if>
 								</c:forEach>

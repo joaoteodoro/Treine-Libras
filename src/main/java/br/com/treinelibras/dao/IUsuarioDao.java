@@ -21,5 +21,5 @@ public interface IUsuarioDao {
 	
 	public void restaPrimeiroAcesso();
 	
-	public List buscaAlunos();
+	public List buscaPorPerfil(String perfil);
 }
