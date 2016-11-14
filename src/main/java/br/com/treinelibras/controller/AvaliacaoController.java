@@ -1,6 +1,9 @@
 package br.com.treinelibras.controller;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.treinelibras.dao.IAvaliacaoDao;
 import br.com.treinelibras.dao.IGravacaoDao;
 import br.com.treinelibras.dao.ISinalDao;
+import br.com.treinelibras.dao.IUnidadeDao;
+import br.com.treinelibras.dao.IUsuarioDao;
 import br.com.treinelibras.modelo.Avaliacao;
 import br.com.treinelibras.modelo.Gravacao;
+import br.com.treinelibras.modelo.Sinal;
+import br.com.treinelibras.modelo.Unidade;
 import br.com.treinelibras.modelo.Usuario;
 
 @Transactional
@@ -29,6 +36,12 @@ public class AvaliacaoController {
 	
 	@Autowired
 	ISinalDao sinalDao;
+	
+	@Autowired
+	IUnidadeDao unidadeDao;
+	
+	@Autowired
+	IUsuarioDao usuarioDao;
 	
 	@RequestMapping("adicionaAvaliacao")
 	public String adicionaAvaliacao(Avaliacao avaliacao, Model model, HttpServletRequest request){
@@ -56,6 +69,24 @@ public class AvaliacaoController {
 		}
 		
 		return "redirect:avaliar";
+	}
+	
+	@RequestMapping("avaliacoesRecebidasPorAluno")
+	public String avaliacoesRecebidasPorAluno(Model model, Long id){
+		Map<Unidade,Map<Sinal, Float>> unidadesSinaisNotas = new LinkedHashMap<>();
+		List<Unidade> unidades = unidadeDao.lista();
+		
+		for (Unidade unidade : unidades) {
+			Map<Sinal, Float> sinaisNotas = new LinkedHashMap<>();
+			for (Sinal sinal : unidade.getSinais()) {
+				float notaMediaSinal = sinalDao.notaSinalPorUsuario(id, sinal.getIdSinal());
+				sinaisNotas.put(sinal, notaMediaSinal);
+			}
+			unidadesSinaisNotas.put(unidade, sinaisNotas);
+		}
+		model.addAttribute("unidadesSinaisNotas",unidadesSinaisNotas);
+		model.addAttribute("aluno",usuarioDao.buscaPorId(id));
+		return "avaliacoes-recebidas";
 	}
 	
 	public float calcularNotaFinal(float notaMedia, float pesoAvaliacao){

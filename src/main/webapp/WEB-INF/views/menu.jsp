@@ -50,7 +50,7 @@
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${usuarioLogado.perfil == 'professor' || usuarioLogado.perfil == 'admin'}">
+						<c:when test="${usuarioLogado.perfil == 'professor'}">
 							<c:choose>
 								<c:when test="${param.paginaAtual == 'sinais'}">
 									<li class="active"><a href="homeProfessor">PROFESSOR</a></li>
@@ -60,8 +60,17 @@
 								</c:otherwise>
 							</c:choose>
 						</c:when>
+						<c:when test="${usuarioLogado.perfil == 'admin'}">
+							<c:choose>
+								<c:when test="${param.paginaAtual == 'sinais'}">
+									<li class="active"><a href="homeAdmin">ADMIN</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="homeAdmin">ADMIN</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
 					</c:choose>
-					
 				</ul>
 			</div>
 		</div>

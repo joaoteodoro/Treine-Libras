@@ -13,11 +13,13 @@ public interface IUsuarioDao {
 	
 	void altera(Usuario u);
 	
-	void remove(Usuario u);
+	void remove(Long id);
 	
 	boolean existeUsuario(Usuario u);
 	
 	public Usuario buscarPorUsuario(String usuario);
 	
 	public void restaPrimeiroAcesso();
+	
+	public List buscaAlunos();
 }

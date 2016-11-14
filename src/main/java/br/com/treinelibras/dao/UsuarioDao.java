@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.treinelibras.modelo.Sinal;
 import br.com.treinelibras.modelo.Usuario;
 
 @Repository
@@ -33,8 +34,9 @@ public class UsuarioDao implements IUsuarioDao {
 		manager.merge(u);
 	}
 
-	public void remove(Usuario usuario) {
-		Usuario u = buscaPorId(usuario.getIdUsuario());
+	public void remove(Long id) {
+		Usuario usuario = manager.find(Usuario.class, id);
+		manager.remove(usuario);
 	}
 
 	public boolean existeUsuario(Usuario usuario) {
@@ -72,6 +74,11 @@ public class UsuarioDao implements IUsuarioDao {
 		}
 //		Query query = manager.createQuery("update Usuario set primeiroAcesso = 1 where perfil <> 'admin' ");
 //		query.executeUpdate();
+	}
+	
+	public List buscaAlunos(){
+		Query query = manager.createQuery("select u from Usuario u where u.perfil = 'aluno'");
+		return (List<Usuario>)query.getResultList(); 
 	}
 
 }
