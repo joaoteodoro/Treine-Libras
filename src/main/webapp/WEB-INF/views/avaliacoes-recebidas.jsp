@@ -33,26 +33,28 @@
 			<div class="center-block box-page-geral">
 				<div id="accordion">
 					<c:forEach items="${unidadesSinaisNotas}" var="unidade">
-						<h3>Unidade ${unidade.key.numero}</h3>
-						<table id="tabela" class="table table-striped table-bordered"
-							cellspacing="0" width="100%">
-							<thead>
-								<tr>
-									<th>Sinal</th>
-									<th>Nota atual</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${unidade.value}" var="sinal">
-									<c:if test="${sinal.value != '' && sinal.value != null}">
-										<tr>
-											<td>${sinal.key.nome}</td>
-											<td>${sinal.value}</td>
-										</tr>
-									</c:if>
-								</c:forEach>
-							</tbody>
-						</table>
+						<c:if test="${not empty unidade.value}">
+							<h3>Unidade ${unidade.key.numero}</h3>
+							<table id="tabela" class="table table-striped table-bordered"
+								cellspacing="0" width="100%">
+								<thead>
+									<tr>
+										<th>Sinal</th>
+										<th>Nota atual</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${unidade.value}" var="sinal">
+										<c:if test="${sinal.value != '' && sinal.value != null}">
+											<tr>
+												<td>${sinal.key.nome}</td>
+												<td>${sinal.value}</td>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</tbody>
+							</table>
+						</c:if>
 					</c:forEach>
 				</div>
 			</div>

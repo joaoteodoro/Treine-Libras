@@ -27,10 +27,10 @@
 					<div class="box-unidade">
 						<div class="col-md-3">
 							<img class="img-sinal-libras img-responsive center-block"
-								src="${pageContext.request.contextPath}/resources/img/img1.jpg" />
+								src="${pageContext.request.contextPath}/resources/img/configMao10.png" />
 						</div>
 						<div class="col-md-9">
-							<h3 class="center-block">
+							<h3 class="margin-zero line-40">
 								<b>Configurações de Mão</b>
 							</h3>
 						</div>
@@ -42,10 +42,10 @@
 					<div class="box-unidade">
 						<div class="col-md-3">
 							<img class="img-sinal-libras img-responsive center-block"
-								src="${pageContext.request.contextPath}/resources/img/img1.jpg" />
+								src="${pageContext.request.contextPath}/resources/img/pontoArticulacao.jpg" />
 						</div>
 						<div class="col-md-9">
-							<h3 class="center-block">
+							<h3 class="margin-zero line-40">
 								<b>Pontos de Articulação</b>
 							</h3>
 						</div>
@@ -57,10 +57,10 @@
 					<div class="box-unidade">
 						<div class="col-md-3">
 							<img class="img-sinal-libras img-responsive center-block"
-								src="${pageContext.request.contextPath}/resources/img/img1.jpg" />
+								src="${pageContext.request.contextPath}/resources/img/movimento.jpg" />
 						</div>
 						<div class="col-md-9">
-							<h3 class="center-block">
+							<h3 class="margin-zero line-80">
 								<b>Movimentos</b>
 							</h3>
 						</div>
@@ -74,10 +74,10 @@
 					<div class="box-unidade">
 						<div class="col-md-3">
 							<img class="img-sinal-libras img-responsive center-block"
-								src="${pageContext.request.contextPath}/resources/img/img1.jpg" />
+								src="${pageContext.request.contextPath}/resources/img/expressaoFacial.jpg" />
 						</div>
 						<div class="col-md-9">
-							<h3 class="center-block">
+							<h3 class="margin-zero line-80">
 								<b>Expressões Faciais</b>
 							</h3>
 						</div>
@@ -89,11 +89,11 @@
 					<div class="box-unidade">
 						<div class="col-md-3">
 							<img class="img-sinal-libras img-responsive center-block"
-								src="${pageContext.request.contextPath}/resources/img/img1.jpg" />
+								src="${pageContext.request.contextPath}/resources/img/unidade.png" />
 						</div>
 						<div class="col-md-9">
-							<h3 class="center-block">
-								<b>Unidades</b>
+							<h3 class="margin-zero line-80">
+								<b>Unidades/Sinais</b>
 							</h3>
 						</div>
 					</div>
@@ -104,10 +104,10 @@
 					<div class="box-unidade">
 						<div class="col-md-3">
 							<img class="img-sinal-libras img-responsive center-block"
-								src="${pageContext.request.contextPath}/resources/img/img1.jpg" />
+								src="${pageContext.request.contextPath}/resources/img/professor.png" />
 						</div>
 						<div class="col-md-9">
-							<h3 class="center-block">
+							<h3 class="margin-zero line-80">
 								<b>Professores</b>
 							</h3>
 						</div>
@@ -119,10 +119,10 @@
 					<div class="box-unidade">
 						<div class="col-md-3">
 							<img class="img-sinal-libras img-responsive center-block"
-								src="${pageContext.request.contextPath}/resources/img/img1.jpg" />
+								src="${pageContext.request.contextPath}/resources/img/alunos.png" />
 						</div>
 						<div class="col-md-9">
-							<h3 class="center-block">
+							<h3 class="margin-zero line-80">
 								<b>Alunos</b>
 							</h3>
 						</div>

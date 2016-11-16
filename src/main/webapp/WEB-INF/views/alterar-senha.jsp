@@ -60,6 +60,7 @@
 					</div>
 					<input type="hidden" name="primeiroAcesso" id="primeiroAcesso" value="0"/>
 					<input type="hidden" name="pesoAvaliacao" id="pesoAvaliacao" value="${usuario.pesoAvaliacao}"/>
+					<input type="hidden" name="perfil" id="perfil" value="${usuario.perfil}"/>
 					<button type="submit"
 						class="bg-black color-white pull-right btn btn-default">Cadastrar</button>
 				</form>

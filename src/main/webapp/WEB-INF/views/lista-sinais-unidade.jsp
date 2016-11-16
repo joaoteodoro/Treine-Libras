@@ -24,14 +24,17 @@
 		<div class="row">
 			<div class="center-block box-page-geral">
 
-				<a href="cadastrarSinalUnidadeAntes?idUnidade=${unidade.id}">Adicionar
-					novo sinal nesta unidade</a> <br /> <br /> <a
-					href="cadastrarSinalAntes">Adicionar novo sinal em outra
-					unidade</a> <br /> <br />
-					
-					<div id="atencao" class="atencao" style="display:none">
-						<p>Atenção, selecione cinco sinais como sinais de testes! </p>
-					</div>
+				<div class="col-md-5">
+					<a href="cadastrarSinalUnidadeAntes?idUnidade=${unidade.id}"><h4>
+							<b>+Adicionar novo sinal nesta unidade</b>
+						</h4></a> <br /> <br /> <a href="cadastrarSinalAntes"><h4>
+							<b>+Adicionar novo sinal em outra unidade</b>
+						</h4></a> <br /> <br />
+				</div>
+
+				<div id="atencao" class="atencao" style="display: none">
+					<p>Atenção, selecione cinco sinais como sinais de testes!</p>
+				</div>
 				<table id="tabela" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
 					<thead>
@@ -77,13 +80,13 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<input type="hidden" id="sinaisTestes" name="sinaisTestes"/>
+				<input type="hidden" id="sinaisTestes" name="sinaisTestes" />
 			</div>
 		</div>
 	</div>
 
-	<div class="modal fade" id="modalSinaisTeste" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel">
+	<div class="modal fade" id="modalSinaisTeste" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -93,14 +96,15 @@
 					</button>
 					<h4 class="modal-title" id="myModalLabel">Atenção</h4>
 				</div>
-				<div class="modal-body">Você pode selecionar apenas 5 sinais por unidade.</div>
+				<div class="modal-body">Você pode selecionar apenas 5 sinais
+					por unidade.</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">

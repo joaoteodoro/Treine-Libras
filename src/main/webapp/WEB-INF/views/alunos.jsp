@@ -23,8 +23,9 @@
 		</div>
 		<div class="row">
 			<div class="center-block box-page-geral">
-
-				<a href="cadastrarAlunoAntes">Cadastrar novo aluno</a> <br /> <br />
+				<div class="col-md-5">
+					<a href="cadastrarAlunoAntes"><h4><b>+Cadastrar novo aluno</b></h4></a> <br /> <br />
+				</div>
 				<table id="tabela" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
 					<thead>
@@ -37,9 +38,7 @@
 					<tbody>
 						<c:forEach items="${alunos}" var="aluno">
 							<tr>
-								<td>
-									${aluno.nome}
-								</td>
+								<td>${aluno.nome}</td>
 								<td>${aluno.email}</td>
 								<td>
 									<div class="gerenciar">
@@ -76,8 +75,13 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Exclusão</h4>
 					</div>
-					<div class="modal-body">Deseja realmente excluir este
-						aluno?</div>
+					<div class="modal-body">
+						Deseja realmente excluir este aluno?
+						<br/><br/>
+						<p style="color: red;">Excluindo esse aluno, você estará
+							excluindo todos as gravações que ele fez e as avaliações que ele
+							recebeu!</p>
+					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
 						<button type="button" class="btn btn-primary"
@@ -86,8 +90,12 @@
 				</div>
 			</div>
 		</div>
-				
-			<br/><br/><br/><br/><br/>
+
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
 	</div>
 	<c:import url="rodape.jsp" />
 	<script

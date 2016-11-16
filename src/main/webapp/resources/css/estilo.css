@@ -464,3 +464,19 @@ code {
     height: 60px;
     margin: 0;
 }
+
+.margin-zero{
+	margin: 0
+}
+
+.line-40{
+	line-height: 40px;
+}
+
+.line-80{
+	line-height: 80px;
+}
+
+#conteudoModalErro{
+	color: red;
+}

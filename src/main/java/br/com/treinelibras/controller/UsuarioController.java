@@ -75,6 +75,11 @@ public class UsuarioController {
 	@RequestMapping("alterarSenhaUsuario")
 	public String alterarSenhaUsuario(@Valid Usuario usuario){
 		dao.altera(usuario);
+		if("aluno".equals(usuario.getPerfil())){
+			return "redirect:alunos";
+		}else if("professor".equals(usuario.getPerfil())){
+			return "redirect:professores";
+		}
 		return "redirect:alunos";
 	}
 	

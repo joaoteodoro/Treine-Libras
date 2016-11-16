@@ -72,6 +72,27 @@
 				</div>
 			</div>
 		</div>
+		<div id="modalErro" class="modal fade" tabindex="-1" role="dialog"
+			aria-labelledby="myLargeModalLabel">
+			<div class="modal-dialog">
+
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 id="tituloModalErro" class="modal-title">Senhas incorretas</h4>
+					</div>
+					<div class="modal-body">
+						<p id="conteudoModalErro">As senhas informadas não são iguais!</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<c:import url="rodape.jsp" />
 	<script>
@@ -79,19 +100,19 @@
 				.submit(
 						function() {
 
-							if ($("#nome").val() != "") {
+							if ($("#senha").val() == $("#confirmarSenha").val()) {
 								if ($('#myModal').css("display") == "block") {
 									return true;
 								}
 							} else {
-								$("#tituloModalErro").text(
-										"Parâmetro em branco");
+								$("#tituloModalErro").text("Senhas incorretas");
 								$("#conteudoModalErro")
 										.text(
-												"Existem um ou mais campos vazios. Por favor, preencha todos os campos!");
+												"Confirmação de senha está distinda da senha informada!");
 								$("#modalErro").modal('show');
 								return false;
 							}
+
 							$('#myModal').modal('show');
 							return false;
 						});

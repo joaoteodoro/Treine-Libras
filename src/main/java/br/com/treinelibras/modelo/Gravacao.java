@@ -31,7 +31,7 @@ public class Gravacao {
 	@ManyToOne
 	private Sinal sinal;
 	
-	@OneToMany(mappedBy="gravacao")
+	@OneToMany(mappedBy="gravacao", cascade = CascadeType.REMOVE)
 	private List<Avaliacao> avaliacoes;
 	
 	public List<Avaliacao> getAvaliacoes() {

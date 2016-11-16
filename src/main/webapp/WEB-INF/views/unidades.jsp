@@ -23,8 +23,10 @@
 		</div>
 		<div class="row">
 			<div class="center-block box-page-geral">
-
-				<a href="cadastrarUnidadeAntes">Adicionar nova unidade</a> <br /> <br />
+				<div class="col-md-5">
+					<a href="cadastrarUnidadeAntes"><h4><b>+Adicionar nova unidade</b></h4></a> <br /> <br />
+				</div>
+				
 				<table id="tabela" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
 					<thead>

@@ -80,7 +80,9 @@ public class AvaliacaoController {
 			Map<Sinal, Float> sinaisNotas = new LinkedHashMap<>();
 			for (Sinal sinal : unidade.getSinais()) {
 				float notaMediaSinal = sinalDao.notaSinalPorUsuario(id, sinal.getIdSinal());
-				sinaisNotas.put(sinal, notaMediaSinal);
+				if(notaMediaSinal != 0){
+					sinaisNotas.put(sinal, notaMediaSinal);
+				}
 			}
 			unidadesSinaisNotas.put(unidade, sinaisNotas);
 		}

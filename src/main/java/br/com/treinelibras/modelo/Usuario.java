@@ -2,6 +2,7 @@ package br.com.treinelibras.modelo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,7 +41,7 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario")
 	private List<Avaliacao> avaliacoes;
 
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	private List<Gravacao> gravacoes;
 	
 

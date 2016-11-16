@@ -23,8 +23,10 @@
 		</div>
 		<div class="row">
 			<div class="center-block box-page-geral">
-
-				<a href="cadastrarProfessorAntes">Cadastrar novo professor</a> <br /> <br />
+				<div class="col-md-5">
+					<a href="cadastrarProfessorAntes"><h4><b>+Cadastrar novo professor</b></h4></a> <br /> <br />
+				</div>
+				
 				<table id="tabela" class="table table-striped table-bordered"
 					cellspacing="0" width="100%">
 					<thead>
@@ -48,7 +50,7 @@
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/alterar-senha.png" /></a>
 										<a title="Excluir professor"
-											onclick="setidAlunoGerenciando(${professor.idUsuario})"
+											onclick="setidProfessorGerenciando(${professor.idUsuario})"
 											data-toggle="modal" data-target="#modalExcluir"><img
 											class="img-responsive"
 											src="${pageContext.request.contextPath}/resources/img/lixeira.png" /></a>
@@ -97,7 +99,7 @@
 		}
 			
 		function excluirProfessor(){
-			$.post("removerUsuario",{'id' : idAlunoGerenciando}, function(resposta){
+			$.post("removerUsuario",{'id' : idProfessorGerenciando}, function(resposta){
 				//window.location.replace("listarSinais");
 				location.reload();
 			});
