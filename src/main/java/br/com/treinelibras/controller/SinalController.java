@@ -80,6 +80,9 @@ public class SinalController {
 	
 	@Autowired
 	IArquivoDao arquivoDao;
+	
+	@Autowired
+	AvaliacaoFuzzyController avaliacaoFuzzyController;
 
 	private static final Logger logger = Logger.getLogger(SinalController.class);
 
@@ -532,6 +535,7 @@ public class SinalController {
 					dao.altera(sinal);
 				}else{
 					dao.adiciona(sinal);
+					avaliacaoFuzzyController.definirAvaliacoes(sinal);
 				}
 //				System.out.println("Tamanho lista configuracoes de mao: " + sinal.getConfiguracoesDeMao().size());
 //				System.out.println("Tamanho lista pontos de articulacao: " + sinal.getPontosDeArticulacao().size());

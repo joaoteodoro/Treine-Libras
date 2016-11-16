@@ -27,7 +27,7 @@
 				<div class="col-md-5">
 					<a href="cadastrarSinalUnidadeAntes?idUnidade=${unidade.id}"><h4>
 							<b>+Adicionar novo sinal nesta unidade</b>
-						</h4></a> <br /> <br /> <a href="cadastrarSinalAntes"><h4>
+						</h4></a><a href="cadastrarSinalAntes"><h4>
 							<b>+Adicionar novo sinal em outra unidade</b>
 						</h4></a> <br /> <br />
 				</div>
