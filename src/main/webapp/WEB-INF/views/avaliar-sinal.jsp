@@ -98,7 +98,7 @@
 								CF</div>
 							<div
 								class="col-md-offset-2 col-md-7 col-sm-offset-2 col-sm-7 col-xs-offset-1 col-xs-8 avaliacao-caracteristica">
-								<img id="cf1" class="estrela-avaliacao es"
+								<img onmouseenter="alteraEstrela" id="cf1" class="estrela-avaliacao es"
 									src="${pageContext.request.contextPath}/resources/img/estrela-vazia.png" />
 								<img id="cf2" class="estrela-avaliacao es"
 									src="${pageContext.request.contextPath}/resources/img/estrela-vazia.png" />

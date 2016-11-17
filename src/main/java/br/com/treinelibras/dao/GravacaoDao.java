@@ -85,16 +85,17 @@ public class GravacaoDao implements IGravacaoDao {
 		return query.getResultList();
 	}
 	
-//	select *
-//	from gravacao g,
-//	usuario u,
-//	sinal s,
-//	matrizAvaliacaoFuzzy m,
-//	avaliacaoFuzzy av	
-//	where g.sinal_idSinal = s.idSinal
-//	and g.usuario_idUsuario = u.idUsuario
-//	and m.id = av.matrizAvaliacaoFuzzy_id
-//	and av.alunoAvaliador_idUsuario = 2
-//	and av.alunoAvaliado_idUsuario = u.idUsuario
-
+	public List<Gravacao> gravacoesParaAvaliarPorUsuarioSinal(Long idUsuario, Long idSinal){
+		Query query = manager.createQuery(" select g" + 
+										" from Gravacao g," + 
+										" AvaliacaoFuzzy a" + 
+										" where g.sinal.idSinal = :idSinal" + 
+										" and a.alunoAvaliador.idUsuario = :idUsuario" + 
+										" and a.alunoAvaliado.idUsuario = g.usuario.idUsuario" + 
+										" and a.matrizAvaliacaoFuzzy.sinal.idSinal = g.sinal.idSinal");
+		query.setParameter("idSinal", idSinal);
+		query.setParameter("idUsuario", idUsuario);
+		return query.getResultList();
+		
+	}
 }

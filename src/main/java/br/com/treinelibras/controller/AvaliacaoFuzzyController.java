@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.treinelibras.dao.IAvaliacaoFuzzyDao;
 import br.com.treinelibras.dao.IMatrizAvaliacaoDao;
 import br.com.treinelibras.dao.IUsuarioDao;
+import br.com.treinelibras.modelo.Avaliacao;
 import br.com.treinelibras.modelo.AvaliacaoFuzzy;
 import br.com.treinelibras.modelo.MatrizAvaliacaoFuzzy;
 import br.com.treinelibras.modelo.Sinal;
@@ -75,5 +76,38 @@ public class AvaliacaoFuzzyController {
 		for (AvaliacaoFuzzy avaliacao : avaliacoesFuzzy) {
 			avaliacaoFuzzyDao.adiciona(avaliacao);
 		}
+	}
+	
+	
+	public void atualizarMatrizAvaliacaoSinal(Avaliacao avaliacao){
+		Usuario alunoAvaliador = avaliacao.getUsuario();
+		Usuario alunoAvaliado = avaliacao.getGravacao().getUsuario();
+		Sinal sinal = avaliacao.getGravacao().getSinal();
+		AvaliacaoFuzzy avaliacaoFuzzy =  avaliacaoFuzzyDao.buscaPorAvaliadorAvaliadoSinal(alunoAvaliador.getIdUsuario(),alunoAvaliado.getIdUsuario(),sinal.getIdSinal());
+		avaliacaoFuzzy.setNotaFuzzy(avaliacao.getNotaMedia());
+		avaliacaoFuzzy.setJaAvaliou(true);
+		//avaliacaoFuzzyDao.altera(avaliacaoFuzzy);
+		
+		MatrizAvaliacaoFuzzy matrizAvaliacaoFuzzy = avaliacaoFuzzy.getMatrizAvaliacaoFuzzy();
+		
+		//int qtdAvaliacoesMatriz = avaliacaoFuzzyDao.buscaQuantidadeAvaliacoesPorMatriz(avaliacaoFuzzy.getMatrizAvaliacaoFuzzy().getId());
+		//int qtdAvaliacoesMatrizJaAvaliadas = avaliacaoFuzzyDao.buscaQuantidadeAvaliacoesJaAvaliadasPorMatriz(avaliacaoFuzzy.getMatrizAvaliacaoFuzzy().getId());
+		
+		//if(qtdAvaliacoesMatriz == qtdAvaliacoesMatrizJaAvaliadas){
+			matrizAvaliacaoFuzzy.setAvaliacaoCompleta(true);
+			//matrizAvaliacaoDao.altera(matrizAvaliacaoFuzzy);
+			executarAlgoritmoBorda(matrizAvaliacaoFuzzy);
+		//}
+		
+		
+		
+		//buscar objeto avaliacaoFuzzy relacionado a esta avaliacao
+		//atualizar nota com base no campo notaMedia do objeto avaliacao
+		//verificar se a matriz ja foi completada. Se sim, executar o algoritmo final
+		
+	}
+	
+	public void executarAlgoritmoBorda(MatrizAvaliacaoFuzzy matrizAvaliacaoFuzzy){
+		
 	}
 }

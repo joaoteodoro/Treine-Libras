@@ -25,6 +25,7 @@ public class AvaliacaoFuzzy {
 	
 	private boolean jaAvaliou = false;
 	private float notaFuzzy;
+	private float pesoNoMomentoDaAvaliacao;
 	
 	@ManyToOne
 	private MatrizAvaliacaoFuzzy matrizAvaliacaoFuzzy;
@@ -64,5 +65,11 @@ public class AvaliacaoFuzzy {
 	}
 	public void setNotaFuzzy(float notaFuzzy) {
 		this.notaFuzzy = notaFuzzy;
+	}
+	public float getPesoNoMomentoDaAvaliacao() {
+		return pesoNoMomentoDaAvaliacao;
+	}
+	public void setPesoNoMomentoDaAvaliacao(float pesoNoMomentoDaAvaliacao) {
+		this.pesoNoMomentoDaAvaliacao = pesoNoMomentoDaAvaliacao;
 	}	
 }

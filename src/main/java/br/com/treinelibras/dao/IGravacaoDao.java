@@ -18,4 +18,6 @@ public interface IGravacaoDao {
 	public void adiciona(Gravacao gravacao);
 	
 	public String videoPorSinalUsuario(Long idSinal, Long idUsuario);
+	
+	public List<Gravacao> gravacoesParaAvaliarPorUsuarioSinal(Long idUsuario, Long idSinal);
 }

@@ -43,6 +43,9 @@ public class AvaliacaoController {
 	@Autowired
 	IUsuarioDao usuarioDao;
 	
+	@Autowired
+	AvaliacaoFuzzyController avaliacaoFuzzyController;
+	
 	@RequestMapping("adicionaAvaliacao")
 	public String adicionaAvaliacao(Avaliacao avaliacao, Model model, HttpServletRequest request){
 		System.out.println("Teste: "+request.getParameter("teste"));
@@ -67,6 +70,8 @@ public class AvaliacaoController {
 			//avaliacao.setUsuario(usuario);
 			dao.adicionaAvaliacao(avaliacao);
 		}
+		
+		avaliacaoFuzzyController.atualizarMatrizAvaliacaoSinal(avaliacao);
 		
 		return "redirect:avaliar";
 	}

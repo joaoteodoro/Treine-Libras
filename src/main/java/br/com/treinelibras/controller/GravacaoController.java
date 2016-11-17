@@ -87,7 +87,8 @@ public class GravacaoController {
 	@RequestMapping("listarUsuariosPorGravacao")
 	public String listarUsuariosPorGravacao(Long idSinal, Model model, HttpServletRequest request){
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
-		List<Gravacao> gravacoes = dao.gravacoesPorSinalSemUsuarioLogado(idSinal, usuario.getIdUsuario());		
+		//List<Gravacao> gravacoes = dao.gravacoesPorSinalSemUsuarioLogado(idSinal, usuario.getIdUsuario());
+		List<Gravacao> gravacoes = dao.gravacoesParaAvaliarPorUsuarioSinal(usuario.getIdUsuario(), idSinal);
 		Sinal sinal = sinalDao.buscaPorId(idSinal);
 		
 		model.addAttribute("gravacoes", gravacoes);
