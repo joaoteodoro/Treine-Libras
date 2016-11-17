@@ -32,7 +32,7 @@
 						</h4></a> <br /> <br />
 				</div>
 
-				<div id="atencao" class="atencao" style="display: none">
+				<div id="atencao" class="atencao col-md-12	" style="display: none">
 					<p>Atenção, selecione cinco sinais como sinais de testes!</p>
 				</div>
 				<table id="tabela" class="table table-striped table-bordered"

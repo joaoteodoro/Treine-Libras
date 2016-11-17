@@ -84,5 +84,17 @@ public class GravacaoDao implements IGravacaoDao {
 		
 		return query.getResultList();
 	}
+	
+//	select *
+//	from gravacao g,
+//	usuario u,
+//	sinal s,
+//	matrizAvaliacaoFuzzy m,
+//	avaliacaoFuzzy av	
+//	where g.sinal_idSinal = s.idSinal
+//	and g.usuario_idUsuario = u.idUsuario
+//	and m.id = av.matrizAvaliacaoFuzzy_id
+//	and av.alunoAvaliador_idUsuario = 2
+//	and av.alunoAvaliado_idUsuario = u.idUsuario
 
 }
