@@ -18,6 +18,7 @@ import br.com.treinelibras.modelo.AvaliacaoFuzzy;
 import br.com.treinelibras.modelo.MatrizAvaliacaoFuzzy;
 import br.com.treinelibras.modelo.Sinal;
 import br.com.treinelibras.modelo.Usuario;
+import br.com.treinelibras.util.NumberUtils;
 
 @Transactional
 @Controller
@@ -108,6 +109,31 @@ public class AvaliacaoFuzzyController {
 	}
 	
 	public void executarAlgoritmoBorda(MatrizAvaliacaoFuzzy matrizAvaliacaoFuzzy){
+		/*List<AvaliacaoFuzzy> avaliacoesFuzzy = avaliacaoFuzzyDao.buscaAvaliacoesPorIdMatrizAvaliacao(matrizAvaliacaoFuzzy.getId());
+		Collections.sort(avaliacoesFuzzy);
+		Collections.reverse(avaliacoesFuzzy);
+		
+		int k = avaliacoesFuzzy.size();
+		for (AvaliacaoFuzzy avaliacaoFuzzy : avaliacoesFuzzy) {
+			avaliacaoFuzzy.setNotaPorPosicaoRanking(NumberUtils.arredondamentoQuatroCasas(k*avaliacaoFuzzy.getPesoNoMomentoDaAvaliacao()));
+			k--;
+		}
+		
+		for (AvaliacaoFuzzy avaliacao : avaliacoesFuzzy) {
+			avaliacaoFuzzyDao.altera(avaliacao);
+		}
+		
+		
+		
+		double[] vetorResultado = new double[matriz.length];
+		for (int i = 1; i < matriz.length; i++) {
+			double somatoria = 0.0;
+			for (int j = 1; j < matriz.length; j++) {
+				somatoria += matriz[j][i];
+			}
+			vetorResultado[i] = arredondamentoQuartoCasas(somatoria);
+		}
+		return vetorResultado;*/
 		
 	}
 }
