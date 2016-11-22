@@ -33,4 +33,13 @@ public class StringUtils {
     public static String removerAcentos(String str) {
 	    return Normalizer.normalize(str, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
 	}
+    
+    public static boolean contemEmVetor(String pesquisa, String[] vetor){
+    	for (int i = 0; i < vetor.length; i++) {
+			if(vetor[i].equals(pesquisa)){
+				return true;
+			}
+		}
+    	return false;
+    }
 }
