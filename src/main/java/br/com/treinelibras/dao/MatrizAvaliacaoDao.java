@@ -6,7 +6,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import br.com.treinelibras.modelo.MatrizAvaliacaoFuzzy;
-import br.com.treinelibras.modelo.Movimento;
 
 @Repository
 public class MatrizAvaliacaoDao implements IMatrizAvaliacaoDao{
@@ -17,6 +16,10 @@ public class MatrizAvaliacaoDao implements IMatrizAvaliacaoDao{
 	@Override
 	public void adiciona(MatrizAvaliacaoFuzzy matrizAvaliacaoFuzzy) {
 		manager.persist(matrizAvaliacaoFuzzy);
+	}
+	
+	public void altera(MatrizAvaliacaoFuzzy matrizAvaliacaoFuzzy){
+		manager.merge(matrizAvaliacaoFuzzy);
 	}
 	
 }

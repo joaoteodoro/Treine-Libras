@@ -24,8 +24,12 @@ public class Avaliacao {
 	private float notaMovimento;
 	private float notaOrientacao;
 	private float notaExpressaoFacial;
-	private Date data;
+	
 	private float notaMedia;
+	
+	private float pesoAvaliacao;
+	
+	private Date data;
 	
 	private float notaFinal;
 
@@ -121,6 +125,14 @@ public class Avaliacao {
 
 	public void setNotaFinal(float notaFinal) {
 		this.notaFinal = notaFinal;
+	}
+
+	public float getPesoAvaliacao() {
+		return pesoAvaliacao;
+	}
+
+	public void setPesoAvaliacao(float pesoAvaliacao) {
+		this.pesoAvaliacao = pesoAvaliacao;
 	}
 
 	@Override

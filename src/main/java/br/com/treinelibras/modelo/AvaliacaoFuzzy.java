@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="AvaliacaoFuzzy")
-public class AvaliacaoFuzzy implements Comparable<AvaliacaoFuzzy>{
+public class AvaliacaoFuzzy /*implements Comparable<AvaliacaoFuzzy>*/{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +24,15 @@ public class AvaliacaoFuzzy implements Comparable<AvaliacaoFuzzy>{
 	private Usuario alunoAvaliado;
 	
 	private boolean jaAvaliou = false;
-	private float notaFuzzy;
-	private float pesoNoMomentoDaAvaliacao;
-	private float notaPorPosicaoRanking;
+	//private float notaFuzzy;
+	//private float pesoNoMomentoDaAvaliacao;
+	//private float notaPorPosicaoRanking;
 	
 	@ManyToOne
 	private MatrizAvaliacaoFuzzy matrizAvaliacaoFuzzy;
+	
+	@ManyToOne
+	private Avaliacao avaliacao;
 	
 	public MatrizAvaliacaoFuzzy getMatrizAvaliacaoFuzzy() {
 		return matrizAvaliacaoFuzzy;
@@ -61,7 +64,7 @@ public class AvaliacaoFuzzy implements Comparable<AvaliacaoFuzzy>{
 	public void setJaAvaliou(boolean jaAvaliou) {
 		this.jaAvaliou = jaAvaliou;
 	}
-	public float getNotaFuzzy() {
+	/*public float getNotaFuzzy() {
 		return notaFuzzy;
 	}
 	public void setNotaFuzzy(float notaFuzzy) {
@@ -88,5 +91,11 @@ public class AvaliacaoFuzzy implements Comparable<AvaliacaoFuzzy>{
 			return 1;
 		}
 		return 0;
+	}*/
+	public Avaliacao getAvaliacao() {
+		return avaliacao;
+	}
+	public void setAvaliacao(Avaliacao avaliacao) {
+		this.avaliacao = avaliacao;
 	}
 }

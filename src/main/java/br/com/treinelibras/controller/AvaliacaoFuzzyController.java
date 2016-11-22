@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.treinelibras.dao.IAvaliacaoDao;
 import br.com.treinelibras.dao.IAvaliacaoFuzzyDao;
 import br.com.treinelibras.dao.IMatrizAvaliacaoDao;
 import br.com.treinelibras.dao.IUsuarioDao;
+import br.com.treinelibras.dto.AlunoAvaliacaoDto;
 import br.com.treinelibras.modelo.Avaliacao;
 import br.com.treinelibras.modelo.AvaliacaoFuzzy;
 import br.com.treinelibras.modelo.MatrizAvaliacaoFuzzy;
@@ -35,6 +37,9 @@ public class AvaliacaoFuzzyController {
 	
 	@Autowired
 	IMatrizAvaliacaoDao matrizAvaliacaoDao;
+	
+	@Autowired
+	IAvaliacaoDao avaliacaoDao;
 	
 	@SuppressWarnings("unchecked")
 	public void definirAvaliacoes(Sinal sinal){
@@ -67,7 +72,7 @@ public class AvaliacaoFuzzyController {
 					avaliacaoFuzzy.setAlunoAvaliador(alunos.get(i-1));
 					avaliacaoFuzzy.setAlunoAvaliado(alunos.get(j-1));
 					avaliacaoFuzzy.setJaAvaliou(false);
-					avaliacaoFuzzy.setNotaFuzzy(0);
+					//avaliacaoFuzzy.setNotaFuzzy(0);
 					avaliacaoFuzzy.setMatrizAvaliacaoFuzzy(matrizAvaliacaoFuzzy);
 					avaliacoesFuzzy.add(avaliacaoFuzzy);
 				}				
@@ -85,20 +90,22 @@ public class AvaliacaoFuzzyController {
 		Usuario alunoAvaliado = avaliacao.getGravacao().getUsuario();
 		Sinal sinal = avaliacao.getGravacao().getSinal();
 		AvaliacaoFuzzy avaliacaoFuzzy =  avaliacaoFuzzyDao.buscaPorAvaliadorAvaliadoSinal(alunoAvaliador.getIdUsuario(),alunoAvaliado.getIdUsuario(),sinal.getIdSinal());
-		avaliacaoFuzzy.setNotaFuzzy(avaliacao.getNotaMedia());
+		//avaliacaoFuzzy.setNotaFuzzy(avaliacao.getNotaMedia() * alunoAvaliador.getPesoAvaliacao());
+		//avaliacaoFuzzy.setPesoNoMomentoDaAvaliacao(alunoAvaliador.getPesoAvaliacao());
 		avaliacaoFuzzy.setJaAvaliou(true);
-		//avaliacaoFuzzyDao.altera(avaliacaoFuzzy);
+		avaliacaoFuzzy.setAvaliacao(avaliacao);
+		avaliacaoFuzzyDao.altera(avaliacaoFuzzy);
 		
 		MatrizAvaliacaoFuzzy matrizAvaliacaoFuzzy = avaliacaoFuzzy.getMatrizAvaliacaoFuzzy();
 		
-		//int qtdAvaliacoesMatriz = avaliacaoFuzzyDao.buscaQuantidadeAvaliacoesPorMatriz(avaliacaoFuzzy.getMatrizAvaliacaoFuzzy().getId());
-		//int qtdAvaliacoesMatrizJaAvaliadas = avaliacaoFuzzyDao.buscaQuantidadeAvaliacoesJaAvaliadasPorMatriz(avaliacaoFuzzy.getMatrizAvaliacaoFuzzy().getId());
+		int qtdAvaliacoesMatriz = avaliacaoFuzzyDao.buscaQuantidadeAvaliacoesPorMatriz(avaliacaoFuzzy.getMatrizAvaliacaoFuzzy().getId());
+		int qtdAvaliacoesMatrizJaAvaliadas = avaliacaoFuzzyDao.buscaQuantidadeAvaliacoesJaAvaliadasPorMatriz(avaliacaoFuzzy.getMatrizAvaliacaoFuzzy().getId());
 		
-		//if(qtdAvaliacoesMatriz == qtdAvaliacoesMatrizJaAvaliadas){
+		if(qtdAvaliacoesMatriz == qtdAvaliacoesMatrizJaAvaliadas){
 			matrizAvaliacaoFuzzy.setAvaliacaoCompleta(true);
-			//matrizAvaliacaoDao.altera(matrizAvaliacaoFuzzy);
-			executarAlgoritmoBorda(matrizAvaliacaoFuzzy);
-		//}
+			matrizAvaliacaoDao.altera(matrizAvaliacaoFuzzy);
+			executarAvaliacaoPorParesOrdinal(matrizAvaliacaoFuzzy);
+		}
 		
 		
 		
@@ -108,32 +115,68 @@ public class AvaliacaoFuzzyController {
 		
 	}
 	
-	public void executarAlgoritmoBorda(MatrizAvaliacaoFuzzy matrizAvaliacaoFuzzy){
-		/*List<AvaliacaoFuzzy> avaliacoesFuzzy = avaliacaoFuzzyDao.buscaAvaliacoesPorIdMatrizAvaliacao(matrizAvaliacaoFuzzy.getId());
-		Collections.sort(avaliacoesFuzzy);
-		Collections.reverse(avaliacoesFuzzy);
+	public void executarAvaliacaoPorParesOrdinal(MatrizAvaliacaoFuzzy matrizAvaliacaoFuzzy){
+		List<Usuario> alunosAvaliados = avaliacaoFuzzyDao.buscaAlunosAvaliadosPorMatrizAvaliacao(matrizAvaliacaoFuzzy.getId());
 		
-		int k = avaliacoesFuzzy.size();
-		for (AvaliacaoFuzzy avaliacaoFuzzy : avaliacoesFuzzy) {
-			avaliacaoFuzzy.setNotaPorPosicaoRanking(NumberUtils.arredondamentoQuatroCasas(k*avaliacaoFuzzy.getPesoNoMomentoDaAvaliacao()));
-			k--;
-		}
-		
-		for (AvaliacaoFuzzy avaliacao : avaliacoesFuzzy) {
-			avaliacaoFuzzyDao.altera(avaliacao);
-		}
-		
-		
-		
-		double[] vetorResultado = new double[matriz.length];
-		for (int i = 1; i < matriz.length; i++) {
-			double somatoria = 0.0;
-			for (int j = 1; j < matriz.length; j++) {
-				somatoria += matriz[j][i];
+		List<AlunoAvaliacaoDto> rankingAlunos = new ArrayList<>();
+		for (Usuario alunoAvaliado : alunosAvaliados) {
+			AlunoAvaliacaoDto alunoAvaliacaoDto = new AlunoAvaliacaoDto();
+			alunoAvaliacaoDto.setAluno(alunoAvaliado);
+			List<Avaliacao> avaliacoesRecebidasAlunoAvaliado = avaliacaoDao.buscaAvaliacoesPorAlunoSinal(alunoAvaliado.getIdUsuario(),matrizAvaliacaoFuzzy.getSinal().getIdSinal());
+			float somatorioNota = 0;
+			float somatorioPeso = 0;
+			for (Avaliacao avaliacao : avaliacoesRecebidasAlunoAvaliado) {
+				somatorioNota += (avaliacao.getNotaMedia() * avaliacao.getPesoAvaliacao());
+				somatorioPeso += avaliacao.getPesoAvaliacao();
 			}
-			vetorResultado[i] = arredondamentoQuartoCasas(somatoria);
+			alunoAvaliacaoDto.setNota(NumberUtils.arredondamentoQuatroCasas(somatorioNota/somatorioPeso));
+			rankingAlunos.add(alunoAvaliacaoDto);
 		}
-		return vetorResultado;*/
 		
+		Collections.sort(rankingAlunos);
+		Collections.reverse(rankingAlunos);
+		
+		int pa = Double.valueOf(Math.floor(alunosAvaliados.size()/2)).intValue();
+		float diferencaEntrePosicoes = NumberUtils.arredondamentoQuatroCasas(0.05f/pa);
+		
+		int i = 1;
+		for (AlunoAvaliacaoDto alunoAvaliacaoDto : rankingAlunos) {
+			Usuario aluno = alunoAvaliacaoDto.getAluno();
+			if(i>pa){
+				break;
+			}else if(i == 1){
+				aluno.setPesoAvaliacao(aluno.getPesoAvaliacao() + 0.05f);
+				//pesos[avaliacaoFuzzy.getI()] += 0.05;
+			}else{
+				aluno.setPesoAvaliacao(aluno.getPesoAvaliacao() + (0.05f - (diferencaEntrePosicoes * (i-1))));
+				//pesos[avaliacaoFuzzy.getI()] += 0.05 - (diferencaEntrePosicoes * (i-1));
+			}
+			aluno.setPesoAvaliacao(NumberUtils.arredondamentoQuatroCasas(aluno.getPesoAvaliacao()));
+			//pesos[avaliacaoFuzzy.getI()] = arredondamentoQuartoCasas(pesos[avaliacaoFuzzy.getI()]);
+			i++;
+		}
+		
+		Collections.reverse(rankingAlunos);
+		i = 1;
+		for (AlunoAvaliacaoDto alunoAvaliacaoDto : rankingAlunos) {
+			Usuario aluno = alunoAvaliacaoDto.getAluno();
+			if(i==pa){
+				break;
+			}else if(i == 1){
+				aluno.setPesoAvaliacao(aluno.getPesoAvaliacao() - 0.05f);
+				//pesos[avaliacaoFuzzy.getI()] -= 0.05;
+			}else{
+				aluno.setPesoAvaliacao(aluno.getPesoAvaliacao() - (0.05f - (diferencaEntrePosicoes * (i-1))));
+				//pesos[avaliacaoFuzzy.getI()] -= 0.05 - (diferencaEntrePosicoes * (i-1));
+			}
+			aluno.setPesoAvaliacao(NumberUtils.arredondamentoQuatroCasas(aluno.getPesoAvaliacao()));
+			//pesos[avaliacaoFuzzy.getI()] = arredondamentoQuartoCasas(pesos[avaliacaoFuzzy.getI()]);
+			i++;
+		}
+		
+		//atualizando o peso de avaliavao dos alunos
+		for (AlunoAvaliacaoDto alunoAvaliacaoDto : rankingAlunos) {
+			usuarioDao.altera(alunoAvaliacaoDto.getAluno());
+		}
 	}
 }

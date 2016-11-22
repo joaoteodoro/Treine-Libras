@@ -65,4 +65,15 @@ public class AvaliacaoDao implements IAvaliacaoDao{
 		
 		return query.getFirstResult();
 	}
+	
+	public List<Avaliacao> buscaAvaliacoesPorAlunoSinal(Long idAlunoAvaliado, Long idSinal){
+		Query query = manager.createQuery("select a "
+				+ "from Avaliacao a"
+				+ "where a.gravacao.usuario.idUsuario = :idAlunoAvaliado "
+				+ "and a.gravacao.sinal.idSinal = :idSinal");
+		query.setParameter("idAlunoAvaliado", idAlunoAvaliado);
+		query.setParameter("idSinal", idSinal);
+		
+		return query.getResultList();
+	}
 }

@@ -1,5 +1,7 @@
 package br.com.treinelibras.dao;
 
+import java.util.List;
+
 import br.com.treinelibras.modelo.Avaliacao;
 
 public interface IAvaliacaoDao {
@@ -12,4 +14,6 @@ public interface IAvaliacaoDao {
 	public void apagaAvaliacoes(Long idGravacao);
 	
 	public int buscaQuantidadeAvaliacoesPorGravacao(Long idGravacao);
+	
+	public List<Avaliacao> buscaAvaliacoesPorAlunoSinal(Long idAlunoAvaliado, Long idSinal);
 }
