@@ -28,6 +28,9 @@ public class UsuarioController {
 	
 	@RequestMapping("adicionaUsuario")
 	public String adicionaUsuario(@Valid Usuario usuario, HttpSession session){
+		if(usuario.getPerfil() != null && usuario.getPerfil().equals("professor")){
+			usuario.setPrimeiroAcesso(false);
+		}
 		dao.adiciona(usuario);
 		Usuario user = (Usuario)session.getAttribute("usuarioLogado");
 		if(user != null){
